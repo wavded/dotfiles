@@ -1,7 +1,7 @@
 all: update
 install:
 	@for file in *; do \
-		if [ '$$file' != 'Makefile' ]; then \
+		if [ '$$file' != 'Makefile' && '$$file' != 'readme.md' ]; then \
 			if [ -e "$$HOME/.$$file" ]; then \
 				echo "$$HOME/.$$file exists"; \
 			else \
