@@ -1,0 +1,11 @@
+[user]
+	name = Marc Harter
+	email = wavded@gmail.com
+[core]
+	editor = vim
+[color]
+	ui = true
+[merge]
+	tool = vimdiff
+[alias]
+   hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
