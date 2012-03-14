@@ -1,4 +1,13 @@
+
 autoload -U colors && colors
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
+
+# Enable ls colors
+if [ "$DISABLE_LS_COLORS" != "true" ]; then
+  # Find the option for using colors in ls, depending on the version: Linux or BSD
+  ls --color -d . &>/dev/null 2>&1 && alias ls='ls --color=tty' || alias ls='ls -G'
+fi
+
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' stagedstr '%F{green}•'
@@ -18,6 +27,7 @@ theme_precmd () {
 
 setopt prompt_subst
 PROMPT='%{%B%F{green}%}%n%{%B%F{blue}%}•%{%B%F{cyan}%}%m%{%B%F{green}%}%{%b%F{yellow}%}%{%B%F{green}%} %B%F{magenta}%c%B%F{green}${vcs_info_msg_0_}%B%F{magenta} %{$reset_color%}% '
-
-autoload -U add-zsh-hook
-add-zsh-hook precmd  theme_precmd
+if [[ $ZSH_VERSION > 4.3 ]]; then
+   autoload -U add-zsh-hook
+   add-zsh-hook precmd  theme_precmd
+fi
