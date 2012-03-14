@@ -10,7 +10,6 @@ install:
 		fi \
 		done
 	@git submodule update --init
-	@make -s powerline_font
 
 powerline_font:
 	-mkdir ~/.fonts
