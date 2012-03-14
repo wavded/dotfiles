@@ -1,4 +1,3 @@
-
 autoload -U colors && colors
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
@@ -26,7 +25,7 @@ theme_precmd () {
 }
 
 setopt prompt_subst
-PROMPT='%{%B%F{green}%}%n%{%B%F{blue}%}•%{%B%F{cyan}%}%m%{%B%F{green}%}%{%b%F{yellow}%}%{%B%F{green}%} %B%F{magenta}%c%B%F{green}${vcs_info_msg_0_}%B%F{magenta} %{$reset_color%}% '
+PROMPT='%{$fg_no_bold[green]%}%n%{$fg_no_bold[blue]%}•%{$fg_no_bold[cyan]%}%m $fg_bold[magenta]%c$fg_no_bold[green]${vcs_info_msg_0_} %{$reset_color%} '
 if [[ $ZSH_VERSION > 4.3 ]]; then
    autoload -U add-zsh-hook
    add-zsh-hook precmd  theme_precmd
