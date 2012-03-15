@@ -28,6 +28,8 @@ function omz_termsupport_preexec {
   title "$CMD" "%100>...>$2%<<"
 }
 
-autoload -U add-zsh-hook
-add-zsh-hook precmd  omz_termsupport_precmd
-add-zsh-hook preexec omz_termsupport_preexec
+if [[ $ZSH_VERSION > 4.3 ]]; then
+   autoload -U add-zsh-hook
+   add-zsh-hook precmd  omz_termsupport_precmd
+   add-zsh-hook preexec omz_termsupport_preexec
+fi
