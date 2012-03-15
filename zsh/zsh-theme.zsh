@@ -17,7 +17,7 @@ theme_precmd () {
 }
 
 PROMPT='%{$fg_no_bold[green]%}%n%{$fg_no_bold[blue]%}@%{$fg_bold[cyan]%}%m%{$fg_no_bold[magenta]%}%3~%{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%}» '
-RPROMPT='[%*]'
+# RPROMPT='[%*]'
 
 if [[ $ZSH_VERSION > 4.3 ]]; then
    autoload -U add-zsh-hook
