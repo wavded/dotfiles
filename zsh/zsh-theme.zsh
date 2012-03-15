@@ -5,6 +5,7 @@ zstyle ':vcs_info:*' unstagedstr '%F{yellow}•'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
 zstyle ':vcs_info:*' enable git svn
+
 theme_precmd () {
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
         zstyle ':vcs_info:*' formats '(%b%c%u%B%F{green})'
@@ -15,8 +16,7 @@ theme_precmd () {
     vcs_info
 }
 
-setopt prompt_subst
-PROMPT='%{$fg_no_bold[green]%}%n%{$fg_no_bold[blue]%}@%{$fg_bold[cyan]%}%m$fg_no_bold[magenta]%3~$fg_bold[green]${vcs_info_msg_0_}%{$reset_color%}» '
+PROMPT='%{$fg_no_bold[green]%}%n%{$fg_no_bold[blue]%}@%{$fg_bold[cyan]%}%m%{$fg_no_bold[magenta]%}%3~%{$fg_bold[green]%}${vcs_info_msg_0_}%{$reset_color%}» '
 RPROMPT='[%*]'
 
 if [[ $ZSH_VERSION > 4.3 ]]; then
