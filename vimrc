@@ -61,6 +61,9 @@ if exists('+colorcolumn')
    set colorcolumn=115              " show a right margin column
 endif
 set cursorline                      " highlight current line
+" define custom cursor line if theme doesn't
+hi CursorLine cterm=NONE ctermbg=235
+
 map <m-a> ggVG
 
 if has("gui_running")
