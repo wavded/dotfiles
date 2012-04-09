@@ -56,13 +56,13 @@ set noeb vb t_vb=                   " disable audio and visual bells
 
 set t_Co=256                        " use 256 colors
 set background=dark
-colorscheme shady                   " terminal theme
+colorscheme shady " terminal theme
 if exists('+colorcolumn')
    set colorcolumn=115              " show a right margin column
 endif
 set cursorline                      " highlight current line
 " define custom cursor line if theme doesn't
-hi CursorLine cterm=NONE ctermbg=235
+hi CursorLine cterm=NONE ctermbg=234
 
 map <m-a> ggVG
 
