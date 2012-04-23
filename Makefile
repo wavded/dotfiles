@@ -28,5 +28,5 @@ setup_cron:
 	@touch tmpcron
 	-crontab -l >> tmpcron
 	@echo "0 0 * * * cd $$HOME/dotfiles && git pull && make install >> /dev/null &2>1" >> tmpcron
-	@crontab -f tmpcron
+	@crontab tmpcron
 	@rm tmpcron
