@@ -206,10 +206,17 @@ let g:ackprg="ack -H --type-set jade=.jade --type-set stylus=.styl --type-set co
 map <leader>cc :CoffeeCompile<cr>
 map <silent> <leader>cm :CoffeeMake<cr> <cr>
 
+" Git
+map <leader>gs :Gstat<cr>
+map <leader>gc :Gcommit<cr>
+
 "" LANGUAGE SPECIFIC
 
 " Python
 au FileType python set noexpandtab
+
+" Markdown
+au FileType markdown set wrap
 
 " JavaScript
 au BufRead,BufNewFile *.json set ft=javascript
