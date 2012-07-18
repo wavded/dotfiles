@@ -9,3 +9,8 @@
 	tool = vimdiff
 [alias]
    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+   ahead = !sh -c 'git log origin/$1..HEAD --oneline' -
+   call = git add -A && git commit
+[mergetool]
+   prompt = false
+   keepBackup = false
