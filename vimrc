@@ -19,7 +19,6 @@ set wildignore+=*.o,.git,.svn,node_modules
 
 set ruler                           " always show current position
 set backspace=indent,eol,start      " set backspace config, backspace as normal
-set nomodeline                      " security
 
 set hlsearch                        " highlight search things
 set incsearch                       " go to search results as typing
@@ -38,9 +37,9 @@ set nobackup                        " prevent backups of files, since using vcs
 set nowritebackup
 set noswapfile
 
-set shiftwidth=3                    " set tab width
-set softtabstop=3
-set tabstop=3
+set shiftwidth=2                    " set tab width
+set softtabstop=2
+set tabstop=2
 
 set smarttab
 set expandtab                       " use spaces, not tabs
@@ -127,6 +126,7 @@ map <leader>cd :cd %:p:h<cr>
 
 " open file explorer
 map <leader>n :NERDTreeToggle<cr>
+let NERDTreeQuitOnOpen=1
 
 " swap implementations of ` and ' jump to prefer row and column jumping
 nnoremap ' `
