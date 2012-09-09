@@ -25,9 +25,6 @@
 [submodule "vim/bundle/javascript"]
 	path = vim/bundle/javascript
 	url = https://github.com/pangloss/vim-javascript
-[submodule "vim/bundle/coffeescript"]
-	path = vim/bundle/coffeescript
-	url = https://github.com/kchmck/vim-coffee-script
 [submodule "vim/bundle/stylus"]
 	path = vim/bundle/stylus
 	url = https://github.com/wavded/vim-stylus
