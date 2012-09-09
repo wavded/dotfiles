@@ -200,7 +200,7 @@ let g:Powerline_symbols = 'fancy'
 set grepprg=ack
 nnoremap <leader>a :Ack<space>
 let g:ackhighlight=1
-let g:ackprg="ack -H --type-set jade=.jade --type-set stylus=.styl --type-set coffee=.coffee --nocolor --nogroup --column --ignore-dir=node_modules -G '^((?!min\.).)*$'"
+let g:ackprg="ack -H --type-set jade=.jade --type-set stylus=.styl --type-set coffee=.coffee --nocolor --nogroup --column -G '^((?!min\.).)*$'"
 
 " CoffeeScript
 map <leader>cc :CoffeeCompile<cr>
