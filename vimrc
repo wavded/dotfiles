@@ -54,15 +54,12 @@ set spelllang=en,es                 " set spell check language
 set noeb vb t_vb=                   " disable audio and visual bells
 
 set t_Co=256                        " use 256 colors
-set background=dark
+" set background=dark
 colorscheme shady " terminal theme
 if exists('+colorcolumn')
-   set colorcolumn=115              " show a right margin column
+   set colorcolumn=72              " show a right margin column
 endif
 set cursorline                      " highlight current line
-" define custom cursor line if theme doesn't
-hi CursorLine cterm=NONE ctermbg=234
-
 map <m-a> ggVG
 
 if has("gui_running")
@@ -223,3 +220,9 @@ au BufRead,BufNewFile *.json set ft=javascript
 
 "" STATUS LINE
 set laststatus=2 " always hide the last status
+
+" define custom cursor line if theme doesn't
+" hi CursorLine cterm=NONE ctermbg=234
+hi CursorLine cterm=NONE ctermbg=233
+hi ColorColumn cterm=NONE ctermbg=233
+autocmd BufRead,BufNewFile * syn match Braces /[(){}\[\]]/ | hi Braces cterm=NONE ctermfg=red
