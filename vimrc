@@ -54,32 +54,16 @@ set spelllang=en,es                 " set spell check language
 set noeb vb t_vb=                   " disable audio and visual bells
 
 set t_Co=256                        " use 256 colors
-" set background=dark
-colorscheme shady " terminal theme
+colorscheme reallyshady " terminal theme
+
 if exists('+colorcolumn')
    set colorcolumn=72              " show a right margin column
 endif
-set cursorline                      " highlight current line
-map <m-a> ggVG
-
-if has("gui_running")
-   au GUIEnter * set vb t_vb=       " disable visual bell in gui
-   set guioptions-=T                " remove gui toolbar
-   set guioptions-=m                " remove gui menubar
-   set linespace=2                  " space between lines
-   set columns=160 lines=35         " window size
-
-   set guioptions+=LlRrb            " crazy hack to get gvim to remove all scrollbars
-   set guioptions-=LlRrb
-
-   set guifont=Ubuntu\ Mono\ for\ Powerline\ 13    " gui font
-   set background=dark
-   colorscheme ir_black " gui theme
-endif
+set cursorline                     " highlight current line
 
 " FOLDING
-set foldenable                   " enable folding
-set foldmethod=indent            " most files are evenly indented
+set foldenable                     " enable folding
+set foldmethod=indent              " most files are evenly indented
 set foldlevel=99
 
 " ADDITIONAL KEY MAPPINGS
@@ -215,14 +199,5 @@ au FileType python set noexpandtab
 " Markdown
 au FileType markdown set wrap
 
-" JavaScript
-au BufRead,BufNewFile *.json set ft=javascript
-
 "" STATUS LINE
 set laststatus=2 " always hide the last status
-
-" define custom cursor line if theme doesn't
-" hi CursorLine cterm=NONE ctermbg=234
-hi CursorLine cterm=NONE ctermbg=233
-hi ColorColumn cterm=NONE ctermbg=233
-autocmd BufRead,BufNewFile * syn match Braces /[(){}\[\]]/ | hi Braces cterm=NONE ctermfg=red
