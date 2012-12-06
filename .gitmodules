@@ -67,6 +67,3 @@
 [submodule "vim/bundle/javascript"]
 	path = vim/bundle/javascript
 	url = git://github.com/pangloss/vim-javascript.git
-[submodule "vim/bundle/xmledit"]
-	path = vim/bundle/xmledit
-	url = git://github.com/sukima/xmledit.git
