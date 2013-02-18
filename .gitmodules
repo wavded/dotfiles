@@ -46,9 +46,6 @@
 [submodule "vim/bundle/pasta"]
 	path = vim/bundle/pasta
 	url = https://github.com/sickill/vim-pasta
-[submodule "vim/bundle/powerline"]
-	path = vim/bundle/powerline
-	url = https://github.com/Lokaltog/vim-powerline
 [submodule "vim/bundle/shady"]
 	path = vim/bundle/shady
 	url = https://github.com/cloudhead/shady.vim
