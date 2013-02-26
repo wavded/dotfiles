@@ -118,8 +118,10 @@ vmap > >gv
 vmap < <gv
 
 " copy/paste to/from x clipboard
-vmap <leader>y :!xclip -f -sel clip<cr>
-map <leader>p :r!xclip -o<cr>
+" vmap <leader>y :!xclip -f -sel clip<cr>
+vmap <leader>y :w !pbcopy<cr><cr>
+map <leader>p :r!pbpaste<cr>
+" nmap <F2> :.w !pbcopy<cr><cr>
 
 " pull word under cursor into lhs of a substitute (for quick search and replace)
 nmap <leader>r :%s#\<<C-r>=expand("<cword>")<CR>\>#
