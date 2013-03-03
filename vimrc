@@ -120,7 +120,7 @@ vmap < <gv
 " copy/paste to/from x clipboard
 " vmap <leader>y :!xclip -f -sel clip<cr>
 vmap <leader>y :w !pbcopy<cr><cr>
-map <leader>p :r!pbpaste<cr>
+map <leader>p :r!pbpaste<cr><cr>
 " nmap <F2> :.w !pbcopy<cr><cr>
 
 " pull word under cursor into lhs of a substitute (for quick search and replace)
@@ -183,7 +183,7 @@ let g:Powerline_symbols = 'fancy'
 set grepprg=ack
 nnoremap <leader>a :Ack<space>
 let g:ackhighlight=1
-let g:ackprg="ack -H --type-set jade=.jade --type-set stylus=.styl --type-set coffee=.coffee --nocolor --nogroup --column -G '^((?!min\.).)*$'"
+let g:ackprg="ag --nocolor --nogroup --column"
 
 " CoffeeScript
 map <leader>cc :CoffeeCompile<cr>
