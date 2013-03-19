@@ -64,3 +64,6 @@
 [submodule "vim/bundle/javascript"]
 	path = vim/bundle/javascript
 	url = git://github.com/pangloss/vim-javascript.git
+[submodule "vim/bundle/golang"]
+	path = vim/bundle/golang
+	url = git@github.com:jnwhiteh/vim-golang.git
