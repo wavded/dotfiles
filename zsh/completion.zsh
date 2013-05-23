@@ -60,4 +60,4 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 zstyle '*' single-ignored show
 
 # add npm completion
-eval "$(npm completion 2>/dev/null)"
+. <(npm completion)

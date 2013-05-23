@@ -15,4 +15,4 @@
    prompt = false
    keepBackup = false
 [push]
-	default = simple
+	default = current
