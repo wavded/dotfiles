@@ -3,20 +3,16 @@ parse_git_dirty() {
   local SUBMODULE_SYNTAX=''
   local GIT_STATUS=''
   local CLEAN_MESSAGE='nothing to commit (working directory clean)'
-  if [[ "$(git config --get oh-my-zsh.hide-status)" != "1" ]]; then
-    if [[ $POST_1_7_2_GIT -gt 0 ]]; then
-          SUBMODULE_SYNTAX="--ignore-submodules=dirty"
-    fi
-    if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" == "true" ]]; then
-        GIT_STATUS=$(git status -s ${SUBMODULE_SYNTAX} -uno 2> /dev/null | tail -n1)
-    else
-        GIT_STATUS=$(git status -s ${SUBMODULE_SYNTAX} 2> /dev/null | tail -n1)
-    fi
-    if [[ -n $GIT_STATUS ]]; then
-      echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
-    else
-      echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
-    fi
+  if [[ $POST_1_7_2_GIT -gt 0 ]]; then
+        SUBMODULE_SYNTAX="--ignore-submodules=dirty"
+  fi
+  if [[ "$DISABLE_UNTRACKED_FILES_DIRTY" == "true" ]]; then
+      GIT_STATUS=$(git status -s ${SUBMODULE_SYNTAX} -uno 2> /dev/null | tail -n1)
+  else
+      GIT_STATUS=$(git status -s ${SUBMODULE_SYNTAX} 2> /dev/null | tail -n1)
+  fi
+  if [[ -n $GIT_STATUS ]]; then
+    echo "$ZSH_THEME_GIT_PROMPT_DIRTY"
   else
     echo "$ZSH_THEME_GIT_PROMPT_CLEAN"
   fi
@@ -88,7 +84,7 @@ prompt_context() {
   local user=`whoami`
 
   if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$user@%m"
+    prompt_segment magenta black "%(!.%{%F{yellow}%}.)$user@%m"
   fi
 }
 

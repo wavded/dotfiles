@@ -123,6 +123,20 @@ vmap < <gv
 vmap <leader>y :w !pbcopy<cr><cr>
 map <leader>p :r!pbpaste<cr><cr>
 " nmap <F2> :.w !pbcopy<cr><cr>
+"
+if &term =~ "xterm.*"
+    let &t_ti = &t_ti . "\e[?2004h"
+    let &t_te = "\e[?2004l" . &t_te
+    function XTermPasteBegin(ret)
+        set pastetoggle=<Esc>[201~
+        set paste
+        return a:ret
+    endfunction
+    map <expr> <Esc>[200~ XTermPasteBegin("i")
+    imap <expr> <Esc>[200~ XTermPasteBegin("")
+    cmap <Esc>[200~ <nop>
+    cmap <Esc>[201~ <nop>
+endif
 
 " pull word under cursor into lhs of a substitute (for quick search and replace)
 nmap <leader>r :%s#\<<C-r>=expand("<cword>")<CR>\>#
