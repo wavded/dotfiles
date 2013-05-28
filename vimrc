@@ -106,7 +106,8 @@ map <leader>. :b#<cr>
 map <leader>cd :cd %:p:h<cr>
 
 " open file explorer
-map <leader>n :NERDTreeToggle<cr>
+set shortmess=at
+map <silent> <leader>n :NERDTreeToggle<cr>
 let NERDTreeQuitOnOpen=1
 
 " swap implementations of ` and ' jump to prefer row and column jumping
