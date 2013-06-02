@@ -73,3 +73,9 @@
 [submodule "vim/bundle/powerline"]
 	path = vim/bundle/powerline
 	url = https://github.com/Lokaltog/vim-powerline
+[submodule "vim/bundle/dispatch"]
+	path = vim/bundle/dispatch
+	url = git://github.com/tpope/vim-dispatch.git
+[submodule "vim/bundle/solarized-powerline"]
+	path = vim/bundle/solarized-powerline
+	url = git://github.com/stephenmckinney/vim-solarized-powerline.git
