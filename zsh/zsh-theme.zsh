@@ -19,12 +19,12 @@ theme_precmd () {
 prompt_context() {
   local user=`whoami`
 
-  if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    echo "%(!.%{%F{yellow}%}.)$user@%m"
+  if [[ "$user" != "$DEFAULT_SER" || -n "$SSH_CLIENT" ]]; then
+    echo "%K{magenta}%F{black} $user@%m %{%f%b%k%}"
   fi
 }
 
-PROMPT='${prompt_context} %3~ ${vcs_info_msg_0_}❫ %{$fg_no_bold[white]%{%f%}%}'
+PROMPT='%{%f%b%k%}$(prompt_context) %3~ ${vcs_info_msg_0_}❫ %{%f%b%k%}'
 # RPROMPT='[%*]'
 
 if [[ $ZSH_VERSION > 4.3 ]]; then
