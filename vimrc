@@ -55,9 +55,9 @@ set spelllang=en,es                 " set spell check language
 set noeb vb t_vb=                   " disable audio and visual bells
 
 set t_Co=256                        " use 256 colors
-" colorscheme reallyshady " terminal theme
-colorscheme solarized
-set background=dark
+colorscheme reallyshady " terminal theme
+" colorscheme solarized
+" set background=dark
 
 if exists('+colorcolumn')
    set colorcolumn=72              " show a right margin column
@@ -196,8 +196,8 @@ map <leader>b :CtrlPBuffer<cr>
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
-" let g:Powerline_theme='short'
-let g:Powerline_colorscheme='solarized256_dark'
+let g:Powerline_theme='short'
+" let g:Powerline_colorscheme='solarized256_dark'
 
 " Ack
 set grepprg=ack
