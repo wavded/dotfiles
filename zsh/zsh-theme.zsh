@@ -19,7 +19,7 @@ theme_precmd () {
 prompt_context() {
   local user=`whoami`
 
-  if [[ "$user" != "$DEFAULT_SER" || -n "$SSH_CLIENT" ]]; then
+  if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     echo "%K{magenta}%F{black} $user@%m %{%f%b%k%}"
   fi
 }
