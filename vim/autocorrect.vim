@@ -81,6 +81,7 @@ iab articel article
 iab asdvertising advertising
 iab assistent assistant
 iab asthe as the
+iab asyncronous asynchronous
 iab atention attention
 iab atmospher atmosphere
 iab attentioin attention
@@ -675,6 +676,7 @@ iab suppossed supposed
 iab suprise surprise
 iab suprised surprised
 iab swiming swimming
+iab syncronous synchronous
 iab tahn than
 iab taht that
 iab talekd talked

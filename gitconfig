@@ -3,6 +3,7 @@
 	email = wavded@gmail.com
 [core]
 	editor = vim
+	excludesfile = /Users/wavded/.gitignore_global
 [color]
 	ui = true
 [merge]
@@ -10,8 +11,15 @@
 [alias]
    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
    call = git add -A && git commit
+   url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
 [mergetool]
    prompt = false
    keepBackup = false
 [push]
 	default = current
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

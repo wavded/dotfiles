@@ -16,7 +16,7 @@ set showcmd                         " show typed commands
 
 set wildmenu                        " turn on WiLd menu
 set wildmode=list:longest,list:full " activate TAB auto-completion for file paths
-set wildignore+=*.o,.git,.svn,node_modules
+set wildignore+=*.o,.git,.svn,node_modules,bower_components
 
 set ruler                           " always show current position
 set backspace=indent,eol,start      " set backspace config, backspace as normal
@@ -63,6 +63,8 @@ if exists('+colorcolumn')
    set colorcolumn=72              " show a right margin column
 endif
 set cursorline                     " highlight current line
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=2\x7"
 
 " FOLDING
 set foldenable                     " enable folding
@@ -176,7 +178,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'
 au QuickFixCmdPost *grep* cwindow
 
 "" ABBREVIATIONS
-" source $HOME/.vim/autocorrect.vim
+source $HOME/.vim/autocorrect.vim
 
 "" PLUGIN SETTINGS
 
@@ -196,7 +198,7 @@ map <leader>b :CtrlPBuffer<cr>
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
-let g:Powerline_theme='short'
+" let g:Powerline_theme='short'
 " let g:Powerline_colorscheme='solarized256_dark'
 
 " Ack
