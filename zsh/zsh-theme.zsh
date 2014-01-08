@@ -24,7 +24,7 @@ prompt_context() {
   fi
 }
 
-PROMPT='%{%f%b%k%}$(prompt_context)%3~ ${vcs_info_msg_0_}) %{%f%b%k%}'
+PROMPT='%{%f%b%k%}$(prompt_context)%3~ ${vcs_info_msg_0_}%{%f%b%k%}› '
 # RPROMPT='[%*]'
 
 if [[ $ZSH_VERSION > 4.3 ]]; then
