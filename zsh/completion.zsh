@@ -58,8 +58,3 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 
 # ... unless we really want to.
 zstyle '*' single-ignored show
-
-# add npm completion
-if (( $+commands[npm] )) ; then
-  . <(npm completion)
-fi
