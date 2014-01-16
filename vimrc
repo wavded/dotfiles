@@ -16,7 +16,7 @@ set showcmd                         " show typed commands
 
 set wildmenu                        " turn on WiLd menu
 set wildmode=list:longest,list:full " activate TAB auto-completion for file paths
-set wildignore+=*.o,.git,.svn,node_modules,bower_components
+set wildignore+=*.o,.git,.svn
 
 set ruler                           " always show current position
 set backspace=indent,eol,start      " set backspace config, backspace as normal
@@ -195,6 +195,7 @@ vmap <C-Down> ]egv
 " CTRLP
 map <leader>t :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
+let g:ctrlp_custom_ignore = '\v[\/](bower_components|node_modules)$'
 
 " Powerline
 let g:Powerline_symbols = 'fancy'
@@ -205,7 +206,7 @@ let g:Powerline_symbols = 'fancy'
 set grepprg=ack
 nnoremap <leader>a :Ack<space>
 let g:ackhighlight=1
-let g:ackprg="ag --nocolor --nogroup --column"
+let g:ackprg="ag --nocolor --nogroup --column --ignore node_modules --ignore bower_components"
 
 " CoffeeScript
 map <leader>cc :CoffeeCompile<cr>
@@ -214,6 +215,9 @@ map <silent> <leader>cm :CoffeeMake<cr> <cr>
 " Git
 map <leader>gs :Gstat<cr>
 map <leader>gc :Gcommit<cr>
+
+" Node
+map <leader>rn :!node %<cr>
 
 "" LANGUAGE SPECIFIC
 

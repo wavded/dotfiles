@@ -8,3 +8,5 @@ compinit -i
 if (( $+commands[npm] )) ; then
   . <(npm completion)
 fi
+
+[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
