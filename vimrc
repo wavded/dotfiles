@@ -217,7 +217,8 @@ map <leader>gs :Gstat<cr>
 map <leader>gc :Gcommit<cr>
 
 " Node
-map <leader>rn :!node --harmony %<cr>
+map <leader>en :!node --harmony %<cr>
+map <leader>et :!NODE_ENV=test node --harmony %<cr>
 
 "" LANGUAGE SPECIFIC
 
