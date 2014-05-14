@@ -1,16 +1,16 @@
 autoload -Uz vcs_info
 
-zstyle ':vcs_info:*' stagedstr '%K{green} '
-zstyle ':vcs_info:*' unstagedstr '%K{yellow} '
+zstyle ':vcs_info:*' stagedstr '%F{green}◀'
+zstyle ':vcs_info:*' unstagedstr '%F{yellow}◀'
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{white}:%r'
 zstyle ':vcs_info:*' enable git svn
 
 theme_precmd () {
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-        zstyle ':vcs_info:*' formats '%K{cyan}%F{black}  %b %{%k%} %c%u%B%{%k%}'
+        zstyle ':vcs_info:*' formats '%F{green} %b%{%k%}%c%u%B%{%k%} '
     } else {
-        zstyle ':vcs_info:*' formats '%K{cyan}%F{black}  %b %{%k%} %c%u%B%K{red} %{%k%}'
+        zstyle ':vcs_info:*' formats '%F{green} %b%{%k%}%c%u%B%F{red}◁%{%k%} '
     }
 
     vcs_info

@@ -55,13 +55,13 @@ set spelllang=en,es                 " set spell check language
 set noeb vb t_vb=                   " disable audio and visual bells
 
 set t_Co=256                        " use 256 colors
-colorscheme reallyshady " terminal theme
+colorscheme shady " terminal theme
 " colorscheme solarized
 " set background=dark
 
-if exists('+colorcolumn')
-   set colorcolumn=72              " show a right margin column
-endif
+" if exists('+colorcolumn')
+"    set colorcolumn=72              " show a right margin column
+" endif
 " set cursorline                     " highlight current line
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=2\x7"
@@ -202,9 +202,7 @@ let g:ctrlp_custom_ignore = '\v[\/](bower_components|node_modules)$'
 
 " Airline
 let g:airline_powerline_fonts = 1
-" let g:airline_symbols = 'fancy'
-" let g:Powerline_theme='short'
-" let g:Powerline_colorscheme='solarized256_dark'
+let g:airline_theme='serene'
 
 " Ack
 set grepprg=ack
@@ -223,6 +221,17 @@ map <leader>gc :Gcommit<cr>
 " Node
 map <leader>en :!node --harmony %<cr>
 map <leader>et :!NODE_ENV=test node --harmony %<cr>
+
+" Tmux
+let g:tmuxline_preset = {
+        \'a'       : '#S',
+        \'b'       : ['#I:#P','#F'],
+        \'c'       : ['#h'],
+        \'win'     : ['#I','#W'],
+        \'cwin'    : ['#I','#W'],
+        \'x'       : '#($HOME/.tmux/ip-address)',
+        \'y'       : '%H:%M %d-%b-%y',
+        \'options' : {'status-justify' : 'right'}}
 
 "" LANGUAGE SPECIFIC
 
