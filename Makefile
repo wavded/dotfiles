@@ -17,12 +17,12 @@ powerline_font:
 
 update:
 	@git submodule foreach git checkout master
-	@cd vim/bundle/powerline && git checkout develop
 	@git submodule foreach git pull
 	@make -s pathogen
 
 pathogen:
-	@cd vim/autoload && rm pathogen.vim && curl -O https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+	@curl -LSso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+	# @cd vim/autoload && rm pathogen.vim && curl -O https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 setup_cron:
 	@touch tmpcron
