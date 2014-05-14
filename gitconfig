@@ -10,8 +10,9 @@
 	tool = vimdiff
 [alias]
    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-   call = git add -A && git commit
+   call =! git add -A && git commit
    url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
+	 up = "!git remote update -p; git merge --ff-only @{u}"
 [mergetool]
    prompt = false
    keepBackup = false

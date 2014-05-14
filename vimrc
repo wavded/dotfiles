@@ -62,7 +62,7 @@ colorscheme reallyshady " terminal theme
 if exists('+colorcolumn')
    set colorcolumn=72              " show a right margin column
 endif
-set cursorline                     " highlight current line
+" set cursorline                     " highlight current line
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=2\x7"
 
@@ -156,6 +156,9 @@ cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nmap <silent> <leader>ev :e $MYVIMRC<cr>
 nmap <silent> <leader>sv :so $MYVIMRC<cr>
 
+" fast editing of the autocorrections
+nmap <silent> <leader>ea :e $HOME/.vim/autocorrect.vim<cr>
+
 " allow saving when you forgot sudo
 cmap w!! w !sudo tee % >/dev/null
 
@@ -197,8 +200,9 @@ map <leader>t :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/](bower_components|node_modules)$'
 
-" Powerline
-let g:Powerline_symbols = 'fancy'
+" Airline
+let g:airline_powerline_fonts = 1
+" let g:airline_symbols = 'fancy'
 " let g:Powerline_theme='short'
 " let g:Powerline_colorscheme='solarized256_dark'
 

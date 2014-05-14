@@ -5,9 +5,10 @@ autoload -U compinit
 compinit -i
 
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh # This loads autojump
+autoload -U compinit && compinit
 
 # add npm completion
 if (( $+commands[npm] )) ; then
   . <(npm completion)
 fi
-

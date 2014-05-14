@@ -61,15 +61,9 @@
 [submodule "vim/bundle/javascript"]
 	path = vim/bundle/javascript
 	url = git://github.com/pangloss/vim-javascript.git
-[submodule "vim/bundle/powerline"]
-	path = vim/bundle/powerline
-	url = https://github.com/Lokaltog/vim-powerline
 [submodule "vim/bundle/dispatch"]
 	path = vim/bundle/dispatch
 	url = git://github.com/tpope/vim-dispatch.git
-[submodule "vim/bundle/solarized-powerline"]
-	path = vim/bundle/solarized-powerline
-	url = git://github.com/stephenmckinney/vim-solarized-powerline.git
 [submodule "vim/bundle/tlib"]
 	path = vim/bundle/tlib
 	url = git://github.com/tomtom/tlib_vim.git
@@ -82,3 +76,12 @@
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+[submodule "vim/bundle/golang"]
+	path = vim/bundle/golang
+	url = https://github.com/jnwhiteh/vim-golang.git
+[submodule "vim/bundle/hybrid"]
+	path = vim/bundle/hybrid
+	url = https://github.com/w0ng/vim-hybrid
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = https://github.com/bling/vim-airline

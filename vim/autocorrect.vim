@@ -624,6 +624,7 @@ iab selectoin selection
 iab sentance sentence
 iab separeate separate
 iab seperate separate
+iab seperately separately
 iab sercumstances circumstances
 iab shcool school
 iab shesaid she said
@@ -802,3 +803,8 @@ iab youve you've
 iab ytou you
 iab yuo you
 iab yuor your
+iab sychronous synchronous
+iab syncronous synchronous
+iab asychronous asynchronous
+iab asyncronous asynchronous
+iab publically publicly

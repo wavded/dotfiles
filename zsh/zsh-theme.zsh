@@ -8,9 +8,9 @@ zstyle ':vcs_info:*' enable git svn
 
 theme_precmd () {
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-        zstyle ':vcs_info:*' formats '%K{cyan}%F{black} ⭠ %b %{%k%} %c%u%B%{%k%}'
+        zstyle ':vcs_info:*' formats '%K{cyan}%F{black}  %b %{%k%} %c%u%B%{%k%}'
     } else {
-        zstyle ':vcs_info:*' formats '%K{cyan}%F{black} ⭠ %b %{%k%} %c%u%B%K{red} %{%k%}'
+        zstyle ':vcs_info:*' formats '%K{cyan}%F{black}  %b %{%k%} %c%u%B%K{red} %{%k%}'
     }
 
     vcs_info
