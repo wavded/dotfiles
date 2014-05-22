@@ -208,7 +208,8 @@ let g:airline_theme='serene'
 set grepprg=ag
 nnoremap <leader>a :Ack<space>
 let g:ackhighlight=1
-let g:ack_autofold_results=1
+let g:ackpreview=1
+let g:ack_use_dispatch=1
 let g:ackprg="ag --nocolor --nogroup --column --ignore node_modules --ignore bower_components"
 
 " CoffeeScript
