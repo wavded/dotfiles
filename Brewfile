@@ -9,5 +9,6 @@ install zsh
 install tmux
 install git
 install tree
+install autojump
 
 cleanup
