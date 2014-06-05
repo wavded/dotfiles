@@ -11,5 +11,6 @@ install tmux
 install git
 install tree
 install autojump
+install graphicsmagick
 
 cleanup
