@@ -2,6 +2,7 @@ export PATH=$HOME/dotfiles/bin:/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/
 export TERM=xterm-256color
 export EDITOR=vim
 export DEFAULT_USER=wavded
+export DOCKER_HOST=tcp://:2375
 
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31'

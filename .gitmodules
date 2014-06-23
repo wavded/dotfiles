@@ -85,3 +85,6 @@
 [submodule "vim/bundle/tmuxline"]
 	path = vim/bundle/tmuxline
 	url = https://github.com/edkolev/tmuxline.vim
+[submodule "vim/bundle/dockerfile"]
+	path = vim/bundle/dockerfile
+	url = https://github.com/honza/dockerfile.vim.git
