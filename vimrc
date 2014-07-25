@@ -55,9 +55,8 @@ set spelllang=en,es                 " set spell check language
 set noeb vb t_vb=                   " disable audio and visual bells
 
 set t_Co=256                        " use 256 colors
-colorscheme shady " terminal theme
+colorscheme base16-google           " terminal theme
 " colorscheme solarized
-" set background=dark
 
 " if exists('+colorcolumn')
 "    set colorcolumn=72              " show a right margin column
@@ -202,7 +201,7 @@ let g:ctrlp_custom_ignore = '\v[\/](bower_components|node_modules)$'
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme='serene'
+let g:airline_theme='light'
 
 " Ack
 set grepprg=ag

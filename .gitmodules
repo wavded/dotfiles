@@ -88,3 +88,9 @@
 [submodule "vim/bundle/dockerfile"]
 	path = vim/bundle/dockerfile
 	url = https://github.com/honza/dockerfile.vim.git
+[submodule "vim/bundle/swift"]
+	path = vim/bundle/swift
+	url = git://github.com/toyamarinyon/vim-swift.git
+[submodule "vim/bundle/less"]
+	path = vim/bundle/less
+	url = https://github.com/groenewege/vim-less.git
