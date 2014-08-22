@@ -183,6 +183,7 @@ iab comtain contain
 iab comtains contains
 iab comunicate communicate
 iab comunity community
+iab concider consider
 iab condolances condolences
 iab conected connected
 iab conferance conference
@@ -406,6 +407,7 @@ iab infomation information
 iab informatoin information
 iab inital initial
 iab instaleld installed
+iab instanbul istanbul
 iab insted instead
 iab insted intead
 iab insurence insurance
