@@ -194,13 +194,13 @@ vmap <C-Up> [egv
 vmap <C-Down> ]egv
 
 " CTRLP
-map <leader>t :CtrlP<cr>
+map <leader>g :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/](bower_components|node_modules)$'
 
 " Airline
 let g:airline_powerline_fonts = 1
-let g:airline_theme='serene'
+let g:airline_theme='kolor'
 
 " Ack
 set grepprg=ag
@@ -215,8 +215,8 @@ map <leader>cc :CoffeeCompile<cr>
 map <silent> <leader>cm :CoffeeMake<cr> <cr>
 
 " Git
-map <leader>gs :Gstat<cr>
-map <leader>gc :Gcommit<cr>
+" map <leader>gs :Gstat<cr>
+" map <leader>gc :Gcommit<cr>
 
 " Node
 map <leader>en :!node --harmony %<cr>
