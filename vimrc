@@ -171,6 +171,10 @@ map <leader>s? z=
 
 "" ADDITIONAL AUTOCOMMANDS
 
+" close scratch when selection is made in OmniCompletion
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
 " saving when focus lost (after tabbing away or switching buffers)
 au FocusLost,BufLeave,WinLeave,TabLeave * silent! up
 
@@ -197,6 +201,11 @@ vmap <C-Down> ]egv
 map <leader>g :CtrlP<cr>
 map <leader>b :CtrlPBuffer<cr>
 let g:ctrlp_custom_ignore = '\v[\/](bower_components|node_modules)$'
+
+" Syntastic
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_check_on_open = 1
+map <leader>l :SyntasticCheck<CR>
 
 " Airline
 let g:airline_powerline_fonts = 1

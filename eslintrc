@@ -11,11 +11,12 @@
     "strict": 0,
     "space-infix-ops": 0,
     "no-proto": 0,
-    "no-unused-vars": 1,
+    "no-unused-vars": [1, { "vars": "all", "args": "none" }],
     "no-underscore-dangle": 0,
     "no-use-before-define": 0,
     "complexity": [1, 5],
-    "eol-last": 0
+    "eol-last": 0,
+    "key-spacing": 0
   }
 }
 
