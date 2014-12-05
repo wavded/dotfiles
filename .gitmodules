@@ -97,6 +97,3 @@
 [submodule "vim/bundle/tern"]
 	path = vim/bundle/tern
 	url = git@github.com:marijnh/tern_for_vim.git
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = git@github.com:scrooloose/syntastic.git
