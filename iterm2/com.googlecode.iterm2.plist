@@ -651,8 +651,6 @@
 	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
-	<key>NSFontPanelAttributes</key>
-	<string>1, 4</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/iterm2</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -684,17 +682,11 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>328 539 796 475 0 0 1680 1027 </string>
-	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>530 477 620 392 0 0 1680 1027 </string>
-	<key>NSWindow Frame UKCrashReporter</key>
-	<string>127 443 592 584 0 0 1680 1027 </string>
+	<string>-1094 120 918 381 -1280 -124 1280 1001 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>691 29 970 387 0 0 1680 1027 </string>
+	<string>-997 -33 714 819 -1280 -124 1280 1001 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>588 87 970 387 0 0 1680 1027 </string>
-	<key>NSWindow Frame iTerm Window 2</key>
-	<string>233 78 850 367 0 0 1680 1027 </string>
+	<string>-1127 51 970 387 -1280 -124 1280 1001 </string>
 	<key>NeverWarnAboutShortLivedSessions_59C75A63-3A63-4E60-B38D-5BA6A67CE510</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_59C75A63-3A63-4E60-B38D-5BA6A67CE510_selection</key>
@@ -857,13 +849,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.084773516414141437</real>
+				<real>0.20782039141414144</real>
 				<key>Color Space</key>
 				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.024144252814277907</real>
+				<real>0.058008968154360942</real>
 				<key>Red Component</key>
-				<real>0.028883976629479488</real>
+				<real>0.069170673261682636</real>
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
@@ -1342,12 +1334,10 @@
 			<string>/Users/wavded</string>
 		</dict>
 	</array>
-	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
-	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
-	<key>NoSyncSuppressAnnyoingBellOffer</key>
-	<true/>
 	<key>OnlyWhenMoreTabs</key>
 	<false/>
 	<key>PasteTabToStringTabStopSize</key>
@@ -1391,8 +1381,6 @@
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<false/>
-	<key>SUAutomaticallyUpdate</key>
-	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -1402,15 +1390,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-12-03T02:26:02Z</date>
+	<date>2014-12-04T02:49:44Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ToolbeltTools</key>
 	<array>
 		<string>Jobs</string>
 	</array>
-	<key>UKCrashReporterLastCrashReportDate</key>
-	<real>1414767232</real>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
@@ -1418,6 +1404,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20141202-nightly</string>
+	<string>2.9.20141203-nightly</string>
 </dict>
 </plist>

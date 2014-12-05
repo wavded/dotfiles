@@ -15,6 +15,4 @@ fi
 # load autojump
 if hash brew 2>/dev/null; then
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-else
-  . /usr/share/autojump/autojump.sh
 fi
