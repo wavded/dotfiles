@@ -94,6 +94,3 @@
 [submodule "vim/bundle/less"]
 	path = vim/bundle/less
 	url = https://github.com/groenewege/vim-less.git
-[submodule "vim/bundle/tern"]
-	path = vim/bundle/tern
-	url = git@github.com:marijnh/tern_for_vim.git
