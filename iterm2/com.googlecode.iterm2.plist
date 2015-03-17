@@ -647,12 +647,16 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>59C75A63-3A63-4E60-B38D-5BA6A67CE510</string>
+	<key>HideTab</key>
+	<false/>
 	<key>HideTabCloseButton</key>
 	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/dotfiles/iterm2</string>
+	<key>NSNavPanelExpandedStateForSaveMode</key>
+	<true/>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -682,11 +686,13 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>-1094 120 918 381 -1280 -124 1280 1001 </string>
+	<string>20 312 916 512 0 0 1440 877 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>410 364 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-997 -33 714 819 -1280 -124 1280 1001 </string>
+	<string>659 4 780 350 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>-1127 51 970 387 -1280 -124 1280 1001 </string>
+	<string>721 9 717 864 0 0 1440 877 </string>
 	<key>NeverWarnAboutShortLivedSessions_59C75A63-3A63-4E60-B38D-5BA6A67CE510</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_59C75A63-3A63-4E60-B38D-5BA6A67CE510_selection</key>
@@ -849,13 +855,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.20782039141414144</real>
+				<real>0.22352941176470589</real>
 				<key>Color Space</key>
 				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.058008968154360942</real>
+				<real>0.15294117647058825</real>
 				<key>Red Component</key>
-				<real>0.069170673261682636</real>
+				<real>0.074509803921568626</real>
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
@@ -892,7 +898,7 @@
 			<key>Close Sessions On End</key>
 			<true/>
 			<key>Columns</key>
-			<integer>120</integer>
+			<integer>110</integer>
 			<key>Command</key>
 			<string></string>
 			<key>Cursor Color</key>
@@ -1267,7 +1273,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SauceCodePowerline-Regular 13</string>
+			<string>SauceCodePowerline-Regular 12.5</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -1275,13 +1281,13 @@
 			<key>Right Option Key Sends</key>
 			<integer>0</integer>
 			<key>Rows</key>
-			<integer>20</integer>
+			<integer>18</integer>
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
 			<integer>1000</integer>
 			<key>Scrollback With Status Bar</key>
-			<false/>
+			<true/>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1305,7 +1311,7 @@
 			<key>Shortcut</key>
 			<string></string>
 			<key>Silence Bell</key>
-			<false/>
+			<true/>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -1315,7 +1321,7 @@
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Unlimited Scrollback</key>
-			<true/>
+			<false/>
 			<key>Use Bold Font</key>
 			<true/>
 			<key>Use Bright Bold</key>
@@ -1334,11 +1340,19 @@
 			<string>/Users/wavded</string>
 		</dict>
 	</array>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
+	<integer>0</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
+	<key>NoSyncSilenceAnnoyingBellAutomatically</key>
+	<true/>
 	<key>OnlyWhenMoreTabs</key>
+	<false/>
+	<key>PMPrintingExpandedStateForPrint2</key>
 	<false/>
 	<key>PasteTabToStringTabStopSize</key>
 	<integer>4</integer>
@@ -1381,6 +1395,8 @@
 	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<false/>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
@@ -1390,7 +1406,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-12-04T02:49:44Z</date>
+	<date>2015-03-13T00:32:05Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ToolbeltTools</key>
@@ -1404,6 +1420,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.9.20141203-nightly</string>
+	<string>2.9.20150309-nightly</string>
 </dict>
 </plist>
