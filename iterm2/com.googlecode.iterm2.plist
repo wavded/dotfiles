@@ -1219,7 +1219,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>343 142 445 77 0 0 1440 877 </string>
+	<string>155 463 445 77 0 0 1440 877 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>77 393 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -1229,7 +1229,7 @@
 	<key>NSWindow Frame com.apple.typography_panel_AnonymicePowerline</key>
 	<string>398 632 260 42 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>621 355 780 367 0 0 1440 877 </string>
+	<string>639 4 801 873 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>40 15 780 367 0 0 1440 877 </string>
 	<key>NeverWarnAboutShortLivedSessions_59C75A63-3A63-4E60-B38D-5BA6A67CE510</key>
@@ -1866,7 +1866,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SauceCodePowerline-Light 12</string>
+			<string>SauceCodePowerline-Regular 12</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
