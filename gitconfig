@@ -3,7 +3,6 @@
 	email = wavded@gmail.com
 [core]
 	editor = $EDITOR
-	excludesfile = /Users/wavded/.gitignore_global
 [color]
 	ui = true
 [merge]

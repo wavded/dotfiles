@@ -1,9 +1,6 @@
-for file in *; do
-  if [ '$file' != 'Makefile' ] && [ '$file' != 'readme.md' ]; then
-    if [ -e "$HOME/.$file" ]; then
-      echo "$HOME/.$file exists";
-    else
-      ln -s "$PWD/$file" "$HOME/.$file";
-    fi
-  fi
+files=( zsh zshrc vim vimrc gitconfig hushlogin eslintrc tern-project )
+
+for f in "${files[@]}"
+do
+  ln -fs "$PWD/$f" "$HOME/.$f";
 done
