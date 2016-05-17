@@ -1,23 +1,25 @@
-fpath=($HOME/.zsh/functions $HOME/.zsh/completion $fpath)
-for config_file ($HOME/.zsh/*.zsh) source $config_file
-
-autoload -U compinit
-compinit -i
-
+ulimit -n 2048
 autoload -U compinit && compinit
+fpath=($HOME/.zsh/completion $fpath)
+source $HOME/.zsh/options.zsh
+source $HOME/.zsh/variables.zsh
+source $HOME/.zsh/termsupport.zsh
+source $HOME/.zsh/completion.zsh
+source $HOME/.zsh/prompt.zsh
 
 # add npm completion
 if hash npm 2>/dev/null; then
   . <(npm completion)
 fi
 
-# load autojump
-if hash brew 2>/dev/null; then
-  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+# add golang completion
+source $HOME/.zsh/golang.zsh
+
+if [[ `uname` == 'Linux'; ]] then
+  source $HOME/.zsh/linux.zsh
 fi
 
-export FZF_DEFAULT_COMMAND='ag -l -g ""'
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ `uname` == 'Darwin'; ]] then
+  source $HOME/.zsh/osx.zsh
+fi
 
-export NVM_DIR="/home/wavded/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
