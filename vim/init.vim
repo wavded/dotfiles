@@ -1,7 +1,7 @@
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 " plugins
 Plug 'tpope/vim-surround'           " enable change around
 Plug 'tpope/vim-repeat'             " repeating for change around
