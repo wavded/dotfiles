@@ -5,3 +5,5 @@ for f in "${files[@]}"
 do
   ln -fs "$PWD/$f" "$HOME/.$f";
 done
+
+vim -S vim/snapshot.vim
