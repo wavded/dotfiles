@@ -1,7 +1,7 @@
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 " plugins
 Plug 'tpope/vim-surround'           " enable change around
 Plug 'tpope/vim-repeat'             " repeating for change around
@@ -33,7 +33,7 @@ Plug 'rodjek/vim-puppet'
 Plug 'pearofducks/ansible-vim'
 
 " autocomplete
-Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'SirVer/ultisnips'
@@ -165,7 +165,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'
 au QuickFixCmdPost *grep* cwindow
 
 "" ABBREVIATIONS
-source $HOME/.vim/autocorrect.vim
+source $HOME/.config/nvim/autocorrect.vim
 
 "" PLUGIN SETTINGS
 let g:netrw_liststyle = 3  " use tree style for netrw
