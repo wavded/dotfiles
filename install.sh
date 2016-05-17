@@ -1,19 +1,22 @@
-#!/bin/bash -x
-files=(zsh zshrc gitconfig hushlogin eslintrc tern-project esformatter)
+#!/bin/bash
+files=(zsh zshrc gitconfig eslintrc tern-project esformatter vimrc)
+
+function ln-if-absent { # $1: to-path $2: from-path
+  if [ -e $1 ]; then
+    echo "$1 exists"
+  else
+    ln -s $2 $1;
+  fi
+}
 
 for f in "${files[@]}"
 do
-  if [ -e $HOME/.$file ]; then
-    echo ".$f exists"
-  else
-    ln -s $PWD/$f $HOME/.$f;
-  fi
+  ln-if-absent "$HOME/.$f" "$PWD/$f"
 done
 
-# Neovim
-mkdir -p $HOME/.config
-if [ -e $HOME/.config/nvim ]; then
-  echo ".config/nvim exists"
-else
-  ln -s $PWD/vim $HOME/.config/nvim;
+# Neovim for OSX
+if [[ `uname` == "Darwin" ]]; then
+  ln-if-absent "$HOME/.hushlogin" "$PWD/hushlogin"
+  mkdir -p $HOME/.config
+  ln-if-absent "$HOME/.config/nvim" "$PWD/nvim"
 fi
