@@ -1,14 +1,12 @@
 {
-  "libs": [ "browser", "ecma6", "ecma5" ],
-  "loadEagerly": "**/*.js",
-  "dontLoad": "node_modules",
+  "libs": [ "browser", "ecma6" ],
   "plugins": {
-    "complete_strings": true,
-    "doc_comment": true,
-    "es_modules": true,
-    "modules": true,
     "node": true,
     "node_require": true,
+    "es_modules": true,
+    "complete_strings": true,
+    "doc_comment": true,
+    "modules": true,
     "webpack": true
   }
 }

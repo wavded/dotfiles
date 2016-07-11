@@ -11,9 +11,9 @@ zstyle ':vcs_info:*' check-for-changes true
 
 set-prompt() {
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-        zstyle ':vcs_info:*' formats '%F{green}%b%{%k%}%c%u%B%{%k%} '
+        zstyle ':vcs_info:*' formats '%F{green}%b%{%k%}%c%u%B%{%k%} '
     } else {
-        zstyle ':vcs_info:*' formats '%F{green}%b%{%k%}%c%u%B%F{red}◁%{%k%} '
+        zstyle ':vcs_info:*' formats '%F{green}%b%{%k%}%c%u%B%F{red}◁%{%k%} '
     }
     vcs_info
 }

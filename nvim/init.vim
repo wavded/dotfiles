@@ -14,7 +14,6 @@ Plug 'tomtom/tcomment_vim'
 Plug 'moll/vim-node'
 Plug 'benekastah/neomake'
 Plug 'majutsushi/tagbar'
-Plug 'heavenshell/vim-jsdoc'
 Plug 'kewah/vim-stylefmt'
 Plug 'Raimondi/delimitMate'
 
@@ -26,16 +25,20 @@ Plug 'leafgarland/typescript-vim'
 Plug 'chrisbra/Colorizer'
 Plug 'tpope/vim-markdown'
 Plug 'digitaltoad/vim-jade'
-Plug 'fatih/vim-go', { 'tag': 'v1.6' }
-Plug 'millermedeiros/vim-esformatter'
+Plug 'fatih/vim-go', { 'tag': '*' }
+Plug 'ruanyl/vim-fixmyjs'
 Plug 'moorereason/vim-markdownfmt'
 Plug 'rodjek/vim-puppet'
 Plug 'pearofducks/ansible-vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'ElmCast/elm-vim'
 
 " autocomplete
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -66,7 +69,7 @@ set hidden                          " allow background buffers w/out writing
 set list                            " show hidden characters
 set listchars=tab:\ \ ,trail:·      " show · for trailing space, \ \ for trailing tab
 set colorcolumn=100                 " show a right margin column
-set textwidth=100
+set textwidth=0
 set scrolloff=3                     " show next 3 lines while scrolling
 set sidescrolloff=5                 " show next 5 columns while side-scrolling
 set splitbelow                      " more natural splits
@@ -171,7 +174,7 @@ source $HOME/.config/nvim/autocorrect.vim
 let g:netrw_liststyle = 3  " use tree style for netrw
 
 " CTRLP
-let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --hidden -g ""'
+let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --ignore elm-stuff --hidden -g ""'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_use_caching = 0
@@ -180,7 +183,7 @@ nnoremap <leader>o :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 
 " Ag
-let g:ag_prg = 'ag --vimgrep --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --hidden'
+let g:ag_prg = 'ag --vimgrep --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --ignore elm-stuff --hidden'
 nnoremap <leader>f :Ag<space>
 nnoremap K :Ag "\b<c-r><c-w>\b"<cr>
 
@@ -191,7 +194,7 @@ autocmd! BufRead,BufWritePost * Neomake
 map <leader>e :NeomakeSh open %<cr>
 
 " Airline
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_section_warning = airline#section#create(['%{go#jobcontrol#Statusline()}'])
 let g:airline_theme = 'oceanicnext'
 
@@ -211,6 +214,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 15
 let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#omni_patterns = {}
+let g:deoplete#omni_patterns.elm = '\.'
 
 let g:tern_request_timeout = 5
 
@@ -242,19 +247,23 @@ au FileType go map <leader>d :GoDef<cr>
 au FileType go map <leader>r :GoRename<cr>
 au FileType go map <leader>i :GoImport<space>
 au FileType go map <leader>a :GoAlternate<cr>
+au BufRead,BufNewFile doc.go set spell
 
 " CSS / Less
-" autocmd BufWritePre *.css :Stylefmt
+au BufWritePre *.css :Stylefmt
 " autocmd BufWritePre *.less :Stylefmt
+au BufWritePre *.sass :Stylefmt
 
 " JavaScript
-let g:jsdoc_allow_input_prompt = 0
-au FileType javascript map <leader>e :200split \| term NODE_ENV=test babel-node %<cr>
-" au FileType javascript map <leader>d :TernDef<cr>
-" au FileType javascript map <leader>r :TernRename<cr>
-au Filetype javascript nmap <silent> <C-l> ?function<cr>:noh<cr><Plug>(jsdoc)
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
-au FileType javascript setlocal omnifunc=tern#Complete
-au BufWritePre *.js :Esformatter
-au BufWritePre *.jsx :Esformatter
+au FileType javascript map <leader>e :200split \| term NODE_ENV=test babel-node %<cr>
+au FileType javascript map gd :TernDef<cr>
+au FileType javascript map <leader>r :TernRename<cr>
+" au FileType javascript setlocal omnifunc=tern#Complete
+au BufWritePre *.js :Fixmyjs
+au BufWritePre *.jsx :Fixmyjs
+
+" Elm
+au FileType elm set shiftwidth=4 softtabstop=4 tabstop=4
+let g:elm_format_autosave = 1
