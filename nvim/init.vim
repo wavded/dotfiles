@@ -54,7 +54,6 @@ set autoread                        " auto reload file if changed externally
 set nobackup                        " no ~backup files
 set noswapfile                      " no swap files
 set autowrite                       " save files automatically in most cases
-set wildignore+=*.o,.git,.svn       " hide everywhere
 set ignorecase                      " case insensitive search...
 set smartcase                       " ...unless capitals are used
 set hidden                          " allow background buffers w/out writing
@@ -78,6 +77,9 @@ set lazyredraw                      " wait to redraw
 set pumheight=10                    " completion window max size
 set wrap                            " wrap long lines
 set linebreak                       " do not break wrap in the middle of words
+
+" hide everywhere
+set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components
 
 set termguicolors                   " hicolor support and theme
 colo cobalt2
@@ -183,7 +185,7 @@ map <leader>sa zg
 map <leader>s? z=
 
 " gitup integration
-nmap <silent> <leader><esc> :!gitup commit<cr><cr>
+nmap <silent> <leader>` :!gitup commit<cr><cr>
 
 "===================== PLUGINS======================
 
@@ -192,20 +194,21 @@ let delimitMate_expand_cr = 1 " auto indent {}<enter>
 
 "===================== CtrlP ======================
 let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_map = '' " disable <c-p> shortcut
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_use_caching = 0
+let g:ctrlp_map = ''                  " disable <c-p> shortcut
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_switch_buffer = 'et'      " jump to a file if it's open already
+let g:ctrlp_mruf_max = 450            " number of recently opened files
+let g:ctrlp_max_files = 0             " do not limit the number of searchable files
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 
-" use ag for fast searches
-let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --ignore elm-stuff --hidden -g ""'
-
-nnoremap <leader>g :CtrlP<cr>
+nnoremap <leader>g :CtrlPCurWD<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 
 "===================== Ack ======================
 " use ag for fast searches
-let g:ackprg = 'ag --vimgrep --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --ignore elm-stuff --hidden'
+let g:ackprg = 'ag --vimgrep --hidden'
 
 nnoremap <leader>f :Ack<space>
 
