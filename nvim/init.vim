@@ -1,102 +1,129 @@
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
 call plug#begin('~/.config/nvim/plugged')
-" plugins
-Plug 'tpope/vim-surround'           " enable change around
-Plug 'tpope/vim-repeat'             " repeating for change around
-Plug 'bling/vim-airline'            " status line
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'ivalkeen/nerdtree-execute', { 'on':  'NERDTreeToggle' }
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'rking/ag.vim'
-Plug 'tomtom/tcomment_vim'
-Plug 'moll/vim-node'
-Plug 'benekastah/neomake'
-Plug 'majutsushi/tagbar'
-Plug 'kewah/vim-stylefmt'
-Plug 'Raimondi/delimitMate'
 
-" ft
-Plug 'groenewege/vim-less'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'leafgarland/typescript-vim'
-Plug 'chrisbra/Colorizer'
-Plug 'tpope/vim-markdown'
-Plug 'digitaltoad/vim-jade'
-Plug 'fatih/vim-go', { 'tag': '*' }
-Plug 'ruanyl/vim-fixmyjs'
-Plug 'moorereason/vim-markdownfmt'
-Plug 'rodjek/vim-puppet'
-Plug 'pearofducks/ansible-vim'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'ElmCast/elm-vim'
+Plug 'itchyny/lightline.vim'           " status line
+Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
+Plug 'scrooloose/nerdtree'             " file explorer
+Plug 'ivalkeen/nerdtree-execute'       " file explorer OS integration
+Plug 'ConradIrwin/vim-bracketed-paste' " auto :set paste
+Plug 'tpope/vim-surround'              " enable change around
+Plug 'tpope/vim-repeat'                " repeating for change around
+Plug 'tpope/vim-commentary'            " gcc and gc for comments
+Plug 'tpope/vim-fugitive'              " git support
+Plug 'SirVer/ultisnips'                " snippet support
+Plug 'honza/vim-snippets'              " common snippets
+Plug 'mileszs/ack.vim'                 " search across files
+Plug 'benekastah/neomake'              " lint on save
+Plug 'Raimondi/delimitMate'            " auto brackets
+Plug 'fatih/molokai'                   " color theme
+Plug 'wavded/cobalt2.vim'
 
-" autocomplete
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
-" color
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'fatih/molokai'
-Plug 'mkarmona/colorsbox'
-Plug 'mhartington/oceanic-next'
+" filetype-specific plugins
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript.jsx' }
+Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
+" Plug 'othree/yajs.vim', { 'for': 'javascript.jsx' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx'}
+Plug 'ruanyl/vim-fixmyjs', { 'for': 'javascript.jsx' }
+
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'moorereason/vim-markdownfmt', { 'for': 'markdown' }
+
+Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go' }
+Plug 'kewah/vim-stylefmt', { 'for': ['less', 'css']}
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja2' }
+Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
+Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
+
 call plug#end()
 
-let mapleader = "\<Space>"
+" autocorrects for common misspellings
+source $HOME/.config/nvim/autocorrect.vim
 
-set autoread
-set nobackup
-set nohlsearch
-set nowritebackup
-set noswapfile
+"===================== SETTINGS ======================
+set autoread                        " auto reload file if changed externally
+set nobackup                        " no ~backup files
+set noswapfile                      " no swap files
 set autowrite                       " save files automatically in most cases
-set showcmd                         " show typed commands
-set wildignore+=*.o,.git,.svn
+set wildignore+=*.o,.git,.svn       " hide everywhere
 set ignorecase                      " case insensitive search...
 set smartcase                       " ...unless capitals are used
-set shiftwidth=2                    " set tab width
-set softtabstop=2
-set tabstop=2
-set expandtab                       " use spaces, not tabs
 set hidden                          " allow background buffers w/out writing
 set list                            " show hidden characters
 set listchars=tab:\ \ ,trail:·      " show · for trailing space, \ \ for trailing tab
-set colorcolumn=100                 " show a right margin column
-set textwidth=0
 set scrolloff=3                     " show next 3 lines while scrolling
 set sidescrolloff=5                 " show next 5 columns while side-scrolling
-set splitbelow                      " more natural splits
-set splitright
-set clipboard=unnamedplus           " yanks put in clipboard
-set completeopt+=noinsert
+set splitbelow                      " more natural horizontal split
+set splitright                      " more natural vertical split
+set clipboard=unnamedplus           " yanks puts it on clipboard
+set cursorline                      " highlight line of cursor
+set colorcolumn=100                 " show a right margin column
+set expandtab                       " use spaces, not tabs
+set shiftwidth=2                    " set tab width
+set softtabstop=2
+set tabstop=2
+set completeopt+=noinsert           " omnicompletion options
 set completeopt+=noselect
 set completeopt-=preview
+set lazyredraw                      " wait to redraw
+set pumheight=10                    " completion window max size
+set wrap                            " wrap long lines
+set linebreak                       " do not break wrap in the middle of words
 
-colo OceanicNext " terminal theme
-set background=dark
+set termguicolors                   " hicolor support and theme
+colo cobalt2
 
-let g:python3_host_prog  = '/usr/local/bin/python3'
-let g:python3_host_skip_check = 1
+au FileType elm set sw=4 sts=4 ts=4
+au FileType python set noet
+au FileType markdown setlocal spell
 
-" ADDITIONAL KEY MAPPINGS
+au BufRead,BufNewFile doc.go setlocal spell
+au BufRead,BufNewFile .eslintrc setf json
+au BufRead,BufNewFile .babelrc setf json
+au BufRead,BufNewFile .tern-project setf json
+au BufRead,BufNewFile *.jsdoc setf javascript.jsx
 
-" fast saving
-nmap <leader>w :up<cr>
+" auto save when focus lost (after tabbing away or switching buffers)
+au FocusLost,BufLeave,WinLeave,TabLeave * silent! up
+
+" open files where last edits took place
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+au BufWritePost *.pu silent! Neomake!
+
+" let g:python3_host_prog = '/usr/local/bin/python3'
+" let g:python3_host_skip_check = 1
+
+"===================== MAPPINGS ======================
+let mapleader = ","
+
+" fast quickfix window
+map <c-n> :cn<cr>
+map <c-p> :cp<cr>
+nnoremap <leader>a :cclose<cr>
+
+" fast save/quit
+nnoremap <leader>w :w!<cr>
+nnoremap <silent> <leader>q :q!<cr>
 
 " fast escaping
 imap jk <esc>
 
-" clear highlight
-nnoremap <leader>h :noh<cr>
+" screen center
+nnoremap <space> zz
 
-" map Y to match C and D behavior
+" clear highlight
+nnoremap <leader><space> :noh<cr>
+
+" map Y to match C and D
 nnoremap Y y$
 
 " yank entire file (global yank)
@@ -106,29 +133,35 @@ nmap gy ggVGy
 nnoremap j gj
 nnoremap k gk
 
-" auto complete {} indent and position the cursor in the middle line
-let delimitMate_expand_cr = 1
-" inoremap {<CR>  {<CR>}<Esc>O
-" inoremap (<CR>  (<>)<Esc>O
-" inoremap [<CR>  [<CR>]<Esc>O
+" center next and prev search results
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" center when moving up and down
+nnoremap <c-d> <c-d>zz
+nnoremap <c-u> <c-u>zz
+
+" center jumps
+nnoremap '' ''zz
+
+" fix common q: :q mistype
+map q: :q
 
 " cycle between buffers
 nmap <leader>. :b#<cr>
-nmap <leader>[ :bp<cr>
-nmap <leader>] :bn<cr>
 
 " indent visual selected code without unselecting and going back to normal mode
 vmap > >gv
 vmap < <gv
 
 " pull word under cursor into lhs of a substitute (for quick search and replace)
-nmap <leader>r :%s#\<<C-r>=expand("<cword>")<CR>\>#
+nmap <leader>r :%s#\<<c-r>=expand("<cword>")<cr>\>#
 
 " strip all trailing whitespace in the current file
-nnoremap <leader>W :%s/\s\+$//e<cr>:let @/=''<CR>
+nnoremap <leader>W :%s/\s\+$//e<cr>:let @/=''<cr>
 
 " insert path of current file into a command
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+cmap <c-p> <c-r>=expand("%:p:h") . "/" <cr>
 
 " fast editing of the .vimrc
 nmap <silent> <leader>v :e $MYVIMRC<cr>
@@ -136,6 +169,9 @@ nmap <silent> <leader>sv :so $MYVIMRC<cr>
 
 " allow saving when you forgot sudo
 cmap w!! w !sudo tee % >/dev/null
+
+" quick make
+nmap <leader>m :make<cr>
 
 " turn on spell checking
 map <leader>sc :setlocal spell!<cr>
@@ -147,123 +183,121 @@ map <leader>sa zg
 map <leader>s? z=
 
 " gitup integration
-nmap <silent> <leader>c :!gitup commit<cr><cr>
+nmap <silent> <leader><esc> :!gitup commit<cr><cr>
 
-" neovim terminal bindings
-tnoremap <c-[> <c-\><c-n>
-map <leader>ts :20split \| term<cr>
-map <leader>tv :vsplit \| term<cr>
+"===================== PLUGINS======================
 
-"" ADDITIONAL AUTOCOMMANDS
+"===================== delimitMate ======================
+let delimitMate_expand_cr = 1 " auto indent {}<enter>
 
-" close scratch when selection is made in OmniCompletion
-au CursorMovedI * if pumvisible() == 0|pclose|endif
-au InsertLeave * if pumvisible() == 0|pclose|endif
-
-" saving when focus lost (after tabbing away or switching buffers)
-au FocusLost,BufLeave,WinLeave,TabLeave * silent! up
-
-" open in last edit place
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-au QuickFixCmdPost *grep* cwindow
-
-"" ABBREVIATIONS
-source $HOME/.config/nvim/autocorrect.vim
-
-"" PLUGIN SETTINGS
-let g:netrw_liststyle = 3  " use tree style for netrw
-
-" CTRLP
-let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --ignore elm-stuff --hidden -g ""'
+"===================== CtrlP ======================
+let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_map = '' " disable <c-p> shortcut
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_use_caching = 0
 
-nnoremap <leader>o :CtrlP<cr>
+" use ag for fast searches
+let g:ctrlp_user_command = 'ag %s -l --nocolor --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --ignore elm-stuff --hidden -g ""'
+
+nnoremap <leader>g :CtrlP<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 
-" Ag
-let g:ag_prg = 'ag --vimgrep --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --ignore elm-stuff --hidden'
-nnoremap <leader>f :Ag<space>
-nnoremap K :Ag "\b<c-r><c-w>\b"<cr>
+"===================== Ack ======================
+" use ag for fast searches
+let g:ackprg = 'ag --vimgrep --ignore .git --ignore node_modules --ignore bower_components --ignore vendor --ignore elm-stuff --hidden'
 
-" Neomake
+nnoremap <leader>f :Ack<space>
+
+"===================== neomake ======================
 let g:neomake_open_list = 2
 let g:neomake_list_height = 2
-autocmd! BufRead,BufWritePost * Neomake
+au! BufRead,BufWritePost * Neomake
+
 map <leader>e :NeomakeSh open %<cr>
 
-" Airline
-let g:airline_powerline_fonts = 0
-let g:airline_section_warning = airline#section#create(['%{go#jobcontrol#Statusline()}'])
-let g:airline_theme = 'oceanicnext'
+"===================== NERDTree ======================
+let g:NERDTreeQuitOnOpen = 1 " hide explorer after open
+let g:NERDTreeShowHidden = 1 " always show hidden files
+let g:NERDTreeRespectWildIgnore = 1 " ignore wildignore matches
 
-" NERDTree
-set shortmess=at
 map <silent> <leader>n :NERDTreeToggle<cr>
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeRespectWildIgnore = 1
 
-" Tagbar
-let g:tagbar_singleclick = 1
-map <silent> <leader>t :TagbarToggle<cr>
+"===================== lightline ======================
+let g:lightline = {
+  \ 'colorscheme': 'PaperColor',
+  \ }
 
-" Deoplete
+map <silent> <leader>n :NERDTreeToggle<cr>
+
+"===================== deoplete ======================
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#max_list = 15
+let g:deoplete#file#enable_buffer_path = 1 " path files from current buffer
 let g:deoplete#auto_completion_start_length = 1
+" let g:deoplete#max_list = 15
+let g:deoplete#ignore_sources = {}
+let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag']
+
+" filetype specific settings
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.elm = '\.'
+" let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
+" let g:deoplete#sources#go#align_class = 1
 
+" use partial fuzzy matches like YouCompleteMe
+" call deoplete#custom#set('_', 'matchers', ['matcher_fuzzy'])
+" call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])
+call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
+
+"===================== tern_for_vim ======================
 let g:tern_request_timeout = 5
+let g:tern_show_argument_hints = 'on_hold'
+let g:tern_show_signature_in_pum = 1
 
-" Ultisnips
+au FileType javascript.jsx nmap gd :TernDef<cr>
+au FileType javascript.jsx nmap <leader>r :TernRename<cr>
+
+"===================== UltiSnips ======================
+" enable supertab-like behavior
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-"" LANGUAGE SPECIFIC
-au BufRead,BufNewFile .eslintrc set filetype=json
-au BufRead,BufNewFile .babelrc set filetype=json
-au BufRead,BufNewFile .tern-project set filetype=json
-
-" Python
-au FileType python set noexpandtab
-
-" Markdown
-au FileType markdown setlocal spell
-au FileType markdown set wrap
+"===================== markdownfmt ======================
 let g:markdownfmt_autosave = 1
 
-" JSX
+"===================== vim-javascript ======================
+let g:javascript_plugin_jsdoc = 1
+
+"===================== vim-jsx ======================
 let g:jsx_ext_required = 0
 
-" Go
+"===================== vim-go ======================
 let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_command = "goimports"
-au FileType go map <leader>d :GoDef<cr>
-au FileType go map <leader>r :GoRename<cr>
-au FileType go map <leader>i :GoImport<space>
-au FileType go map <leader>a :GoAlternate<cr>
-au BufRead,BufNewFile doc.go set spell
 
-" CSS / Less
+au FileType go nmap <leader>r :GoRename<cr>
+au FileType go nmap <leader>c :GoCoverageToggle<cr>
+au FileType go nmap <leader>t :GoTest<cr>
+au FileType go nmap <leader>d :GoDeclsDir<cr>
+
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+
+"===================== stylefmt ======================
 au BufWritePre *.css :Stylefmt
-" autocmd BufWritePre *.less :Stylefmt
-au BufWritePre *.sass :Stylefmt
+au BufWritePre *.less :Stylefmt
 
-" JavaScript
-let g:tern_show_argument_hints = 'on_hold'
-let g:tern_show_signature_in_pum = 1
-au FileType javascript map <leader>e :200split \| term NODE_ENV=test babel-node %<cr>
-au FileType javascript map gd :TernDef<cr>
-au FileType javascript map <leader>r :TernRename<cr>
-" au FileType javascript setlocal omnifunc=tern#Complete
+"===================== fixmyjs ======================
+" es6 test for javascript
+au FileType javascript map <leader>e :100split \| term NODE_ENV=test node %<cr>
+
 au BufWritePre *.js :Fixmyjs
 au BufWritePre *.jsx :Fixmyjs
 
-" Elm
-au FileType elm set shiftwidth=4 softtabstop=4 tabstop=4
+"===================== elm-vim ======================
 let g:elm_format_autosave = 1
+
+"===================== plantuml-syntax ======================
+" java -splash:no -Djava.awt.headless=true needs to be added to run in background
+let g:plantuml_executable_script = 'plantuml -tsvg -quiet $@'
