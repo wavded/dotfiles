@@ -20,6 +20,7 @@ Plug 'wavded/cobalt2.vim'
 Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
+Plug 'eagletmt/neco-ghc'
 
 " filetype-specific plugins
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript.jsx' }
@@ -43,6 +44,8 @@ Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell', 'lhaskell'] }
 
 call plug#end()
 
@@ -77,6 +80,8 @@ set lazyredraw                      " wait to redraw
 set pumheight=10                    " completion window max size
 set wrap                            " wrap long lines
 set linebreak                       " do not break wrap in the middle of words
+set updatetime=500                  " millis before cursorhold event is fired, useful for tern
+set noshowmode                      " hide show mode status
 
 " hide everywhere
 set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components
@@ -237,26 +242,19 @@ map <silent> <leader>n :NERDTreeToggle<cr>
 "===================== deoplete ======================
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1 " path files from current buffer
-let g:deoplete#auto_completion_start_length = 1
-" let g:deoplete#max_list = 15
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag']
 
 " filetype specific settings
 let g:deoplete#omni_patterns = {}
 let g:deoplete#omni_patterns.elm = '\.'
-" let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
-" let g:deoplete#sources#go#align_class = 1
-
-" use partial fuzzy matches like YouCompleteMe
-" call deoplete#custom#set('_', 'matchers', ['matcher_fuzzy'])
-" call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])
-call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
+let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
+let g:deoplete#sources#go#align_class = 1
 
 "===================== tern_for_vim ======================
-let g:tern_request_timeout = 5
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
 let g:tern_show_argument_hints = 'on_hold'
-let g:tern_show_signature_in_pum = 1
 
 au FileType javascript.jsx nmap gd :TernDef<cr>
 au FileType javascript.jsx nmap <leader>r :TernRename<cr>
