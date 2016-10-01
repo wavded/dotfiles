@@ -1,5 +1,5 @@
 #!/bin/bash
-files=(zsh zshrc gitconfig eslintrc tern-project vimrc agignore)
+files=(zsh zshrc gitconfig eslintrc tern-project vimrc ignore)
 
 function ln-if-absent { # $1: to-path $2: from-path
   if [ -e $1 ]; then

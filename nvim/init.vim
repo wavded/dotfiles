@@ -10,7 +10,7 @@ Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'tpope/vim-fugitive'              " git support
 Plug 'SirVer/ultisnips'                " snippet support
-Plug 'honza/vim-snippets'              " common snippets
+" Plug 'honza/vim-snippets'              " common snippets
 Plug 'mileszs/ack.vim'                 " search across files
 Plug 'benekastah/neomake'              " lint on save
 Plug 'Raimondi/delimitMate'            " auto brackets
@@ -26,7 +26,6 @@ Plug 'eagletmt/neco-ghc'
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript.jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
-" Plug 'othree/yajs.vim', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx'}
 Plug 'ruanyl/vim-fixmyjs', { 'for': 'javascript.jsx' }
 
@@ -42,7 +41,6 @@ Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja2' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffeescript' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell', 'lhaskell'] }
@@ -84,7 +82,7 @@ set updatetime=500                  " millis before cursorhold event is fired, u
 set noshowmode                      " hide show mode status
 
 " hide everywhere
-set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components
+set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,jsdocs,coverage
 
 set termguicolors                   " hicolor support and theme
 colo cobalt2
@@ -111,11 +109,16 @@ au BufWritePost *.pu silent! Neomake!
 
 "===================== MAPPINGS ======================
 let mapleader = ","
+let maplocalleader = ","
 
 " fast quickfix window
-map <c-n> :cn<cr>
-map <c-p> :cp<cr>
-nnoremap <leader>a :cclose<cr>
+map <c-j> :cn<cr>
+map <c-k> :cp<cr>
+nnoremap <leader>a :cclose<cr>:lclose<cr>
+
+" fast location window
+map <c-l> :lnext<cr>
+map <c-h> :lprev<cr>
 
 " fast save/quit
 nnoremap <leader>w :w!<cr>
@@ -205,16 +208,14 @@ let g:ctrlp_switch_buffer = 'et'      " jump to a file if it's open already
 let g:ctrlp_mruf_max = 450            " number of recently opened files
 let g:ctrlp_max_files = 0             " do not limit the number of searchable files
 let g:ctrlp_use_caching = 0
-" let g:ctrlp_clear_cache_on_exit = 1
-" let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = 'rg --files --hidden %s'
 
 nnoremap <leader>g :CtrlPCurWD<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 
 "===================== Ack ======================
-" use ag for fast searches
-let g:ackprg = 'ag --vimgrep --hidden'
+" use rg for fast searches
+let g:ackprg = 'rg --vimgrep --hidden'
 
 nnoremap <leader>f :Ack<space>
 
@@ -261,9 +262,11 @@ au FileType javascript.jsx nmap <leader>r :TernRename<cr>
 
 "===================== UltiSnips ======================
 " enable supertab-like behavior
+let g:UltiSnipsEnableSnipMate = 0
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 "===================== markdownfmt ======================
 let g:markdownfmt_autosave = 1
@@ -283,8 +286,8 @@ au FileType go nmap <leader>c :GoCoverageToggle<cr>
 au FileType go nmap <leader>t :GoTest<cr>
 au FileType go nmap <leader>d :GoDeclsDir<cr>
 
-autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 
 "===================== stylefmt ======================
 au BufWritePre *.css :Stylefmt
@@ -303,3 +306,37 @@ let g:elm_format_autosave = 1
 "===================== plantuml-syntax ======================
 " java -splash:no -Djava.awt.headless=true needs to be added to run in background
 let g:plantuml_executable_script = 'plantuml -tsvg -quiet $@'
+
+"===================== FUNCTIONS ======================
+
+function! JsEchoError(msg)
+  redraw | echon "js: " | echohl ErrorMsg | echon a:msg | echohl None
+endfunction
+
+" Swapping between test file and main file.
+function! JsSwitch(bang, cmd)
+  let file = expand('%')
+  if empty(file)
+    call JsEchoError("no buffer name")
+    return
+  elseif file =~# '^\f\+_test\.js$'
+    let l:root = split(file, '_test.js$')[0]
+    let l:alt_file = l:root . ".js"
+  elseif file =~# '^\f\+\.js$'
+    let l:root = split(file, ".js$")[0]
+    let l:alt_file = l:root . '_test.js'
+  else
+    call JsEchoError("not a js file")
+    return
+  endif
+  " if !filereadable(alt_file) && !bufexists(alt_file) && !a:bang
+  "   call JsEchoError("couldn't find ".alt_file)
+  "   return
+  if empty(a:cmd)
+    execute ":edit " . alt_file
+  else
+    execute ":" . a:cmd . " " . alt_file
+  endif
+endfunction
+
+au Filetype javascript command! -bang A call JsSwitch(<bang>0, '')
