@@ -5,7 +5,9 @@
     "node_require": true,
     "es_modules": true,
     "complete_strings": true,
-    "doc_comment": true,
+    "doc_comment": {
+      "strong": true
+    },
     "modules": true,
     "webpack": true
   }

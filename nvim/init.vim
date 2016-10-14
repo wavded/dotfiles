@@ -23,7 +23,7 @@ Plug 'carlitux/deoplete-ternjs'
 Plug 'eagletmt/neco-ghc'
 
 " filetype-specific plugins
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': 'javascript.jsx' }
+Plug 'ternjs/tern_for_vim', { 'for': 'javascript.jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx'}
@@ -111,14 +111,36 @@ au BufWritePost *.pu silent! Neomake!
 let mapleader = ","
 let maplocalleader = ","
 
+" wrap around support for :cnext/:cprevious and :lnext/:lprevious
+function! WrapCommand(direction, prefix)
+    if a:direction == "up"
+        try
+            execute a:prefix . "previous"
+        catch /^Vim\%((\a\+)\)\=:E553/
+            execute a:prefix . "last"
+        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+        endtry
+    elseif a:direction == "down"
+        try
+            execute a:prefix . "next"
+        catch /^Vim\%((\a\+)\)\=:E553/
+            execute a:prefix . "first"
+        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+        endtry
+    endif
+endfunction
+
+
 " fast quickfix window
-map <c-j> :cn<cr>
-map <c-k> :cp<cr>
-nnoremap <leader>a :cclose<cr>:lclose<cr>
+nnoremap <silent> <c-k> :call WrapCommand('up', 'c')<cr>
+nnoremap <silent> <c-j>  :call WrapCommand('down', 'c')<cr>
 
 " fast location window
-map <c-l> :lnext<cr>
-map <c-h> :lprev<cr>
+nnoremap <silent> <c-p> :call WrapCommand('up', 'l')<cr>
+nnoremap <silent> <c-n>  :call WrapCommand('down', 'l')<cr>
+
+" fast close qf/loc windows
+nnoremap <leader>a :cclose<cr>:lclose<cr>
 
 " fast save/quit
 nnoremap <leader>w :w!<cr>
