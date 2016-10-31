@@ -16,4 +16,5 @@
    prompt = false
    keepBackup = false
 [push]
-	default = current
+	 default = current
+   followTags = true

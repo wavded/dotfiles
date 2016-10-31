@@ -8,9 +8,9 @@ source $HOME/.zsh/completion.zsh
 source $HOME/.zsh/prompt.zsh
 
 # add npm completion
-if hash npm 2>/dev/null; then
-  . <(npm completion)
-fi
+# if hash npm 2>/dev/null; then
+#  . <(npm completion)
+# fi
 
 # add golang completion
 source $HOME/.zsh/golang.zsh
@@ -22,4 +22,3 @@ fi
 if [[ `uname` == 'Darwin'; ]] then
   source $HOME/.zsh/osx.zsh
 fi
-
