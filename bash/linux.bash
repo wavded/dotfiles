@@ -1,3 +1,6 @@
+# Add tab completion for many Bash commands
+source /etc/bash_completion
+
 # == Aliases
 
 # System update.

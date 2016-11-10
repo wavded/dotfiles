@@ -4,6 +4,9 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
 fi
 
+# Add tab completion for many Bash commands
+source "$(brew --prefix)/share/bash-completion/bash_completion"
+
 # Enable autojump.
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
