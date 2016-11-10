@@ -1,7 +1,7 @@
+# == Aliases
+
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
-
-# ==== LS ====
 
 # Use coreutils `ls` if exists.
 hash gls >/dev/null 2>&1 || alias gls="ls"
@@ -33,19 +33,18 @@ alias reload="exec $SHELL -l"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 
-# ==== MacOS ====
+# == Functions
 
-# Empty trash and caches.
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+function tm() {
+  project=`basename $PWD`
 
-# Flush DNS.
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+  if ! $(tmux has-session -t "$project"); then
+    tmux new-session   -s ${project} -d -n workspace
+    tmux split-window  -t ${project} -v
+    tmux send-keys     -t ${project}:1.0 'vim' C-m
+    tmux select-pane   -t ${project}:1.0
+    tmux resize-pane   -t ${project} -D 10
+  fi
 
-# Open dev server.
-alias opend='open http://localhost:3000'
-
-# System update.
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update -g'
-
-# Lock screen.
-alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+  tmux attach -t "$project"
+}

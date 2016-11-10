@@ -1,6 +1,3 @@
-# Enable autojump.
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
