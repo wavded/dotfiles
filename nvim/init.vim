@@ -15,7 +15,7 @@ Plug 'mileszs/ack.vim'                 " search across files
 Plug 'benekastah/neomake'              " lint on save
 Plug 'Raimondi/delimitMate'            " auto brackets
 Plug 'fatih/molokai'                   " color theme
-Plug 'wavded/cobalt2.vim'
+Plug 'noahfrederick/vim-hemisu'
 
 Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -38,12 +38,13 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
-Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja2' }
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell', 'lhaskell'] }
+Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 
 call plug#end()
 
@@ -84,8 +85,9 @@ set noshowmode                      " hide show mode status
 " hide everywhere
 set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,jsdocs,coverage
 
-set termguicolors                   " hicolor support and theme
-colo cobalt2
+" set termguicolors                   " hicolor support and theme
+set background=dark
+colo hemisu
 
 au FileType elm set sw=4 sts=4 ts=4
 au FileType python set noet
@@ -317,7 +319,7 @@ au BufWritePre *.less :Stylefmt
 
 "===================== fixmyjs ======================
 " es6 test for javascript
-au FileType javascript map <leader>e :100split \| term NODE_ENV=test node %<cr>
+au FileType javascript map <leader>e :100split \| term NODE_ENV=test babel-node %<cr>
 
 au BufWritePre *.js :Fixmyjs
 au BufWritePre *.jsx :Fixmyjs

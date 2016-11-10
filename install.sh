@@ -1,5 +1,5 @@
-#!/bin/bash
-files=(zsh zshrc gitconfig eslintrc tern-project vimrc ignore)
+#!/usr/bin/env bash
+files=(bash bashrc bash_profile inputrc gitconfig eslintrc tern-project vimrc ignore tmux.conf)
 
 function ln-if-absent { # $1: to-path $2: from-path
   if [ -e $1 ]; then
