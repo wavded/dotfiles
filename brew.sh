@@ -26,4 +26,7 @@ brew install reattach-to-user-namespace
 brew install homebrew/versions/node6-lts
 brew install go
 
+brew cask install postico
+brew cask install docker
+
 brew cleanup

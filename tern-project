@@ -3,6 +3,7 @@
   "plugins": {
     "node": true,
     "node_require": true,
+    "node_resolve": true,
     "es_modules": true,
     "complete_strings": true,
     "doc_comment": {

@@ -10,7 +10,6 @@ Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'tpope/vim-fugitive'              " git support
 Plug 'SirVer/ultisnips'                " snippet support
-" Plug 'honza/vim-snippets'              " common snippets
 Plug 'mileszs/ack.vim'                 " search across files
 Plug 'benekastah/neomake'              " lint on save
 Plug 'Raimondi/delimitMate'            " auto brackets
@@ -20,6 +19,7 @@ Plug 'noahfrederick/vim-hemisu'
 Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
+Plug 'mhartington/deoplete-typescript'
 Plug 'eagletmt/neco-ghc'
 
 " filetype-specific plugins
@@ -27,11 +27,12 @@ Plug 'ternjs/tern_for_vim', { 'for': 'javascript.jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx'}
-Plug 'ruanyl/vim-fixmyjs', { 'for': 'javascript.jsx' }
+Plug 'ruanyl/vim-fixmyjs', { 'for': ['javascript.jsx', 'typescript'] }
 
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'moorereason/vim-markdownfmt', { 'for': 'markdown' }
 
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go' }
 Plug 'kewah/vim-stylefmt', { 'for': ['less', 'css']}
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -115,21 +116,21 @@ let maplocalleader = ","
 
 " wrap around support for :cnext/:cprevious and :lnext/:lprevious
 function! WrapCommand(direction, prefix)
-    if a:direction == "up"
-        try
-            execute a:prefix . "previous"
-        catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . "last"
-        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
-        endtry
-    elseif a:direction == "down"
-        try
-            execute a:prefix . "next"
-        catch /^Vim\%((\a\+)\)\=:E553/
-            execute a:prefix . "first"
-        catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
-        endtry
-    endif
+  if a:direction == "up"
+    try
+      execute a:prefix . "previous"
+    catch /^Vim\%((\a\+)\)\=:E553/
+      execute a:prefix . "last"
+    catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+    endtry
+  elseif a:direction == "down"
+    try
+      execute a:prefix . "next"
+    catch /^Vim\%((\a\+)\)\=:E553/
+      execute a:prefix . "first"
+    catch /^Vim\%((\a\+)\)\=:E\%(776\|42\):/
+    endtry
+  endif
 endfunction
 
 
@@ -146,7 +147,7 @@ nnoremap <leader>a :cclose<cr>:lclose<cr>
 
 " fast save/quit
 nnoremap <leader>w :w!<cr>
-nnoremap <silent> <leader>q :q!<cr>
+nnoremap <silent> <leader>q :qa!<cr>
 
 " fast escaping
 imap jk <esc>
@@ -246,7 +247,14 @@ nnoremap <leader>f :Ack<space>
 "===================== neomake ======================
 let g:neomake_open_list = 2
 let g:neomake_list_height = 2
-au! BufRead,BufWritePost * Neomake
+au! BufReadPost,BufWritePost * Neomake
+
+let g:neomake_typescript_eslint_maker = {
+      \ 'args': ['-f', 'compact'],
+      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+      \ '%W%f: line %l\, col %c\, Warning - %m'
+      \ }
+let g:neomake_typescript_enabled_makers = ['eslint', 'tsc']
 
 map <leader>e :NeomakeSh open %<cr>
 
@@ -259,8 +267,8 @@ map <silent> <leader>n :NERDTreeToggle<cr>
 
 "===================== lightline ======================
 let g:lightline = {
-  \ 'colorscheme': 'PaperColor',
-  \ }
+      \ 'colorscheme': 'PaperColor',
+      \ }
 
 map <silent> <leader>n :NERDTreeToggle<cr>
 
@@ -321,8 +329,9 @@ au BufWritePre *.less :Stylefmt
 " es6 test for javascript
 au FileType javascript map <leader>e :100split \| term NODE_ENV=test babel-node %<cr>
 
-au BufWritePre *.js :Fixmyjs
-au BufWritePre *.jsx :Fixmyjs
+au BufWritePre *.jsx? :Fixmyjs
+au BufWritePre *.tsx? :Fixmyjs
+
 
 "===================== elm-vim ======================
 let g:elm_format_autosave = 1
@@ -353,9 +362,6 @@ function! JsSwitch(bang, cmd)
     call JsEchoError("not a js file")
     return
   endif
-  " if !filereadable(alt_file) && !bufexists(alt_file) && !a:bang
-  "   call JsEchoError("couldn't find ".alt_file)
-  "   return
   if empty(a:cmd)
     execute ":edit " . alt_file
   else
