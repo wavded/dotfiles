@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 files=(bash bashrc bash_profile inputrc gitconfig eslintrc tern-project vimrc ignore tmux.conf)
 
-function ln-if-absent { # $1: to-path $2: from-path
+function rm-if-present { # $1: to-path $2: from-path
   if [ -e $1 ]; then
-    echo "$1 exists"
+    rm $1
   else
     ln -s $2 $1;
   fi
@@ -11,12 +11,12 @@ function ln-if-absent { # $1: to-path $2: from-path
 
 for f in "${files[@]}"
 do
-  ln-if-absent "$HOME/.$f" "$PWD/$f"
+  rm-if-present "$HOME/.$f" "$PWD/$f"
 done
 
 # Neovim for OSX
 if [[ `uname` == "Darwin" ]]; then
-  ln-if-absent "$HOME/.hushlogin" "$PWD/hushlogin"
+  rm-if-present "$HOME/.hushlogin" "$PWD/hushlogin"
   mkdir -p $HOME/.config
-  ln-if-absent "$HOME/.config/nvim" "$PWD/nvim"
+  rm-if-present "$HOME/.config/nvim" "$PWD/nvim"
 fi
