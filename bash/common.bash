@@ -48,3 +48,22 @@ function tm() {
 
   tmux attach -t "$project"
 }
+
+cleancontainers() { docker rm $(docker ps -q -a); }
+cleanimages() { docker rmi $(docker images -q); }
+
+function gockerize() {
+  GOOS=linux go build -installsuffix netgo -o app .
+  cat > .Dockerfile.scratch << EOF
+FROM scratch
+COPY . /
+CMD ["/app"]
+EOF
+  docker build -t app -f .Dockerfile.scratch .
+  rm .Dockerfile.scratch
+  docker run --rm -it -p 3000:3000 app
+}
+
+function bgtask() {
+  eval "$@" &>/dev/null &disown;
+}

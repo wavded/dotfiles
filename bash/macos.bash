@@ -10,13 +10,16 @@ source "$(brew --prefix)/share/bash-completion/bash_completion"
 # Enable autojump.
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
+# == Exports ==
+export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
+
 # == Aliases ==
 
 # Empty trash and caches.
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
 # Flush DNS.
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+alias flush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
 # Open dev server.
 alias opend='open http://localhost:3000'

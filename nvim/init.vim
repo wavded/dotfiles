@@ -329,9 +329,10 @@ au BufWritePre *.less :Stylefmt
 " es6 test for javascript
 au FileType javascript map <leader>e :100split \| term NODE_ENV=test babel-node %<cr>
 
-au BufWritePre *.jsx? :Fixmyjs
-au BufWritePre *.tsx? :Fixmyjs
-
+au BufWritePre *.js :Fixmyjs
+au BufWritePre *.jsx :Fixmyjs
+au BufWritePre *.ts :Fixmyjs
+au BufWritePre *.tsx :Fixmyjs
 
 "===================== elm-vim ======================
 let g:elm_format_autosave = 1
