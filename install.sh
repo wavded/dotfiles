@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 files=(bash bashrc bash_profile inputrc gitconfig eslintrc tern-project vimrc ignore tmux.conf)
 dir="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-echo $dir
 
 function rm-if-present { # $1: to-path $2: from-path
   if [ -e $1 ]; then
