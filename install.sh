@@ -4,9 +4,8 @@ files=(bash bashrc bash_profile inputrc gitconfig eslintrc tern-project vimrc ig
 function rm-if-present { # $1: to-path $2: from-path
   if [ -e $1 ]; then
     rm -rf $1;
-  else
-    ln -s $2 $1;
   fi
+  ln -s $2 $1;
 }
 
 for f in "${files[@]}"
