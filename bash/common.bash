@@ -63,7 +63,3 @@ EOF
   rm .Dockerfile.scratch
   docker run --rm -it -p 3000:3000 app
 }
-
-function bgtask() {
-  eval "$@" &>/dev/null &disown;
-}
