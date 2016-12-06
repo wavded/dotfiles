@@ -37,6 +37,7 @@ Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go' }
 Plug 'kewah/vim-stylefmt', { 'for': ['less', 'css']}
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'saltstack/salt-vim', { 'for': 'sls' }
 Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
