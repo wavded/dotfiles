@@ -25,7 +25,7 @@ alias flush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias opend='open http://localhost:3000'
 
 # System update.
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update -g'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; yarn global upgrade'
 
 # Lock screen.
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
