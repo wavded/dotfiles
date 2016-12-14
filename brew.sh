@@ -21,6 +21,7 @@ brew install graphicsmagick
 brew install cairo
 brew install tmux
 brew install reattach-to-user-namespace
+brew install watch
 
 brew install node@6
 brew install yarn
