@@ -15,6 +15,8 @@ Plug 'benekastah/neomake'              " lint on save
 Plug 'Raimondi/delimitMate'            " auto brackets
 Plug 'fatih/molokai'                   " color theme
 Plug 'noahfrederick/vim-hemisu'
+Plug 'wavded/cobalt2.vim'
+
 
 Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -87,9 +89,9 @@ set noshowmode                      " hide show mode status
 " hide everywhere
 set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,jsdocs,coverage
 
-" set termguicolors                   " hicolor support and theme
-set background=dark
-colo hemisu
+set termguicolors                   " hicolor support and theme
+" set background=dark
+colo cobalt2
 
 au FileType elm set sw=4 sts=4 ts=4
 au FileType python set noet
