@@ -67,6 +67,9 @@ map <leader>. :b#<cr>
 vmap > >gv
 vmap < <gv
 
+" clear highlight
+nnoremap <leader><space> :noh<cr>
+
 " allow saving when you forgot sudo
 cmap w!! w !sudo tee % >/dev/null
 
