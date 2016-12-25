@@ -13,6 +13,9 @@ source "$(brew --prefix)/share/bash-completion/bash_completion"
 # == Exports ==
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 
+# Disable per-terminal-session history: http://stackoverflow.com/a/34803825
+export SHELL_SESSION_HISTORY=0
+
 # == Aliases ==
 
 # Empty trash and caches.
