@@ -13,10 +13,8 @@ Plug 'SirVer/ultisnips'                " snippet support
 Plug 'mileszs/ack.vim'                 " search across files
 Plug 'benekastah/neomake'              " lint on save
 Plug 'Raimondi/delimitMate'            " auto brackets
-Plug 'fatih/molokai'                   " color theme
-Plug 'noahfrederick/vim-hemisu'
-Plug 'wavded/cobalt2.vim'
-
+Plug 'godlygeek/tabular'               " re indentation
+Plug 'wavded/cobalt2.vim'              " color theme
 
 Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -31,8 +29,8 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx'}
 Plug 'ruanyl/vim-fixmyjs', { 'for': ['javascript.jsx', 'typescript'] }
 
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-Plug 'moorereason/vim-markdownfmt', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" Plug 'moorereason/vim-markdownfmt', { 'for': 'markdown' }
 
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go' }
@@ -70,7 +68,6 @@ set sidescrolloff=5                 " show next 5 columns while side-scrolling
 set splitbelow                      " more natural horizontal split
 set splitright                      " more natural vertical split
 set clipboard=unnamedplus           " yanks puts it on clipboard
-set cursorline                      " highlight line of cursor
 set colorcolumn=100                 " show a right margin column
 set expandtab                       " use spaces, not tabs
 set shiftwidth=2                    " set tab width
@@ -83,19 +80,19 @@ set lazyredraw                      " wait to redraw
 set pumheight=10                    " completion window max size
 set wrap                            " wrap long lines
 set linebreak                       " do not break wrap in the middle of words
-set updatetime=500                  " millis before cursorhold event is fired, useful for tern
+set updatetime=500                  " millis before cursorhold event, useful for tern
 set noshowmode                      " hide show mode status
 
 " hide everywhere
 set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,jsdocs,coverage
 
 set termguicolors                   " hicolor support and theme
-" set background=dark
 colo cobalt2
 
 au FileType elm set sw=4 sts=4 ts=4
 au FileType python set noet
 au FileType markdown setlocal spell
+au FileType markdown setlocal colorcolumn=
 
 au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
@@ -135,7 +132,6 @@ function! WrapCommand(direction, prefix)
     endtry
   endif
 endfunction
-
 
 " fast quickfix window
 nnoremap <silent> <c-k> :call WrapCommand('up', 'c')<cr>
@@ -214,14 +210,17 @@ nmap <leader>m :make<cr>
 " turn on spell checking
 map <leader>sc :setlocal spell!<cr>
 
-" spell checking shortcuts
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
 " gitup integration
 nmap <silent> <leader>` :!gitup commit<cr><cr>
+
+" show syntax highlighting groups for word under cursor
+nmap <leader>z :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 "===================== PLUGINS======================
 
@@ -303,8 +302,10 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
-"===================== markdownfmt ======================
-let g:markdownfmt_autosave = 1
+"===================== markdown ======================
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_fenced_languages = ['js=javascript', 'bash=sh']
 
 "===================== vim-javascript ======================
 let g:javascript_plugin_jsdoc = 1
