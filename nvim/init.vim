@@ -25,14 +25,11 @@ Plug 'eagletmt/neco-ghc'
 " filetype-specific plugins
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript.jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript.jsx' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx'}
+Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'ruanyl/vim-fixmyjs', { 'for': ['javascript.jsx', 'typescript'] }
-
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-" Plug 'moorereason/vim-markdownfmt', { 'for': 'markdown' }
-
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go' }
 Plug 'kewah/vim-stylefmt', { 'for': ['less', 'css']}
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -91,8 +88,6 @@ colo cobalt2
 
 au FileType elm set sw=4 sts=4 ts=4
 au FileType python set noet
-au FileType markdown setlocal spell
-au FileType markdown setlocal colorcolumn=
 
 au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
@@ -303,6 +298,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 "===================== markdown ======================
+au FileType markdown setlocal spell
+au FileType markdown setlocal colorcolumn=
+
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['js=javascript', 'bash=sh']
@@ -375,3 +373,14 @@ function! JsSwitch(bang, cmd)
 endfunction
 
 au Filetype javascript command! -bang A call JsSwitch(<bang>0, '')
+
+" Format Markdown files.
+function! MarkdownFormat()
+   let save_pos = getpos(".")
+   let query = getreg('/')
+   execute ":0,$!tidy-markdown"
+   call setpos(".", save_pos)
+   call setreg('/', query)
+endfunction
+
+au BufWritePre *.md :call MarkdownFormat()
