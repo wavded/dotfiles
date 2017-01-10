@@ -30,9 +30,6 @@ export TERM=xterm-256color
 export DEFAULT_USER=wavded
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;31'
-
 # ==== Go ====
 export GOPATH=$HOME/Projects/go
 export GOBIN=$HOME/Projects/go/bin
