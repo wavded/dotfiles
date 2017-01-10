@@ -20,7 +20,6 @@ Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'mhartington/deoplete-typescript'
-Plug 'eagletmt/neco-ghc'
 
 " filetype-specific plugins
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript.jsx' }
@@ -30,19 +29,16 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'ruanyl/vim-fixmyjs', { 'for': ['javascript.jsx', 'typescript'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'reedes/vim-wordy', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go' }
 Plug 'kewah/vim-stylefmt', { 'for': ['less', 'css']}
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'saltstack/salt-vim', { 'for': 'sls' }
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
-Plug 'pearofducks/ansible-vim', { 'for': 'ansible' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
-Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
-Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell', 'lhaskell'] }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 
 call plug#end()
@@ -86,7 +82,6 @@ set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,jsdocs,covera
 set termguicolors                   " hicolor support and theme
 colo cobalt2
 
-au FileType elm set sw=4 sts=4 ts=4
 au FileType python set noet
 
 au BufRead,BufNewFile doc.go setlocal spell
@@ -277,7 +272,6 @@ let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag']
 
 " filetype specific settings
 let g:deoplete#omni_patterns = {}
-let g:deoplete#omni_patterns.elm = '\.'
 let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
 let g:deoplete#sources#go#align_class = 1
 
@@ -335,9 +329,6 @@ au BufWritePre *.js :Fixmyjs
 au BufWritePre *.jsx :Fixmyjs
 au BufWritePre *.ts :Fixmyjs
 au BufWritePre *.tsx :Fixmyjs
-
-"===================== elm-vim ======================
-let g:elm_format_autosave = 1
 
 "===================== plantuml-syntax ======================
 " java -splash:no -Djava.awt.headless=true needs to be added to run in background
