@@ -39,4 +39,5 @@ export GOBIN=$HOME/Projects/go/bin
 export PATH=/usr/local/go/bin:$GOBIN:$PATH
 
 # ==== Yarn ====
-hash yarn >/dev/null 2>&1 && export PATH=`yarn global bin`:$PATH
+hash yarn >/dev/null 2>&1 && export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
+
