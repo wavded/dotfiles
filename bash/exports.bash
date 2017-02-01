@@ -35,6 +35,9 @@ export GOPATH=$HOME/Projects/go
 export GOBIN=$HOME/Projects/go/bin
 export PATH=/usr/local/go/bin:$GOBIN:$PATH
 
+# ==== Rust ====
+export PATH=$HOME/.cargo/bin:$PATH
+
 # ==== Yarn ====
 hash yarn >/dev/null 2>&1 && export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
 

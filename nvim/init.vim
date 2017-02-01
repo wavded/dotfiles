@@ -20,6 +20,8 @@ Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'mhartington/deoplete-typescript'
+Plug 'mhartington/deoplete-typescript'
+Plug 'racer-rust/vim-racer'
 
 " filetype-specific plugins
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript.jsx' }
@@ -40,6 +42,7 @@ Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 call plug#end()
 
@@ -86,9 +89,11 @@ au FileType python set noet
 
 au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
+au BufRead,BufNewFile Jenkinsfile setf groovy
 au BufRead,BufNewFile .babelrc setf json
 au BufRead,BufNewFile .tern-project setf json
 au BufRead,BufNewFile *.jsdoc setf javascript.jsx
+au FileType gitcommit setlocal spell
 
 " auto save when focus lost (after tabbing away or switching buffers)
 au FocusLost,BufLeave,WinLeave,TabLeave * silent! up
@@ -317,9 +322,15 @@ au FileType go nmap <leader>d :GoDeclsDir<cr>
 au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 
+"==================== vim-racer / rust =====================
+let g:rustfmt_autosave = 1
+let g:racer_cmd = "racer"
+let g:racer_experimental_completer = 1
+au FileType rust nmap gd <Plug>(rust-def)
+
 "===================== stylefmt ======================
 au BufWritePre *.css :Stylefmt
-au BufWritePre *.less :Stylefmt
+" au BufWritePre *.less :Stylefmt
 
 "===================== fixmyjs ======================
 " es6 test for javascript
