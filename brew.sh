@@ -23,12 +23,20 @@ brew install tmux
 brew install reattach-to-user-namespace
 brew install watch
 
-brew install node@6
+brew install git
+brew install git-extras
+
+brew install node
 brew install yarn
 brew install go
 
+brew cask install postgres
 brew cask install postico
 brew cask install docker
+brew cask install the-unarchiver
+brew cask install java
+brew cask install gitup
+brew cask install imageoptim
 
 yarn global install eslint babel-cli babel-eslint eslint-plugin-react tern istanbul nodemon
 

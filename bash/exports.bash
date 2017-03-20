@@ -7,6 +7,8 @@ export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
 # Omit duplicates and commands that begin with a space from history.
 export HISTCONTROL='ignoreboth';
+# Ignore certain commands.
+export HISTIGNORE="ls:la:clear:vim:exit"
 # Save and reload the history after each command finishes.
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
@@ -35,8 +37,8 @@ export GOPATH=$HOME/Projects/go
 export GOBIN=$HOME/Projects/go/bin
 export PATH=/usr/local/go/bin:$GOBIN:$PATH
 
-# ==== Rust ====
-export PATH=$HOME/.cargo/bin:$PATH
+# ==== Haskell ====
+export PATH=$HOME/Library/Haskell/bin:$PATH
 
 # ==== Yarn ====
 hash yarn >/dev/null 2>&1 && export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH

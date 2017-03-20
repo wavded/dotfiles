@@ -12,9 +12,9 @@ Plug 'tpope/vim-fugitive'              " git support
 Plug 'SirVer/ultisnips'                " snippet support
 Plug 'mileszs/ack.vim'                 " search across files
 Plug 'benekastah/neomake'              " lint on save
-Plug 'Raimondi/delimitMate'            " auto brackets
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'wavded/cobalt2.vim'              " color theme
+Plug 'jiangmiao/auto-pairs'            " autoclose matching pairs
 
 Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -43,6 +43,7 @@ Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 
 call plug#end()
 
@@ -194,16 +195,12 @@ cmap <c-p> <c-r>=expand("%:p:h") . "/" <cr>
 
 " fast editing of the .vimrc
 nmap <silent> <leader>v :e $MYVIMRC<cr>
-nmap <silent> <leader>sv :so $MYVIMRC<cr>
 
 " allow saving when you forgot sudo
 cmap w!! w !sudo tee % >/dev/null
 
 " quick make
 nmap <leader>m :make<cr>
-
-" turn on spell checking
-map <leader>sc :setlocal spell!<cr>
 
 " gitup integration
 nmap <silent> <leader>` :!gitup commit<cr><cr>
@@ -218,9 +215,6 @@ function! <SID>SynStack()
 endfunc
 
 "===================== PLUGINS======================
-
-"===================== delimitMate ======================
-let delimitMate_expand_cr = 1 " auto indent {}<enter>
 
 "===================== CtrlP ======================
 let g:ctrlp_cmd = 'CtrlPMRU'
@@ -344,6 +338,9 @@ au BufWritePre *.tsx :Fixmyjs
 "===================== plantuml-syntax ======================
 " java -splash:no -Djava.awt.headless=true needs to be added to run in background
 let g:plantuml_executable_script = 'plantuml -tsvg -quiet $@'
+
+"===================== postgresql ======================
+let g:sql_type_default = 'pgsql'
 
 "===================== FUNCTIONS ======================
 
