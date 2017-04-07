@@ -20,7 +20,6 @@ Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'mhartington/deoplete-typescript'
-Plug 'mhartington/deoplete-typescript'
 Plug 'racer-rust/vim-racer'
 
 " filetype-specific plugins
@@ -81,7 +80,7 @@ set updatetime=500                  " millis before cursorhold event, useful for
 set noshowmode                      " hide show mode status
 
 " hide everywhere
-set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,jsdocs,coverage
+set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,coverage
 
 set termguicolors                   " hicolor support and theme
 colo cobalt2
@@ -323,7 +322,7 @@ let g:racer_experimental_completer = 1
 au FileType rust nmap gd <Plug>(rust-def)
 
 "===================== stylefmt ======================
-au BufWritePre *.css :Stylefmt
+" au BufWritePre *.css :Stylefmt
 " au BufWritePre *.less :Stylefmt
 
 "===================== fixmyjs ======================
