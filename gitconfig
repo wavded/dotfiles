@@ -1,20 +1,36 @@
 [user]
-	name = Marc Harter
-	email = wavded@gmail.com
-[core]
-	editor = $EDITOR
+  name = Marc Harter
+  email = wavded@gmail.com
+
+[alias]
+  hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+  call =! git add -A && git commit -v
+
 [color]
 	ui = true
+
 [merge]
-	tool = vimdiff
-[alias]
-   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-   call =! git add -A && git commit -v
-   url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
-	 up = "!git remote update -p; git merge --ff-only @{u}"
+  ff = only
+  tool = vimdiff
+
 [mergetool]
-   prompt = false
-   keepBackup = false
+  prompt = false
+  keepBackup = false
+
 [push]
-	 default = current
-   followTags = true
+  default = current
+  followTags = true
+
+[gpg]
+	program = gpg2
+
+[commit]
+  gpgSign = true
+
+[diff]
+  tool = icdiff
+[difftool]
+  prompt = false
+[difftool "icdiff"]
+  cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE
