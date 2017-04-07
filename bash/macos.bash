@@ -52,3 +52,17 @@ function disconnect() {
   osascript -e 'tell application "Tunnelblick"' -e 'disconnect all' -e 'end tell'
 }
 
+function dojsdoc() {
+  global_mod="$HOME/.config/yarn/global/node_modules"
+  echo "{\"plugins\": [\"${global_mod}/jsdoc-babel\"]}" > __jsdoc.json
+  mkdir __jsdocs
+  cd __jsdocs
+	sleep 1 && open "http://localhost:8000/" &
+  python -m SimpleHTTPServer 8000 > /dev/null 2>&1 &
+  serve_pid=$!
+  cd ..
+  watch jsdoc modules index.js -c __jsdoc.json -r -R readme.md -d __jsdocs -t $global_mod/docdash
+  kill $serve_pid
+  rm __jsdoc.json
+  rm -rf __jsdocs
+}

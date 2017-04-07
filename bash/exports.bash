@@ -33,9 +33,10 @@ export DEFAULT_USER=wavded
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 # ==== Go ====
+export GOROOT="$(brew --prefix golang)/libexec"
 export GOPATH=$HOME/Projects/go
 export GOBIN=$HOME/Projects/go/bin
-export PATH=/usr/local/go/bin:$GOBIN:$PATH
+export PATH=${GOPATH}/bin:$GOBIN:$PATH
 
 # ==== Haskell ====
 export PATH=$HOME/Library/Haskell/bin:$PATH
