@@ -28,7 +28,7 @@
   program = gpg2
 
 [help]
-	autocorrect = 1
+  autocorrect = 1
 
 [commit]
   gpgSign = true
