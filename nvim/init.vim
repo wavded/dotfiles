@@ -14,7 +14,7 @@ Plug 'mileszs/ack.vim'                 " search across files
 Plug 'benekastah/neomake'              " lint on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'wavded/cobalt2.vim'              " color theme
-Plug 'jiangmiao/auto-pairs'            " autoclose matching pairs
+" Plug 'jiangmiao/auto-pairs'            " autoclose matching pairs
 
 Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -31,7 +31,7 @@ Plug 'ruanyl/vim-fixmyjs', { 'for': ['javascript.jsx', 'typescript'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'reedes/vim-wordy', { 'for': 'markdown' }
-Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go' }
+Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'kewah/vim-stylefmt', { 'for': ['less', 'css']}
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
@@ -306,6 +306,8 @@ let g:jsx_ext_required = 0
 "===================== vim-go ======================
 let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 1
+let g:go_updatetime = 100
 
 au FileType go nmap <leader>r :GoRename<cr>
 au FileType go nmap <leader>c :GoCoverageToggle<cr>
