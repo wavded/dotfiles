@@ -33,6 +33,9 @@ alias reload="exec $SHELL -l"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 
+# Add yarn completion.
+source "$HOME/.bash/yarn-completion.bash"
+
 # == Functions
 
 function tm() {
@@ -42,8 +45,8 @@ function tm() {
     tmux new-session   -s ${project} -d -n workspace
     tmux split-window  -t ${project} -v
     tmux send-keys     -t ${project}:1.0 'vim' C-m
-    tmux select-pane   -t ${project}:1.0
     tmux resize-pane   -t ${project} -D 10
+    tmux select-pane   -t ${project}:1.1
   fi
 
   tmux attach -t "$project"
