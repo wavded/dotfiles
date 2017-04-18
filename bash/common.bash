@@ -6,6 +6,11 @@ alias sudo='sudo '
 # Use coreutils `ls` if exists.
 hash gls >/dev/null 2>&1 || alias gls="ls"
 
+# Use GNU versions if available.
+hash ggrep >/dev/null 2>&1 && alias grep="ggrep"
+hash ghead >/dev/null 2>&1 && alias head="ghead"
+hash gtail >/dev/null 2>&1 && alias tail="gtail"
+
 # Enable dircolors.
 hash dircolors >/dev/null 2>&1 || alias dircolors="gdircolors"
 eval `dircolors ~/.bash/dir_colors`

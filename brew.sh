@@ -6,6 +6,7 @@ brew upgrade
 brew install coreutils
 brew install moreutils
 brew install searchutils
+brew install grep
 
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names

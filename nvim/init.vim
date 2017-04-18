@@ -14,6 +14,8 @@ Plug 'mileszs/ack.vim'                 " search across files
 Plug 'benekastah/neomake'              " lint on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'wavded/cobalt2.vim'              " color theme
+Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
+Plug 'eapache/auto-pairs'
 " Plug 'jiangmiao/auto-pairs'            " autoclose matching pairs
 
 Plug 'Shougo/deoplete.nvim'            " auto complete
@@ -34,12 +36,11 @@ Plug 'reedes/vim-wordy', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'kewah/vim-stylefmt', { 'for': ['less', 'css']}
 Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'saltstack/salt-vim', { 'for': 'sls' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
-Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
@@ -129,8 +130,8 @@ function! WrapCommand(direction, prefix)
 endfunction
 
 " fast quickfix window
-nnoremap <silent> <c-k> :call WrapCommand('up', 'c')<cr>
-nnoremap <silent> <c-j>  :call WrapCommand('down', 'c')<cr>
+nnoremap <silent> <c-h> :call WrapCommand('up', 'c')<cr>
+nnoremap <silent> <c-l>  :call WrapCommand('down', 'c')<cr>
 
 " fast location window
 nnoremap <silent> <c-p> :call WrapCommand('up', 'l')<cr>
@@ -228,11 +229,20 @@ let g:ctrlp_user_command = 'rg --files --hidden %s'
 nnoremap <leader>g :CtrlPCurWD<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 
+
+"===================== auto-pairs ======================
+let g:AutoPairsUseInsertedCount = 1
+
 "===================== Ack ======================
 " use rg for fast searches
 let g:ackprg = 'rg --vimgrep --hidden'
 
 nnoremap <leader>f :Ack<space>
+
+"===================== multiple-cursors ======================
+
+let g:multi_cursor_next_key='<C-j>'
+let g:multi_cursor_prev_key='<C-k>'
 
 "===================== neomake ======================
 let g:neomake_open_list = 2
