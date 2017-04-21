@@ -24,32 +24,25 @@ __yarn_get_package_fields() {
     local fields
     
     package="$(pwd)/package.json"
-    
     [ ! -e "$package" ] && return
 
     fields=$(
         sed -n "/\"$parentField\": {/,/\}/p" < "$package" |
-        head -n -1 |
         tail -n +2 |
-        sed -e 's/^[ \t]*//gm' |
-        grep -Po '"\K[^"]*(?=":)'
+        grep -Eo '"[[:alnum:]@/_-]+?"' |
+        grep -Eo '[[:alnum:]@/_-]+'
     )
-    fields=( $fields )
-
-    echo "${fields[*]}"
+    echo "$fields"
 }
 
 # Returns the names of the globally installed packages.
 __yarn_get_globals() {
-    local packages
-    local bin_path
-    bin_path="$(yarn global bin)"
-    packages=$(
-        find "$bin_path" -type l |
-        grep -Po "$bin_path/\K.+" |
-        sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g'
-    )
-    echo "$packages"
+    find "$(yarn global bin)" -type l -print0 | xargs -0 basename -a
+}
+
+__yarn_filedir() {
+    COMPREPLY=( $( compgen -f -- "$cur" ) )
+    compopt -o nospace
 }
 
 _yarn_add() {
@@ -181,12 +174,18 @@ _yarn_info() {
         peerDependencies
         repository
         version
+        versions
     )
 
     [[ "$prev" == info ]] && return
 
-    local args
-    _count_args :
+    # `_count_args` backwards compatibility
+    local args=1
+    local counter=1
+    while [[ $counter -lt $cword ]]; do
+        [[ ${words[$counter]} != -* ]] && (( args++ ))
+        (( counter++ ))
+    done
 
     case "$cur" in
         -*)
@@ -224,7 +223,7 @@ _yarn_install() {
 
     case "$prev" in
         --modules-folder)
-            _filedir
+            __yarn_filedir
             return
             ;;
     esac
@@ -293,7 +292,7 @@ _yarn_pack() {
             return
             ;;
     esac
-    [[ "$prev" == --filename ]] && _filedir
+    [[ "$prev" == --filename ]] && __yarn_filedir
 }
 
 _yarn_publish() {
@@ -316,8 +315,8 @@ _yarn_publish() {
             return
             ;;
     esac
-
-    _filedir
+    
+    __yarn_filedir
 }
 
 _yarn_remove() {
@@ -403,8 +402,8 @@ _yarn_why() {
     modules_folder="$(pwd)/node_modules"
     [ ! -d "$modules_folder" ] || [[ "$prev" != why ]] && return
 
-    if [[ "$cur" == */ ]]; then
-        _filedir
+    if [[ "$cur" == ./* ]]; then
+        __yarn_filedir
     else
         modules=$(
             find node_modules/ -maxdepth 1 -type d | grep -Po 'node_modules/\K.+'
@@ -414,8 +413,15 @@ _yarn_why() {
 }
 
 _yarn_yarn() {
-    local args
-    _count_args :
+    local args=1
+    local counter=1
+
+    # `_count_args` backwards compatibility
+    while [[ $counter -lt $cword ]]; do
+        [[ ${words[$counter]} != -* ]] && (( args++ ))
+        (( counter++ ))
+    done
+
     case "$cur" in
         -*)
             COMPREPLY=( $( compgen -W "${global_flags[*]}" -- "$cur" ) )
@@ -512,7 +518,7 @@ _yarn() {
 
     local command=yarn
     local counter=1
-    while [ $counter -lt "$cword" ]; do
+    while [[ $counter -lt $cword ]]; do
         case "${words[$counter]}" in
             -*)
                 ;;
