@@ -4,19 +4,18 @@ Plug 'itchyny/lightline.vim'           " status line
 Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
 Plug 'scrooloose/nerdtree'             " file explorer
 Plug 'ivalkeen/nerdtree-execute'       " file explorer OS integration
-Plug 'ConradIrwin/vim-bracketed-paste' " auto :set paste
+" Plug 'ConradIrwin/vim-bracketed-paste' " auto :set paste
 Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
-Plug 'tpope/vim-fugitive'              " git support
 Plug 'SirVer/ultisnips'                " snippet support
 Plug 'mileszs/ack.vim'                 " search across files
-Plug 'benekastah/neomake'              " lint on save
+Plug 'w0rp/ale'                        " lint on edit
+" Plug 'benekastah/neomake'              " lint on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'wavded/cobalt2.vim'              " color theme
 Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
-Plug 'eapache/auto-pairs'
-" Plug 'jiangmiao/auto-pairs'            " autoclose matching pairs
+Plug 'eapache/auto-pairs'              " autoclose matching pairs
 
 Plug 'Shougo/deoplete.nvim'            " auto complete
 Plug 'zchee/deoplete-go', { 'do': 'make' }
@@ -97,11 +96,11 @@ au BufRead,BufNewFile *.jsdoc setf javascript.jsx
 au FileType gitcommit setlocal spell
 
 " auto save when focus lost (after tabbing away or switching buffers)
-au FocusLost,BufLeave,WinLeave,TabLeave * silent! up
+au FocusLost,BufLeave,WinLeave,TabLeave * silent! update
 
 " open files where last edits took place
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-au BufWritePost *.pu silent! Neomake!
+" au BufWritePost *.pu silent! Neomake!
 
 " let g:python3_host_prog = '/usr/local/bin/python3'
 " let g:python3_host_skip_check = 1
@@ -139,6 +138,9 @@ nnoremap <silent> <c-n>  :call WrapCommand('down', 'l')<cr>
 
 " fast close qf/loc windows
 nnoremap <leader>a :cclose<cr>:lclose<cr>
+
+" fast open current file in default application
+nnoremap <silent> <leader>o :!open %<cr>
 
 " fast save/quit
 nnoremap <leader>w :w!<cr>
@@ -244,19 +246,27 @@ nnoremap <leader>f :Ack<space>
 let g:multi_cursor_next_key='<C-j>'
 let g:multi_cursor_prev_key='<C-k>'
 
+"===================== ale ======================
+let g:ale_sign_column_always = 0
+let g:ale_sign_error = '!!'
+let g:ale_sign_warning = '?'
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
 "===================== neomake ======================
-let g:neomake_open_list = 2
-let g:neomake_list_height = 2
-au! BufReadPost,BufWritePost * Neomake
+" let g:neomake_open_list = 2
+" let g:neomake_list_height = 2
+" au! BufReadPost,BufWritePost * Neomake
 
-let g:neomake_typescript_eslint_maker = {
-      \ 'args': ['-f', 'compact'],
-      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-      \ '%W%f: line %l\, col %c\, Warning - %m'
-      \ }
-let g:neomake_typescript_enabled_makers = ['eslint', 'tsc']
+" let g:neomake_typescript_eslint_maker = {
+"       \ 'args': ['-f', 'compact'],
+"       \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+"       \ '%W%f: line %l\, col %c\, Warning - %m'
+"       \ }
+" let g:neomake_typescript_enabled_makers = ['eslint', 'tsc']
+" let g:neomake_go_enabled_makers = ['go', 'golint', 'govet']
 
-map <leader>e :NeomakeSh open %<cr>
+" map <leader>e :NeomakeSh open %<cr>
 
 "===================== NERDTree ======================
 let g:NERDTreeQuitOnOpen = 1 " hide explorer after open
@@ -316,8 +326,6 @@ let g:jsx_ext_required = 0
 "===================== vim-go ======================
 let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_command = "goimports"
-let g:go_auto_type_info = 1
-let g:go_updatetime = 100
 
 au FileType go nmap <leader>r :GoRename<cr>
 au FileType go nmap <leader>c :GoCoverageToggle<cr>
@@ -339,7 +347,7 @@ au FileType rust nmap gd <Plug>(rust-def)
 
 "===================== fixmyjs ======================
 " es6 test for javascript
-au FileType javascript map <leader>e :100split \| term NODE_ENV=test babel-node %<cr>
+au FileType javascript.jsx map <leader>e :100split \| term NODE_ENV=test babel-node %<cr>
 
 au BufWritePre *.js :Fixmyjs
 au BufWritePre *.jsx :Fixmyjs

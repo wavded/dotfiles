@@ -38,9 +38,6 @@ alias reload="exec $SHELL -l"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 
-# Add yarn completion.
-source "$HOME/.bash/yarn-completion.bash"
-
 # == Functions
 
 function tm() {
