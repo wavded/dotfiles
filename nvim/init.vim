@@ -4,14 +4,12 @@ Plug 'itchyny/lightline.vim'           " status line
 Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
 Plug 'scrooloose/nerdtree'             " file explorer
 Plug 'ivalkeen/nerdtree-execute'       " file explorer OS integration
-" Plug 'ConradIrwin/vim-bracketed-paste' " auto :set paste
 Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'SirVer/ultisnips'                " snippet support
-Plug 'mileszs/ack.vim'                 " search across files
-Plug 'w0rp/ale'                        " lint on edit
-" Plug 'benekastah/neomake'              " lint on save
+Plug 'mhinz/vim-grepper'               " search across files
+Plug 'w0rp/ale', { 'tag': '*' }        " lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'wavded/cobalt2.vim'              " color theme
 Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
@@ -22,18 +20,17 @@ Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'carlitux/deoplete-ternjs'
 Plug 'mhartington/deoplete-typescript'
 Plug 'racer-rust/vim-racer'
+" Plug 'sebastianmarkow/deoplete-rust'
 
 " filetype-specific plugins
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript.jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
-Plug 'ruanyl/vim-fixmyjs', { 'for': ['javascript.jsx', 'typescript'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'reedes/vim-wordy', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go', 'do': ':GoInstallBinaries' }
-Plug 'kewah/vim-stylefmt', { 'for': ['less', 'css']}
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'saltstack/salt-vim', { 'for': 'sls' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
@@ -43,6 +40,7 @@ Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 call plug#end()
 
@@ -94,6 +92,7 @@ au BufRead,BufNewFile .babelrc setf json
 au BufRead,BufNewFile .tern-project setf json
 au BufRead,BufNewFile *.jsdoc setf javascript.jsx
 au FileType gitcommit setlocal spell
+" au FileType apiblueprint setlocal tw=4 sw=4 ts=4
 
 " auto save when focus lost (after tabbing away or switching buffers)
 au FocusLost,BufLeave,WinLeave,TabLeave * silent! update
@@ -235,11 +234,17 @@ nnoremap <leader>b :CtrlPBuffer<cr>
 "===================== auto-pairs ======================
 let g:AutoPairsUseInsertedCount = 1
 
-"===================== Ack ======================
+"===================== grepper ======================
 " use rg for fast searches
 let g:ackprg = 'rg --vimgrep --hidden'
 
-nnoremap <leader>f :Ack<space>
+runtime autoload/grepper.vim
+" let g:grepper.simple_prompt = 1
+" let g:grepper.rg.grepprg .= ' --smart-case'
+
+nnoremap <leader>f :Grepper -tool rg<cr>
+nmap gs  <plug>(GrepperOperator)
+xmap gs  <plug>(GrepperOperator)
 
 "===================== multiple-cursors ======================
 
@@ -252,6 +257,14 @@ let g:ale_sign_error = '!!'
 let g:ale_sign_warning = '?'
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
+
+let g:ale_fixers = {}
+let g:ale_fixers.javascript = ['eslint']
+let g:ale_fix_on_save = 1
+let g:ale_linters = {}
+let g:ale_linters.go = ['gometalinter']
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 
 "===================== neomake ======================
 " let g:neomake_open_list = 2
@@ -292,6 +305,8 @@ let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag']
 let g:deoplete#omni_patterns = {}
 let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
 let g:deoplete#sources#go#align_class = 1
+" let g:deoplete#sources#rust#racer_binary = 'racer'
+" let g:deoplete#sources#rust#rust_source_path = '$RUST_SRC_PATH'
 
 "===================== tern_for_vim ======================
 let g:tern#command = ["tern"]
@@ -318,6 +333,8 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['js=javascript', 'bash=sh']
 
 "===================== vim-javascript ======================
+" es6 test for javascript
+au FileType javascript.jsx map <leader>e :100split \| term NODE_ENV=test babel-node %<cr>
 let g:javascript_plugin_jsdoc = 1
 
 "===================== vim-jsx ======================
@@ -340,19 +357,7 @@ let g:rustfmt_autosave = 1
 let g:racer_cmd = "racer"
 let g:racer_experimental_completer = 1
 au FileType rust nmap gd <Plug>(rust-def)
-
-"===================== stylefmt ======================
-" au BufWritePre *.css :Stylefmt
-" au BufWritePre *.less :Stylefmt
-
-"===================== fixmyjs ======================
-" es6 test for javascript
-au FileType javascript.jsx map <leader>e :100split \| term NODE_ENV=test babel-node %<cr>
-
-au BufWritePre *.js :Fixmyjs
-au BufWritePre *.jsx :Fixmyjs
-au BufWritePre *.ts :Fixmyjs
-au BufWritePre *.tsx :Fixmyjs
+au FileType rust nmap <leader>e :RustRun<cr>
 
 "===================== plantuml-syntax ======================
 " java -splash:no -Djava.awt.headless=true needs to be added to run in background

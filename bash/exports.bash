@@ -43,3 +43,6 @@ export PATH=$HOME/Library/Haskell/bin:$PATH
 # ==== Yarn ====
 hash yarn >/dev/null 2>&1 && export PATH=$HOME/.config/yarn/global/node_modules/.bin:$PATH
 
+# ==== Rust ====
+export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
