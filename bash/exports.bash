@@ -45,4 +45,4 @@ hash yarn >/dev/null 2>&1 && export PATH=$HOME/.config/yarn/global/node_modules/
 
 # ==== Rust ====
 export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+hash rustc >/dev/null 2>&1 && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"

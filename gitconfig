@@ -32,3 +32,6 @@
 
 [commit]
   gpgSign = true
+
+[core]
+  ignorecase = false

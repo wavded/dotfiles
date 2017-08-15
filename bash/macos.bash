@@ -6,6 +6,7 @@ fi
 
 # Add tab completion for many Bash commands
 source "$(brew --prefix)/share/bash-completion/bash_completion"
+source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
 
 # Enable autojump.
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
