@@ -7,20 +7,16 @@ Plug 'ivalkeen/nerdtree-execute'       " file explorer OS integration
 Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
-Plug 'SirVer/ultisnips'                " snippet support
 Plug 'mhinz/vim-grepper'               " search across files
-Plug 'w0rp/ale', { 'tag': '*' }        " lint on edit, fix on save
+Plug 'w0rp/ale' , { 'tag': '*' }       " lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
-Plug 'wavded/cobalt2.vim'              " color theme
+Plug 'morhetz/gruvbox'
 Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
 Plug 'eapache/auto-pairs'              " autoclose matching pairs
 
-Plug 'Shougo/deoplete.nvim'            " auto complete
-Plug 'zchee/deoplete-go', { 'do': 'make' }
-Plug 'carlitux/deoplete-ternjs'
-Plug 'mhartington/deoplete-typescript'
-Plug 'racer-rust/vim-racer'
-" Plug 'sebastianmarkow/deoplete-rust'
+Plug 'ervandew/supertab'               " tab support
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer --racer-completer' }                           " completions
+Plug 'SirVer/ultisnips'                " snippet support
 
 " filetype-specific plugins
 Plug 'ternjs/tern_for_vim', { 'for': 'javascript.jsx' }
@@ -78,10 +74,13 @@ set updatetime=500                  " millis before cursorhold event, useful for
 set noshowmode                      " hide show mode status
 
 " hide everywhere
-set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,coverage
+set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,coverage,target
 
 set termguicolors                   " hicolor support and theme
-colo cobalt2
+set background=dark
+let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark="hard"
+colo gruvbox
 
 au FileType python set noet
 
@@ -92,17 +91,12 @@ au BufRead,BufNewFile .babelrc setf json
 au BufRead,BufNewFile .tern-project setf json
 au BufRead,BufNewFile *.jsdoc setf javascript.jsx
 au FileType gitcommit setlocal spell
-" au FileType apiblueprint setlocal tw=4 sw=4 ts=4
 
 " auto save when focus lost (after tabbing away or switching buffers)
 au FocusLost,BufLeave,WinLeave,TabLeave * silent! update
 
 " open files where last edits took place
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-" au BufWritePost *.pu silent! Neomake!
-
-" let g:python3_host_prog = '/usr/local/bin/python3'
-" let g:python3_host_skip_check = 1
 
 "===================== MAPPINGS ======================
 let mapleader = ","
@@ -239,7 +233,9 @@ let g:AutoPairsUseInsertedCount = 1
 let g:ackprg = 'rg --vimgrep --hidden'
 
 runtime autoload/grepper.vim
-" let g:grepper.simple_prompt = 1
+let g:grepper = {}
+let g:grepper.simple_prompt = 1
+let g:grepper.side = 1
 " let g:grepper.rg.grepprg .= ' --smart-case'
 
 nnoremap <leader>f :Grepper -tool rg<cr>
@@ -263,50 +259,39 @@ let g:ale_fixers.javascript = ['eslint']
 let g:ale_fix_on_save = 1
 let g:ale_linters = {}
 let g:ale_linters.go = ['gometalinter']
+let g:ale_linters.rust = ['rls']
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 
-"===================== neomake ======================
-" let g:neomake_open_list = 2
-" let g:neomake_list_height = 2
-" au! BufReadPost,BufWritePost * Neomake
-
-" let g:neomake_typescript_eslint_maker = {
-"       \ 'args': ['-f', 'compact'],
-"       \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-"       \ '%W%f: line %l\, col %c\, Warning - %m'
-"       \ }
-" let g:neomake_typescript_enabled_makers = ['eslint', 'tsc']
-" let g:neomake_go_enabled_makers = ['go', 'golint', 'govet']
-
-" map <leader>e :NeomakeSh open %<cr>
-
 "===================== NERDTree ======================
 let g:NERDTreeQuitOnOpen = 1 " hide explorer after open
+let g:NERDTreeMinimalUI = 1 " minimal UI
 let g:NERDTreeShowHidden = 1 " always show hidden files
 let g:NERDTreeRespectWildIgnore = 1 " ignore wildignore matches
+let g:NERDTreeAutoDeleteBuffer = 1 " automatically delete buffer of deleted file
 
 map <silent> <leader>n :NERDTreeToggle<cr>
 
 "===================== lightline ======================
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'gruvbox',
       \ }
 
 map <silent> <leader>n :NERDTreeToggle<cr>
 
-"===================== deoplete ======================
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1 " path files from current buffer
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag']
+"===================== ycm/supertab/ultisnips  ===========================
+let g:ycm_rust_src_path = '/Users/wavded/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 
-" filetype specific settings
-let g:deoplete#omni_patterns = {}
-let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
-let g:deoplete#sources#go#align_class = 1
-" let g:deoplete#sources#rust#racer_binary = 'racer'
-" let g:deoplete#sources#rust#rust_source_path = '$RUST_SRC_PATH'
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 "===================== tern_for_vim ======================
 let g:tern#command = ["tern"]
@@ -316,13 +301,6 @@ let g:tern_show_argument_hints = 'on_hold'
 au FileType javascript.jsx nmap gd :TernDef<cr>
 au FileType javascript.jsx nmap <leader>r :TernRename<cr>
 
-"===================== UltiSnips ======================
-" enable supertab-like behavior
-let g:UltiSnipsEnableSnipMate = 0
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 "===================== markdown ======================
 au FileType markdown setlocal spell
