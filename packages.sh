@@ -91,6 +91,9 @@ yarn global add \
 curl https://sh.rustup.rs -sSf | sh
 rustup install nightly
 rustup default nightly
+rustup component add rls-preview
+rustup component add rust-analysis
+rustup component add rust-src
 
 # == Cargo packages
 cargo install clippy

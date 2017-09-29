@@ -14,23 +14,21 @@ Plug 'morhetz/gruvbox'
 Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
 Plug 'eapache/auto-pairs'              " autoclose matching pairs
 
+" autocompletion / code intelligence
 Plug 'ervandew/supertab'               " tab support
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer --racer-completer' }                           " completions
 Plug 'SirVer/ultisnips'                " snippet support
 
 " filetype-specific plugins
-Plug 'ternjs/tern_for_vim', { 'for': 'javascript.jsx' }
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'reedes/vim-wordy', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'saltstack/salt-vim', { 'for': 'sls' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
-Plug 'kylef/apiblueprint.vim', { 'for': 'apiblueprint' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
@@ -180,7 +178,7 @@ vmap > >gv
 vmap < <gv
 
 " pull word under cursor into lhs of a substitute (for quick search and replace)
-nmap <leader>r :%s#\<<c-r>=expand("<cword>")<cr>\>#
+" nmap <leader>r :%s#\<<c-r>=expand("<cword>")<cr>\>#
 
 " strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//e<cr>:let @/=''<cr>
@@ -224,36 +222,28 @@ let g:ctrlp_user_command = 'rg --files --hidden %s'
 nnoremap <leader>g :CtrlPCurWD<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 
-
 "===================== auto-pairs ======================
 let g:AutoPairsUseInsertedCount = 1
 
 "===================== grepper ======================
 " use rg for fast searches
-let g:ackprg = 'rg --vimgrep --hidden'
+let g:ackprg = 'rg --vimgrep --hidden --smart-case'
 
 runtime autoload/grepper.vim
 let g:grepper = {}
 let g:grepper.simple_prompt = 1
 let g:grepper.side = 1
-" let g:grepper.rg.grepprg .= ' --smart-case'
 
 nnoremap <leader>f :Grepper -tool rg<cr>
 nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
 
 "===================== multiple-cursors ======================
-
 let g:multi_cursor_next_key='<C-j>'
 let g:multi_cursor_prev_key='<C-k>'
 
 "===================== ale ======================
 let g:ale_sign_column_always = 0
-let g:ale_sign_error = '!!'
-let g:ale_sign_warning = '?'
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint']
 let g:ale_fix_on_save = 1
@@ -280,8 +270,6 @@ let g:lightline = {
 map <silent> <leader>n :NERDTreeToggle<cr>
 
 "===================== ycm/supertab/ultisnips  ===========================
-let g:ycm_rust_src_path = '/Users/wavded/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src'
-
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -293,14 +281,12 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
-"===================== tern_for_vim ======================
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
-let g:tern_show_argument_hints = 'on_hold'
+" enable rust go to definition
+let g:ycm_rust_src_path = '/Users/wavded/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src'
 
-au FileType javascript.jsx nmap gd :TernDef<cr>
-au FileType javascript.jsx nmap <leader>r :TernRename<cr>
-
+nmap <silent> gd :YcmCompleter GoTo<cr>
+nmap <silent> <leader>r :YcmCompleter RefactorRename<cr>
+nmap <silent> <leader>d :YcmCompleter GetDoc<cr>
 
 "===================== markdown ======================
 au FileType markdown setlocal spell
@@ -325,16 +311,12 @@ let g:go_fmt_command = "goimports"
 au FileType go nmap <leader>r :GoRename<cr>
 au FileType go nmap <leader>c :GoCoverageToggle<cr>
 au FileType go nmap <leader>t :GoTest<cr>
-au FileType go nmap <leader>d :GoDeclsDir<cr>
 
 au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 
-"==================== vim-racer / rust =====================
+"==================== rust =====================
 let g:rustfmt_autosave = 1
-let g:racer_cmd = "racer"
-let g:racer_experimental_completer = 1
-au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap <leader>e :RustRun<cr>
 
 "===================== plantuml-syntax ======================
