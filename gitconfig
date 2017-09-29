@@ -1,6 +1,7 @@
 [user]
   name = Marc Harter
   email = wavded@gmail.com
+  signingkey = 637EF5D2547B1320A9FDBEE2CDF3528E55977962
 
 [alias]
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
@@ -23,9 +24,6 @@
 [push]
   default = current
   followTags = true
-
-[gpg]
-  program = gpg2
 
 [help]
   autocorrect = 1

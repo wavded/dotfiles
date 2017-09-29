@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # === Section: brew ===
-
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 brew upgrade
 
@@ -13,7 +13,6 @@ brew install grep
 brew install ssh-copy-id
 
 # == Bash
-brew install neovim/neovim/neovim
 brew install bash
 brew install bash-git-prompt
 brew install bash-completion2
@@ -27,10 +26,20 @@ brew install cairo
 brew install tmux
 brew install reattach-to-user-namespace
 brew install watch
+brew install cmake
+brew install python3
+brew install neovim/neovim/neovim
+pip3 install neovim
 
 # == Git
 brew install git
 brew install git-extras
+
+# == GPG
+# https://gist.github.com/bmhatfield/cc21ec0a3a2df963bffa3c1f884b676b#gistcomment-2165971
+brew install gnupg gpg-agent pinentry-mac
+mkdir ~/.gnupg
+echo "pinentry-program /usr/local/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
 brew install node
 brew install yarn

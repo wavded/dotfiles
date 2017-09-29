@@ -1,3 +1,6 @@
+# Fix for unable to find OpenSSL.
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig"
+
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   GIT_PROMPT_THEME_NAME="Custom"
   GIT_PROMPT_THEME_FILE="$HOME/.bash/prompt.bash"

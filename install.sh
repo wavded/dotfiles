@@ -19,4 +19,6 @@ if [[ `uname` == "Darwin" ]]; then
   rm-if-present "$HOME/.hushlogin" "$dir/hushlogin"
   mkdir -p $HOME/.config
   rm-if-present "$HOME/.config/nvim" "$dir/nvim"
+  echo "...reload shell before installing packages"
 fi
+
