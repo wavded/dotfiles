@@ -1,6 +1,3 @@
-# Fix for unable to find OpenSSL.
-export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig"
-
 if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
   GIT_PROMPT_THEME_NAME="Custom"
   GIT_PROMPT_THEME_FILE="$HOME/.bash/prompt.bash"
@@ -22,6 +19,9 @@ export SHELL_SESSION_HISTORY=0
 
 export GOROOT="$(brew --prefix golang)/libexec"
 
+# Allow OpenSSL to be linked.
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig"
+
 # == Aliases ==
 
 # Empty trash and caches.
@@ -41,7 +41,6 @@ alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resourc
 
 # Chrome.
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-
 
 # == Functions ==
 
