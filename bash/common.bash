@@ -42,8 +42,9 @@ alias localip="ipconfig getifaddr en0"
 
 function tm() {
   project=`basename $PWD`
+  tmux has-session -t $project &> /dev/null
 
-  if ! $(tmux has-session -t "$project"); then
+  if [ $? != 0 ]; then
     tmux new-session   -s ${project} -d -n workspace
     tmux split-window  -t ${project} -v
     tmux send-keys     -t ${project}:1.0 'vim' C-m
