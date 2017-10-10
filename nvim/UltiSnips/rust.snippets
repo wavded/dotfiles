@@ -6,8 +6,8 @@ snippet pr, "print!"
 print!("${1}", ${2});
 endsnippet
 
-snippet plv "println! variable"
-println!("${1}: {}", ${1});
+snippet pp "println! variable"
+println!("${1:${VISUAL}} = {:?}", $1);
 endsnippet
 
 snippet pln "println!" s
