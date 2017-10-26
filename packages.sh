@@ -45,6 +45,7 @@ echo "pinentry-program /usr/local/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 brew install node
 brew install yarn
 brew install go
+mkdir -p ~/Projects/go
 
 # == Cask
 brew cask install postgres
@@ -97,7 +98,8 @@ rustup component add rust-analysis
 rustup component add rust-src
 
 # == Cargo packages
-cargo install clippy
+rustup default stable
+cargo +nightly install clippy
+cargo +nightly install rustfmt-nightly
 cargo install racer
-cargo install rustfmt
 cargo install cargo-update
