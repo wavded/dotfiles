@@ -25,9 +25,6 @@ alias la="ls -laF ${colorflag}"
 # Use neovim if exists.
 hash nvim >/dev/null 2>&1 && alias vim="nvim"
 
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
-
 # Pretty tree
 alias tree="tree -aC -I '.git|node_modules|bower_components' --dirsfirst"
 
@@ -66,22 +63,22 @@ function tm() {
 }
 
 # Tmux naming of SSH windows.
-ssh() {
-  if [ -n "$TMUX" ]
-  then
-    title="$*"
-    if [ "$1" = -t ]
-    then
-      title="$2"
-      shift 2
-    fi
-    tmux rename-window "$title"
-    command ssh $@
-    exit
-  else
-    command ssh $@
-  fi
-}
+# ssh() {
+#   if [ -n "$TMUX" ]
+#   then
+#     title="$*"
+#     if [ "$1" = -t ]
+#     then
+#       title="$2"
+#       shift 2
+#     fi
+#     tmux rename-window "$title"
+#     command ssh $@
+#     exit
+#   else
+#     command ssh $@
+#   fi
+# }
 
 cleancontainers() { docker rm $(docker ps -q -a); }
 cleanimages() { docker rmi $(docker images -q); }

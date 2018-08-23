@@ -28,6 +28,7 @@ brew install tmux
 brew install reattach-to-user-namespace
 brew install watch
 brew install cmake
+brew install plantuml
 brew install python3
 brew install neovim/neovim/neovim
 pip3 install neovim

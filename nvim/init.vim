@@ -8,21 +8,22 @@ Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'mhinz/vim-grepper'               " search across files
-Plug 'w0rp/ale' , { 'tag': '*' }       " lint on edit, fix on save
+Plug 'w0rp/ale' " , { 'tag': '*' }        lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'morhetz/gruvbox'
 Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
 Plug 'eapache/auto-pairs'              " autoclose matching pairs
 
 " autocompletion / code intelligence
-Plug 'ervandew/supertab'               " tab support
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer --racer-completer' }                           " completions
-Plug 'SirVer/ultisnips'                " snippet support
+" Plug 'ervandew/supertab'               " tab support
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --go-completer --js-completer --rust-completer --java-completer' }                           " completions
+" Plug 'SirVer/ultisnips'                " snippet support
 
 " filetype-specific plugins
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
-Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescriptreact'] }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'reedes/vim-wordy', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go', 'do': ':GoInstallBinaries' }
@@ -35,6 +36,7 @@ Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 
 call plug#end()
 
@@ -70,24 +72,30 @@ set wrap                            " wrap long lines
 set linebreak                       " do not break wrap in the middle of words
 set updatetime=500                  " millis before cursorhold event, useful for tern
 set noshowmode                      " hide show mode status
+set nocursorline                    " prevent cursorline (performance)
 
 " hide everywhere
-set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,coverage,target
+set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,.nyc_output,coverage,target
 
 set termguicolors                   " hicolor support and theme
 set background=dark
 let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark="hard"
+let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_invert_signs=1
+let g:gruvbox_sign_column='bg0'
 colo gruvbox
 
 au FileType python set noet
+au FileType java set sw=4 ts=4 sts=4
 
 au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
+au BufRead,BufNewFile .prettierrc setf json
 au BufRead,BufNewFile Jenkinsfile setf groovy
 au BufRead,BufNewFile .babelrc setf json
 au BufRead,BufNewFile .tern-project setf json
 au BufRead,BufNewFile *.jsdoc setf javascript.jsx
+au BufRead,BufNewFile *.tsx setf typescript
 au FileType gitcommit setlocal spell
 
 " auto save when focus lost (after tabbing away or switching buffers)
@@ -95,6 +103,9 @@ au FocusLost,BufLeave,WinLeave,TabLeave * silent! update
 
 " open files where last edits took place
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
+
+" restore terminal cursor on exit
+au VimLeave * set guicursor=a:hor100-blinkon0
 
 "===================== MAPPINGS ======================
 let mapleader = ","
@@ -217,7 +228,7 @@ let g:ctrlp_switch_buffer = 'et'      " jump to a file if it's open already
 let g:ctrlp_mruf_max = 450            " number of recently opened files
 let g:ctrlp_max_files = 0             " do not limit the number of searchable files
 let g:ctrlp_use_caching = 0
-let g:ctrlp_user_command = 'rg --files --hidden %s'
+let g:ctrlp_user_command = 'fd -c never "" %s'
 
 nnoremap <leader>g :CtrlPCurWD<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
@@ -239,19 +250,35 @@ nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
 
 "===================== multiple-cursors ======================
-let g:multi_cursor_next_key='<C-j>'
-let g:multi_cursor_prev_key='<C-k>'
+" let g:multi_cursor_next_key='<C-j>'
+" let g:multi_cursor_prev_key='<C-k>'
 
 "===================== ale ======================
 let g:ale_sign_column_always = 0
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint']
+let g:ale_fixers.typescript = ['tslint', 'prettier']
+let g:ale_fixers.typescriptreact = ['tslint', 'prettier']
+let g:ale_fixers.markdown = ['prettier']
+let g:ale_fixers.json = ['prettier']
+let g:ale_fixers.css = ['prettier']
+let g:ale_fixers.less = ['prettier']
 let g:ale_fix_on_save = 1
 let g:ale_linters = {}
 let g:ale_linters.go = ['gometalinter']
-let g:ale_linters.rust = ['rls']
+let g:ale_linters.rust = ['rustc', 'cargo']
+let g:ale_linters.java = ['checkstyle', 'javac', 'pmd']
+let g:ale_linters.typescript = ['tsserver', 'tslint']
+let g:ale_linters.typescriptreact = ['tsserver', 'tslint']
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
+let g:ale_linter_aliases = {'typescriptreact': 'typescript'}
+let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
+let g:ale_completion_enabled = 1
+
+nnoremap <leader>m :ALEDetail<cr>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 "===================== NERDTree ======================
 let g:NERDTreeQuitOnOpen = 1 " hide explorer after open
@@ -264,29 +291,45 @@ map <silent> <leader>n :NERDTreeToggle<cr>
 
 "===================== lightline ======================
 let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ },
       \ 'colorscheme': 'gruvbox',
       \ }
 
-map <silent> <leader>n :NERDTreeToggle<cr>
+function! LightlineFilename()
+  return expand('%')
+endfunction
 
 "===================== ycm/supertab/ultisnips  ===========================
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" " make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
+" " better key bindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsExpandTrigger = "<tab>"
+" let g:UltiSnipsJumpForwardTrigger = "<tab>"
+" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
-" enable rust go to definition
-let g:ycm_rust_src_path = '/Users/wavded/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src'
+" " enable rust go to definition
+" let g:ycm_rust_src_path = '/Users/wavded/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
+" let g:ycm_semantic_triggers = { 'clojure': ['('] }
+" let g:ycm_semantic_triggers = {
+"  \ 'clojure': ['('],
+"  \ 'typescript': ['re!\w{4}','.'],
+"  \ 'typescriptreact': ['re!\w{4}','.'],
+"  \}
 
-nmap <silent> gd :YcmCompleter GoTo<cr>
-nmap <silent> <leader>r :YcmCompleter RefactorRename<cr>
-nmap <silent> <leader>d :YcmCompleter GetDoc<cr>
+" let g:ycm_filetype_specific_completion_to_disable = {
+"   \ 'typescript': 1,
+"   \ 'typescriptreact': 1
+"   \}
+
+" nmap <silent> gd :YcmCompleter GoTo<cr>
+" nmap <leader>r :YcmCompleter RefactorRename<space>
+" nmap <silent> <leader>d :YcmCompleter GetDoc<cr>
 
 "===================== markdown ======================
 au FileType markdown setlocal spell
@@ -298,8 +341,10 @@ let g:vim_markdown_fenced_languages = ['js=javascript', 'bash=sh']
 
 "===================== vim-javascript ======================
 " es6 test for javascript
-au FileType javascript.jsx map <leader>e :100split \| term NODE_ENV=test babel-node %<cr>
+au FileType javascript.jsx map <leader>e :100split \| term NODE_ENV=test nyc babel-node %<cr>
 let g:javascript_plugin_jsdoc = 1
+
+au FileType typescript map <leader>e :100split \| term NODE_ENV=test nyc ts-node %<cr>
 
 "===================== vim-jsx ======================
 let g:jsx_ext_required = 0
@@ -355,15 +400,4 @@ function! JsSwitch(bang, cmd)
   endif
 endfunction
 
-au Filetype javascript command! -bang A call JsSwitch(<bang>0, '')
-
-" Format Markdown files.
-function! MarkdownFormat()
-   let save_pos = getpos(".")
-   let query = getreg('/')
-   execute ":0,$!tidy-markdown"
-   call setpos(".", save_pos)
-   call setreg('/', query)
-endfunction
-
-au BufWritePre *.md :call MarkdownFormat()
+au Filetype javascript.jsx command! -bang A call JsSwitch(<bang>0, '')

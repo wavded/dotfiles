@@ -1,15 +1,11 @@
 {
   "libs": [ "browser", "ecmascript" ],
   "plugins": {
-    "node": true,
-    "node_require": true,
-    "node_resolve": true,
-    "es_modules": true,
-    "complete_strings": true,
+    "node": {},
+    "es_modules": {},
     "doc_comment": {
+      "fullDocs": true,
       "strong": true
-    },
-    "modules": true,
-    "webpack": true
+    }
   }
 }

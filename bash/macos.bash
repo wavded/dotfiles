@@ -12,7 +12,10 @@ source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # == Exports ==
+export PATH="/usr/local/opt/node@8/bin:$PATH"
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/mongodb@3.0/bin:$PATH"
 
 # Disable per-terminal-session history: http://stackoverflow.com/a/34803825
 export SHELL_SESSION_HISTORY=0
@@ -31,6 +34,9 @@ alias localip="ipconfig getifaddr en0"
 # Empty trash and caches.
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
+# Recursively delete `.DS_Store` files
+alias cleanup="fd -x rm \; -t f -HI .DS_Store"
+
 # Flush DNS.
 alias flush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
@@ -38,7 +44,7 @@ alias flush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias opend='open http://localhost:3000'
 
 # System update.
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; yarn global upgrade; rustup update; cargo install-update -a; cargo install --force clippy rustfmt-nightly racer'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; yarn global upgrade; rustup update; cargo +nightly install --force clippy rustfmt-nightly; cargo install-update -a'
 
 # Lock screen.
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"

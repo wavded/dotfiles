@@ -12,6 +12,8 @@ export HISTIGNORE="ls:la:clear:vim:exit"
 # Save and reload the history after each command finishes.
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
+export PATH=/usr/local/bin:$PATH
+
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
