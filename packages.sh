@@ -21,6 +21,7 @@ brew install bash-completion2
 # == Utilities
 brew install tree
 brew install ripgrep
+brew install fd
 brew install autojump
 brew install graphicsmagick
 brew install cairo
@@ -39,7 +40,8 @@ brew install git-extras
 
 # == GPG
 # https://gist.github.com/bmhatfield/cc21ec0a3a2df963bffa3c1f884b676b#gistcomment-2165971
-brew install gnupg gpg-agent pinentry-mac
+brew install gnupg
+brew install pinentry-mac
 mkdir ~/.gnupg
 echo "pinentry-program /usr/local/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
@@ -85,7 +87,7 @@ yarn global add \
   istanbul \
   concurrently \
   stylefmt \
-  tidy-markdown@2.0.4 \
+  prettier \
   nodemon
 
 # === Section: rust ===
