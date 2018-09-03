@@ -27,6 +27,7 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'reedes/vim-wordy', { 'for': 'markdown' }
 Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go', 'do': ':GoInstallBinaries' }
+Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'saltstack/salt-vim', { 'for': 'sls' }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
@@ -91,7 +92,7 @@ au FileType java set sw=4 ts=4 sts=4
 au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
 au BufRead,BufNewFile .prettierrc setf json
-au BufRead,BufNewFile Jenkinsfile setf groovy
+" au BufRead,BufNewFile Jenkinsfile setf groovy
 au BufRead,BufNewFile .babelrc setf json
 au BufRead,BufNewFile .tern-project setf json
 au BufRead,BufNewFile *.jsdoc setf javascript.jsx
@@ -149,7 +150,7 @@ nnoremap <leader>w :w!<cr>
 nnoremap <silent> <leader>q :qa!<cr>
 
 " fast escaping
-imap jk <esc>
+imap <c> <esc>
 
 " screen center
 nnoremap <space> zz

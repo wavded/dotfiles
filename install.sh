@@ -14,11 +14,11 @@ do
   rm-if-present "$HOME/.$f" "$dir/$f"
 done
 
-# Neovim for OSX
+# MacOS specific
 if [[ `uname` == "Darwin" ]]; then
   rm-if-present "$HOME/.hushlogin" "$dir/hushlogin"
   mkdir -p $HOME/.config
   rm-if-present "$HOME/.config/nvim" "$dir/nvim"
+  rm-if-present "$HOME/.hammerspoon" "$dir/hammerspoon"
   echo "...reload shell before installing packages, run fix script for iTerm"
 fi
-

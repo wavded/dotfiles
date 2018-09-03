@@ -58,6 +58,7 @@ brew cask install the-unarchiver
 brew cask install java
 brew cask install gitup
 brew cask install imageoptim
+brew cask install hammerspoon
 
 brew cleanup
 
