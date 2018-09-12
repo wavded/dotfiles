@@ -1,36 +1,57 @@
 [user]
   name = Marc Harter
   email = wavded@gmail.com
+
+  # GPG signing key. Can be committed as it doesn't contain any secret information.
   signingkey = 637EF5D2547B1320A9FDBEE2CDF3528E55977962
 
 [alias]
+  # Pretty printing of git history.
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+  # Quick commit all.
   call =! git add -A && git commit -v
+
+  # Clean 'gone' branches (i.e. ones that have been removed from the remote).
   gone =! git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
 
 [diff]
+  # Use vimdiff as the diff tool.
   tool = vimdiff
 
 [merge]
+  # Do not automatically create merge commits.
   ff = only
+
+  # Use vimdiff as the merge tool.
   tool = vimdiff
 
 [mergetool]
+  # Do not prompt when using the mergetool.
   prompt = false
+
+  # Do not keep a backup of merge states.
   keepBackup = false
 
 [fetch]
+  # Automatically prune remote branches.
   prune = true
 
 [push]
+  # Always push current branch to a remote branch with the same name.
   default = current
+
+  # Push any tags involved in new commits by default.
   followTags = true
 
 [help]
+  # Auto run typoed commands.
   autocorrect = 1
 
 [commit]
+  # Sign commits.
   gpgSign = true
 
 [core]
+  # Allow for case sensitivity in naming.
   ignorecase = false
