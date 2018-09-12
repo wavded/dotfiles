@@ -280,6 +280,7 @@ let g:ale_completion_enabled = 1
 nmap <silent> gl <Plug>(ale_detail)
 nmap <silent> gr <Plug>(ale_find_references)
 nmap <silent> gd <Plug>(ale_go_to_definition)
+nmap <silent> gh <Plug>(ale_hover)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
