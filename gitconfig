@@ -6,6 +6,7 @@
 [alias]
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   call =! git add -A && git commit -v
+  gone =! git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
 
 [diff]
   tool = vimdiff
