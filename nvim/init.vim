@@ -8,7 +8,7 @@ Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'mhinz/vim-grepper'               " search across files
-Plug 'w0rp/ale' " , { 'tag': '*' }        lint on edit, fix on save
+Plug 'w0rp/ale', { 'tag': '*' }        " lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'morhetz/gruvbox'
 Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
@@ -22,7 +22,7 @@ Plug 'eapache/auto-pairs'              " autoclose matching pairs
 " filetype-specific plugins
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescriptreact'] }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescript.tsx'] }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'reedes/vim-wordy', { 'for': 'markdown' }
@@ -66,7 +66,7 @@ set softtabstop=2
 set tabstop=2
 set completeopt+=noinsert           " omnicompletion options
 set completeopt+=noselect
-set completeopt-=preview
+set completeopt+=preview            " show further details of completion in preview window
 set lazyredraw                      " wait to redraw
 set pumheight=10                    " completion window max size
 set wrap                            " wrap long lines
@@ -96,7 +96,7 @@ au BufRead,BufNewFile .prettierrc setf json
 au BufRead,BufNewFile .babelrc setf json
 au BufRead,BufNewFile .tern-project setf json
 au BufRead,BufNewFile *.jsdoc setf javascript.jsx
-au BufRead,BufNewFile *.tsx setf typescript
+" au BufRead,BufNewFile *.tsx setf typescript
 au FileType gitcommit setlocal spell
 
 " auto save when focus lost (after tabbing away or switching buffers)
@@ -143,7 +143,7 @@ nnoremap <silent> <c-n>  :call WrapCommand('down', 'l')<cr>
 nnoremap <leader>a :cclose<cr>:lclose<cr>
 
 " fast open current file in default application
-nnoremap <silent> <leader>o :!open %<cr>
+nnoremap <silent> <leader>o :!open %<cr><cr>
 
 " fast save/quit
 nnoremap <leader>w :w!<cr>
@@ -277,7 +277,9 @@ let g:ale_linter_aliases = {'typescriptreact': 'typescript'}
 let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
 let g:ale_completion_enabled = 1
 
-nnoremap <leader>m :ALEDetail<cr>
+nmap <silent> gl <Plug>(ale_detail)
+nmap <silent> gr <Plug>(ale_find_references)
+nmap <silent> gd <Plug>(ale_go_to_definition)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
