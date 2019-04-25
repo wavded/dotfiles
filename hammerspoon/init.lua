@@ -17,10 +17,12 @@ control_handler = function(evt)
     and not key_pressed
   then
     ctrl_pressed = false
-    return true, {
-      hs.eventtap.event.newKeyEvent({}, 'escape', true),
-      hs.eventtap.event.newKeyEvent({}, 'escape', false),
-    }
+    if key_code == 62 then
+      return true, {
+        hs.eventtap.event.newKeyEvent({}, 'escape', true),
+        hs.eventtap.event.newKeyEvent({}, 'escape', false),
+      }
+    end
   else
     key_pressed = true
   end
