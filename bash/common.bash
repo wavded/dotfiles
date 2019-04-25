@@ -24,6 +24,7 @@ alias la="ls -laF ${colorflag}"
 
 # Use neovim if exists.
 hash nvim >/dev/null 2>&1 && alias vim="nvim"
+hash nvim >/dev/null 2>&1 && alias vimdiff="nvim -d"
 
 # Pretty tree
 alias tree="tree -aC -I '.git|node_modules|bower_components' --dirsfirst"

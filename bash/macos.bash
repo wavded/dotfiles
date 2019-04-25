@@ -12,10 +12,11 @@ source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 # == Exports ==
-export PATH="/usr/local/opt/node@8/bin:$PATH"
+export PATH="/usr/local/opt/node@10/bin:$PATH"
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/mongodb@3.0/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
 
 # Disable per-terminal-session history: http://stackoverflow.com/a/34803825
 export SHELL_SESSION_HISTORY=0
@@ -44,7 +45,7 @@ alias flush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 alias opend='open http://localhost:3000'
 
 # System update.
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; yarn global upgrade; rustup update; cargo +nightly install --force clippy rustfmt-nightly; cargo install-update -a'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; yarn global upgrade; rustup update; cargo install-update -a'
 
 # Lock screen.
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"

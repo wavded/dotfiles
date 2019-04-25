@@ -8,25 +8,25 @@ Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'mhinz/vim-grepper'               " search across files
-Plug 'w0rp/ale', { 'tag': '*' }        " lint on edit, fix on save
+Plug 'w0rp/ale' ", { 'tag': '*' }        lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'morhetz/gruvbox'
+Plug 'cocopon/iceberg.vim'
 Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
 Plug 'eapache/auto-pairs'              " autoclose matching pairs
 
 " autocompletion / code intelligence
 " Plug 'ervandew/supertab'               " tab support
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --go-completer --js-completer --rust-completer --java-completer' }                           " completions
-" Plug 'SirVer/ultisnips'                " snippet support
+Plug 'SirVer/ultisnips'                " snippet support
 
 " filetype-specific plugins
 Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescript.tsx'] }
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
-Plug 'reedes/vim-wordy', { 'for': 'markdown' }
-Plug 'fatih/vim-go', { 'tag': '*', 'for': 'go', 'do': ':GoInstallBinaries' }
 Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'saltstack/salt-vim', { 'for': 'sls' }
@@ -81,10 +81,12 @@ set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,.nyc
 set termguicolors                   " hicolor support and theme
 set background=dark
 let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark='hard'
+" let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_signs=1
 let g:gruvbox_sign_column='bg0'
 colo gruvbox
+" colo iceberg
+hi Comment gui=italic cterm=italic term=italic
 
 au FileType python set noet
 au FileType java set sw=4 ts=4 sts=4
@@ -239,16 +241,16 @@ let g:AutoPairsUseInsertedCount = 1
 
 "===================== grepper ======================
 " use rg for fast searches
-let g:ackprg = 'rg --vimgrep --hidden --smart-case'
+let g:ackprg = 'rg --vimgrep --hidden --smart-case -F'
 
 runtime autoload/grepper.vim
 let g:grepper = {}
 let g:grepper.simple_prompt = 1
 let g:grepper.side = 1
+let g:grepper.prompt_quote = 1
 
-nnoremap <leader>f :Grepper -tool rg<cr>
-nmap gs  <plug>(GrepperOperator)
-xmap gs  <plug>(GrepperOperator)
+nnoremap <leader>f :Grepper -tool rg -grepprg rg --vimgrep --smart-case --hidden -F<cr>
+nnoremap <leader>s :Grepper -tool rg -cword -noprompt<cr>
 
 "===================== multiple-cursors ======================
 " let g:multi_cursor_next_key='<C-j>'
@@ -256,24 +258,35 @@ xmap gs  <plug>(GrepperOperator)
 
 "===================== ale ======================
 let g:ale_sign_column_always = 0
+let g:ale_rust_rls_toolchain = 'stable'
+let g:ale_rust_cargo_use_clippy = 1
 let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['eslint']
+let g:ale_fixers.javascript = ['eslint', 'prettier']
 let g:ale_fixers.typescript = ['tslint', 'prettier']
 let g:ale_fixers.typescriptreact = ['tslint', 'prettier']
 let g:ale_fixers.markdown = ['prettier']
 let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.less = ['prettier']
+let g:ale_fixers.html = ['prettier']
+let g:ale_fixers.xml = ['prettier']
+let g:ale_fixers.go = ['goimports']
 let g:ale_fix_on_save = 1
 let g:ale_linters = {}
-let g:ale_linters.go = ['gometalinter']
-let g:ale_linters.rust = ['rustc', 'cargo']
+let g:ale_linters.go = ['gometalinter', 'golangserver']
+let g:ale_linters.rust = ['cargo', 'rls']
+let g:ale_linters.html = ['prettier']
 let g:ale_linters.java = ['checkstyle', 'javac', 'pmd']
+let g:ale_linters.javascript = ['tsserver', 'eslint']
 let g:ale_linters.typescript = ['tsserver', 'tslint']
 let g:ale_linters.typescriptreact = ['tsserver', 'tslint']
+let g:ale_linters.gitcommit = ['write-good', 'gitlint']
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
-let g:ale_linter_aliases = {'typescriptreact': 'typescript'}
+let g:ale_linter_aliases = {
+ \ 'javascript.jsx': 'javascript',
+ \ 'typescriptreact': 'typescript'
+ \}
 let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
 let g:ale_completion_enabled = 1
 
@@ -312,10 +325,10 @@ endfunction
 " let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " " better key bindings for UltiSnipsExpandTrigger
-" let g:UltiSnipsExpandTrigger = "<tab>"
-" let g:UltiSnipsJumpForwardTrigger = "<tab>"
-" let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-" let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 " " enable rust go to definition
 " let g:ycm_rust_src_path = '/Users/wavded/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
@@ -355,7 +368,7 @@ let g:jsx_ext_required = 0
 
 "===================== vim-go ======================
 let g:go_snippet_engine = "ultisnips"
-let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 0
 
 au FileType go nmap <leader>r :GoRename<cr>
 au FileType go nmap <leader>c :GoCoverageToggle<cr>
@@ -370,7 +383,7 @@ au FileType rust nmap <leader>e :RustRun<cr>
 
 "===================== plantuml-syntax ======================
 " java -splash:no -Djava.awt.headless=true needs to be added to run in background
-let g:plantuml_executable_script = 'plantuml -tsvg -quiet $@'
+let g:plantuml_executable_script = 'PLANTUML_LIMIT_SIZE=8192 plantuml -tsvg -quiet $@'
 
 "===================== postgresql ======================
 let g:sql_type_default = 'pgsql'

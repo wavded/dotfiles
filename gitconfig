@@ -33,6 +33,9 @@
   # Do not keep a backup of merge states.
   keepBackup = false
 
+[mergetool "vimdiff"]
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
 [fetch]
   # Automatically prune remote branches.
   prune = true
