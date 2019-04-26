@@ -1,35 +1,34 @@
 -- Map CTRL, pressed alone, as ESC --
-
-ctrl_pressed = false
-key_pressed = false
+can_escape = false
 
 control_handler = function(evt)
   local flags = evt:getFlags()
   local key_code = evt:getKeyCode()
 
+  -- Left control alone was pressed.
   if flags.ctrl and key_code == 62
     and not (flags.alt or flags.shift or flags.cmd or flags.fn)
   then
-    ctrl_pressed = true
-    key_pressed = false
-  elseif ctrl_pressed
-    and not (flags.cmd or flags.alt or flags.shift or flags.fn)
-    and not key_pressed
+    can_escape = true
+
+  -- Left control was pressed/released without any other key press in the middle.
+  elseif can_escape
+    and not (flags.ctrl or flags.cmd or flags.alt or flags.shift or flags.fn)
   then
-    ctrl_pressed = false
-    if key_code == 62 then
-      return true, {
-        hs.eventtap.event.newKeyEvent({}, 'escape', true),
-        hs.eventtap.event.newKeyEvent({}, 'escape', false),
-      }
-    end
+    can_escape = false
+    return true, {
+      hs.eventtap.event.newKeyEvent({}, 'escape', true),
+      hs.eventtap.event.newKeyEvent({}, 'escape', false),
+    }
+
+  -- Any key pressed.
   else
-    key_pressed = true
+    can_escape = false
   end
 end
 
 control_tap = hs.eventtap.new(
-  {hs.eventtap.event.types.flagsChanged, hs.eventtap.event.types.keyUp},
+  {hs.eventtap.event.types.flagsChanged, hs.eventtap.event.types.keyDown},
   control_handler
 )
 control_tap:start()
