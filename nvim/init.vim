@@ -94,11 +94,8 @@ au FileType java set sw=4 ts=4 sts=4
 au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
 au BufRead,BufNewFile .prettierrc setf json
-" au BufRead,BufNewFile Jenkinsfile setf groovy
 au BufRead,BufNewFile .babelrc setf json
-au BufRead,BufNewFile .tern-project setf json
 au BufRead,BufNewFile *.jsdoc setf javascript.jsx
-" au BufRead,BufNewFile *.tsx setf typescript
 au FileType gitcommit setlocal spell
 
 " auto save when focus lost (after tabbing away or switching buffers)

@@ -15,7 +15,6 @@ source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
 export PATH="/usr/local/opt/node@10/bin:$PATH"
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/mongodb@3.0/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
 
 # Disable per-terminal-session history: http://stackoverflow.com/a/34803825
@@ -40,9 +39,6 @@ alias cleanup="fd -x rm \; -t f -HI .DS_Store"
 
 # Flush DNS.
 alias flush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
-
-# Open dev server.
-alias opend='open http://localhost:3000'
 
 # System update.
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; yarn global upgrade; rustup update; cargo install-update -a'
@@ -69,19 +65,4 @@ function connect() {
 
 function disconnect() {
   osascript -e 'tell application "Tunnelblick"' -e 'disconnect all' -e 'end tell'
-}
-
-function dojsdoc() {
-  global_mod="$HOME/.config/yarn/global/node_modules"
-  echo "{\"plugins\": [\"${global_mod}/jsdoc-babel\"]}" > __jsdoc.json
-  mkdir __jsdocs
-  cd __jsdocs
-	sleep 1 && open "http://localhost:8000/" &
-  python -m SimpleHTTPServer 8000 > /dev/null 2>&1 &
-  serve_pid=$!
-  cd ..
-  watch jsdoc modules index.js -c __jsdoc.json -r -R readme.md -d __jsdocs -t $global_mod/docdash
-  kill $serve_pid
-  rm __jsdoc.json
-  rm -rf __jsdocs
 }

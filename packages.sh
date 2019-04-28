@@ -75,21 +75,12 @@ curl -L https://raw.githubusercontent.com/dsifford/yarn-completion/master/yarn-c
 
 # == Yarn packages
 yarn global add \
-  babel-core \
-  babel-cli \
   eslint \
-  babel-eslint \
   eslint-plugin-react \
+  eslint-config-prettier \
+  eslint-plugin-prettier \
   eslint-config-adc \
-  jsdoc \
-  jsdoc-babel \
-  docdash \
-  tern \
-  istanbul \
-  concurrently \
-  stylefmt \
-  prettier \
-  nodemon
+  prettier
 
 # === Section: rust ===
 

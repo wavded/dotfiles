@@ -2,15 +2,15 @@
 export EDITOR='vim';
 hash nvim >/dev/null 2>&1 && export EDITOR="nvim"
 
-# Increase Bash history size. Allow 32³ entries; the default is 500.
-export HISTSIZE='32768';
-export HISTFILESIZE="${HISTSIZE}";
-# Omit duplicates and commands that begin with a space from history.
-export HISTCONTROL='ignoreboth';
+# Increase Bash history size slightly; the default is 500.
+export HISTSIZE=10000;
+# Omit duplicates from history.
+export HISTCONTROL="erasedups"
 # Ignore certain commands.
-export HISTIGNORE="ls:la:clear:vim:exit"
-# Save and reload the history after each command finishes.
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+export HISTIGNORE=$'&:[ \t]*:[fb]g:l[slad]*:cd*:mv*:rm*:vim*:clear:exit:\:*'
+
+# Save and reload the history after each command finishes to make it available for other sessions (may cause dups).
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 export PATH=/usr/local/bin:$PATH
 
@@ -48,4 +48,3 @@ hash yarn >/dev/null 2>&1 && export PATH=$PATH:$HOME/.config/yarn/global/node_mo
 # ==== Rust ====
 export PATH="$HOME/.cargo/bin:$PATH"
 hash rustc >/dev/null 2>&1 && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export LD_LIBRARY_PATH=$HOME/.rustup/toolchains/nightly-x86_64-apple-darwin/lib:$LD_LIBRARY_PATH
