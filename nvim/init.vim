@@ -270,7 +270,7 @@ let g:ale_fixers.xml = ['prettier']
 let g:ale_fixers.go = ['goimports']
 let g:ale_fix_on_save = 1
 let g:ale_linters = {}
-let g:ale_linters.go = ['gometalinter', 'golangserver']
+let g:ale_linters.go = ['gometalinter', 'gopls']
 let g:ale_linters.rust = ['cargo', 'rls']
 let g:ale_linters.html = ['prettier']
 let g:ale_linters.java = ['checkstyle', 'javac', 'pmd']
@@ -284,6 +284,7 @@ let g:ale_linter_aliases = {
  \ 'javascript.jsx': 'javascript',
  \ 'typescriptreact': 'typescript'
  \}
+let g:ale_go_langserver_executable = 'gopls'
 let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
 let g:ale_completion_enabled = 1
 
@@ -366,6 +367,7 @@ let g:jsx_ext_required = 0
 "===================== vim-go ======================
 let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_autosave = 0
+let g:go_code_completion_enabled = 0
 
 au FileType go nmap <leader>r :GoRename<cr>
 au FileType go nmap <leader>c :GoCoverageToggle<cr>
