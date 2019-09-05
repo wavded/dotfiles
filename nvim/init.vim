@@ -1,19 +1,21 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'itchyny/lightline.vim'           " status line
-Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
+" Plug 'itchyny/lightline.vim'           " status line
+Plug 'vim-airline/vim-airline'           " status line
+" Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
 Plug 'scrooloose/nerdtree'             " file explorer
 Plug 'ivalkeen/nerdtree-execute'       " file explorer OS integration
 Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'mhinz/vim-grepper'               " search across files
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " lsp
 Plug 'w0rp/ale' ", { 'tag': '*' }        lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'morhetz/gruvbox'
-Plug 'cocopon/iceberg.vim'
-Plug 'terryma/vim-multiple-cursors'    " multiple cursor support
-Plug 'eapache/auto-pairs'              " autoclose matching pairs
+Plug 'rstacruz/vim-closer'             " autoclose matching pairs
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " autocompletion / code intelligence
 " Plug 'ervandew/supertab'               " tab support
@@ -21,10 +23,10 @@ Plug 'eapache/auto-pairs'              " autoclose matching pairs
 Plug 'SirVer/ultisnips'                " snippet support
 
 " filetype-specific plugins
-Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
+" Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescript.tsx'] }
-Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
@@ -37,7 +39,6 @@ Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
-Plug 'guns/vim-clojure-static', { 'for': 'clojure' }
 
 call plug#end()
 
@@ -71,9 +72,10 @@ set lazyredraw                      " wait to redraw
 set pumheight=10                    " completion window max size
 set wrap                            " wrap long lines
 set linebreak                       " do not break wrap in the middle of words
-set updatetime=500                  " millis before cursorhold event, useful for tern
+set updatetime=300                  " millis before cursorhold event
 set noshowmode                      " hide show mode status
 set nocursorline                    " prevent cursorline (performance)
+set shortmess+=c
 
 " hide everywhere
 set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,.nyc_output,coverage,target
@@ -81,15 +83,13 @@ set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,.nyc
 set termguicolors                   " hicolor support and theme
 set background=dark
 let g:gruvbox_italic=1
-" let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_invert_signs=1
 let g:gruvbox_sign_column='bg0'
 colo gruvbox
-" colo iceberg
 hi Comment gui=italic cterm=italic term=italic
+highlight Pmenu guibg=171717
 
 au FileType python set noet
-au FileType java set sw=4 ts=4 sts=4
 
 au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
@@ -221,62 +221,97 @@ endfunc
 "===================== PLUGINS======================
 
 "===================== CtrlP ======================
-let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_map = ''                  " disable <c-p> shortcut
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_switch_buffer = 'et'      " jump to a file if it's open already
-let g:ctrlp_mruf_max = 450            " number of recently opened files
-let g:ctrlp_max_files = 0             " do not limit the number of searchable files
-let g:ctrlp_use_caching = 0
-let g:ctrlp_user_command = 'fd -c never "" %s'
+" let g:ctrlp_cmd = 'CtrlPMRU'
+" let g:ctrlp_map = ''                  " disable <c-p> shortcut
+" let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_switch_buffer = 'et'      " jump to a file if it's open already
+" let g:ctrlp_mruf_max = 450            " number of recently opened files
+" let g:ctrlp_max_files = 0             " do not limit the number of searchable files
+" let g:ctrlp_use_caching = 0
+" let g:ctrlp_user_command = 'fd -c never "" %s'
 
-nnoremap <leader>g :CtrlPCurWD<cr>
-nnoremap <leader>b :CtrlPBuffer<cr>
+" nnoremap <leader>g :CtrlPCurWD<cr>
+" nnoremap <leader>b :CtrlPBuffer<cr>
 
-"===================== auto-pairs ======================
-let g:AutoPairsUseInsertedCount = 1
+"===================== fzf ======================
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+" Default fzf layout
+" - down / up / left / right
+let g:fzf_layout = { 'down': '~40%' }
+
+" In Neovim, you can set up fzf window using a Vim command
+let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
+let g:fzf_layout = { 'window': '10new' }
+
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+command! -bang -nargs=? GFiles
+  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --hidden --case-sensitive --smart-case --glob !yarn.lock ".shellescape(<q-args>), 2, <bang>0)',
+
+nnoremap <leader>g :GFiles<cr>
+nnoremap <leader>t :Files<cr>
+nnoremap <leader>b :Buffers<cr>
+" nnoremap <leader>f :Rg<cr>
 
 "===================== grepper ======================
 " use rg for fast searches
 let g:ackprg = 'rg --vimgrep --hidden --smart-case -F'
 
-runtime autoload/grepper.vim
+" runtime autoload/grepper.vim
 let g:grepper = {}
 let g:grepper.simple_prompt = 1
 let g:grepper.side = 1
 let g:grepper.prompt_quote = 1
 
 nnoremap <leader>f :Grepper -tool rg -grepprg rg --vimgrep --smart-case --hidden -F<cr>
-nnoremap <leader>s :Grepper -tool rg -cword -noprompt<cr>
-
-"===================== multiple-cursors ======================
-" let g:multi_cursor_next_key='<C-j>'
-" let g:multi_cursor_prev_key='<C-k>'
+" nnoremap <leader>s :Grepper -tool rg -cword -noprompt<cr>
 
 "===================== ale ======================
-let g:ale_sign_column_always = 0
+" let g:ale_sign_column_always = 0
 let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_rust_cargo_use_clippy = 1
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint', 'prettier']
-let g:ale_fixers.typescript = ['tslint', 'prettier']
-let g:ale_fixers.typescriptreact = ['tslint', 'prettier']
+let g:ale_fixers.typescript = ['eslint', 'tslint', 'prettier']
+let g:ale_fixers.typescriptreact = ['eslint', 'tslint', 'prettier']
 let g:ale_fixers.markdown = ['prettier']
 let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.css = ['prettier']
 let g:ale_fixers.less = ['prettier']
 let g:ale_fixers.html = ['prettier']
 let g:ale_fixers.xml = ['prettier']
+let g:ale_fixers.yaml = ['prettier']
+let g:ale_fixers.java = ['google_java_format']
 let g:ale_fixers.go = ['goimports']
 let g:ale_fix_on_save = 1
 let g:ale_linters = {}
 let g:ale_linters.go = ['gometalinter', 'gopls']
 let g:ale_linters.rust = ['cargo', 'rls']
 let g:ale_linters.html = ['prettier']
-let g:ale_linters.java = ['checkstyle', 'javac', 'pmd']
+let g:ale_linters.java = ['checkstyle', 'eclipselsp']
 let g:ale_linters.javascript = ['tsserver', 'eslint']
-let g:ale_linters.typescript = ['tsserver', 'tslint']
-let g:ale_linters.typescriptreact = ['tsserver', 'tslint']
+let g:ale_linters.typescript = ['tsserver', 'eslint', 'tslint']
+let g:ale_linters.typescriptreact = ['tsserver', 'eslint', 'tslint']
 let g:ale_linters.gitcommit = ['write-good', 'gitlint']
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
@@ -285,13 +320,14 @@ let g:ale_linter_aliases = {
  \ 'typescriptreact': 'typescript'
  \}
 let g:ale_go_langserver_executable = 'gopls'
-let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
-let g:ale_completion_enabled = 1
+" let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
+let g:ale_java_checkstyle_config = 'adc_checkstyle.xml'
+let g:ale_completion_enabled = 0
 
-nmap <silent> gl <Plug>(ale_detail)
-nmap <silent> gr <Plug>(ale_find_references)
-nmap <silent> gd <Plug>(ale_go_to_definition)
-nmap <silent> gh <Plug>(ale_hover)
+" nmap <silent> gl <Plug>(ale_detail)
+" nmap <silent> gr <Plug>(ale_find_references)
+" nmap <silent> gd <Plug>(ale_go_to_definition)
+" nmap <silent> gh <Plug>(ale_hover)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -305,46 +341,29 @@ let g:NERDTreeAutoDeleteBuffer = 1 " automatically delete buffer of deleted file
 map <silent> <leader>n :NERDTreeToggle<cr>
 
 "===================== lightline ======================
-let g:lightline = {
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \ },
-      \ 'colorscheme': 'gruvbox',
-      \ }
+" let g:lightline = {
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'filename': 'LightlineFilename',
+"       \   'cocstatus': 'coc#status',
+"       \   'currentfunction': 'CocCurrentFunction'
+"       \ },
+"       \ 'colorscheme': 'gruvbox',
+"       \ }
 
-function! LightlineFilename()
-  return expand('%')
-endfunction
+" function! LightlineFilename()
+"   return expand('%')
+" endfunction
+" function! CocCurrentFunction()
+"     return get(b:, 'coc_current_function', '')
+" endfunction
 
-"===================== ycm/supertab/ultisnips  ===========================
-" " make YCM compatible with UltiSnips (using supertab)
-" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+"===================== ultisnips  ===========================
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
-" " enable rust go to definition
-" let g:ycm_rust_src_path = '/Users/wavded/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src'
-" let g:ycm_semantic_triggers = { 'clojure': ['('] }
-" let g:ycm_semantic_triggers = {
-"  \ 'clojure': ['('],
-"  \ 'typescript': ['re!\w{4}','.'],
-"  \ 'typescriptreact': ['re!\w{4}','.'],
-"  \}
-
-" let g:ycm_filetype_specific_completion_to_disable = {
-"   \ 'typescript': 1,
-"   \ 'typescriptreact': 1
-"   \}
-
-" nmap <silent> gd :YcmCompleter GoTo<cr>
-" nmap <leader>r :YcmCompleter RefactorRename<space>
-" nmap <silent> <leader>d :YcmCompleter GetDoc<cr>
 
 "===================== markdown ======================
 au FileType markdown setlocal spell
@@ -361,6 +380,29 @@ let g:javascript_plugin_jsdoc = 1
 
 au FileType typescript map <leader>e :100split \| term NODE_ENV=test nyc ts-node %<cr>
 
+"==================== coc.nvim =====================
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" nmap <C-j> <Plug>(coc-diagnostic-prev)
+" nmap <C-k> <Plug>(coc-diagnostic-next)
+nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rf <Plug>(coc-refactor)
+nmap <leader>c :<C-u>CocList commands<cr>
+" nmap <leader>d :<C-u>CocList diagnostics<cr>
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
 "===================== vim-jsx ======================
 let g:jsx_ext_required = 0
 
@@ -368,13 +410,15 @@ let g:jsx_ext_required = 0
 let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_autosave = 0
 let g:go_code_completion_enabled = 0
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
 
-au FileType go nmap <leader>r :GoRename<cr>
-au FileType go nmap <leader>c :GoCoverageToggle<cr>
-au FileType go nmap <leader>t :GoTest<cr>
+" au FileType go nmap <leader>r :GoRename<cr>
+" au FileType go nmap <leader>c :GoCoverageToggle<cr>
+" au FileType go nmap <leader>t :GoTest<cr>
 
 au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+" au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 
 "==================== rust =====================
 let g:rustfmt_autosave = 1

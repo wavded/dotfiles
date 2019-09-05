@@ -1,0 +1,26 @@
+{
+  "diagnostic.errorSign": "•",
+  "diagnostic.infoSign": "•",
+  "diagnostic.warningSign": "•",
+
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+
+  "tsserver.enableJavascript": false,
+  "tsserver.formatOnType": true,
+  "typescript.showUnused": false,
+  "javascript.showUnused": false,
+  "javascript.suggestionActions.enabled": false,
+
+  "diagnostic.virtualText": true,
+  "diagnostic.displayByAle": true,
+
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "args": [],
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  }
+}

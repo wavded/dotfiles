@@ -7,7 +7,7 @@ export HISTSIZE=10000;
 # Omit duplicates from history.
 export HISTCONTROL="erasedups"
 # Ignore certain commands.
-export HISTIGNORE=$'&:[ \t]*:[fb]g:l[slad]*:cd*:mv*:rm*:vim*:clear:exit:\:*'
+export HISTIGNORE=$'&:[ \t]*:[fb]g:l[slad]*:cd*:mv*:clear:exit:\:*'
 
 # Save and reload the history after each command finishes to make it available for other sessions (may cause dups).
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
