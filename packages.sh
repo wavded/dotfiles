@@ -20,6 +20,7 @@ brew install bash-completion2
 
 # == Utilities
 brew install tree
+brew install fzf
 brew install ripgrep
 brew install fd
 brew install autojump
@@ -31,7 +32,7 @@ brew install watch
 brew install cmake
 brew install plantuml
 brew install python3
-brew install neovim/neovim/neovim
+brew install neovim
 pip3 install neovim
 
 # == Git
@@ -79,8 +80,10 @@ yarn global add \
   eslint-plugin-react \
   eslint-config-prettier \
   eslint-plugin-prettier \
-  eslint-config-adc \
-  prettier
+  prettier \
+  nodemon \
+  nyc \
+  ts-node
 
 # === Section: rust ===
 

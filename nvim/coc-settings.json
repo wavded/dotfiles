@@ -6,7 +6,7 @@
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
 
-  "tsserver.enableJavascript": false,
+  "tsserver.enableJavascript": true,
   "tsserver.formatOnType": true,
   "typescript.showUnused": false,
   "javascript.showUnused": false,

@@ -5,6 +5,7 @@ if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
 fi
 
 # Add tab completion for many Bash commands
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 source "$(brew --prefix)/share/bash-completion/bash_completion"
 source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
 
