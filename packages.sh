@@ -83,6 +83,8 @@ yarn global add \
   prettier \
   nodemon \
   nyc \
+  write-good \
+  typescript \
   ts-node
 
 # === Section: rust ===
