@@ -91,15 +91,8 @@ yarn global add \
 
 # == Rust
 curl https://sh.rustup.rs -sSf | sh
-rustup install nightly
-rustup default nightly
-rustup component add rls-preview
+rustup component add rls
 rustup component add rust-analysis
 rustup component add rust-src
-
-# == Cargo packages
-rustup default stable
-cargo +nightly install clippy
-cargo +nightly install rustfmt-nightly
-cargo install racer
-cargo install cargo-update
+rustup component add rustfmt
+rustup component add clippy

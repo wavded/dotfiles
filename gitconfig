@@ -53,7 +53,7 @@
 
 [commit]
   # Sign commits.
-  gpgSign = true
+  # gpgSign = true
 
 [core]
   # Allow for case sensitivity in naming.

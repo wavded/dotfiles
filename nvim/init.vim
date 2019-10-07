@@ -16,6 +16,7 @@ Plug 'morhetz/gruvbox'
 Plug 'rstacruz/vim-closer'             " autoclose matching pairs
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'rhysd/vim-grammarous'
 
 " autocompletion / code intelligence
 " Plug 'ervandew/supertab'               " tab support
@@ -302,6 +303,7 @@ let g:ale_fixers.html = ['prettier']
 let g:ale_fixers.xml = ['prettier']
 let g:ale_fixers.yaml = ['prettier']
 let g:ale_fixers.java = ['google_java_format']
+let g:ale_fixers.rust = ['rustfmt']
 let g:ale_fixers.go = ['goimports']
 let g:ale_fix_on_save = 1
 let g:ale_linters = {}
@@ -421,7 +423,7 @@ au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 " au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 
 "==================== rust =====================
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 au FileType rust nmap <leader>e :RustRun<cr>
 
 "===================== plantuml-syntax ======================
