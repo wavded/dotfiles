@@ -13,14 +13,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " lsp
 Plug 'w0rp/ale' ", { 'tag': '*' }        lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'morhetz/gruvbox'
-Plug 'rstacruz/vim-closer'             " autoclose matching pairs
+Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'jiangmiao/auto-pairs'            " autoclose matching pairs
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'rhysd/vim-grammarous'
-
-" autocompletion / code intelligence
-" Plug 'ervandew/supertab'               " tab support
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --go-completer --js-completer --rust-completer --java-completer' }                           " completions
 Plug 'SirVer/ultisnips'                " snippet support
 
 " filetype-specific plugins
@@ -82,11 +79,13 @@ set shortmess+=c
 set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,.nyc_output,coverage,target
 
 set termguicolors                   " hicolor support and theme
-set background=dark
-let g:gruvbox_italic=1
-let g:gruvbox_invert_signs=1
-let g:gruvbox_sign_column='bg0'
-colo gruvbox
+" set background=dark
+" let g:gruvbox_italic=1
+" let g:gruvbox_invert_signs=1
+" let g:gruvbox_sign_column='bg0'
+" colo gruvbox
+colo dracula
+set guicursor=
 hi Comment gui=italic cterm=italic term=italic
 highlight Pmenu guibg=171717
 
@@ -292,9 +291,9 @@ nnoremap <leader>f :Grepper -tool rg -grepprg rg --vimgrep --smart-case --hidden
 let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_rust_cargo_use_clippy = 1
 let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['eslint', 'prettier']
-let g:ale_fixers.typescript = ['eslint', 'tslint', 'prettier']
-let g:ale_fixers.typescriptreact = ['eslint', 'tslint', 'prettier']
+let g:ale_fixers.javascript = ['eslint']
+let g:ale_fixers.typescript = ['eslint']
+let g:ale_fixers.typescriptreact = ['eslint']
 let g:ale_fixers.markdown = ['prettier']
 let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.css = ['prettier']
@@ -311,9 +310,9 @@ let g:ale_linters.go = ['gometalinter', 'gopls']
 let g:ale_linters.rust = ['cargo', 'rls']
 let g:ale_linters.html = ['prettier']
 let g:ale_linters.java = ['checkstyle', 'eclipselsp']
-let g:ale_linters.javascript = ['tsserver', 'eslint']
-let g:ale_linters.typescript = ['tsserver', 'eslint', 'tslint']
-let g:ale_linters.typescriptreact = ['tsserver', 'eslint', 'tslint']
+let g:ale_linters.javascript = ['eslint']
+let g:ale_linters.typescript = ['eslint']
+let g:ale_linters.typescriptreact = ['eslint']
 let g:ale_linters.gitcommit = ['write-good', 'gitlint']
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
