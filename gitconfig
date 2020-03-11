@@ -41,8 +41,9 @@
   cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [fetch]
-  # Automatically prune remote branches.
+  # Automatically prune remote branches and tags.
   prune = true
+  pruneTags = true
 
 [push]
   # Always push current branch to a remote branch with the same name.

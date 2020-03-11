@@ -338,6 +338,7 @@ let g:NERDTreeMinimalUI = 1 " minimal UI
 let g:NERDTreeShowHidden = 1 " always show hidden files
 let g:NERDTreeRespectWildIgnore = 1 " ignore wildignore matches
 let g:NERDTreeAutoDeleteBuffer = 1 " automatically delete buffer of deleted file
+let g:NERDTreeSortOrder = ['\/$', '[[extension]]'] " sort by directories, then file extension
 
 map <silent> <leader>n :NERDTreeToggle<cr>
 
