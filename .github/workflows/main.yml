@@ -1,0 +1,15 @@
+name: Mirror
+on: push
+jobs:
+  build:
+    name: Mirror
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Mirror
+        env:
+          U: wavded
+          P: ${{ secrets.GIT_PASSWORD }}
+        run: |
+          git fetch --unshallow origin
+          git push -f https://$U:$P@bitbucket.org/wavded/dotfiles.git
