@@ -1,27 +1,20 @@
 call plug#begin('~/.config/nvim/plugged')
 
-" Plug 'itchyny/lightline.vim'           " status line
 Plug 'vim-airline/vim-airline'           " status line
-" Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
+Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
 Plug 'scrooloose/nerdtree'             " file explorer
 Plug 'ivalkeen/nerdtree-execute'       " file explorer OS integration
 Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
+Plug 'adelarsq/vim-matchit'            " extended matching with %
 Plug 'mhinz/vim-grepper'               " search across files
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " lsp
 Plug 'w0rp/ale' ", { 'tag': '*' }        lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
-Plug 'morhetz/gruvbox'
-Plug 'dracula/vim', { 'as': 'dracula' }
-" Plug 'jiangmiao/auto-pairs'            " autoclose matching pairs
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'rhysd/vim-grammarous'
 Plug 'SirVer/ultisnips'                " snippet support
 
 " filetype-specific plugins
-" Plug 'moll/vim-node', { 'for': 'javascript.jsx' }
 Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescript.tsx'] }
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -38,6 +31,9 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
+" theme
+Plug 'jacoborus/tender.vim'
+
 call plug#end()
 
 " autocorrects for common misspellings
@@ -50,7 +46,7 @@ set noswapfile                      " no swap files
 set autowrite                       " save files automatically in most cases
 set ignorecase                      " case insensitive search...
 set smartcase                       " ...unless capitals are used
-set hidden                          " allow background buffers w/out writing
+set hidden                          " allow background buffers w/out writing     
 set list                            " show hidden characters
 set listchars=tab:\ \ ,trail:·      " show · for trailing space, \ \ for trailing tab
 set scrolloff=3                     " show next 3 lines while scrolling
@@ -79,15 +75,10 @@ set shortmess+=c
 set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,.nyc_output,coverage,target
 
 set termguicolors                   " hicolor support and theme
-" set background=dark
-" let g:gruvbox_italic=1
-" let g:gruvbox_invert_signs=1
-" let g:gruvbox_sign_column='bg0'
-" colo gruvbox
-colo dracula
+colo tender
+let g:airline_theme = 'tender'
 set guicursor=
 hi Comment gui=italic cterm=italic term=italic
-highlight Pmenu guibg=171717
 
 au FileType python set noet
 
@@ -221,57 +212,18 @@ endfunc
 "===================== PLUGINS======================
 
 "===================== CtrlP ======================
-" let g:ctrlp_cmd = 'CtrlPMRU'
-" let g:ctrlp_map = ''                  " disable <c-p> shortcut
-" let g:ctrlp_working_path_mode = 'ra'
-" let g:ctrlp_switch_buffer = 'et'      " jump to a file if it's open already
-" let g:ctrlp_mruf_max = 450            " number of recently opened files
-" let g:ctrlp_max_files = 0             " do not limit the number of searchable files
-" let g:ctrlp_use_caching = 0
-" let g:ctrlp_user_command = 'fd -c never "" %s'
+let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_map = ''                  " disable <c-p> shortcut
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_switch_buffer = 'et'      " jump to a file if it's open already
+let g:ctrlp_mruf_max = 450            " number of recently opened files
+let g:ctrlp_max_files = 0             " do not limit the number of searchable files
+let g:ctrlp_use_caching = 0
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:10,results:10'
+let g:ctrlp_user_command = 'fd -H -t f -c never "" %s'
 
-" nnoremap <leader>g :CtrlPCurWD<cr>
-" nnoremap <leader>b :CtrlPBuffer<cr>
-
-"===================== fzf ======================
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-
-" Default fzf layout
-" - down / up / left / right
-let g:fzf_layout = { 'down': '~40%' }
-
-" In Neovim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_layout = { 'window': '10new' }
-
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-command! -bang -nargs=? GFiles
-  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --hidden --case-sensitive --smart-case --glob !yarn.lock ".shellescape(<q-args>), 2, <bang>0)',
-
-nnoremap <leader>g :GFiles<cr>
-nnoremap <leader>t :Files<cr>
-nnoremap <leader>b :Buffers<cr>
-" nnoremap <leader>f :Rg<cr>
+nnoremap <leader>g :CtrlPCurWD<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 "===================== grepper ======================
 " use rg for fast searches
@@ -341,27 +293,6 @@ let g:NERDTreeAutoDeleteBuffer = 1 " automatically delete buffer of deleted file
 let g:NERDTreeSortOrder = ['\/$', '[[extension]]'] " sort by directories, then file extension
 
 map <silent> <leader>n :NERDTreeToggle<cr>
-
-"===================== lightline ======================
-" let g:lightline = {
-"       \ 'active': {
-"       \   'left': [ [ 'mode', 'paste' ],
-"       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-"       \ },
-"       \ 'component_function': {
-"       \   'filename': 'LightlineFilename',
-"       \   'cocstatus': 'coc#status',
-"       \   'currentfunction': 'CocCurrentFunction'
-"       \ },
-"       \ 'colorscheme': 'gruvbox',
-"       \ }
-
-" function! LightlineFilename()
-"   return expand('%')
-" endfunction
-" function! CocCurrentFunction()
-"     return get(b:, 'coc_current_function', '')
-" endfunction
 
 "===================== ultisnips  ===========================
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
