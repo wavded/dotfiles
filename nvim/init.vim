@@ -15,10 +15,10 @@ Plug 'godlygeek/tabular'               " re indentation
 Plug 'SirVer/ultisnips'                " snippet support
 
 " filetype-specific plugins
-Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'markdown'] }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescript.tsx'] }
+Plug 'yuezk/vim-js', { 'for': ['javascript','javascriptreact'] }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescriptreact'] }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascriptreact','typescriptreact'] }
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'pangloss/vim-javascript', { 'for': ['javascript.jsx', 'markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -86,7 +86,7 @@ au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
 au BufRead,BufNewFile .prettierrc setf json
 au BufRead,BufNewFile .babelrc setf json
-au BufRead,BufNewFile *.jsdoc setf javascript.jsx
+au BufRead,BufNewFile *.jsdoc setf javascript
 au FileType gitcommit setlocal spell
 
 " auto save when focus lost (after tabbing away or switching buffers)
@@ -242,10 +242,11 @@ nnoremap <leader>f :Grepper -tool rg -grepprg rg --vimgrep --smart-case --hidden
 " let g:ale_sign_column_always = 0
 let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_rust_cargo_use_clippy = 1
+let g:ale_go_golangci_lint_package = 1
+let g:ale_go_golangci_lint_options = '-E gosec'
 let g:ale_fixers = {}
 let g:ale_fixers.javascript = ['eslint']
 let g:ale_fixers.typescript = ['eslint']
-let g:ale_fixers.typescriptreact = ['eslint']
 let g:ale_fixers.markdown = ['prettier']
 let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.css = ['prettier']
@@ -257,30 +258,24 @@ let g:ale_fixers.java = ['google_java_format']
 let g:ale_fixers.rust = ['rustfmt']
 let g:ale_fixers.go = ['goimports']
 let g:ale_fix_on_save = 1
+
 let g:ale_linters = {}
-let g:ale_linters.go = ['gometalinter', 'gopls']
+let g:ale_linters.go = ['golangci-lint']
 let g:ale_linters.rust = ['cargo', 'rls']
 let g:ale_linters.html = ['prettier']
 let g:ale_linters.java = ['checkstyle', 'eclipselsp']
 let g:ale_linters.javascript = ['eslint']
 let g:ale_linters.typescript = ['eslint']
-let g:ale_linters.typescriptreact = ['eslint']
 let g:ale_linters.gitcommit = ['write-good', 'gitlint']
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
 let g:ale_linter_aliases = {
- \ 'javascript.jsx': 'javascript',
+ \ 'javascriptreact': 'javascript',
  \ 'typescriptreact': 'typescript'
  \}
-let g:ale_go_langserver_executable = 'gopls'
 " let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
 let g:ale_java_checkstyle_config = 'adc_checkstyle.xml'
 let g:ale_completion_enabled = 0
 
-" nmap <silent> gl <Plug>(ale_detail)
-" nmap <silent> gr <Plug>(ale_find_references)
-" nmap <silent> gd <Plug>(ale_go_to_definition)
-" nmap <silent> gh <Plug>(ale_hover)
+nmap <silent> gl <Plug>(ale_detail)
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
@@ -320,8 +315,8 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " nmap <C-j> <Plug>(coc-diagnostic-prev)
 " nmap <C-k> <Plug>(coc-diagnostic-next)
-nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>rf <Plug>(coc-refactor)
+nmap <leader>r <Plug>(coc-rename)
+nmap <leader>p <Plug>(coc-refactor)
 nmap <leader>c :<C-u>CocList commands<cr>
 " nmap <leader>d :<C-u>CocList diagnostics<cr>
 
@@ -334,24 +329,13 @@ function! s:show_documentation()
   endif
 endfunction
 
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
-"===================== vim-jsx ======================
-let g:jsx_ext_required = 0
-
 "===================== vim-go ======================
 let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_autosave = 0
 let g:go_code_completion_enabled = 0
 let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
-
-" au FileType go nmap <leader>r :GoRename<cr>
-" au FileType go nmap <leader>c :GoCoverageToggle<cr>
-" au FileType go nmap <leader>t :GoTest<cr>
-
-au Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-" au Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+let g:go_gopls_enabled = 0
 
 "==================== rust =====================
 let g:rustfmt_autosave = 0
@@ -366,24 +350,24 @@ let g:sql_type_default = 'pgsql'
 
 "===================== FUNCTIONS ======================
 
-function! JsEchoError(msg)
-  redraw | echon "js: " | echohl ErrorMsg | echon a:msg | echohl None
+function! TestEchoError(msg)
+  redraw | echon "test: " | echohl ErrorMsg | echon a:msg | echohl None
 endfunction
 
 " Swapping between test file and main file.
-function! JsSwitch(bang, cmd)
+function! TestSwitch(bang, cmd, ext)
   let file = expand('%')
   if empty(file)
-    call JsEchoError("no buffer name")
+    call TestEchoError("no buffer name")
     return
-  elseif file =~# '^\f\+_test\.js$'
-    let l:root = split(file, '_test.js$')[0]
-    let l:alt_file = l:root . ".js"
-  elseif file =~# '^\f\+\.js$'
-    let l:root = split(file, ".js$")[0]
-    let l:alt_file = l:root . '_test.js'
+  elseif file =~# '^\f\+_test\.' . a:ext . '$'
+    let l:root = split(file, '_test.' . a:ext . '$')[0]
+    let l:alt_file = l:root . "." . a:ext
+  elseif file =~# '^\f\+\.' . a:ext . '$'
+    let l:root = split(file, "." . a:ext . "$")[0]
+    let l:alt_file = l:root . '_test.' . a:ext
   else
-    call JsEchoError("not a js file")
+    call TestEchoError("not a " . a:ext . " file")
     return
   endif
   if empty(a:cmd)
@@ -393,4 +377,8 @@ function! JsSwitch(bang, cmd)
   endif
 endfunction
 
-au Filetype javascript.jsx command! -bang A call JsSwitch(<bang>0, '')
+au Filetype javascript command! -bang A call TestSwitch(<bang>0, '', 'js')
+au Filetype typescript command! -bang A call TestSwitch(<bang>0, '', 'ts')
+au Filetype javascriptreact command! -bang A call TestSwitch(<bang>0, '', 'jsx')
+au Filetype typescriptreact command! -bang A call TestSwitch(<bang>0, '', 'tsx')
+au Filetype go command! -bang A call TestSwitch(<bang>0, '', 'go')

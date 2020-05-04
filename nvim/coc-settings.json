@@ -7,12 +7,12 @@
   "suggest.maxCompleteItemCount": 20,
 
   "tsserver.enableJavascript": true,
-  "tsserver.formatOnType": true,
+  "tsserver.formatOnType": false,
   "typescript.showUnused": false,
   "javascript.showUnused": false,
   "javascript.suggestionActions.enabled": false,
 
-  "diagnostic.virtualText": true,
+  "diagnostic.virtualText": false,
   "diagnostic.displayByAle": true,
 
   "languageserver": {
