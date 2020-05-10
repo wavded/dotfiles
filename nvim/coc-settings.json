@@ -7,7 +7,7 @@
   "suggest.maxCompleteItemCount": 20,
 
   "tsserver.enableJavascript": true,
-  "tsserver.formatOnType": false,
+  "tsserver.formatOnType": true,
   "typescript.showUnused": false,
   "javascript.showUnused": false,
   "javascript.suggestionActions.enabled": false,

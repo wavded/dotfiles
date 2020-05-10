@@ -239,38 +239,40 @@ nnoremap <leader>f :Grepper -tool rg -grepprg rg --vimgrep --smart-case --hidden
 " nnoremap <leader>s :Grepper -tool rg -cword -noprompt<cr>
 
 "===================== ale ======================
-" let g:ale_sign_column_always = 0
 let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_rust_cargo_use_clippy = 1
+
 let g:ale_go_golangci_lint_package = 1
 let g:ale_go_golangci_lint_options = '-E gosec'
+
+let g:ale_fix_on_save = 1
 let g:ale_fixers = {}
-let g:ale_fixers.javascript = ['eslint']
-let g:ale_fixers.typescript = ['eslint']
-let g:ale_fixers.markdown = ['prettier']
-let g:ale_fixers.json = ['prettier']
 let g:ale_fixers.css = ['prettier']
-let g:ale_fixers.less = ['prettier']
+let g:ale_fixers.go = ['goimports']
 let g:ale_fixers.html = ['prettier']
+let g:ale_fixers.java = ['google_java_format']
+let g:ale_fixers.javascript = ['eslint']
+let g:ale_fixers.javascriptreact = ['eslint']
+let g:ale_fixers.json = ['prettier']
+let g:ale_fixers.less = ['prettier']
+let g:ale_fixers.markdown = ['prettier']
+let g:ale_fixers.rust = ['rustfmt']
+let g:ale_fixers.typescript = ['eslint']
+let g:ale_fixers.typescriptreact = ['eslint']
 let g:ale_fixers.xml = ['prettier']
 let g:ale_fixers.yaml = ['prettier']
-let g:ale_fixers.java = ['google_java_format']
-let g:ale_fixers.rust = ['rustfmt']
-let g:ale_fixers.go = ['goimports']
-let g:ale_fix_on_save = 1
 
 let g:ale_linters = {}
+let g:ale_linters.gitcommit = ['write-good', 'gitlint']
 let g:ale_linters.go = ['golangci-lint']
-let g:ale_linters.rust = ['cargo', 'rls']
 let g:ale_linters.html = ['prettier']
 let g:ale_linters.java = ['checkstyle', 'eclipselsp']
 let g:ale_linters.javascript = ['eslint']
+let g:ale_linters.javascriptreact = ['eslint']
+let g:ale_linters.rust = ['cargo', 'rls']
 let g:ale_linters.typescript = ['eslint']
-let g:ale_linters.gitcommit = ['write-good', 'gitlint']
-let g:ale_linter_aliases = {
- \ 'javascriptreact': 'javascript',
- \ 'typescriptreact': 'typescript'
- \}
+let g:ale_linters.typescriptreact = ['eslint']
+
 " let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
 let g:ale_java_checkstyle_config = 'adc_checkstyle.xml'
 let g:ale_completion_enabled = 0
@@ -295,18 +297,9 @@ let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
 "===================== markdown ======================
 au FileType markdown setlocal spell
-au FileType markdown setlocal colorcolumn=
-
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['js=javascript', 'bash=sh']
-
-"===================== vim-javascript ======================
-" es6 test for javascript
-au FileType javascript.jsx map <leader>e :100split \| term NODE_ENV=test nyc babel-node %<cr>
-let g:javascript_plugin_jsdoc = 1
-
-au FileType typescript map <leader>e :100split \| term NODE_ENV=test nyc ts-node %<cr>
 
 "==================== coc.nvim =====================
 nmap <silent> gd <Plug>(coc-definition)
@@ -349,6 +342,8 @@ let g:plantuml_executable_script = 'PLANTUML_LIMIT_SIZE=8192 plantuml -tsvg -qui
 let g:sql_type_default = 'pgsql'
 
 "===================== FUNCTIONS ======================
+au FileType javascript map <leader>e :100split \| term NODE_ENV=test nyc babel-node %<cr>
+au FileType typescript map <leader>e :100split \| term NODE_ENV=test nyc ts-node %<cr>
 
 function! TestEchoError(msg)
   redraw | echon "test: " | echohl ErrorMsg | echon a:msg | echohl None
