@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-xcode-select --install
+# xcode-select --install
 
 # === Section: brew ===
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 brew update
 brew upgrade
 
@@ -33,7 +33,7 @@ brew install cmake
 brew install plantuml
 brew install python3
 brew install neovim
-pip3 install neovim
+python3 -m pip install --user --upgrade pynvim
 
 # == Git
 brew install git
