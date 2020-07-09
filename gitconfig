@@ -52,6 +52,9 @@
   # Push any tags involved in new commits by default.
   followTags = true
 
+[pull]
+	rebase = false
+
 [help]
   # Auto run typoed commands.
   autocorrect = 1
