@@ -96,3 +96,4 @@ rustup component add rust-analysis
 rustup component add rust-src
 rustup component add rustfmt
 rustup component add clippy
+cargo install cargo-upgrade

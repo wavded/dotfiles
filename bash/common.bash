@@ -13,8 +13,8 @@ hash gtail >/dev/null 2>&1 && alias tail="gtail"
 hash gcp >/dev/null 2>&1 && alias cp="gcp"
 
 # Enable dircolors.
-hash dircolors >/dev/null 2>&1 || alias dircolors="gdircolors"
-eval `dircolors ~/.bash/dir_colors`
+#hash dircolors >/dev/null 2>&1 || alias dircolors="gdircolors"
+#eval `dircolors ~/.bash/dir_colors`
 
 # Always use color, even when piping.
 if gls --color > /dev/null 2>&1; then colorflag="--color"; else colorflag="-G"; fi;
@@ -29,6 +29,9 @@ hash nvim >/dev/null 2>&1 && alias vimdiff="nvim -d"
 
 # Pretty tree
 alias tree="tree -aC -I '.git|node_modules|vendor' --dirsfirst"
+
+# cat -> bat
+hash bat >/dev/null 2>&1 && alias cat="bat"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"

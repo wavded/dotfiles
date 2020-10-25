@@ -3,6 +3,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-airline/vim-airline'           " status line
 Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
 Plug 'scrooloose/nerdtree'             " file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ivalkeen/nerdtree-execute'       " file explorer OS integration
 Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
@@ -10,7 +11,7 @@ Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'adelarsq/vim-matchit'            " extended matching with %
 Plug 'mhinz/vim-grepper'               " search across files
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " lsp
-Plug 'w0rp/ale' ", { 'tag': '*' }        lint on edit, fix on save
+Plug 'w0rp/ale', { 'tag': '*' }        " lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'SirVer/ultisnips'                " snippet support
 
@@ -32,6 +33,8 @@ Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " theme
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'jacoborus/tender.vim'
 
 call plug#end()
@@ -267,8 +270,8 @@ let g:ale_linters = {}
 let g:ale_linters.gitcommit = ['write-good', 'gitlint']
 let g:ale_linters.go = ['golangci-lint']
 let g:ale_linters.java = ['checkstyle', 'eclipselsp']
-let g:ale_linters.javascript = ['tsserver', 'eslint']
-let g:ale_linters.javascriptreact = ['tsserver', 'eslint']
+let g:ale_linters.javascript = ['eslint']
+let g:ale_linters.javascriptreact = ['eslint']
 let g:ale_linters.rust = ['cargo', 'rls']
 let g:ale_linters.typescript = ['eslint']
 let g:ale_linters.typescriptreact = ['eslint']
@@ -287,9 +290,18 @@ let g:NERDTreeMinimalUI = 1 " minimal UI
 let g:NERDTreeShowHidden = 1 " always show hidden files
 let g:NERDTreeRespectWildIgnore = 1 " ignore wildignore matches
 let g:NERDTreeAutoDeleteBuffer = 1 " automatically delete buffer of deleted file
-let g:NERDTreeSortOrder = ['\/$', '[[extension]]'] " sort by directories, then file extension
+" let g:NERDTreeSortOrder = ['\/$', '[[extension]]'] " sort by directories, then file extension
 
-map <silent> <leader>n :NERDTreeToggle<cr>
+function! s:NERDTreeToggleAndRefresh()
+  if g:NERDTree.IsOpen()
+    NERDTreeClose
+  else
+    NERDTreeFocus
+    exe 'silent normal R'
+  endif
+endfunction
+
+map <silent> <leader>n :call <sid>NERDTreeToggleAndRefresh()<cr>
 
 "===================== ultisnips  ===========================
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']

@@ -17,12 +17,9 @@
 
   "go.goplsArgs": ["-remote=auto"],
 
-  "languageserver": {
-    "golang": {
-      "command": "gopls",
-      "args": [],
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
-    }
-  }
+  "explorer.icon.enableNerdfont": true,
+  "explorer.quitOnOpen": true,
+  "explorer.position": "floating",
+  "explorer.floating.position": "center-top",
+  "explorer.file.showHiddenFiles": true
 }

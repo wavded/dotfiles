@@ -3,7 +3,7 @@
   email = wavded@gmail.com
 
   # GPG signing key. Can be committed as it doesn't contain any secret information.
-  signingkey = 637EF5D2547B1320A9FDBEE2CDF3528E55977962
+  signingkey = F2FFC7C218753AE036FFAE183569EE928F75D829
 
 [alias]
   # Pretty printing of git history.
@@ -61,7 +61,7 @@
 
 [commit]
   # Sign commits.
-  # gpgSign = true
+  gpgSign = true
 
 [core]
   # Allow for case sensitivity in naming.
