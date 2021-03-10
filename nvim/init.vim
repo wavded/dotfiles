@@ -1,17 +1,13 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'vim-airline/vim-airline'           " status line
+" general plugins
 Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
-Plug 'scrooloose/nerdtree'             " file explorer
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ivalkeen/nerdtree-execute'       " file explorer OS integration
 Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'adelarsq/vim-matchit'            " extended matching with %
 Plug 'mhinz/vim-grepper'               " search across files
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " lsp
-Plug 'w0rp/ale', { 'tag': '*' }        " lint on edit, fix on save
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'SirVer/ultisnips'                " snippet support
 
@@ -32,10 +28,9 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 
-" theme
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'jacoborus/tender.vim'
+" theme and statusbar
+Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'bluz71/vim-moonfly-statusline'
 
 call plug#end()
 
@@ -46,6 +41,7 @@ source $HOME/.config/nvim/autocorrect.vim
 set autoread                        " auto reload file if changed externally
 set nobackup                        " no ~backup files
 set noswapfile                      " no swap files
+set nowritebackup                   " no write backup
 set autowrite                       " save files automatically in most cases
 set ignorecase                      " case insensitive search...
 set smartcase                       " ...unless capitals are used
@@ -57,7 +53,7 @@ set sidescrolloff=5                 " show next 5 columns while side-scrolling
 set splitbelow                      " more natural horizontal split
 set splitright                      " more natural vertical split
 set clipboard=unnamedplus           " yanks puts it on clipboard
-set colorcolumn=100                 " show a right margin column
+set colorcolumn=80                 " show a right margin column
 set expandtab                       " use spaces, not tabs
 set shiftwidth=2                    " set tab width
 set softtabstop=2
@@ -73,24 +69,28 @@ set updatetime=300                  " millis before cursorhold event
 set noshowmode                      " hide show mode status
 set nocursorline                    " prevent cursorline (performance)
 set shortmess+=c
+set termguicolors                   " hicolor support and theme
 
 " hide everywhere
 set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,.nyc_output,coverage,target
 
-set termguicolors                   " hicolor support and theme
-colo tender
-let g:airline_theme = 'tender'
+colo nightfly
+let g:moonflyWithCocIndicator = 1
+let g:moonflyWithGitBranchCharacter = 1
+
 set guicursor=
 hi Comment gui=italic cterm=italic term=italic
+hi NonText guifg=bg
 
 au FileType python set noet
-
 au BufRead,BufNewFile doc.go setlocal spell
 au BufRead,BufNewFile .eslintrc setf json
 au BufRead,BufNewFile .prettierrc setf json
 au BufRead,BufNewFile .babelrc setf json
 au BufRead,BufNewFile *.jsdoc setf javascript
 au FileType gitcommit setlocal spell
+au BufRead,BufNewFile * setlocal signcolumn=yes:1
+au FileType tagbar setlocal signcolumn=no
 
 " auto save when focus lost (after tabbing away or switching buffers)
 au FocusLost,BufLeave,WinLeave,TabLeave * silent! update
@@ -239,73 +239,9 @@ let g:grepper.side = 1
 let g:grepper.prompt_quote = 1
 
 nnoremap <leader>f :Grepper -tool rg -grepprg rg --vimgrep --smart-case --hidden -F<cr>
-" nnoremap <leader>s :Grepper -tool rg -cword -noprompt<cr>
-
-"===================== ale ======================
-let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_rust_cargo_use_clippy = 1
-
-let g:ale_go_golangci_lint_package = 1
-let g:ale_go_golangci_lint_options = '-E gosec'
-
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {}
-let g:ale_fixers.css = ['prettier']
-let g:ale_fixers.go = ['goimports']
-let g:ale_fixers.html = ['prettier']
-let g:ale_fixers.java = ['google_java_format']
-let g:ale_fixers.javascript = ['eslint']
-let g:ale_fixers.javascriptreact = ['eslint']
-let g:ale_fixers.json = ['prettier']
-let g:ale_fixers.less = ['prettier']
-let g:ale_fixers.markdown = ['prettier']
-let g:ale_fixers.rust = ['rustfmt']
-let g:ale_fixers.typescript = ['eslint']
-let g:ale_fixers.typescriptreact = ['eslint']
-let g:ale_fixers.xml = ['prettier']
-let g:ale_fixers.yaml = ['prettier']
-let g:ale_fixers.php = ['prettier']
-
-let g:ale_linters = {}
-let g:ale_linters.gitcommit = ['write-good', 'gitlint']
-let g:ale_linters.go = ['golangci-lint']
-let g:ale_linters.java = ['checkstyle', 'eclipselsp']
-let g:ale_linters.javascript = ['eslint']
-let g:ale_linters.javascriptreact = ['eslint']
-let g:ale_linters.rust = ['cargo', 'rls']
-let g:ale_linters.typescript = ['eslint']
-let g:ale_linters.typescriptreact = ['eslint']
-
-" let g:ale_java_checkstyle_options = '-c /checkstyle.xml'
-let g:ale_java_checkstyle_config = 'adc_checkstyle.xml'
-let g:ale_completion_enabled = 0
-
-nmap <silent> gl <Plug>(ale_detail)
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-"===================== NERDTree ======================
-let g:NERDTreeQuitOnOpen = 1 " hide explorer after open
-let g:NERDTreeMinimalUI = 1 " minimal UI
-let g:NERDTreeShowHidden = 1 " always show hidden files
-let g:NERDTreeRespectWildIgnore = 1 " ignore wildignore matches
-let g:NERDTreeAutoDeleteBuffer = 1 " automatically delete buffer of deleted file
-" let g:NERDTreeSortOrder = ['\/$', '[[extension]]'] " sort by directories, then file extension
-
-function! s:NERDTreeToggleAndRefresh()
-  if g:NERDTree.IsOpen()
-    NERDTreeClose
-  else
-    NERDTreeFocus
-    exe 'silent normal R'
-  endif
-endfunction
-
-map <silent> <leader>n :call <sid>NERDTreeToggleAndRefresh()<cr>
 
 "===================== ultisnips  ===========================
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
-
 
 "===================== markdown ======================
 au FileType markdown setlocal spell
@@ -314,28 +250,56 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_fenced_languages = ['js=javascript', 'bash=sh']
 
 "==================== coc.nvim =====================
+" adapted from https://github.com/neoclide/coc.nvim readme
+let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-json', 'coc-go', 'coc-rls', 'coc-phpls', 'coc-yaml', 'coc-prettier', 'coc-snippets', 'coc-eslint', 'coc-git' ]
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-" nmap <C-j> <Plug>(coc-diagnostic-prev)
-" nmap <C-k> <Plug>(coc-diagnostic-next)
-nmap <leader>r <Plug>(coc-rename)
+nmap <silent> gi <Plug>(coc-implementation)
+
+vmap <leader>f  <Plug>(coc-format-selected)
+
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <silent> ac <Plug>(coc-codeaction)
+nmap <silent> qf <Plug>(coc-fix-current)
+
+nmap <leader>rn <Plug>(coc-rename)
+
+nmap <silent> <C-j> <Plug>(coc-diagnostic-prev)
+nmap <silent> <C-k> <Plug>(coc-diagnostic-next)
 nmap <leader>p <Plug>(coc-refactor)
 nmap <leader>c :<C-u>CocList commands<cr>
-" nmap <leader>d :<C-u>CocList diagnostics<cr>
+nmap <leader>d :<C-u>CocList diagnostics<cr>
+
+nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" add missing imports on save
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
+
+map <silent> <leader>n :CocCommand explorer<cr>
+
 "===================== vim-go ======================
-let g:go_snippet_engine = "ultisnips"
+" let g:go_snippet_engine = "ultisnips"
 let g:go_fmt_autosave = 0
 let g:go_code_completion_enabled = 0
 let g:go_def_mapping_enabled = 0
@@ -355,7 +319,7 @@ let g:sql_type_default = 'pgsql'
 
 "===================== FUNCTIONS ======================
 au FileType javascript map <leader>e :100split \| term NODE_ENV=test nyc babel-node %<cr>
-au FileType typescript map <leader>e :100split \| term NODE_ENV=test nyc ts-node %<cr>
+au FileType typescript map <leader>e :100split \| term NODE_ENV=test TS_NODE_FILES=true nyc ts-node %<cr>
 
 function! TestEchoError(msg)
   redraw | echon "test: " | echohl ErrorMsg | echon a:msg | echohl None

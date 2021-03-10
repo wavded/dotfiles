@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# xcode-select --install
+xcode-select --install
 
 # === Section: brew ===
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew update
 brew upgrade
 
@@ -50,16 +50,17 @@ brew install node
 brew install yarn
 brew install go
 mkdir -p ~/Projects/go
+brew install golangci-lint
 
 # == Cask
-brew cask install postgres
-brew cask install postico
-brew cask install docker
-brew cask install the-unarchiver
-brew cask install java
-brew cask install gitup
-brew cask install imageoptim
-brew cask install hammerspoon
+brew install --cask postgres
+brew install --cask postico
+brew install --cask docker
+brew install --cask the-unarchiver
+brew install --cask java
+brew install --cask gitup
+brew install --cask imageoptim
+brew install --cask hammerspoon
 
 brew cleanup
 
@@ -68,6 +69,10 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
   chsh -s /usr/local/bin/bash;
 fi;
+
+# == Deno
+
+curl -fsSL https://deno.land/x/install/install.sh | sh
 
 # === Section: yarn ===
 
@@ -91,6 +96,7 @@ yarn global add \
 
 # == Rust
 curl https://sh.rustup.rs -sSf | sh
+reload
 rustup component add rls
 rustup component add rust-analysis
 rustup component add rust-src

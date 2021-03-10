@@ -1,25 +1,95 @@
 {
-  "diagnostic.errorSign": "•",
+  "diagnostic.errorSign": "●",
   "diagnostic.infoSign": "•",
-  "diagnostic.warningSign": "•",
+  "diagnostic.warningSign": "◆",
 
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
 
+  "explorer.quitOnOpen": true,
+  "explorer.width": 30,
+  "explorer.keyMappings.global": {
+    "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
+    "s": "open:vsplit",
+    "mm": "rename",
+    "mc": "copyFile",
+    "C": "copyFile",
+    "md": "delete",
+    "D": "delete",
+    "ma": "addFile",
+    "mA": "addDirectory",
+    "O": "systemExecute",
+    "mo": "systemExecute"
+  },
+  "explorer.icon.enableNerdfont": true,
+  "explorer.file.hiddenRules": {
+    "patternMatches": ["^node_modules"]
+  },
+  "explorer.file.showHiddenFiles": true,
+  "explorer.git.icon.status.modified": "✹",
+
+  "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
+  "explorer.file.root.template": "[icon & 1] PROJECT ([root])",
+  "explorer.file.child.template": "[git | 2][selection | clip | 1] [indent][icon | 1] [filename omitCenter 1][modified][readonly]",
+
   "tsserver.enableJavascript": true,
-  "tsserver.formatOnType": true,
+
   "typescript.showUnused": false,
   "javascript.showUnused": false,
   "javascript.suggestionActions.enabled": false,
+  "typescript.suggestionActions.enabled": false,
 
-  "diagnostic.virtualText": false,
-  "diagnostic.displayByAle": true,
+  "diagnostic.messageTarget": "float",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.format": "[%source%code]: %message",
 
-  "go.goplsArgs": ["-remote=auto"],
+  "prettier.statusItemText": "",
+  "prettier.disableSuccessMessage": true,
+  "tsserver.formatOnType": true,
+  "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "go",
+    "less",
+    "css",
+    "json",
+    "markdown",
+    "yaml",
+    "rust",
+    "php",
+    "sql"
+  ],
 
-  "explorer.icon.enableNerdfont": true,
-  "explorer.quitOnOpen": true,
-  "explorer.position": "floating",
-  "explorer.floating.position": "center-top",
-  "explorer.file.showHiddenFiles": true
+  "rust.clippy_preference": "on",
+  "go.goplsOptions": {
+    "gofumpt": true
+  },
+
+  "eslint.autoFixOnSave": true,
+  "eslint.options": {
+    "cache": true
+  },
+
+  "languageserver": {
+    "golangci-lint-languageserver": {
+      "command": "golangci-lint-langserver",
+      "filetypes": ["go"],
+      "initializationOptions": {
+        "command": [
+          "golangci-lint",
+          "run",
+          "--enable",
+          "gosec",
+          "--disable",
+          "lll",
+          "--out-format",
+          "json"
+        ]
+      }
+    }
+  }
 }
