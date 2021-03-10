@@ -11,9 +11,6 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 # [System] Disable the sound effects on boot.
 sudo nvram SystemAudioVolume=" "
 
-# [System] Disable transparency.
-sudo defaults write com.apple.universalaccess reduceTransparency -bool true
-
 # [System] Disable the over-the-top focus ring animation.
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
@@ -98,7 +95,6 @@ defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desk
 
 # [Finder] Show icons for drives, servers, and removable media on Desktop.
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
