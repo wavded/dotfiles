@@ -9,7 +9,7 @@ brew upgrade
 # == GNU Tools
 brew install coreutils
 brew install moreutils
-brew install gnu-sed --with-default-names
+brew install gnu-sed
 brew install grep
 brew install ssh-copy-id
 

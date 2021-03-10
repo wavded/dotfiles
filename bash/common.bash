@@ -11,6 +11,7 @@ hash ggrep >/dev/null 2>&1 && alias grep="ggrep"
 hash ghead >/dev/null 2>&1 && alias head="ghead"
 hash gtail >/dev/null 2>&1 && alias tail="gtail"
 hash gcp >/dev/null 2>&1 && alias cp="gcp"
+hash gsed >/dev/null 2>&1 && alias sed="gsed"
 
 # Enable dircolors.
 #hash dircolors >/dev/null 2>&1 || alias dircolors="gdircolors"
