@@ -12,6 +12,8 @@
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
     "s": "open:vsplit",
     "mm": "rename",
+    "mx": "cutFile",
+    "X": "cutFile",
     "mc": "copyFile",
     "C": "copyFile",
     "md": "delete",
@@ -23,12 +25,11 @@
   },
   "explorer.icon.enableNerdfont": true,
   "explorer.file.hiddenRules": {
-    "patternMatches": ["^node_modules"]
+    "filenames": ["node_modules", ".git", ".nyc_output", "coverage", "target"],
+    "patternMatches": []
   },
-  "explorer.file.showHiddenFiles": true,
   "explorer.git.icon.status.modified": "✹",
-
-  "explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
+  "explorer.buffer.root.template": "[icon & 1] OPEN BUFFERS",
   "explorer.file.root.template": "[icon & 1] PROJECT ([root])",
   "explorer.file.child.template": "[git | 2][selection | clip | 1] [indent][icon | 1] [filename omitCenter 1][modified][readonly]",
 
@@ -72,6 +73,10 @@
   "eslint.autoFixOnSave": true,
   "eslint.options": {
     "cache": true
+  },
+
+  "diagnostic-languageserver.filetypes": {
+    "markdown": ["write-good"]
   },
 
   "languageserver": {
