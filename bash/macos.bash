@@ -61,9 +61,9 @@ function serve() {
 }
 
 function connect() {
-  osascript -e 'tell application "Tunnelblick"' -e "connect \"$1\"" -e 'end tell'
+  osascript -e 'tell application "Viscosity" to connect "utils"'
 }
 
 function disconnect() {
-  osascript -e 'tell application "Tunnelblick"' -e 'disconnect all' -e 'end tell'
+  osascript -e 'tell application "Viscosity" to disconnectall'
 }
