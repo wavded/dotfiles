@@ -41,6 +41,7 @@ mkdir ~/.gnupg
 echo "pinentry-program /usr/local/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
 # == Languages
+brew install java
 brew install deno
 brew install node
 brew install yarn
@@ -63,7 +64,6 @@ go get github.com/nametake/golangci-lint-langserver
 brew install --cask postico
 brew install --cask docker
 brew install --cask the-unarchiver
-brew install --cask java
 brew install --cask gitup
 brew install --cask imageoptim
 brew install --cask hammerspoon

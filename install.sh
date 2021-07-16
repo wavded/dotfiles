@@ -21,8 +21,7 @@ if [[ `uname` == "Darwin" ]]; then
   rm-if-present "$HOME/.config/nvim" "$dir/nvim"
   rm-if-present "$HOME/.hammerspoon" "$dir/hammerspoon"
 
-  exec $SHELL -l
-  ./fix-terminfo.sh
-  ./packages.sh
   ./macos.sh
+  bash -c ./fix-terminfo.sh
+  bash -c ./packages.sh
 fi
