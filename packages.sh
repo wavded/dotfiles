@@ -41,13 +41,23 @@ mkdir ~/.gnupg
 echo "pinentry-program /usr/local/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
 # == Languages
-brew install node
-brew install yarn-completion
-brew install yarn
 brew install deno
+brew install node
+brew install yarn
+brew install yarn-completion
+yarn global add \
+  eslint \
+  prettier \
+  nodemon \
+  nyc \
+  write-good \
+  typescript \
+  ts-node
+
 brew install go
 mkdir -p ~/Projects/go
 brew install golangci-lint
+go get github.com/nametake/golangci-lint-langserver
 
 # == Cask
 brew install --cask postico
@@ -74,17 +84,6 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
   chsh -s /usr/local/bin/bash;
 fi;
-
-# === Yarn ===
-
-yarn global add \
-  eslint \
-  prettier \
-  nodemon \
-  nyc \
-  write-good \
-  typescript \
-  ts-node
 
 # === Rust ===
 

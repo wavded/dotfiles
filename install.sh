@@ -20,5 +20,9 @@ if [[ `uname` == "Darwin" ]]; then
   mkdir -p $HOME/.config
   rm-if-present "$HOME/.config/nvim" "$dir/nvim"
   rm-if-present "$HOME/.hammerspoon" "$dir/hammerspoon"
-  echo "...reload shell before installing packages, run fix script for iTerm"
+
+  exec $SHELL -l
+  ./fix-terminfo.sh
+  ./packages.sh
+  ./macos.sh
 fi
