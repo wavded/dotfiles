@@ -12,4 +12,4 @@ if [ `uname` == "Darwin" ]; then
   source $HOME/.bash/macos.bash
 fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"

@@ -265,7 +265,7 @@ let g:vim_markdown_fenced_languages = ['js=javascript', 'bash=sh']
 
 "==================== coc.nvim =====================
 " adapted from https://github.com/neoclide/coc.nvim readme
-let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-json', 'coc-go', 'coc-rls', 'coc-phpls', 'coc-yaml', 'coc-prettier', 'coc-snippets', 'coc-eslint', 'coc-git' ]
+let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-json', 'coc-go', 'coc-rls', 'coc-phpls', 'coc-yaml', 'coc-prettier', 'coc-snippets', 'coc-eslint', 'coc-git', 'coc-explorer', 'coc-deno' ]
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)

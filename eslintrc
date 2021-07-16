@@ -1,16 +1,12 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:react/recommended"
-  ],
+  "extends": ["eslint:recommended"],
   "env": {
     "node": true,
     "browser": true,
     "es6": true
   },
   "parserOptions": {
-    "ecmaVersion": 8,
+    "ecmaVersion": 2020,
     "jsx": true
   },
   "rules": {"no-console": 0, "no-var": 2}

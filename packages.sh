@@ -20,20 +20,14 @@ brew install bash-completion2
 
 # == Utilities
 brew install tree
-brew install fzf
 brew install ripgrep
 brew install fd
 brew install autojump
-brew install graphicsmagick
-brew install cairo
 brew install tmux
 brew install reattach-to-user-namespace
 brew install watch
-brew install cmake
 brew install plantuml
-brew install python3
 brew install neovim
-python3 -m pip install --user --upgrade pynvim
 
 # == Git
 brew install git
@@ -46,14 +40,16 @@ brew install pinentry-mac
 mkdir ~/.gnupg
 echo "pinentry-program /usr/local/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
+# == Languages
 brew install node
+brew install yarn-completion
 brew install yarn
+brew install deno
 brew install go
 mkdir -p ~/Projects/go
 brew install golangci-lint
 
 # == Cask
-brew install --cask postgres
 brew install --cask postico
 brew install --cask docker
 brew install --cask the-unarchiver
@@ -61,6 +57,11 @@ brew install --cask java
 brew install --cask gitup
 brew install --cask imageoptim
 brew install --cask hammerspoon
+brew install --cask appcleaner
+
+# == Fonts
+brew tap homebrew/cask-fonts
+brew install --cask font-jetbrains-mono-nerd-font
 
 brew cleanup
 
@@ -70,21 +71,10 @@ if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
   chsh -s /usr/local/bin/bash;
 fi;
 
-# == Deno
+# === Yarn ===
 
-curl -fsSL https://deno.land/x/install/install.sh | sh
-
-# === Section: yarn ===
-
-# == Yarn completion
-curl -L https://raw.githubusercontent.com/dsifford/yarn-completion/master/yarn-completion.bash > `brew --prefix`/etc/bash_completion.d/yarn
-
-# == Yarn packages
 yarn global add \
   eslint \
-  eslint-plugin-react \
-  eslint-config-prettier \
-  eslint-plugin-prettier \
   prettier \
   nodemon \
   nyc \
@@ -92,11 +82,10 @@ yarn global add \
   typescript \
   ts-node
 
-# === Section: rust ===
+# === Rust ===
 
-# == Rust
-curl https://sh.rustup.rs -sSf | sh
-reload
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
 rustup component add rls
 rustup component add rust-analysis
 rustup component add rust-src
