@@ -7,15 +7,16 @@ Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
 Plug 'adelarsq/vim-matchit'            " extended matching with %
 Plug 'mhinz/vim-grepper'               " search across files
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " lsp
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'SirVer/ultisnips'                " snippet support
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " lsp
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax
 
 " filetype-specific plugins
-Plug 'yuezk/vim-js', { 'for': ['javascript','javascriptreact'] }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescriptreact'] }
-Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascriptreact','typescriptreact'] }
-Plug 'fatih/vim-go', { 'for': 'go' }
+" Plug 'yuezk/vim-js', { 'for': ['javascript','javascriptreact'] }
+" Plug 'HerringtonDarkholme/yats.vim', { 'for': ['typescript','typescriptreact'] }
+" Plug 'maxmellon/vim-jsx-pretty', { 'for': ['javascriptreact','typescriptreact'] }
+" Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'martinda/Jenkinsfile-vim-syntax', { 'for': 'Jenkinsfile' }
 Plug 'groenewege/vim-less', { 'for': 'less' }
@@ -24,9 +25,9 @@ Plug 'Glench/Vim-Jinja2-Syntax', { 'for': 'jinja' }
 Plug 'aklt/plantuml-syntax', { 'for': 'plantuml' }
 Plug 'digitaltoad/vim-pug', { 'for': ['pug', 'jade'] }
 Plug 'tmux-plugins/vim-tmux', { 'for': 'tmux' }
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
-Plug 'cespare/vim-toml', { 'for': 'toml' }
+" Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " theme and statusbar
 Plug 'bluz71/vim-nightfly-guicolors'
@@ -213,6 +214,19 @@ function! <SID>SynStack()
 endfunc
 
 "===================== PLUGINS======================
+"
+"===================== TreeSitter ======================
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- "all", "maintained" or a list of languages
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true
+  }
+}
+EOF
 
 "===================== CtrlP ======================
 let g:ctrlp_cmd = 'CtrlPMRU'

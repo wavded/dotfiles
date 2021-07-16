@@ -60,10 +60,10 @@ function serve() {
 	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 }
 
-function connect() {
+function vpn() {
   osascript -e 'tell application "Viscosity" to connect "utils"'
 }
 
-function disconnect() {
+function vpnoff() {
   osascript -e 'tell application "Viscosity" to disconnectall'
 }
