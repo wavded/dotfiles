@@ -58,6 +58,10 @@ brew install --cask gitup
 brew install --cask imageoptim
 brew install --cask hammerspoon
 brew install --cask appcleaner
+brew install --cask slack
+brew install --cask iterm2
+brew install --cask viscosity
+brew install --cask 1password
 
 # == Fonts
 brew tap homebrew/cask-fonts
