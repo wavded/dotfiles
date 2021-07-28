@@ -48,9 +48,9 @@ function tm() {
   fi
 
   tmux split-window  -v
+  tmux resize-pane   -D 14
+  tmux select-pane   -t 0
   tmux send-keys     -t 0 'vim' C-m
-  tmux resize-pane   -D 10
-  tmux select-pane   -t 1
 }
 
 cleancontainers() { docker rm $(docker ps -q -a); }
