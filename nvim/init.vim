@@ -5,12 +5,13 @@ Plug 'ctrlpvim/ctrlp.vim'              " goto file/buffer/mru/etc
 Plug 'tpope/vim-surround'              " enable change around
 Plug 'tpope/vim-repeat'                " repeating for change around
 Plug 'tpope/vim-commentary'            " gcc and gc for comments
-Plug 'adelarsq/vim-matchit'            " extended matching with %
-Plug 'mhinz/vim-grepper'               " search across files
+" Plug 'adelarsq/vim-matchit'            " extended matching with %
+" Plug 'mhinz/vim-grepper'               " search across files
 Plug 'godlygeek/tabular'               " re indentation
 Plug 'SirVer/ultisnips'                " snippet support
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " lsp
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " syntax
+Plug 'nvim-treesitter/playground' " syntax
 
 " filetype-specific plugins
 " Plug 'yuezk/vim-js', { 'for': ['javascript','javascriptreact'] }
@@ -30,6 +31,7 @@ Plug 'lifepillar/pgsql.vim', { 'for': 'sql' }
 " Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " theme and statusbar
+" Plug 'marko-cerovac/material.nvim'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'bluz71/vim-moonfly-statusline'
 
@@ -78,10 +80,11 @@ set wildignore+=*.o,.git,.svn,node_modules,vendor,bower_components,__jsdocs,.nyc
 colo nightfly
 let g:moonflyWithCocIndicator = 1
 let g:moonflyWithGitBranchCharacter = 1
+let g:moonflyIgnoreDefaultColors = 1
 
 set guicursor=
-hi Comment gui=italic cterm=italic term=italic
 hi NonText guifg=bg
+" hi link CocUnusedHighlight TSVariable
 
 au FileType python set noet
 au BufRead,BufNewFile doc.go setlocal spell
@@ -253,15 +256,21 @@ nnoremap <leader>b :CtrlPBuffer<cr>
 
 "===================== grepper ======================
 " use rg for fast searches
-let g:ackprg = 'rg --vimgrep --hidden --smart-case -F'
+" let g:ackprg = 'rg --vimgrep --hidden --smart-case -F'
 
-" runtime autoload/grepper.vim
-let g:grepper = {}
-let g:grepper.simple_prompt = 1
-let g:grepper.side = 1
-let g:grepper.prompt_quote = 1
+" " runtime autoload/grepper.vim
+" let g:grepper = {}
+" let g:grepper.simple_prompt = 1
+" let g:grepper.side = 1
+" let g:grepper.prompt_quote = 1
 
-nnoremap <leader>f :Grepper -tool rg -grepprg rg --vimgrep --smart-case --hidden -F<cr>
+" nnoremap <leader>f :Grepper -tool rg -grepprg rg --vimgrep --smart-case --hidden -F<cr>
+
+" set grepprg=rg\ --vimgrep\ --smart-case
+" set grepformat=%f:%l:%c:%m,%f:%l:%m
+
+nnoremap <leader>f :CocSearch 
+" nnoremap gs :silent grep <c-r><c-w><cr>:copen<cr>
 
 "===================== ultisnips  ===========================
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']

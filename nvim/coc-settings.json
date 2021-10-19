@@ -2,6 +2,7 @@
   "diagnostic.errorSign": "●",
   "diagnostic.infoSign": "•",
   "diagnostic.warningSign": "◆",
+  "coc.preferences.colorSupport": false,
 
   "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,

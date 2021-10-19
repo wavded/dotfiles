@@ -50,6 +50,7 @@ function tm() {
   tmux split-window  -v
   tmux resize-pane   -D 14
   tmux select-pane   -t 0
+  sleep 0.2
   tmux send-keys     -t 0 'vim' C-m
 }
 
