@@ -25,7 +25,7 @@ end
 
 function M.setup(client, buf)
   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-  local nls = require("config.lsp.null-ls")
+  local nls = require("config.lsp.nls")
 
   local enable = false
   if nls.has_formatter(ft) then

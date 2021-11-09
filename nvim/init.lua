@@ -61,6 +61,7 @@ require("keys")
 require("theme")
 
 require("config.lsp")
+require("config.lualine")
 require("config.treesitter")
 require("config.telescope")
 require("config.tree")

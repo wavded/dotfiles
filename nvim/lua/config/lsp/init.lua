@@ -19,7 +19,7 @@ local function on_attach(client, buf)
     bind = true,
     hint_prefix = " ",
   })
-  require("config.lsp.commands").setup(client)
+  require("config.lsp.commands").setup(client, buf)
   require("config.lsp.formatting").setup(client, buf)
   require("config.lsp.keys").setup(client, buf)
 end

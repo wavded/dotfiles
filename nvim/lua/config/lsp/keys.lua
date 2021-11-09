@@ -1,6 +1,6 @@
 local M = {}
 
-function M.setup(client, buf)
+function M.setup(_, buf)
   vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
   vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting_sync()")
   vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
@@ -37,33 +37,6 @@ function M.setup(client, buf)
   bmap(buf, "n", "ga", ":LspCodeAction<cr>", bopts)
   bmap(buf, "n", "<leader>a", ":LspDiagLine<cr>", bopts)
   bmap(buf, "n", "gs", ":LspSignatureHelp<cr>", bopts)
-
-  vim.cmd([[augroup LspAutocommands]])
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd([[
-      autocmd! * <buffer>
-      autocmd BufWritePre <buffer> LspFormatting
-    ]])
-  end
-
-  if client.resolved_capabilities.document_highlight == true then
-    vim.cmd([[
-      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-    ]])
-  end
-
-  -- diagnotics on hover
-  vim.cmd(
-    [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})]]
-  )
-
-  -- nvim-lightbulb
-  vim.cmd([[
-		autocmd CursorHold,CursorHoldI <buffer> lua require"nvim-lightbulb".update_lightbulb {sign = {enabled = false}, virtual_text = {enabled = true, text = ""}, float = {enabled = false}}
-  ]])
-
-  vim.cmd([[ augroup END ]])
 end
 
 return M
