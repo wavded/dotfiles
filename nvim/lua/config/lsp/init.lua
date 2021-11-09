@@ -15,9 +15,13 @@ local servers = {
 }
 
 local function on_attach(client, buf)
-  require("lsp.commands").setup(client)
-  require("lsp.formatting").setup(client, buf)
-  require("lsp.keys").setup(client, buf)
+  require("lsp_signature").on_attach({
+    bind = true,
+    hint_prefix = " ",
+  })
+  require("config.lsp.commands").setup(client)
+  require("config.lsp.formatting").setup(client, buf)
+  require("config.lsp.keys").setup(client, buf)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -35,5 +39,6 @@ local options = {
   },
 }
 
-require("config.lsp.null-ls").setup(options)
+require("config.lsp.nls").setup(options)
 require("config.lsp.install").setup(servers, options)
+require("config.lsp.completion")

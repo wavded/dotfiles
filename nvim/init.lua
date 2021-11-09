@@ -55,3 +55,12 @@ require("packer").startup(function(use)
 end)
 
 require("gitsigns").setup()
+
+require("options")
+require("keys")
+require("theme")
+
+require("config.lsp")
+require("config.treesitter")
+require("config.telescope")
+require("config.tree")

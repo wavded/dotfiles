@@ -11,7 +11,7 @@ cmp.setup({
   },
 
   formatting = {
-    format = require("config.lsp.kind").cmp_format()
+    format = require("config.lsp.kind").cmp_format(),
   },
 
   mapping = {

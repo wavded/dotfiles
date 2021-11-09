@@ -49,4 +49,3 @@ u.map("v", "<", "<gv")
 
 -- fast editing of the .vimrc
 u.map("n", "<leader>v", ":e $MYVIMRC<cr>")
-

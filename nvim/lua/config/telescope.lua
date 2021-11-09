@@ -1,7 +1,7 @@
 local u = require("util")
-local actions = require('telescope.actions')
+local actions = require("telescope.actions")
 
-require('telescope').setup {
+require("telescope").setup({
   defaults = {
     mappings = {
       i = {
@@ -11,7 +11,7 @@ require('telescope').setup {
       },
     },
   },
-}
+})
 
 u.map("n", "<leader>g", ":Telescope find_files<cr>")
 u.map("n", "<leader>f", ":Telescope live_grep<cr>")

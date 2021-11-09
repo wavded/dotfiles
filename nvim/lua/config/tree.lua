@@ -1,7 +1,7 @@
 local u = require("util")
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
-require('nvim-tree').setup {
+require("nvim-tree").setup({
   auto_close = true,
   diagnostics = { enable = true },
   filters = { dotfiles = true },
@@ -15,10 +15,10 @@ require('nvim-tree').setup {
         { key = "md", cb = tree_cb("remove") },
         { key = "mo", cb = tree_cb("system_open") },
         { key = "ma", cb = tree_cb("create") },
-      }
-    }
-  }
-}
+      },
+    },
+  },
+})
 
 vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_respect_buf_cwd = 1
