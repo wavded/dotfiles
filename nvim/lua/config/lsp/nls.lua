@@ -10,7 +10,7 @@ function M.setup(options)
     sources = {
       nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.stylua,
-      nls.builtins.formatting.prettier,
+      nls.builtins.formatting.prettierd,
       nls.builtins.formatting.rustfmt,
       nls.builtins.diagnostics.write_good,
     },

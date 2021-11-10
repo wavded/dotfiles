@@ -1,12 +1,18 @@
+local u = require("util")
 local cmp = require("cmp")
-local luasnip = require("luasnip")
+local snippy = require("snippy")
+
+local check_back_space = function()
+  local col = vim.fn.col(".") - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s") ~= nil
+end
 
 cmp.setup({
   completion = { completeopt = "menu,menuone,noinsert" },
 
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      snippy.expand_snippet(args.body)
     end,
   },
 
@@ -15,10 +21,17 @@ cmp.setup({
   },
 
   mapping = {
-    ["<cr>"] = cmp.mapping.confirm(),
+    ["<cr>"] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
+      select = true,
+    }),
+    ["<c-j>"] = cmp.mapping.complete(),
     ["<tab>"] = cmp.mapping(function(fallback)
-      if luasnip.expand_or_jumpable() then
-        luasnip.jump(1)
+      if snippy.can_expand_or_advance() then
+        snippy.expand_or_advance()
+        -- vim.fn.feedkeys(u.t("<Plug>snippy-expand-or-next"), "")
+      elseif check_back_space() then
+        vim.fn.feedkeys(u.t("<tab>"), "n")
       else
         fallback()
       end
@@ -27,8 +40,9 @@ cmp.setup({
       "s",
     }),
     ["<s-tab>"] = cmp.mapping(function(fallback)
-      if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      if snippy.can_jump(-1) then
+        snippy.previous()
+        -- vim.fn.feedkeys(u.t("<Plug>snippy-previous"), "")
       else
         fallback()
       end
@@ -40,7 +54,7 @@ cmp.setup({
 
   sources = {
     { name = "nvim_lsp" },
-    { name = "luasnip" },
+    { name = "snippy" },
     { name = "buffer" },
     { name = "path" },
   },

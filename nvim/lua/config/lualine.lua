@@ -2,7 +2,7 @@ local function clock()
   return " " .. os.date("%H:%M")
 end
 
-local function lsp_progress(self, is_active)
+local function lsp_progress(_, is_active)
   if not is_active then
     return ""
   end

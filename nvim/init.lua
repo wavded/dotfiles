@@ -46,8 +46,9 @@ require("packer").startup(function(use)
   use("hrsh7th/nvim-cmp") -- autocompletion (cmp)
   use("hrsh7th/cmp-nvim-lsp") -- cmp: LSP source
   use("hrsh7th/cmp-path") -- cmp: path source
-  use("saadparwaiz1/cmp_luasnip") -- cmp: snippets source
-  use("L3MON4D3/LuaSnip") -- snippets plugin
+  use("dcampos/cmp-snippy") -- cmp: snippets source
+  use("dcampos/nvim-snippy") -- snippets plugin
+  use("honza/vim-snippets") -- language snippets
 
   if packer_bootstrap then
     require("packer").sync()
@@ -65,3 +66,4 @@ require("config.lualine")
 require("config.treesitter")
 require("config.telescope")
 require("config.tree")
+require("config.snippets")

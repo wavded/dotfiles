@@ -69,11 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  LuaSnip = {
-    loaded = true,
-    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/LuaSnip",
-    url = "https://github.com/L3MON4D3/LuaSnip"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
@@ -84,10 +79,10 @@ _G.packer_plugins = {
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
-  cmp_luasnip = {
+  ["cmp-snippy"] = {
     loaded = true,
-    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
-    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/cmp-snippy",
+    url = "https://github.com/dcampos/cmp-snippy"
   },
   ["gitsigns.nvim"] = {
     loaded = true,
@@ -108,11 +103,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
-  },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
-    url = "https://github.com/tami5/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -143,6 +133,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-snippy"] = {
+    loaded = true,
+    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/nvim-snippy",
+    url = "https://github.com/dcampos/nvim-snippy"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -193,6 +188,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
+  },
+  ["vim-snippets"] = {
+    loaded = true,
+    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/vim-snippets",
+    url = "https://github.com/honza/vim-snippets"
   },
   ["vim-surround"] = {
     loaded = true,

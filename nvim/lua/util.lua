@@ -1,5 +1,9 @@
 local M = {}
 
+function M.t(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 function M.log(msg, hl, name)
   name = name or "Neovim"
   hl = hl or "Todo"
