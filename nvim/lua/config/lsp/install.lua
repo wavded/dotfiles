@@ -19,7 +19,11 @@ end
 function M.setup(servers, options)
   local lspi = require("nvim-lsp-installer")
   lspi.on_server_ready(function(server)
-    local opts = vim.tbl_deep_extend("force", options, servers[server.name] or {})
+    local opts = vim.tbl_deep_extend(
+      "force",
+      options,
+      servers[server.name] or {}
+    )
     server:setup(opts)
     vim.cmd([[ do User LspAttachBuffers ]])
   end)

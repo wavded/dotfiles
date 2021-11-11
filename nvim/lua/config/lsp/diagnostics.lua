@@ -25,5 +25,7 @@ for type, icon in pairs(signs) do
 end
 
 -- project-wide diagnostics
-require("trouble").setup()
+require("trouble").setup({
+  auto_close = true,
+})
 u.map("n", "<leader>d", ":Trouble<cr>", { silent = true })

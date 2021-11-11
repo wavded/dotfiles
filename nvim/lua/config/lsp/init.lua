@@ -9,9 +9,7 @@ local servers = {
     settings = { Lua = { diagnostics = { globals = { "vim" } } } },
   },
   tsserver = {},
-  gopls = {
-    settings = { gopls = { gofumpt = true } },
-  },
+  gopls = {},
 }
 
 local function on_attach(client, buf)
@@ -41,4 +39,37 @@ local options = {
 
 require("config.lsp.nls").setup(options)
 require("config.lsp.install").setup(servers, options)
+
+local lspconfig = require("lspconfig")
+local configs = require("lspconfig/configs")
+if not lspconfig.golangcilsp then
+  configs.golangcilsp = {
+    default_config = {
+      cmd = { "golangci-lint-langserver" },
+      root_dir = lspconfig.util.root_pattern(".git", "go.mod"),
+      init_options = {
+        command = {
+          "golangci-lint",
+          "run",
+          "--enable",
+          "gosec",
+          "--disable",
+          "lll",
+          "--out-format",
+          "json",
+        },
+      },
+    },
+  }
+end
+
+lspconfig.golangcilsp.setup({
+  filetypes = { "go" },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+})
+
 require("config.lsp.completion")
