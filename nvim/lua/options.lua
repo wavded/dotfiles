@@ -22,10 +22,15 @@ vim.opt.linebreak = true -- do not break wrap in the middle of words
 vim.opt.updatetime = 250 -- millis before CursorHold event
 vim.opt.showmode = false -- hide show mode status
 vim.opt.signcolumn = "yes:1"
--- vim.opt.hlsearch = false
 
-vim.opt.listchars = { tab = "  ", trail = "·" } -- show · for trailing space, \ \ for trailing tab
-vim.opt.completeopt = { "menuone", "noselect" }
+-- vary cursor depending on mode
+vim.opt.guicursor =
+  "n-c:hor100-nCursor,v-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20,i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150"
+
+-- show · for trailing space, \ \ for trailing tab
+vim.opt.listchars = { tab = "  ", trail = "·" }
+
+-- add more ignore patterns
 vim.opt.wildignore:append({
   "*.o",
   ".git",
@@ -45,3 +50,13 @@ vim.cmd(
 
 -- restore terminal cursor on exit
 vim.cmd([[au VimLeave * set guicursor=a:hor100-blinkon0]])
+
+-- configure some file types exceptions
+vim.cmd([[au BufRead,BufNewFile .eslintrc setf json]])
+vim.cmd([[au BufRead,BufNewFile .prettierrc setf json]])
+vim.cmd([[au BufRead,BufNewFile .babelrc setf json]])
+vim.cmd([[au BufRead,BufNewFile Jenkinsfile setf groovy]])
+vim.cmd([[au FileType python set noet]])
+vim.cmd([[au BufRead,BufNewFile doc.go setlocal spell]])
+vim.cmd([[au FileType gitcommit setlocal spell]])
+vim.cmd([[au FileType tagbar setlocal signcolumn=no]])

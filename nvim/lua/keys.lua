@@ -4,9 +4,6 @@ local u = require("util")
 vim.g.mapleader = ","
 vim.g.localmapleader = ","
 
--- fast close qf/loc windows
-u.map("n", "<leader>a", ":cclose<cr>:lclose<cr>", { silent = true })
-
 -- fast open current file in default application
 u.map("n", "<leader>o", ":!open %<cr><cr>", { silent = true })
 
@@ -49,3 +46,9 @@ u.map("v", "<", "<gv")
 
 -- fast editing of the .vimrc
 u.map("n", "<leader>v", ":e $MYVIMRC<cr>")
+
+-- gitup integration
+u.map("n", "<leader>`", ":!gitup commit<cr><cr>", { silent = true })
+
+-- alternate file
+u.map("n", "<leader>a", ':lua require("alternate")()<cr>')

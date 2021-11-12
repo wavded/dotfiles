@@ -8,7 +8,7 @@ local check_back_space = function()
 end
 
 cmp.setup({
-  completion = { completeopt = "menu,menuone,noinsert" },
+  preselect = cmp.PreselectMode.None,
 
   snippet = {
     expand = function(args)
