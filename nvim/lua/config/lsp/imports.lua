@@ -18,4 +18,3 @@ _G.lsp_organize_imports = function(wait_ms)
     end
   end
 end
-

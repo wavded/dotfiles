@@ -6,7 +6,7 @@ local servers = {
   html = {},
   jsonls = {},
   sumneko_lua = {
-    settings = { Lua = { diagnostics = { globals = { "vim" } } } },
+    settings = { Lua = { diagnostics = { globals = { "vim", "hs" } } } },
   },
   tsserver = {},
   gopls = {},
