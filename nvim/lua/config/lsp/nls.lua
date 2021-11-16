@@ -21,10 +21,11 @@ function M.setup(options)
 end
 
 function M.has_formatter(ft)
-  local config = require("null-ls.config").get()
-  local formatters = config._generators["NULL_LS_FORMATTING"]
+  local formatters = require("null-ls").get_source({
+    method = require("null-ls").methods.FORMATTING,
+  })
   for _, f in ipairs(formatters) do
-    if vim.tbl_contains(f.filetypes, ft) then
+    if f.filetypes[ft] ~= nil then
       return true
     end
   end

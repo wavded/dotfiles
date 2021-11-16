@@ -40,6 +40,7 @@ require("packer").startup(function(use)
   use("nvim-lua/lsp-status.nvim") -- lsp status hooks
   use("folke/trouble.nvim") -- diagnostics
   use("ray-x/lsp_signature.nvim") -- fn signature
+  use("ray-x/go.nvim") -- addn go support
   use("kosayoda/nvim-lightbulb") -- quick actions
   use("jose-elias-alvarez/null-ls.nvim") -- non lsp support
 
@@ -61,6 +62,7 @@ require("options")
 require("keys")
 require("theme")
 
+require("config.lang")
 require("config.lsp")
 require("config.status")
 require("config.treesitter")
