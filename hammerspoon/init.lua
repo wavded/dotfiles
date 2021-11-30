@@ -1,9 +1,12 @@
--- Map CTRL, pressed alone, as ESC --
-local can_escape = false
+-- FYI: Local variables can be garbage collected, use globals if you want the state to always persist.
 
-local control_handler = function(evt)
+-- Map CTRL, pressed alone, as ESC --
+can_escape = false
+
+control_handler = function(evt)
   local flags = evt:getFlags()
   local key_code = evt:getKeyCode()
+  print(flags, key_code, can_escape)
 
   -- Left control alone was pressed.
   if
@@ -31,7 +34,7 @@ local control_handler = function(evt)
   end
 end
 
-local control_tap = hs.eventtap.new(
+control_tap = hs.eventtap.new(
   { hs.eventtap.event.types.flagsChanged, hs.eventtap.event.types.keyDown },
   control_handler
 )
