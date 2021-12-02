@@ -48,29 +48,7 @@ require("config.lsp.nls").setup(options)
 require("config.lsp.install").setup(servers, options)
 
 local lspconfig = require("lspconfig")
-local configs = require("lspconfig/configs")
-if not lspconfig.golangcilsp then
-  configs.golangcilsp = {
-    default_config = {
-      cmd = { "golangci-lint-langserver" },
-      root_dir = lspconfig.util.root_pattern(".git", "go.mod"),
-      init_options = {
-        command = {
-          "golangci-lint",
-          "run",
-          "--enable",
-          "gosec",
-          "--disable",
-          "lll",
-          "--out-format",
-          "json",
-        },
-      },
-    },
-  }
-end
-
-lspconfig.golangcilsp.setup({
+lspconfig.golangci_lint_ls.setup({
   filetypes = { "go" },
   on_attach = on_attach,
   capabilities = capabilities,

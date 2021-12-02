@@ -6,7 +6,7 @@ can_escape = false
 control_handler = function(evt)
   local flags = evt:getFlags()
   local key_code = evt:getKeyCode()
-  print(flags, key_code, can_escape)
+  -- print(flags, key_code, can_escape)
 
   -- Left control alone was pressed.
   if
