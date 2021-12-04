@@ -43,12 +43,14 @@ echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 # == Languages
 brew install java
 brew install deno
+brew install stylua
 brew install node
 brew install yarn
 brew install yarn-completion
 yarn global add \
   eslint \
   prettier \
+  @fsouza/prettierd \
   nodemon \
   nyc \
   write-good \

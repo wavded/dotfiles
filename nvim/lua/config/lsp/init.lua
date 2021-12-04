@@ -49,9 +49,20 @@ require("config.lsp.install").setup(servers, options)
 
 local lspconfig = require("lspconfig")
 lspconfig.golangci_lint_ls.setup({
-  filetypes = { "go" },
   on_attach = on_attach,
   capabilities = capabilities,
+  init_options = {
+    command = {
+      "golangci-lint",
+      "run",
+      "--enable",
+      "gosec",
+      "--disable",
+      "lll",
+      "--out-format",
+      "json",
+    },
+  },
   flags = {
     debounce_text_changes = 150,
   },
