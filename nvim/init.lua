@@ -21,7 +21,7 @@ require("packer").startup(function(use)
   use("tpope/vim-surround") -- text objects
   use("tpope/vim-repeat") -- repeat
 
-  use("bluz71/vim-nightfly-guicolors") -- colorscheme
+  use({ "catppuccin/nvim", as = "catppuccin" })
   use("kyazdani42/nvim-web-devicons") -- dev icons
   use({
     "kyazdani42/nvim-tree.lua",

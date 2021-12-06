@@ -1,4 +1,14 @@
-vim.cmd("colorscheme nightfly")
+local catppuccin = require("catppuccin")
 
-vim.g.nightflyNormalFloat = 1
-vim.g.nightflyUndercurls = 1
+catppuccin.setup({
+  integrations = {
+    gitsigns = true,
+    telescope = true,
+    nvimtree = {
+      enabled = true,
+      show_root = true,
+    },
+  },
+})
+
+vim.cmd([[colorscheme catppuccin]])
