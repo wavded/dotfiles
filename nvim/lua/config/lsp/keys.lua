@@ -12,7 +12,7 @@ function M.setup(_, buf)
   bmap(buf, "n", "<c-k>", ":LspDiagPrev<cr>", bopts)
   bmap(buf, "n", "<c-j>", ":LspDiagNext<cr>", bopts)
   bmap(buf, "n", "ga", ":LspCodeActions<cr>", bopts)
-  bmap(buf, "n", "gs", ":LspSymbols<cr>", bopts)
+  bmap(buf, "n", "<leader>s", ":LspSymbols<cr>", bopts)
 end
 
 return M
