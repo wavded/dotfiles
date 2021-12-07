@@ -27,6 +27,7 @@ brew install tmux
 brew install reattach-to-user-namespace
 brew install watch
 brew install plantuml
+brew install redis
 brew install neovim
 
 # == Git
