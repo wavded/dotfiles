@@ -16,7 +16,7 @@ brew install ssh-copy-id
 # == Bash
 brew install bash
 brew install bash-git-prompt
-brew install bash-completion2
+brew install bash-completion@2
 
 # == Utilities
 brew install tree
