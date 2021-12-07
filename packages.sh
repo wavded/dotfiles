@@ -57,10 +57,13 @@ yarn global add \
   typescript \
   ts-node
 
+# === Go ===
 brew install go
 mkdir -p ~/Projects/go
 brew install golangci-lint
-go get github.com/nametake/golangci-lint-langserver
+go install github.com/nametake/golangci-lint-langserver@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install mvdan.cc/gofumpt@latest
 
 # == Cask
 brew install --cask postico

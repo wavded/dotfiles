@@ -6,6 +6,20 @@ local handlers = {
       return fname:gsub(".go$", "_test.go")
     end
   end,
+  javascript = function(fname)
+    if fname:match("_test.js$") then
+      return fname:gsub("_test.js$", ".js")
+    else
+      return fname:gsub(".js$", "_test.js")
+    end
+  end,
+  typescript = function(fname)
+    if fname:match("_test.ts$") then
+      return fname:gsub("_test.ts$", ".ts")
+    else
+      return fname:gsub(".ts$", "_test.ts")
+    end
+  end,
 }
 
 return function()
