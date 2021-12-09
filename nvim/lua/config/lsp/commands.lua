@@ -11,7 +11,7 @@ function M.setup(client, _)
     "command! LspReferences lua require'telescope.builtin'.lsp_references()"
   )
   vim.cmd(
-    "command! LspSymbols lua require'telescope.builtin'.lsp_dynamic_workspace_symbols()"
+    "command! LspSymbols lua require'telescope.builtin'.lsp_document_symbols()"
   )
   vim.cmd(
     "command! LspImplementations lua require'telescope.builtin'.lsp_implementations()"

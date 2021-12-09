@@ -18,6 +18,7 @@ vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
 vim.opt.lazyredraw = true -- wait to redraw
 vim.opt.pumheight = 10 -- completion window max size
+vim.opt.wrap = false
 vim.opt.linebreak = true -- do not break wrap in the middle of words
 vim.opt.updatetime = 250 -- millis before CursorHold event
 vim.opt.showmode = false -- hide show mode status

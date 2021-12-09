@@ -20,6 +20,7 @@ require("packer").startup(function(use)
   use("tpope/vim-commentary") -- gcc and gc for comments
   use("tpope/vim-surround") -- text objects
   use("tpope/vim-repeat") -- repeat
+  use("windwp/nvim-autopairs") -- repeat
 
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("kyazdani42/nvim-web-devicons") -- dev icons

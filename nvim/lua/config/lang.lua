@@ -1,3 +1,4 @@
+require("nvim-autopairs").setup({})
 require("go").setup()
 
 vim.cmd(
