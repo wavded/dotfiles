@@ -3,10 +3,8 @@ local M = {}
 function M.setup(options)
   local nls = require("null-ls")
 
-  nls.config({
+  local opts = vim.tbl_deep_extend("force", options, {
     debounce = 150,
-    save_after_format = false,
-
     sources = {
       nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.stylua,
@@ -17,7 +15,7 @@ function M.setup(options)
       nls.builtins.diagnostics.write_good,
     },
   })
-  require("lspconfig")["null-ls"].setup(options)
+  nls.setup(opts)
 end
 
 function M.has_formatter(ft)

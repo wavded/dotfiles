@@ -57,6 +57,7 @@ cmp.setup({
     { name = "snippy" },
     { name = "buffer" },
     { name = "path" },
+    { name = "rg" },
   },
 
   documentation = {

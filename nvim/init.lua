@@ -20,7 +20,7 @@ require("packer").startup(function(use)
   use("tpope/vim-commentary") -- gcc and gc for comments
   use("tpope/vim-surround") -- text objects
   use("tpope/vim-repeat") -- repeat
-  use("windwp/nvim-autopairs") -- repeat
+  use("windwp/nvim-autopairs") -- auto pairs
 
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("kyazdani42/nvim-web-devicons") -- dev icons
@@ -51,6 +51,7 @@ require("packer").startup(function(use)
   use("hrsh7th/nvim-cmp") -- autocompletion (cmp)
   use("hrsh7th/cmp-nvim-lsp") -- cmp: LSP source
   use("hrsh7th/cmp-path") -- cmp: path source
+  use("lukas-reineke/cmp-rg") -- cmp: ripgrep source
   use("dcampos/cmp-snippy") -- cmp: snippets source
   use("dcampos/nvim-snippy") -- snippets plugin
   use("honza/vim-snippets") -- language snippets
