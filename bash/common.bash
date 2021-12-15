@@ -14,8 +14,8 @@ hash gcp >/dev/null 2>&1 && alias cp="gcp"
 hash gsed >/dev/null 2>&1 && alias sed="gsed"
 
 # Enable dircolors.
-#hash dircolors >/dev/null 2>&1 || alias dircolors="gdircolors"
-#eval `dircolors ~/.bash/dir_colors`
+# hash dircolors >/dev/null 2>&1 || alias dircolors="gdircolors"
+# eval `dircolors ~/.bash/dir_colors`
 
 # Always use color, even when piping.
 if gls --color > /dev/null 2>&1; then colorflag="--color"; else colorflag="-G"; fi;

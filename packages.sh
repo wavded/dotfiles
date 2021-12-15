@@ -3,6 +3,7 @@ xcode-select --install
 
 # === Section: brew ===
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 brew upgrade
 
@@ -16,7 +17,7 @@ brew install ssh-copy-id
 # == Bash
 brew install bash
 brew install bash-git-prompt
-brew install bash-completion2
+brew install bash-completion@2
 
 # == Utilities
 brew install tree
@@ -27,7 +28,9 @@ brew install tmux
 brew install reattach-to-user-namespace
 brew install watch
 brew install plantuml
+brew install redis
 brew install neovim
+brew install dnscontrol
 
 # == Git
 brew install git
@@ -38,27 +41,34 @@ brew install git-extras
 brew install gnupg
 brew install pinentry-mac
 mkdir ~/.gnupg
-echo "pinentry-program /usr/local/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
+echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
 # == Languages
 brew install java
 brew install deno
+brew install stylua
 brew install node
+brew install php
 brew install yarn
 brew install yarn-completion
 yarn global add \
   eslint \
   prettier \
+  @fsouza/prettierd \
   nodemon \
   nyc \
   write-good \
   typescript \
   ts-node
 
+# === Go ===
 brew install go
 mkdir -p ~/Projects/go
 brew install golangci-lint
-go get github.com/nametake/golangci-lint-langserver
+go install github.com/nametake/golangci-lint-langserver@latest
+go install golang.org/x/tools/cmd/goimports@latest
+go install mvdan.cc/gofumpt@latest
+go install github.com/golang/mock/mockgen@latest
 
 # == Cask
 brew install --cask postico
@@ -68,6 +78,9 @@ brew install --cask gitup
 brew install --cask imageoptim
 brew install --cask hammerspoon
 brew install --cask appcleaner
+brew install --cask postman
+brew install --cask skitch
+brew install --cask owasp-zap
 brew install --cask slack
 brew install --cask iterm2
 brew install --cask viscosity
@@ -80,9 +93,9 @@ brew install --cask font-jetbrains-mono-nerd-font
 brew cleanup
 
 # Switch to using brew-installed bash as default shell.
-if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
-  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /usr/local/bin/bash;
+if ! fgrep -q '/opt/homebrew/bin/bash' /etc/shells; then
+  echo '/opt/homebrew/bin/bash' | sudo tee -a /etc/shells;
+  chsh -s /opt/homebrew/bin/bash;
 fi;
 
 # === Rust ===
@@ -94,4 +107,4 @@ rustup component add rust-analysis
 rustup component add rust-src
 rustup component add rustfmt
 rustup component add clippy
-cargo install cargo-upgrade
+cargo install cargo-update

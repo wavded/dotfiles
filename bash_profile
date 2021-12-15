@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+eval "$(/opt/homebrew/bin/brew shellenv)"
 for file in ~/.bash/{exports,common,options}.bash; do
     [ -r "$file" ] && source "$file"
 done
