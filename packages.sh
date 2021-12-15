@@ -47,6 +47,7 @@ brew install java
 brew install deno
 brew install stylua
 brew install node
+brew install php
 brew install yarn
 brew install yarn-completion
 yarn global add \
