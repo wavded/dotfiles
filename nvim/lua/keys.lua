@@ -52,3 +52,6 @@ u.map("n", "<leader>`", ":!gitup commit<cr><cr>", { silent = true })
 
 -- alternate file
 u.map("n", "<leader>a", ':lua require("alternate")()<cr>')
+
+-- git messenger
+u.map("n", "gm", ":GitMessenger<cr>")

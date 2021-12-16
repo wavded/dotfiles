@@ -24,12 +24,13 @@ require("packer").startup(function(use)
 
   use({ "catppuccin/nvim", as = "catppuccin" })
   use("kyazdani42/nvim-web-devicons") -- dev icons
-  use({
+  use({ -- file explorer
     "kyazdani42/nvim-tree.lua",
     commit = "8eed3ff8052adcea00bba41f1cf9c21be009251c",
-  }) -- file explorer
+  })
   use("nvim-lualine/lualine.nvim") -- status line
   use("lewis6991/gitsigns.nvim") -- git sign column
+  use("rhysd/git-messenger.vim") -- git commit messages
 
   use("nvim-telescope/telescope.nvim") -- go to file
 
@@ -54,7 +55,6 @@ require("packer").startup(function(use)
   use("lukas-reineke/cmp-rg") -- cmp: ripgrep source
   use("dcampos/cmp-snippy") -- cmp: snippets source
   use("dcampos/nvim-snippy") -- snippets plugin
-  use("honza/vim-snippets") -- language snippets
 
   if packer_bootstrap then
     require("packer").sync()
