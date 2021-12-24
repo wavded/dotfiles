@@ -1,16 +1,27 @@
 local u = require("util")
 
--- config
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  {
-    virtual_text = false,
-    signs = true,
-    update_in_insert = false,
-    underline = true,
-    severity_sort = true,
-  }
-)
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  update_in_insert = false,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+    format = function(d)
+      local t = vim.deepcopy(d)
+      if d.code then
+        t.message = string.format("%s [%s]", t.message, t.code):gsub("1. ", "")
+      end
+      return t.message
+    end,
+  },
+})
 
 -- signs
 local signs = {

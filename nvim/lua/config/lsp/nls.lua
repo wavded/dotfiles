@@ -12,6 +12,7 @@ function M.setup(options)
       nls.builtins.formatting.rustfmt,
       nls.builtins.formatting.goimports,
       nls.builtins.formatting.gofumpt,
+      nls.builtins.diagnostics.eslint_d,
       nls.builtins.diagnostics.write_good,
     },
   })
