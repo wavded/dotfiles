@@ -23,6 +23,7 @@ brew install bash-completion@2
 brew install tree
 brew install ripgrep
 brew install fd
+brew install wget
 brew install autojump
 brew install tmux
 brew install reattach-to-user-namespace

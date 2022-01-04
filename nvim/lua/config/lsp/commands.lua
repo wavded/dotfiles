@@ -44,7 +44,7 @@ function M.setup(client, _)
 
   -- diagnotics on hover
   vim.cmd(
-    [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics({focusable = false})]]
+    [[autocmd CursorHold * lua vim.diagnostic.open_float({focusable = false})]]
   )
 
   -- nvim-lightbulb

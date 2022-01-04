@@ -15,6 +15,16 @@ local servers = {
       },
     },
   },
+  rls = {
+    settings = {
+      rust = {
+        unstable_feature = true,
+        build_on_save = false,
+        all_features = true,
+        clippy_preference = "on",
+      },
+    },
+  },
   tsserver = {},
   gopls = {},
 }
