@@ -13,7 +13,7 @@ function M.setup(options)
       nls.builtins.formatting.goimports,
       nls.builtins.formatting.gofumpt,
       nls.builtins.diagnostics.eslint_d,
-      nls.builtins.diagnostics.write_good,
+      nls.builtins.diagnostics.vale,
     },
   })
   nls.setup(opts)

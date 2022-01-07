@@ -1,0 +1,7 @@
+extends: existence
+message: "Don't start a sentence with '%s'."
+level: error
+raw:
+  - '(?:[;-]\s)so[\s,]|\bSo[\s,]'
+  - '(?:[;-]\s)well[\s,]|\bWell[\s,]'
+  - '(?:[;-]\s)There\s(is|are)|\bThere\s(is|are)\b'

@@ -17,10 +17,10 @@ function M.setup(client, _)
     "command! LspImplementations lua require'telescope.builtin'.lsp_implementations()"
   )
   vim.cmd(
-    "command! LspDiagPrev lua vim.lsp.diagnostic.goto_prev({popup_opts = {focusable = false}})"
+    "command! LspDiagPrev lua vim.diagnostic.goto_prev({popup_opts = {focusable = false}})"
   )
   vim.cmd(
-    "command! LspDiagNext lua vim.lsp.diagnostic.goto_next({popup_opts = {focusable = false}})"
+    "command! LspDiagNext lua vim.diagnostic.goto_next({popup_opts = {focusable = false}})"
   )
 
   vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
