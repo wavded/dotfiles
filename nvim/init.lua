@@ -16,18 +16,15 @@ end
 require("packer").startup(function(use)
   use("wbthomason/packer.nvim") -- package manager
   use("nvim-lua/plenary.nvim") -- async lua (for plugins)
+  use({ "catppuccin/nvim", as = "catppuccin" }) -- theme
 
   use("tpope/vim-commentary") -- gcc and gc for comments
   use("tpope/vim-surround") -- text objects
   use("tpope/vim-repeat") -- repeat
   use("windwp/nvim-autopairs") -- auto pairs
 
-  use({ "catppuccin/nvim", as = "catppuccin" })
   use("kyazdani42/nvim-web-devicons") -- dev icons
-  use({ -- file explorer
-    "kyazdani42/nvim-tree.lua",
-    commit = "8eed3ff8052adcea00bba41f1cf9c21be009251c",
-  })
+  use("kyazdani42/nvim-tree.lua") -- file explorer
   use("feline-nvim/feline.nvim") -- status line
   use("lewis6991/gitsigns.nvim") -- git sign column
   use("rhysd/git-messenger.vim") -- git commit messages
