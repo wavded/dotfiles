@@ -13,7 +13,10 @@ function M.setup(options)
       nls.builtins.formatting.goimports,
       nls.builtins.formatting.gofumpt,
       nls.builtins.diagnostics.eslint_d,
-      nls.builtins.diagnostics.vale,
+      -- nls.builtins.diagnostics.vale,
+      nls.builtins.diagnostics.vale.with({
+        extra_filetypes = { "text", "gitcommit" },
+      }),
     },
   })
   nls.setup(opts)
