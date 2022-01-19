@@ -10,7 +10,7 @@
   hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
 
   # Quick commit all.
-  call =! git add -A && git commit -v
+  call =! git add -A && git commit
 
   # Clean 'gone' branches (i.e. ones that have been removed from the remote).
   gone =! git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
