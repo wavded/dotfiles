@@ -15,6 +15,7 @@ local servers = {
       },
     },
   },
+  jdtls = {},
   rls = {
     settings = {
       rust = {
@@ -27,6 +28,20 @@ local servers = {
   },
   tsserver = {},
   gopls = {},
+  golangci_lint_ls = {
+    init_options = {
+      command = {
+        "golangci-lint",
+        "run",
+        "--enable",
+        "gosec",
+        "--disable",
+        "lll",
+        "--out-format",
+        "json",
+      },
+    },
+  },
 }
 
 local function on_attach(client, buf)
@@ -56,26 +71,4 @@ local options = {
 
 require("config.lsp.nls").setup(options)
 require("config.lsp.install").setup(servers, options)
-
-local lspconfig = require("lspconfig")
-lspconfig.golangci_lint_ls.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  init_options = {
-    command = {
-      "golangci-lint",
-      "run",
-      "--enable",
-      "gosec",
-      "--disable",
-      "lll",
-      "--out-format",
-      "json",
-    },
-  },
-  flags = {
-    debounce_text_changes = 150,
-  },
-})
-
 require("config.lsp.completion")

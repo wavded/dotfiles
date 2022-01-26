@@ -6,7 +6,7 @@ function rm-if-present { # $1: to-path $2: from-path
   if [ -e $1 ]; then
     rm -rf $1;
   fi
-  ln -s $2 $1;
+  ln -s $3 $1;
 }
 
 for f in "${files[@]}"
