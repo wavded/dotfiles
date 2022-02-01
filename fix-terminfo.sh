@@ -7,7 +7,7 @@ rm -rf "$TERMINFO"
 tmp=$(mktemp)
 
 cat > "$tmp" <<EOF
-xterm-256color|tmux with 256 colors,
+xterm-256color|xterm with 256 colors,
   OTbs, OTpt, am, hs, km, mir, msgr, xenl, AX, G0,
   colors#0x100, cols#80, it#8, lines#24, pairs#0x10000, U8#1,
   acsc=++\,\,--..00``aaffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz{{||}}~~,
@@ -73,6 +73,13 @@ xterm-256color|tmux with 256 colors,
   kRIT5=\E[1;5C, kRIT6=\E[1;6C, kRIT7=\E[1;7C, kUP=\E[1;2A,
   kUP3=\E[1;3A, kUP4=\E[1;4A, kUP5=\E[1;5A, kUP6=\E[1;6A,
   kUP7=\E[1;7A, rmxx=\E[29m, smxx=\E[9m,
+
+tmux|tmux terminal multiplexer,
+  ritm=\E[23m, rmso=\E[27m, sitm=\E[3m, smso=\E[7m, Ms@,
+  use=xterm, use=screen,
+
+tmux-256color|tmux with 256 colors,
+  use=xterm-256color, use=tmux,
 EOF
 
 tic -x "$tmp"

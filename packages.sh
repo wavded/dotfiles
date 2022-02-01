@@ -45,7 +45,6 @@ mkdir ~/.gnupg
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
 # == Languages
-brew install java
 brew install deno
 brew install stylua
 brew install node
@@ -61,6 +60,12 @@ yarn global add \
   write-good \
   typescript \
   ts-node
+
+# === Java ===
+brew install java
+brew install gradle
+brew install google-java-format
+sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 # === Go ===
 brew install go

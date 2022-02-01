@@ -15,7 +15,11 @@ local servers = {
       },
     },
   },
-  jdtls = {},
+  jdtls = {
+    settings = {
+      ["java.format.enabled"] = false,
+    },
+  },
   rls = {
     settings = {
       rust = {

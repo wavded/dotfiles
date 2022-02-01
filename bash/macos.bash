@@ -23,6 +23,7 @@ export PATH="$HOME/.deno/bin:$PATH"
 export SHELL_SESSION_HISTORY=0
 
 export GOROOT="$(brew --prefix golang)/libexec"
+export JDTLS_HOME=$HOME/.local/share/nvim/lsp_servers/jdtls
 
 # Allow OpenSSL to be linked.
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openssl/lib/pkgconfig"

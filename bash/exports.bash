@@ -30,7 +30,6 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 
-export TERM=xterm-256color
 export DEFAULT_USER=wavded
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
