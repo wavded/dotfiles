@@ -34,6 +34,9 @@ require("nvim-tree").setup({
   diagnostics = { enable = true },
   filters = { dotfiles = false },
   update_cwd = true,
+  git = {
+    ignore = false,
+  },
   view = {
     mappings = {
       list = {
