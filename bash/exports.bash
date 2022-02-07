@@ -33,6 +33,10 @@ export MANPAGER='less -X';
 export DEFAULT_USER=wavded
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
+# ==== Java ====
+export JAVA_VERSION=11
+export JAVA_HOME="$(/usr/libexec/java_home -v "$JAVA_VERSION")"
+
 # ==== Go ====
 export GOPATH=$HOME/Projects/go
 export GOBIN=$HOME/Projects/go/bin

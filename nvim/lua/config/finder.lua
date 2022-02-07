@@ -3,6 +3,15 @@ local actions = require("telescope.actions")
 
 require("telescope").setup({
   defaults = {
+    layout_strategy = "vertical",
+    layout_config = {
+      vertical = {
+        mirror = true,
+        prompt_position = "top",
+        height = 0.8,
+        width = 0.8,
+      },
+    },
     mappings = {
       i = {
         ["<esc>"] = actions.close,

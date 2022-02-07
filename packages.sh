@@ -65,6 +65,7 @@ yarn global add \
 brew install java
 brew install gradle
 brew install google-java-format
+brew install kotlin
 sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 # === Go ===
