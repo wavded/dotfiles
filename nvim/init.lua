@@ -35,6 +35,7 @@ require("packer").startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   })
+  use("aklt/plantuml-syntax") -- plantuml
 
   use("onsails/lspkind-nvim") -- lsp kind icons
   use("neovim/nvim-lspconfig") -- lsp configs
