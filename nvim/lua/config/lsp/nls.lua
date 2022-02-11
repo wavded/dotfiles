@@ -10,8 +10,6 @@ function M.setup(options)
       nls.builtins.formatting.stylua,
       nls.builtins.formatting.prettierd,
       nls.builtins.formatting.rustfmt,
-      nls.builtins.formatting.goimports,
-      nls.builtins.formatting.gofumpt,
       nls.builtins.formatting.google_java_format,
       nls.builtins.diagnostics.eslint_d,
       nls.builtins.diagnostics.vale.with({

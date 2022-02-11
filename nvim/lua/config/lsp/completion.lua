@@ -29,7 +29,6 @@ cmp.setup({
     ["<tab>"] = cmp.mapping(function(fallback)
       if snippy.can_expand_or_advance() then
         snippy.expand_or_advance()
-        -- vim.fn.feedkeys(u.t("<Plug>snippy-expand-or-next"), "")
       elseif check_back_space() then
         vim.fn.feedkeys(u.t("<tab>"), "n")
       else
@@ -42,7 +41,6 @@ cmp.setup({
     ["<s-tab>"] = cmp.mapping(function(fallback)
       if snippy.can_jump(-1) then
         snippy.previous()
-        -- vim.fn.feedkeys(u.t("<Plug>snippy-previous"), "")
       else
         fallback()
       end

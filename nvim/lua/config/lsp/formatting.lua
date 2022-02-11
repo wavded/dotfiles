@@ -1,22 +1,7 @@
-local u = require("util")
-
 local M = {}
 
-M.autoformat = true
-
-function M.toggle()
-  M.autoformat = not M.autoformat
-  if M.autoformat then
-    u.info("enabled format on save", "Formatting")
-  else
-    u.warn("disabled format on save", "Formatting")
-  end
-end
-
 function M.format()
-  if M.autoformat then
-    vim.lsp.buf.formatting_sync()
-  end
+  vim.lsp.buf.formatting_sync()
 end
 
 function M.setup(client, buf)
