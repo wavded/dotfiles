@@ -35,7 +35,7 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 # ==== Java ====
 export JAVA_VERSION=11
-hash /usr/libexec/java_home >/dev/null 2>&1 && export JAVA_HOME="$(/usr/libexec/java_home -v "$JAVA_VERSION")"
+hash ./usr/libexec/java_home >/dev/null 2>&1 && export JAVA_HOME="$(/usr/libexec/java_home -v "$JAVA_VERSION")"
 
 # ==== Go ====
 export GOPATH=$HOME/Projects/go
