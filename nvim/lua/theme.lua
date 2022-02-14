@@ -11,6 +11,7 @@ catppuccin.setup({
       enabled = true,
       show_root = true,
     },
+    ts_rainbow = true,
   },
 })
 

@@ -14,10 +14,26 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require("packer").startup(function(use)
+  use("lewis6991/impatient.nvim") -- speed up load
   use("wbthomason/packer.nvim") -- package manager
   use("nvim-lua/plenary.nvim") -- async lua (for plugins)
+  use({ -- hex colors
+    "norcalli/nvim-colorizer.lua",
+    ft = {
+      "css",
+      "scss",
+      "sass",
+      "javascriptreact",
+      "typescriptreact",
+      "lua",
+    },
+    config = function()
+      require("colorizer").setup()
+    end,
+  })
   use({ "catppuccin/nvim", as = "catppuccin" }) -- theme
 
+  use("JoosepAlviste/nvim-ts-context-commentstring") -- smart comment tracking
   use("tpope/vim-commentary") -- gcc and gc for comments
   use("tpope/vim-surround") -- text objects
   use("tpope/vim-repeat") -- repeat
@@ -35,6 +51,7 @@ require("packer").startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   })
+  use("p00f/nvim-ts-rainbow")
   use("aklt/plantuml-syntax") -- plantuml
 
   use("onsails/lspkind-nvim") -- lsp kind icons

@@ -22,7 +22,7 @@ require("telescope").setup({
   },
 })
 
-u.map("n", "<leader>f", ":Telescope find_files<cr>")
-u.map("n", "<leader>g", ":Telescope live_grep<cr>")
+u.map("n", "<leader>g", ":Telescope find_files<cr>")
+u.map("n", "<leader>f", ":Telescope live_grep<cr>")
 u.map("n", "<leader>b", ":Telescope buffers<cr>")
-u.map("n", "<leader>t", ":Telescope help_tags<cr>")
+u.map("n", "<leader>h", ":Telescope help_tags<cr>")
