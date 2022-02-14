@@ -12,7 +12,7 @@ export HISTIGNORE=$'&:[ \t]*:[fb]g:l[slad]*:cd*:mv*:clear:exit:\:*'
 # Save and reload the history after each command finishes to make it available for other sessions (may cause dups).
 # export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:/usr/libexec:$PATH
 
 # Prefer US English and use UTF-8.
 export LANG='en_US.UTF-8';
@@ -35,7 +35,7 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 # ==== Java ====
 export JAVA_VERSION=11
-hash ./usr/libexec/java_home >/dev/null 2>&1 && export JAVA_HOME="$(/usr/libexec/java_home -v "$JAVA_VERSION")"
+hash java_home >/dev/null 2>&1 && export JAVA_HOME="$(java_home -v "$JAVA_VERSION")"
 
 # ==== Go ====
 export GOPATH=$HOME/Projects/go
