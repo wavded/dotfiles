@@ -11,6 +11,7 @@ function M.setup(options)
       nls.builtins.formatting.prettierd,
       nls.builtins.formatting.rustfmt,
       nls.builtins.formatting.google_java_format,
+      nls.builtins.formatting.phpcsfixer,
       nls.builtins.diagnostics.eslint_d,
       nls.builtins.diagnostics.vale.with({
         extra_filetypes = { "text", "gitcommit" },

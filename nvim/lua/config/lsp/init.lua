@@ -3,35 +3,6 @@ require("config.lsp.kind").setup()
 
 local servers = {
   cssls = {},
-  html = {},
-  jsonls = {},
-  sumneko_lua = {
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "vim", "hs" },
-          disable = { "lowercase-global" },
-        },
-      },
-    },
-  },
-  jdtls = {
-    settings = {
-      ["java.format.enabled"] = false,
-    },
-  },
-  rls = {
-    settings = {
-      rust = {
-        unstable_feature = true,
-        build_on_save = false,
-        all_features = true,
-        clippy_preference = "on",
-      },
-    },
-  },
-  tsserver = {},
-  gopls = {},
   golangci_lint_ls = {
     init_options = {
       command = {
@@ -46,6 +17,37 @@ local servers = {
       },
     },
   },
+  gopls = {},
+  html = {},
+  jdtls = {
+    settings = {
+      ["java.format.enabled"] = false,
+    },
+  },
+  jsonls = {},
+  kotlin_language_server = {},
+  phpactor = {},
+  rls = {
+    settings = {
+      rust = {
+        unstable_feature = true,
+        build_on_save = false,
+        all_features = true,
+        clippy_preference = "on",
+      },
+    },
+  },
+  sumneko_lua = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim", "hs" },
+          disable = { "lowercase-global" },
+        },
+      },
+    },
+  },
+  tsserver = {},
 }
 
 local function on_attach(client, buf)
