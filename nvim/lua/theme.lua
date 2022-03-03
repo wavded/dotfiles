@@ -10,6 +10,7 @@ catppuccin.setup({
     nvimtree = {
       enabled = true,
       show_root = true,
+      transparent_panel = true,
     },
     ts_rainbow = true,
   },

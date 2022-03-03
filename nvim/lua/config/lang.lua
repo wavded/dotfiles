@@ -4,7 +4,7 @@ require("go").setup({
   tag_transform = false,
 })
 
-vim.cmd([[autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()]])
+-- vim.cmd([[autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()]])
 
 vim.cmd(
   [[au FileType javascript,typescript map <leader>e :100split \| term NODE_ENV=test TS_NODE_FILES=true nyc ts-node %<cr>]]

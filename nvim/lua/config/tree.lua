@@ -1,6 +1,5 @@
 local u = require("util")
 
-vim.g.nvim_tree_quit_on_open = 1
 vim.g.nvim_tree_respect_buf_cwd = 1
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_icons = {
@@ -37,6 +36,11 @@ require("nvim-tree").setup({
   git = {
     ignore = false,
   },
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
   view = {
     mappings = {
       list = {
@@ -51,4 +55,4 @@ require("nvim-tree").setup({
   },
 })
 
-u.map("n", "<leader>n", ":NvimTreeToggle<cr>", { silent = true })
+u.map("n", "<leader>n", ":NvimTreeFindFileToggle<cr>", { silent = true })
