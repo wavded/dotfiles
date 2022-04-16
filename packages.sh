@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
+set -x
 xcode-select --install
 
-# === Section: brew ===
+# == Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 brew upgrade
 
-# == GNU Tools
+# == GNU tools
 brew install coreutils
 brew install moreutils
 brew install gnu-sed
@@ -18,6 +19,12 @@ brew install ssh-copy-id
 brew install bash
 brew install bash-git-prompt
 brew install bash-completion@2
+
+# Switch to using brew-installed bash as default shell.
+if ! fgrep -q '/opt/homebrew/bin/bash' /etc/shells; then
+  echo '/opt/homebrew/bin/bash' | sudo tee -a /etc/shells;
+  chsh -s /opt/homebrew/bin/bash;
+fi;
 
 # == Utilities
 brew install tree
@@ -44,38 +51,39 @@ brew install pinentry-mac
 mkdir ~/.gnupg
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
-# == Languages
-brew install deno
-brew install stylua
+# == Node
 brew install node
-brew install php
-brew install yarn
-brew install yarn-completion
-yarn global add \
+brew install pnpm
+pnpm add -g pnpm
+pnpm add -g \
   eslint \
   prettier \
   @fsouza/prettierd \
   nodemon \
   nyc \
-  write-good \
   typescript \
   ts-node
+pnpm install-completion bash
 
-# === Java ===
+# == Java
 brew install java
 brew install gradle
 brew install google-java-format
 brew install kotlin
 sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
-# === Go ===
+# == Go
 brew install go
 mkdir -p ~/Projects/go
 brew install golangci-lint
-go install github.com/nametake/golangci-lint-langserver@latest
 go install golang.org/x/tools/cmd/goimports@latest
 go install mvdan.cc/gofumpt@latest
 go install github.com/golang/mock/mockgen@latest
+
+# == Misc languages
+brew install deno
+brew install stylua
+brew install php
 
 # == Cask
 brew install --cask postico
@@ -99,14 +107,7 @@ brew install --cask font-jetbrains-mono-nerd-font
 
 brew cleanup
 
-# Switch to using brew-installed bash as default shell.
-if ! fgrep -q '/opt/homebrew/bin/bash' /etc/shells; then
-  echo '/opt/homebrew/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /opt/homebrew/bin/bash;
-fi;
-
-# === Rust ===
-
+# == Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustup component add rls
