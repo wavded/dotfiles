@@ -48,6 +48,10 @@ export PATH=$HOME/Library/Haskell/bin:$PATH
 # ==== Yarn ====
 hash yarn >/dev/null 2>&1 && export PATH=$PATH:$HOME/.config/yarn/global/node_modules/.bin
 
+# ==== PNPM ====
+export PNPM_HOME="/Users/wavded/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 # ==== Rust ====
 export PATH="$HOME/.cargo/bin:$PATH"
 hash rustc >/dev/null 2>&1 && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"

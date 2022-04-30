@@ -63,4 +63,8 @@ cmp.setup({
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
   },
+
+  view = {
+    entries = "native",
+  },
 })

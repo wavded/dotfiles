@@ -53,6 +53,7 @@ require("packer").startup(function(use)
   })
   use("p00f/nvim-ts-rainbow")
   use("aklt/plantuml-syntax") -- plantuml
+  use("lepture/vim-jinja") -- jinja
 
   use("onsails/lspkind-nvim") -- lsp kind icons
   use("neovim/nvim-lspconfig") -- lsp configs
