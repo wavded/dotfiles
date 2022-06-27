@@ -1,3 +1,6 @@
+vim.g.do_filetype_lua = 1
+vim.g.did_load_filetypes = 0
+
 local install_path = vim.fn.stdpath("data")
   .. "/site/pack/packer/start/packer.nvim"
 local packer_bootstrap = nil

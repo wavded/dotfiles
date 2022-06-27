@@ -1,43 +1,46 @@
 local u = require("util")
 
-vim.g.nvim_tree_respect_buf_cwd = 1
-vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_icons = {
-  default = "",
-  symlink = "",
-  git = {
-    unstaged = "",
-    staged = "",
-    unmerged = "",
-    renamed = "",
-    untracked = "",
-    deleted = "",
-    ignored = "",
-  },
-  folder = {
-    arrow_open = "",
-    arrow_closed = "",
-    default = "",
-    open = "",
-    empty = "",
-    empty_open = "",
-    symlink = "",
-    symlink_open = "",
-  },
-}
-
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 require("nvim-tree").setup({
   diagnostics = { enable = true },
   filters = { dotfiles = false },
   update_cwd = true,
+  respect_buf_cwd = true,
   git = {
     ignore = false,
   },
   actions = {
     open_file = {
       quit_on_open = true,
+    },
+  },
+  renderer = {
+    highlight_git = true,
+    icons = {
+      glyphs = {
+        default = "",
+        symlink = "",
+        git = {
+          unstaged = "",
+          staged = "",
+          unmerged = "",
+          renamed = "",
+          untracked = "",
+          deleted = "",
+          ignored = "",
+        },
+        folder = {
+          arrow_open = "",
+          arrow_closed = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
+        },
+      },
     },
   },
   view = {

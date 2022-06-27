@@ -9,7 +9,7 @@ function M.setup(client, buf)
   local nls = require("config.lsp.nls")
 
   local enable = false
-  if nls.has_formatter(ft) then
+  if nls.has_formatter(ft) or ft == "go" then
     enable = client.name == "null-ls"
   else
     enable = not (client.name == "null-ls")

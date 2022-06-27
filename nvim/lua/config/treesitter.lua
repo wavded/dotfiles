@@ -16,6 +16,7 @@ ts_configs.setup({
     "kotlin",
     "lua",
     "make",
+    "markdown",
     "php",
     "pug",
     "rust",
@@ -28,9 +29,7 @@ ts_configs.setup({
   },
   highlight = { enable = true, use_languagetree = true },
   indent = { enable = true },
-  -- context_commentstring = {
-  --   enable = true,
-  -- },
+  context_commentstring = { enable = true },
   rainbow = {
     enable = true,
     extended_mode = true,
