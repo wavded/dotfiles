@@ -54,8 +54,8 @@ echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 # == Node
 brew install node
 brew install pnpm
-pnpm add -g pnpm
-pnpm add -g \
+pnpm install -g pnpm
+pnpm install -g \
   eslint \
   prettier \
   @fsouza/prettierd \
