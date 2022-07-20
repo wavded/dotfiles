@@ -28,12 +28,12 @@ function M.setup(client, _)
   vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting_sync()")
 
   vim.cmd("augroup LspAutocommands")
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd([[
-      autocmd! * <buffer>
-      autocmd BufWritePre <buffer> LspFormatting
-    ]])
-  end
+  -- if client.resolved_capabilities.document_formatting then
+  --   vim.cmd([[
+  --     autocmd! * <buffer>
+  --     autocmd BufWritePre <buffer> LspFormatting
+  --   ]])
+  -- end
 
   -- if client.resolved_capabilities.document_highlight == true then
   --   vim.cmd([[

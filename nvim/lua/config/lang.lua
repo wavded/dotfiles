@@ -6,10 +6,7 @@ require("go").setup({
   tag_transform = false,
 })
 
-vim.api.nvim_exec(
-  [[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]],
-  false
-)
+vim.cmd([[au BufWritePre *.go :silent! lua require('go.format').goimport()]])
 
 vim.cmd(
   [[au FileType javascript,typescript map <leader>e :100split \| term NODE_ENV=test TS_NODE_FILES=true nyc ts-node %<cr>]]

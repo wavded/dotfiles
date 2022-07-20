@@ -1,3 +1,5 @@
-require("feline").setup({
-  components = require("catppuccin.core.integrations.feline"),
+require("lualine").setup({
+  options = {
+    theme = "catppuccin",
+  },
 })

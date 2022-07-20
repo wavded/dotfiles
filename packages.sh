@@ -84,6 +84,7 @@ go install github.com/golang/mock/mockgen@latest
 brew install deno
 brew install stylua
 brew install php
+brew install composer
 
 # == Cask
 brew install --cask postico

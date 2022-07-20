@@ -44,7 +44,7 @@ require("packer").startup(function(use)
 
   use("kyazdani42/nvim-web-devicons") -- dev icons
   use("kyazdani42/nvim-tree.lua") -- file explorer
-  use("feline-nvim/feline.nvim") -- status line
+  use("nvim-lualine/lualine.nvim") -- status line
   use("lewis6991/gitsigns.nvim") -- git sign column
   use("rhysd/git-messenger.vim") -- git commit messages
 
