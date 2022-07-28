@@ -2,11 +2,9 @@ require("nvim-autopairs").setup({})
 
 require("go").setup({
   max_line_len = 80,
-  goimport = "goimports",
+  goimport = "golines",
   tag_transform = false,
 })
-
-vim.cmd([[au BufWritePre *.go :silent! lua require('go.format').goimport()]])
 
 vim.cmd(
   [[au FileType javascript,typescript map <leader>e :100split \| term NODE_ENV=test TS_NODE_FILES=true nyc ts-node %<cr>]]
