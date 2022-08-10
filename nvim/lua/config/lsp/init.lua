@@ -1,5 +1,24 @@
 require("config.lsp.diagnostics")
 require("config.lsp.kind").setup()
+require("mason").setup()
+
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "cssls",
+    "golangci_lint_ls",
+    "gopls",
+    "html",
+    "jdtls",
+    "kotlin_language_server",
+    "phpactor",
+    "rls",
+    "sumneko_lua",
+    "tsserver",
+  },
+  automatic_installation = true,
+})
+
+local lspconfig = require("lspconfig")
 
 local servers = {
   cssls = {},
@@ -67,7 +86,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local options = {
+local shared_opts = {
   on_attach = on_attach,
   capabilities = capabilities,
   flags = {
@@ -75,6 +94,10 @@ local options = {
   },
 }
 
-require("config.lsp.nls").setup(options)
-require("config.lsp.install").setup(servers, options)
+for name, opts in pairs(servers) do
+  local config = vim.tbl_deep_extend("force", shared_opts, opts or {})
+  lspconfig[name].setup(config)
+end
+
+require("config.lsp.nls").setup(shared_opts)
 require("config.lsp.completion")

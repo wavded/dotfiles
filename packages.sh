@@ -59,6 +59,7 @@ pnpm install -g \
   eslint \
   prettier \
   @fsouza/prettierd \
+  eslint_d \
   nodemon \
   nyc \
   typescript \

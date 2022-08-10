@@ -18,6 +18,8 @@ export PATH=/opt/homebrew/opt/node@16/bin:$PATH
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
+export BUN_INSTALL="/Users/wavded/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 . "$HOME/.cargo/env"
 
 # Disable per-terminal-session history: http://stackoverflow.com/a/34803825

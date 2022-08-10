@@ -43,7 +43,7 @@ require("packer").startup(function(use)
   use("windwp/nvim-autopairs") -- auto pairs
 
   use("kyazdani42/nvim-web-devicons") -- dev icons
-  use("kyazdani42/nvim-tree.lua") -- file explorer
+  use({ "kyazdani42/nvim-tree.lua", tag = "nightly" }) -- file tree
   use("nvim-lualine/lualine.nvim") -- status line
   use("lewis6991/gitsigns.nvim") -- git sign column
   use("rhysd/git-messenger.vim") -- git commit messages
@@ -59,8 +59,9 @@ require("packer").startup(function(use)
   use("lepture/vim-jinja") -- jinja
 
   use("onsails/lspkind-nvim") -- lsp kind icons
+  use("williamboman/mason.nvim") -- lsp tool installer
+  use("williamboman/mason-lspconfig.nvim") -- lspconfig extension
   use("neovim/nvim-lspconfig") -- lsp configs
-  use("williamboman/nvim-lsp-installer")
   use("nvim-lua/lsp-status.nvim") -- lsp status hooks
   use("folke/trouble.nvim") -- diagnostics
   use("ray-x/lsp_signature.nvim") -- fn signature
