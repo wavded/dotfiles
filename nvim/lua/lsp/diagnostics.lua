@@ -1,5 +1,3 @@
-local u = require("util")
-
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
@@ -25,19 +23,8 @@ vim.diagnostic.config({
 })
 
 -- signs
-local signs = {
-  Error = " ",
-  Warn = " ",
-  Hint = " ",
-  Info = " ",
-}
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
--- project-wide diagnostics
-require("trouble").setup({
-  auto_close = true,
-})
-u.map("n", "<leader>d", ":Trouble<cr>", { silent = true })

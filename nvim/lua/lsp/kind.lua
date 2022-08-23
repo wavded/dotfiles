@@ -25,11 +25,19 @@ M.icons = {
 }
 
 function M.cmp_format()
-  return function(_entry, vim_item)
-    if M.icons[vim_item.kind] then
-      vim_item.kind = M.icons[vim_item.kind] .. vim_item.kind
+  return function(entry, item)
+    if M.icons[item.kind] then
+      item.kind = M.icons[item.kind] .. item.kind
     end
-    return vim_item
+    item.menu = ({
+      nvim_lsp = "LSP",
+      snippy = "SNIP",
+      path = "PATH",
+      buffer = "BUF",
+      rg = "RG",
+      tmux = "TMUX",
+    })[entry.source.name]
+    return item
   end
 end
 

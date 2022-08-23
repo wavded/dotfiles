@@ -6,7 +6,7 @@ end
 
 function M.setup(client, buf)
   local ft = vim.api.nvim_buf_get_option(buf, "filetype")
-  local nls = require("config.lsp.nls")
+  local nls = require("lsp.null-ls")
 
   local enable = false
   if nls.has_formatter(ft) or ft == "go" then
@@ -22,7 +22,7 @@ function M.setup(client, buf)
     vim.cmd([[
       augroup LspFormat
         autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua require("config.lsp.formatting").format()
+        autocmd BufWritePre <buffer> lua require("lsp.formatting").format()
       augroup END
     ]])
   end

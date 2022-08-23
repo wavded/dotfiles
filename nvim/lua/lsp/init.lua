@@ -1,27 +1,15 @@
-require("config.lsp.diagnostics")
-require("config.lsp.kind").setup()
-require("mason").setup()
-
-require("mason-lspconfig").setup({
-  ensure_installed = {
-    "cssls",
-    "golangci_lint_ls",
-    "gopls",
-    "html",
-    "jdtls",
-    "kotlin_language_server",
-    "phpactor",
-    "rls",
-    "sumneko_lua",
-    "tsserver",
-  },
-  automatic_installation = true,
-})
+require("lsp.diagnostics")
+require("lsp.kind").setup()
 
 local lspconfig = require("lspconfig")
+local util = require("lspconfig.util")
 
 local servers = {
   cssls = {},
+  denols = {
+    root_dir = util.root_pattern("deno.json"),
+    single_file_support = false,
+  },
   golangci_lint_ls = {
     init_options = {
       command = {
@@ -38,12 +26,21 @@ local servers = {
   },
   gopls = {},
   html = {},
+  eslint = {
+    root_dir = util.root_pattern(".eslintrc"),
+  },
   jdtls = {
     settings = {
       ["java.format.enabled"] = false,
     },
   },
-  jsonls = {},
+  jsonls = {
+    settings = {
+      json = {
+        schemas = require("schemastore").json.schemas(),
+      },
+    },
+  },
   kotlin_language_server = {},
   phpactor = {},
   rls = {
@@ -66,17 +63,19 @@ local servers = {
       },
     },
   },
-  tsserver = {},
+  tsserver = {
+    root_dir = util.root_pattern("package.json"),
+  },
 }
 
 local function on_attach(client, buf)
-  require("lsp_signature").on_attach({
-    bind = true,
-    hint_prefix = " ",
-  })
-  require("config.lsp.commands").setup(client, buf)
-  require("config.lsp.formatting").setup(client, buf)
-  require("config.lsp.keys").setup(client, buf)
+  -- require("lsp_signature").on_attach({
+  --   bind = true,
+  --   hint_prefix = " ",
+  -- })
+  require("lsp.commands").setup(client, buf)
+  require("lsp.formatting").setup(client, buf)
+  require("lsp.keys").setup(client, buf)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -89,9 +88,6 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local shared_opts = {
   on_attach = on_attach,
   capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
 }
 
 for name, opts in pairs(servers) do
@@ -99,5 +95,4 @@ for name, opts in pairs(servers) do
   lspconfig[name].setup(config)
 end
 
-require("config.lsp.nls").setup(shared_opts)
-require("config.lsp.completion")
+require("lsp.null-ls").setup(shared_opts)

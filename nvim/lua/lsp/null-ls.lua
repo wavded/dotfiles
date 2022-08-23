@@ -8,15 +8,23 @@ function M.setup(options)
     sources = {
       nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.stylua,
-      nls.builtins.formatting.prettierd,
+      nls.builtins.formatting.deno_fmt.with({
+        condition = function(utils)
+          return utils.root_has_file({ "deno.json", "deno.jsonc" })
+        end,
+      }),
+      nls.builtins.formatting.prettierd.with({
+        condition = function(utils)
+          return utils.root_has_file(".prettierrc")
+        end,
+      }),
       nls.builtins.formatting.rustfmt,
       nls.builtins.formatting.google_java_format,
       nls.builtins.formatting.phpcsfixer,
-      nls.builtins.formatting.gofumpt,
       nls.builtins.formatting.golines.with({
-        extra_args = { "-m", "80" },
+        extra_args = { "-m", "80", "--no-reformat-tags" },
       }),
-      nls.builtins.diagnostics.eslint_d,
+      nls.builtins.formatting.gofumpt,
       nls.builtins.diagnostics.vale.with({
         extra_filetypes = { "text", "gitcommit" },
       }),

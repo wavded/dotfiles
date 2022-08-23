@@ -1,10 +1,9 @@
-local u = require("util")
+local u = require("configs.utils")
 
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 require("nvim-tree").setup({
   diagnostics = { enable = true },
-  filters = { dotfiles = false },
   update_cwd = true,
   respect_buf_cwd = true,
   git = {
@@ -21,15 +20,15 @@ require("nvim-tree").setup({
       glyphs = {
         default = "",
         symlink = "",
-        git = {
-          unstaged = "",
-          staged = "",
-          unmerged = "",
-          renamed = "",
-          untracked = "",
-          deleted = "",
-          ignored = "",
-        },
+        -- git = {
+        --   unstaged = "",
+        --   staged = "",
+        --   unmerged = "",
+        --   renamed = "",
+        --   untracked = "",
+        --   deleted = "",
+        --   ignored = "",
+        -- },
         folder = {
           arrow_open = "",
           arrow_closed = "",

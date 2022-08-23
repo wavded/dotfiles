@@ -27,9 +27,20 @@ ts_configs.setup({
     "vim",
     "yaml",
   },
-  highlight = { enable = true, use_languagetree = true },
+  highlight = {
+    enable = true,
+    use_languagetree = true,
+    disable = function(_, bufnr)
+      return vim.api.nvim_buf_line_count(bufnr) > 5000
+    end,
+  },
   indent = { enable = true },
-  context_commentstring = { enable = true },
+  autotag = { enable = true },
+  context_commentstring = { enable = true, enable_autocmd = false },
+  textsubjects = {
+    enable = true,
+    keymaps = { ["."] = "textsubjects-smart" },
+  },
   rainbow = {
     enable = true,
     extended_mode = true,
