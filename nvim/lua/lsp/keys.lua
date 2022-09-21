@@ -12,8 +12,8 @@ function M.setup(_, buf)
   bmap(buf, "n", "[d", ":LspDiagPrev<cr>", bopts)
   bmap(buf, "n", "]d", ":LspDiagNext<cr>", bopts)
   bmap(buf, "n", "<space>ac", ":LspCodeActions<cr>", bopts)
-  bmap(buf, "n", "<leader>s", ":LspSymbols<cr>", bopts)
-  bmap(buf, "n", "<leader>d", ":LspDiagList<cr>", bopts)
+  bmap(buf, "n", "<space>s", ":LspSymbols<cr>", bopts)
+  bmap(buf, "n", "<space>d", ":LspDiagList<cr>", bopts)
   bmap(buf, "i", "<c-x><c-x>", "<cmd> LspSignatureHelp<cr>", bopts)
 end
 

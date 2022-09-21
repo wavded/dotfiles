@@ -1,17 +1,17 @@
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
-  update_in_insert = false,
+  update_in_insert = true,
   underline = true,
   severity_sort = true,
   float = {
-    scope = "cursor",
     focusable = false,
     style = "minimal",
     border = "rounded",
-    source = "always",
+    source = "if_many",
     header = "",
     prefix = "",
+    width = 50,
     format = function(d)
       local t = vim.deepcopy(d)
       if d.code then

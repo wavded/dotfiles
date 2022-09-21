@@ -3,6 +3,10 @@ local u = require("configs.utils")
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 require("nvim-tree").setup({
+  filters = {
+    dotfiles = false,
+    custom = { 'node_modules', '.git', '.nyc_output' }
+  },
   diagnostics = { enable = true },
   update_cwd = true,
   respect_buf_cwd = true,
@@ -14,35 +18,9 @@ require("nvim-tree").setup({
       quit_on_open = true,
     },
   },
-  renderer = {
-    highlight_git = true,
-    icons = {
-      glyphs = {
-        default = "",
-        symlink = "",
-        -- git = {
-        --   unstaged = "",
-        --   staged = "",
-        --   unmerged = "",
-        --   renamed = "",
-        --   untracked = "",
-        --   deleted = "",
-        --   ignored = "",
-        -- },
-        folder = {
-          arrow_open = "",
-          arrow_closed = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open = "",
-        },
-      },
-    },
-  },
   view = {
+    width = 80,
+    height = 80,
     mappings = {
       list = {
         { key = "mm", cb = tree_cb("rename") },
@@ -51,9 +29,21 @@ require("nvim-tree").setup({
         { key = "md", cb = tree_cb("remove") },
         { key = "mo", cb = tree_cb("system_open") },
         { key = "ma", cb = tree_cb("create") },
+        { key = "<esc>", cb = tree_cb("close") },
+      },
+    },
+    float = {
+      enable = true,
+      open_win_config = {
+        relative = "editor",
+        border = "rounded",
+        width = 80,
+        height = 80,
+        row = 1,
+        col = 1,
       },
     },
   },
 })
 
-u.map("n", "<leader>n", ":NvimTreeFindFileToggle<cr>", { silent = true })
+u.map("n", "<space>t", ":NvimTreeFindFileToggle<cr>", { silent = true })

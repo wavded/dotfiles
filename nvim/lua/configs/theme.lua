@@ -18,3 +18,9 @@ catppuccin.setup({
 })
 
 vim.cmd([[colorscheme catppuccin]])
+-- require("onedark").setup({
+--   style = "deep",
+-- })
+-- require("onedark").load()
+-- require("rose-pine").setup()
+-- vim.cmd("colorscheme rose-pine")

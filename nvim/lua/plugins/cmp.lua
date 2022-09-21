@@ -1,4 +1,4 @@
-local u = require("util")
+local u = require("configs.utils")
 local cmp = require("cmp")
 local snippy = require("snippy")
 
@@ -64,14 +64,14 @@ cmp.setup({
   },
 
   sources = cmp.config.sources({
+    { name = "nvim_lsp_signature_help", priority = 9999 },
     {
       name = "snippy",
       priority = 9999,
       keyword_length = 2,
       max_item_count = 1,
     },
-    { name = "nvim_lsp", keyword_length = 2 },
-    { name = "nvim_lsp_signature_help" },
+    { name = "nvim_lsp", keyword_length = 2, priority = 9998 },
     { name = "rg", keyword_length = 3 },
     { name = "buffer", keyword_length = 3 },
     { name = "path" },

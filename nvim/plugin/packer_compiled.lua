@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -122,10 +127,11 @@ _G.packer_plugins = {
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/go.nvim",
     url = "https://github.com/ray-x/go.nvim"
   },
-  ["leap.nvim"] = {
+  ["hop.nvim"] = {
+    config = { "require('plugins.hop')" },
     loaded = true,
-    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/leap.nvim",
-    url = "https://github.com/ggandor/leap.nvim"
+    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/hop.nvim",
+    url = "https://github.com/phaazon/hop.nvim"
   },
   ["lualine.nvim"] = {
     config = { "require('plugins.lualine')" },
@@ -171,12 +177,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/nvim-snippy",
     url = "https://github.com/dcampos/nvim-snippy"
-  },
-  ["nvim-surround"] = {
-    config = { "require('plugins.surround')" },
-    loaded = true,
-    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/nvim-surround",
-    url = "https://github.com/kylechui/nvim-surround"
   },
   ["nvim-tree.lua"] = {
     config = { "require('plugins.tree')" },
@@ -247,11 +247,6 @@ _G.packer_plugins = {
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/vim-indent-object",
     url = "https://github.com/michaeljsmith/vim-indent-object"
   },
-  ["vim-repeat"] = {
-    loaded = true,
-    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/vim-repeat",
-    url = "https://github.com/tpope/vim-repeat"
-  },
   ["vim-sleuth"] = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/vim-sleuth",
@@ -276,23 +271,22 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/vim-textobj-variable-segment",
     url = "https://github.com/Julian/vim-textobj-variable-segment"
-  },
-  ["vim-unimpaired"] = {
-    loaded = true,
-    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/vim-unimpaired",
-    url = "https://github.com/tpope/vim-unimpaired"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: go.nvim
-time([[Config for go.nvim]], true)
-require('plugins.go')
-time([[Config for go.nvim]], false)
--- Config for: nvim-snippy
-time([[Config for nvim-snippy]], true)
-require('plugins.snippy')
-time([[Config for nvim-snippy]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp')
+time([[Config for nvim-cmp]], false)
+-- Config for: hop.nvim
+time([[Config for hop.nvim]], true)
+require('plugins.hop')
+time([[Config for hop.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('plugins.lualine')
+time([[Config for lualine.nvim]], false)
 -- Config for: vim-hexokinase
 time([[Config for vim-hexokinase]], true)
 require('plugins.hexokinase')
@@ -301,38 +295,41 @@ time([[Config for vim-hexokinase]], false)
 time([[Config for mason.nvim]], true)
 require('plugins.mason')
 time([[Config for mason.nvim]], false)
--- Config for: nvim-surround
-time([[Config for nvim-surround]], true)
-require('plugins.surround')
-time([[Config for nvim-surround]], false)
--- Config for: fzf-lua
-time([[Config for fzf-lua]], true)
-require('plugins.fzf')
-time([[Config for fzf-lua]], false)
--- Config for: mini.nvim
-time([[Config for mini.nvim]], true)
-require('plugins.mini')
-time([[Config for mini.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require('plugins.tree')
-time([[Config for nvim-tree.lua]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 require('plugins.gitsigns')
 time([[Config for gitsigns.nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('plugins.lualine')
-time([[Config for lualine.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require('plugins.tree')
+time([[Config for nvim-tree.lua]], false)
+-- Config for: mini.nvim
+time([[Config for mini.nvim]], true)
+require('plugins.mini')
+time([[Config for mini.nvim]], false)
+-- Config for: nvim-snippy
+time([[Config for nvim-snippy]], true)
+require('plugins.snippy')
+time([[Config for nvim-snippy]], false)
 -- Config for: nvim-treesitter
 time([[Config for nvim-treesitter]], true)
 require('plugins.treesitter')
 time([[Config for nvim-treesitter]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp')
-time([[Config for nvim-cmp]], false)
+-- Config for: fzf-lua
+time([[Config for fzf-lua]], true)
+require('plugins.fzf')
+time([[Config for fzf-lua]], false)
+-- Config for: go.nvim
+time([[Config for go.nvim]], true)
+require('plugins.go')
+time([[Config for go.nvim]], false)
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)
