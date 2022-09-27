@@ -5,7 +5,7 @@ local tree_cb = require("nvim-tree.config").nvim_tree_callback
 require("nvim-tree").setup({
   filters = {
     dotfiles = false,
-    custom = { 'node_modules', '.git', '.nyc_output' }
+    custom = { "node_modules", ".git", ".nyc_output" },
   },
   diagnostics = { enable = true },
   update_cwd = true,
@@ -19,8 +19,7 @@ require("nvim-tree").setup({
     },
   },
   view = {
-    width = 80,
-    height = 80,
+    width = "100%",
     mappings = {
       list = {
         { key = "mm", cb = tree_cb("rename") },
@@ -36,9 +35,9 @@ require("nvim-tree").setup({
       enable = true,
       open_win_config = {
         relative = "editor",
-        border = "rounded",
-        width = 80,
-        height = 80,
+        border = "double",
+        width = 1000,
+        height = 1000,
         row = 1,
         col = 1,
       },

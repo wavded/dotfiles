@@ -78,12 +78,17 @@ return require("packer").startup({
     use("windwp/nvim-ts-autotag") -- automatically close jsx tags
     use("p00f/nvim-ts-rainbow")
     use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
+    use("aklt/plantuml-syntax")
 
     -- visual
-    use({ "catppuccin/nvim", as = "catppuccin" }) -- theme
-    -- use({ "sam4llis/nvim-tundra", as = "tundra" }) -- theme
-    -- use({ "navarasu/onedark.nvim", as = "onedark" }) -- theme
-    -- use({ "rose-pine/neovim", as = "rose-pine" })
+    -- use({ "catppuccin/nvim", as = "catppuccin" }) -- theme
+    use({
+      "rose-pine/neovim",
+      as = "rose-pine",
+      config = function()
+        vim.cmd("colorscheme rose-pine")
+      end,
+    })
     use({
       "RRethy/vim-hexokinase", -- highlight color codes
       config = config("hexokinase"),

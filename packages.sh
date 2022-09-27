@@ -17,7 +17,7 @@ brew install ssh-copy-id
 
 # == Bash
 brew install bash
-brew install bash-git-prompt
+brew install starship
 brew install bash-completion@2
 
 # Switch to using brew-installed bash as default shell.
@@ -54,7 +54,6 @@ echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 # == Node
 brew install node
 brew install pnpm
-pnpm install -g pnpm
 pnpm install -g \
   eslint \
   prettier \
@@ -64,7 +63,7 @@ pnpm install -g \
   nyc \
   typescript \
   ts-node
-pnpm install-completion bash
+pnpm completion
 
 # == Java
 brew install java

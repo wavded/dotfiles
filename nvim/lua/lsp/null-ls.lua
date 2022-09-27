@@ -4,7 +4,6 @@ function M.setup(options)
   local nls = require("null-ls")
 
   local opts = vim.tbl_deep_extend("force", options, {
-    debounce = 150,
     sources = {
       nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.stylua,
@@ -12,10 +11,16 @@ function M.setup(options)
       nls.builtins.formatting.rustfmt,
       nls.builtins.formatting.google_java_format,
       nls.builtins.formatting.phpcsfixer,
+      nls.builtins.formatting.goimports,
       nls.builtins.formatting.golines.with({
-        extra_args = { "-m", "80", "--no-reformat-tags" },
+        extra_args = {
+          "-m",
+          "80",
+          "--no-reformat-tags",
+          "--base-formatter",
+          "gofumpt",
+        },
       }),
-      nls.builtins.formatting.gofumpt,
       nls.builtins.diagnostics.vale.with({
         extra_filetypes = { "text", "gitcommit" },
       }),

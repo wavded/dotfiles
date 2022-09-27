@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  catppuccin = {
-    loaded = true,
-    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/catppuccin",
-    url = "https://github.com/catppuccin/nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -221,10 +216,21 @@ _G.packer_plugins = {
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/opt/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  ["plantuml-syntax"] = {
+    loaded = true,
+    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/plantuml-syntax",
+    url = "https://github.com/aklt/plantuml-syntax"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["rose-pine"] = {
+    config = { "\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0" },
+    loaded = true,
+    path = "/Users/wavded/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
   },
   ["schemastore.nvim"] = {
     loaded = true,
@@ -275,14 +281,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('plugins.cmp')
-time([[Config for nvim-cmp]], false)
--- Config for: hop.nvim
-time([[Config for hop.nvim]], true)
-require('plugins.hop')
-time([[Config for hop.nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('plugins.lualine')
@@ -291,38 +289,50 @@ time([[Config for lualine.nvim]], false)
 time([[Config for vim-hexokinase]], true)
 require('plugins.hexokinase')
 time([[Config for vim-hexokinase]], false)
--- Config for: mason.nvim
-time([[Config for mason.nvim]], true)
-require('plugins.mason')
-time([[Config for mason.nvim]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('plugins.gitsigns')
-time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require('plugins.tree')
-time([[Config for nvim-tree.lua]], false)
--- Config for: mini.nvim
-time([[Config for mini.nvim]], true)
-require('plugins.mini')
-time([[Config for mini.nvim]], false)
--- Config for: nvim-snippy
-time([[Config for nvim-snippy]], true)
-require('plugins.snippy')
-time([[Config for nvim-snippy]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require('plugins.treesitter')
-time([[Config for nvim-treesitter]], false)
 -- Config for: fzf-lua
 time([[Config for fzf-lua]], true)
 require('plugins.fzf')
 time([[Config for fzf-lua]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+require('plugins.mason')
+time([[Config for mason.nvim]], false)
+-- Config for: rose-pine
+time([[Config for rose-pine]], true)
+try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
+time([[Config for rose-pine]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('plugins.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: mini.nvim
+time([[Config for mini.nvim]], true)
+require('plugins.mini')
+time([[Config for mini.nvim]], false)
 -- Config for: go.nvim
 time([[Config for go.nvim]], true)
 require('plugins.go')
 time([[Config for go.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+require('plugins.treesitter')
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require('plugins.tree')
+time([[Config for nvim-tree.lua]], false)
+-- Config for: hop.nvim
+time([[Config for hop.nvim]], true)
+require('plugins.hop')
+time([[Config for hop.nvim]], false)
+-- Config for: nvim-snippy
+time([[Config for nvim-snippy]], true)
+require('plugins.snippy')
+time([[Config for nvim-snippy]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('plugins.cmp')
+time([[Config for nvim-cmp]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
