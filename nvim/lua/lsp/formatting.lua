@@ -15,10 +15,10 @@ function M.setup(client, buf)
     enable = not (client.name == "null-ls")
   end
 
-  client.resolved_capabilities.document_formatting = enable
+  client.server_capabilities.documentFormattingProvider = enable
 
   -- format on save
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     vim.cmd([[
       augroup LspFormat
         autocmd! * <buffer>
