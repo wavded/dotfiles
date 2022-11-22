@@ -5,6 +5,7 @@ function M.setup(_, buf)
   local bopts = { noremap = true, silent = true }
 
   bmap(buf, "n", "gd", ":LspDefinition<cr>", bopts)
+  bmap(buf, "n", "gy", ":LspTypeDefinition<cr>", bopts)
   bmap(buf, "n", "<leader>rn", ":LspRename<cr>", bopts)
   bmap(buf, "n", "gr", ":LspReferences<cr>", bopts)
   bmap(buf, "n", "gi", ":LspImplementations<cr>", bopts)

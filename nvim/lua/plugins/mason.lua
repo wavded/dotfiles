@@ -12,7 +12,6 @@ require("mason-lspconfig").setup({
     "jsonls",
     "kotlin_language_server",
     "phpactor",
-    "rls",
     "sumneko_lua",
     "tsserver",
   },

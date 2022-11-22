@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup(_, _)
   vim.cmd("command! LspDefinition lua vim.lsp.buf.definition()")
-  -- vim.cmd("command! LspDefinition FzfLua lsp_definitions")
+  vim.cmd("command! LspTypeDefinition lua vim.lsp.buf.type_definition()")
   vim.cmd("command! LspCodeActions FzfLua lsp_code_actions")
   vim.cmd("command! LspReferences FzfLua lsp_references")
   vim.cmd("command! LspSymbols FzfLua lsp_document_symbols")

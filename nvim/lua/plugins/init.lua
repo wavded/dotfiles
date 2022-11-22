@@ -12,8 +12,6 @@ return require("packer").startup({
       use({ path, config = config(name) })
     end
 
-    -- use("tpope/vim-unimpaired") -- auto-pairs
-    -- use("tpope/vim-repeat")
     use("tpope/vim-sleuth") -- set tabwidth based on file type
     use("tpope/vim-eunuch") -- unix commands (:SudoWrite)
     use_with_config("lewis6991/gitsigns.nvim", "gitsigns")

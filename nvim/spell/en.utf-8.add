@@ -185,3 +185,7 @@ Gradle
 Lockdown
 OpenAPI
 SSO
+SAML
+OpenID
+OAuth2
+LDAP
