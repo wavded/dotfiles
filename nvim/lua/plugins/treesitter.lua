@@ -41,9 +41,5 @@ ts_configs.setup({
     enable = true,
     keymaps = { ["."] = "textsubjects-smart" },
   },
-  rainbow = {
-    enable = true,
-    extended_mode = true,
-    max_file_lines = nil,
-  },
+  rainbow = { enable = true },
 })

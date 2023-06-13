@@ -43,17 +43,8 @@ local servers = {
   },
   kotlin_language_server = {},
   phpactor = {},
-  rls = {
-    settings = {
-      rust = {
-        unstable_feature = true,
-        build_on_save = false,
-        all_features = true,
-        clippy_preference = "on",
-      },
-    },
-  },
-  sumneko_lua = {
+  rust_analyzer = {},
+  lua_ls = {
     settings = {
       Lua = {
         diagnostics = {
@@ -65,6 +56,7 @@ local servers = {
   },
   tsserver = {
     root_dir = util.root_pattern("package.json"),
+    single_file_support = false,
   },
 }
 

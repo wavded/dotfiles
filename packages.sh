@@ -67,10 +67,11 @@ pnpm completion
 
 # == Java
 brew install java
+brew install corretto11
+brew install groovy
 brew install gradle
 brew install google-java-format
 brew install kotlin
-sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
 
 # == Go
 brew install go

@@ -33,6 +33,7 @@ return require("packer").startup({
     use_with_config("dcampos/nvim-snippy", "snippy") -- snippets
     use({
       "williamboman/mason.nvim", -- lsp installer
+      run = ":MasonUpdate",
       requires = {
         "williamboman/mason-lspconfig.nvim",
       },
@@ -74,12 +75,12 @@ return require("packer").startup({
     })
     use("RRethy/nvim-treesitter-textsubjects") -- adds smart text objects
     use("windwp/nvim-ts-autotag") -- automatically close jsx tags
-    use("p00f/nvim-ts-rainbow")
+    use("HiPhish/nvim-ts-rainbow2")
     use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
     use("aklt/plantuml-syntax")
 
     -- visual
-    -- use({ "catppuccin/nvim", as = "catppuccin" }) -- theme
+    use({ "catppuccin/nvim", as = "catppuccin" }) -- theme
     use({
       "rose-pine/neovim",
       as = "rose-pine",

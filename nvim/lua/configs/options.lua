@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1 -- disable netrw, using another file tree
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.termguicolors = true -- hicolor support and theme
 vim.opt.swapfile = false -- no swap files
 vim.opt.writebackup = true -- no write backup
