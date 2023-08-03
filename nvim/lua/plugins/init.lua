@@ -1,109 +1,78 @@
-vim.cmd("packadd packer.nvim")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-return require("packer").startup({
-  function(use)
-    use({ "wbthomason/packer.nvim", opt = true })
+function use(name)
+  require("plugins/" .. name)
+end
 
-    local config = function(name)
-      return string.format("require('plugins.%s')", name)
-    end
+require("lazy").setup({
+  "tpope/vim-sleuth", -- set tabwidth based on file type
+  "tpope/vim-eunuch", -- unix commands (:SudoWrite)
+  { "lewis6991/gitsigns.nvim", config = use("gitsigns") }, -- git gutter
+  { "phaazon/hop.nvim", config = use("hop") }, -- motion
+  { "echasnovski/mini.nvim", config = use("mini") },
+  { "nvim-lualine/lualine.nvim", config = use("lualine") }, -- status line
+  { "dcampos/nvim-snippy", config = use("snippy") }, -- snippets
 
-    local use_with_config = function(path, name)
-      use({ path, config = config(name) })
-    end
+  -- lsp
+  { "williamboman/mason.nvim", build = ":MasonUpdate", config = use("mason") },
+  "williamboman/mason-lspconfig.nvim",
+  "neovim/nvim-lspconfig", -- makes lsp configuration easier
+  "b0o/schemastore.nvim", -- simple access to json-language-server schemae
+  "jose-elias-alvarez/null-ls.nvim", -- non lsp support
 
-    use("tpope/vim-sleuth") -- set tabwidth based on file type
-    use("tpope/vim-eunuch") -- unix commands (:SudoWrite)
-    use_with_config("lewis6991/gitsigns.nvim", "gitsigns")
+  -- completion
+  { "hrsh7th/nvim-cmp", config = use("cmp") },
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-nvim-lsp-signature-help",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "dcampos/cmp-snippy",
+  "lukas-reineke/cmp-rg",
 
-    -- text objects
-    use({
-      "kana/vim-textobj-user",
-      {
-        "kana/vim-textobj-entire", -- ae/ie for entire buffer
-        "Julian/vim-textobj-variable-segment", -- av/iv for variable segment
-        "michaeljsmith/vim-indent-object", -- ai/ii for indentation area
-        "beloglazov/vim-textobj-punctuation", -- au/iu for punctuation
-      },
-    })
+  -- helpers
+  "nvim-lua/plenary.nvim",
+  "kyazdani42/nvim-web-devicons",
+  { "ray-x/guihua.lua", build = "cd lua/fzy && make" },
 
-    use_with_config("phaazon/hop.nvim", "hop") -- motion
-    use_with_config("echasnovski/mini.nvim", "mini") -- various modules
-    use_with_config("nvim-lualine/lualine.nvim", "lualine") -- status line
-    use_with_config("dcampos/nvim-snippy", "snippy") -- snippets
-    use({
-      "williamboman/mason.nvim", -- lsp installer
-      run = ":MasonUpdate",
-      requires = {
-        "williamboman/mason-lspconfig.nvim",
-      },
-      config = config("mason"),
-    })
-    use({
-      "hrsh7th/nvim-cmp", -- completion
-      requires = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lsp-signature-help",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "dcampos/cmp-snippy",
-        "lukas-reineke/cmp-rg",
-      },
-      config = config("cmp"),
-    })
+  -- global find / replace
+  "nvim-pack/nvim-spectre",
 
-    -- helpers
-    use("nvim-lua/plenary.nvim")
-    use("kyazdani42/nvim-web-devicons")
+  -- file tree
+  { "kyazdani42/nvim-tree.lua", config = use("tree") },
+  { "ibhagwan/fzf-lua", config = use("fzf") }, -- finder
 
-    use({ -- file tree
-      "kyazdani42/nvim-tree.lua",
-      config = config("tree"),
-    })
-    use_with_config("ibhagwan/fzf-lua", "fzf") -- finder
-
-    -- lsp
-    use("neovim/nvim-lspconfig") -- makes lsp configuration easier
-    use("b0o/schemastore.nvim") -- simple access to json-language-server schemae
-    use("jose-elias-alvarez/null-ls.nvim") -- non lsp support
-
-    -- treesitter
-    use({
-      "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
-      config = config("treesitter"),
-    })
-    use("RRethy/nvim-treesitter-textsubjects") -- adds smart text objects
-    use("windwp/nvim-ts-autotag") -- automatically close jsx tags
-    use("HiPhish/nvim-ts-rainbow2")
-    use("JoosepAlviste/nvim-ts-context-commentstring") -- makes jsx comments actually work
-    use("aklt/plantuml-syntax")
-
-    -- visual
-    use({ "catppuccin/nvim", as = "catppuccin" }) -- theme
-    use({
-      "rose-pine/neovim",
-      as = "rose-pine",
-      config = function()
-        vim.cmd("colorscheme rose-pine")
-      end,
-    })
-    use({
-      "RRethy/vim-hexokinase", -- highlight color codes
-      config = config("hexokinase"),
-      run = "make hexokinase",
-    })
-
-    -- lang
-    use_with_config("ray-x/go.nvim", "go")
-  end,
-
-  config = {
-    git = {
-      clone_timeout = 300,
-      subcommands = {
-        update = "pull --ff-only --progress --rebase",
-      },
-    },
+  -- treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    config = use("treesitter"),
   },
+  "RRethy/nvim-treesitter-textsubjects", -- adds smart text objects
+  "windwp/nvim-ts-autotag", -- automatically close jsx tags
+  "HiPhish/nvim-ts-rainbow2",
+  "JoosepAlviste/nvim-ts-context-commentstring", -- makes jsx comments actually work
+  "aklt/plantuml-syntax",
+
+  "rebelot/kanagawa.nvim",
+
+  -- highlight color codes
+  {
+    "RRethy/vim-hexokinase",
+    config = use("hexokinase"),
+    build = "make hexokinase",
+  },
+
+  -- lang
+  { "ray-x/go.nvim", config = use("go") },
 })

@@ -7,9 +7,11 @@ function M.setup(options)
     sources = {
       nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.stylua,
-      nls.builtins.formatting.prettierd,
+      nls.builtins.formatting.prettierd.with({
+        extra_filetypes = { "pug" },
+      }),
       nls.builtins.formatting.rustfmt,
-      nls.builtins.formatting.google_java_format,
+      -- nls.builtins.formatting.google_java_format,
       nls.builtins.formatting.phpcsfixer,
       nls.builtins.formatting.goimports,
       nls.builtins.formatting.golines.with({

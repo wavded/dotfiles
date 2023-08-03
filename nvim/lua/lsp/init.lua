@@ -25,12 +25,25 @@ local servers = {
     },
   },
   gopls = {},
-  html = {},
+  html = {
+    init_options = {
+      configurationSection = { "html", "css", "javascript" },
+      embeddedLanguages = {
+        css = true,
+        javascript = true,
+      },
+      provideFormatter = false,
+    },
+  },
   eslint = {
     root_dir = util.root_pattern(".eslintrc"),
   },
   jdtls = {
+    cmd_env = {
+      ["JAVA_HOME"] = "/opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home",
+    },
     settings = {
+      -- ["java.format.settings.url"] = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
       ["java.format.enabled"] = false,
     },
   },
