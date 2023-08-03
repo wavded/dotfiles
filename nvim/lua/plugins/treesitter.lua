@@ -8,7 +8,7 @@ ts_configs.setup({
     "go",
     "gomod",
     "gowork",
-    "help",
+    "vimdoc",
     "html",
     "java",
     "javascript",

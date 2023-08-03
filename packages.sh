@@ -7,6 +7,7 @@ xcode-select --install
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 brew upgrade
+brew tap homebrew/cask-versions
 
 # == GNU tools
 brew install coreutils
@@ -30,6 +31,7 @@ fi;
 brew install tree
 brew install ripgrep
 brew install fd
+brew install fzf
 brew install wget
 brew install autojump
 brew install tmux
@@ -101,7 +103,7 @@ brew install --cask skitch
 brew install --cask owasp-zap
 brew install --cask slack
 brew install --cask iterm2
-brew install --cask viscosity
+brew install --cask tailscale
 brew install --cask 1password
 
 # == Fonts
