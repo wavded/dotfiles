@@ -41,6 +41,8 @@ brew install plantuml
 brew install redis
 brew install neovim
 brew install dnscontrol
+brew install vale
+brew install php-cs-fixer
 
 # == Git
 brew install git
@@ -89,9 +91,11 @@ brew install deno
 brew install stylua
 brew install php
 brew install composer
+brew tap oven-sh/bun
+brew install bun
 
 # == Cask
-brew install --cask postico
+brew install --cask postico1
 brew install --cask docker
 brew install --cask the-unarchiver
 brew install --cask gitup

@@ -41,5 +41,5 @@ ts_configs.setup({
     enable = true,
     keymaps = { ["."] = "textsubjects-smart" },
   },
-  rainbow = { enable = true },
+  -- rainbow = { enable = true },
 })

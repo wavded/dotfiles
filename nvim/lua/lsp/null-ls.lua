@@ -26,6 +26,7 @@ function M.setup(options)
       nls.builtins.diagnostics.vale.with({
         extra_filetypes = { "text", "gitcommit" },
       }),
+      require("typescript.extensions.null-ls.code-actions"),
     },
   })
   nls.setup(opts)
