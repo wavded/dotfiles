@@ -7,11 +7,11 @@ function M.setup(options)
     sources = {
       nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.stylua,
-      nls.builtins.formatting.prettier.with({
+      nls.builtins.formatting.prettierd.with({
         extra_filetypes = { "pug" },
       }),
       nls.builtins.formatting.rustfmt,
-      -- nls.builtins.formatting.google_java_format,
+      nls.builtins.formatting.google_java_format,
       nls.builtins.formatting.phpcsfixer,
       nls.builtins.formatting.goimports,
       nls.builtins.formatting.golines.with({
@@ -26,6 +26,8 @@ function M.setup(options)
       nls.builtins.diagnostics.vale.with({
         extra_filetypes = { "text", "gitcommit" },
       }),
+      nls.builtins.diagnostics.ktlint,
+      nls.builtins.diagnostics.phpstan,
       require("typescript.extensions.null-ls.code-actions"),
     },
   })

@@ -31,7 +31,7 @@ require("lazy").setup({
   "williamboman/mason-lspconfig.nvim",
   "neovim/nvim-lspconfig", -- makes lsp configuration easier
   "b0o/schemastore.nvim", -- simple access to json-language-server schemae
-  "jose-elias-alvarez/null-ls.nvim", -- non lsp support
+  "nvimtools/none-ls.nvim", -- non lsp support
 
   -- completion
   { "hrsh7th/nvim-cmp", config = use("cmp") },

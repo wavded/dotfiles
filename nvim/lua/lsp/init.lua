@@ -45,7 +45,7 @@ local servers = {
     },
   },
   kotlin_language_server = {},
-  phpactor = {},
+  intelephense = {},
   rust_analyzer = {},
   lua_ls = {
     settings = {
