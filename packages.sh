@@ -103,7 +103,6 @@ brew install --cask imageoptim
 brew install --cask hammerspoon
 brew install --cask appcleaner
 brew install --cask postman
-brew install --cask skitch
 brew install --cask owasp-zap
 brew install --cask slack
 brew install --cask iterm2
