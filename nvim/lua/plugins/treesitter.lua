@@ -36,10 +36,11 @@ ts_configs.setup({
   },
   indent = { enable = true },
   autotag = { enable = true },
-  context_commentstring = { enable = true, enable_autocmd = false },
   textsubjects = {
     enable = true,
     keymaps = { ["."] = "textsubjects-smart" },
   },
   -- rainbow = { enable = true },
 })
+
+vim.g.skip_ts_context_commentstring_module = true
