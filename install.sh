@@ -22,7 +22,6 @@ if [[ `uname` == "Darwin" ]]; then
   rm-if-present "$HOME/.config/sharship.toml" "$dir/starship.toml"
   rm-if-present "$HOME/.hammerspoon" "$dir/hammerspoon"
 
-  ./macos.sh
-  bash -c ./fix-terminfo.sh
   bash -c ./packages.sh
+  bash -c ./fix-terminfo.sh
 fi
