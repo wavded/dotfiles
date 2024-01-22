@@ -162,7 +162,7 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = false,
     custom = { "node_modules", ".git", ".nyc_output" },
-    exclude = { ".gitignore" },
+    exclude = { ".gitignore", ".github" },
   },
   diagnostics = { enable = true },
   sync_root_with_cwd = true,
