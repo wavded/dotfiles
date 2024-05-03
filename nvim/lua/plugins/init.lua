@@ -52,6 +52,7 @@ require("lazy").setup({
 
   -- file tree
   { "kyazdani42/nvim-tree.lua", config = use("tree") },
+  { "antosha417/nvim-lsp-file-operations" },
   { "ibhagwan/fzf-lua", config = use("fzf") }, -- finder
 
   -- treesitter

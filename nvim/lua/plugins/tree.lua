@@ -173,3 +173,6 @@ require("nvim-tree").setup({
 })
 
 u.map("n", "<space>t", ":NvimTreeFindFileToggle<cr>", { silent = true })
+
+-- must load after nvim-tree
+require("lsp-file-operations").setup()

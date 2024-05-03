@@ -16,6 +16,7 @@ require("fzf-lua").setup({
   fzf_opts = {
     ["--layout"] = "default",
   },
+  file_ignore_patterns = { "pnpm.lock" },
   files = {
     actions = {
       ["ctrl-e"] = function(selected)

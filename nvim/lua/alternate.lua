@@ -13,11 +13,25 @@ local handlers = {
       return fname:gsub(".js$", "_test.js")
     end
   end,
+  javascriptreact = function(fname)
+    if fname:match("_test.jsx$") then
+      return fname:gsub("_test.jsx$", ".jsx")
+    else
+      return fname:gsub(".jsx$", "_test.jsx")
+    end
+  end,
   typescript = function(fname)
     if fname:match("_test.ts$") then
       return fname:gsub("_test.ts$", ".ts")
     else
       return fname:gsub(".ts$", "_test.ts")
+    end
+  end,
+  typescriptreact = function(fname)
+    if fname:match("_test.tsx$") then
+      return fname:gsub("_test.tsx$", ".tsx")
+    else
+      return fname:gsub(".tsx$", "_test.tsx")
     end
   end,
 }
