@@ -24,7 +24,14 @@ local servers = {
       },
     },
   },
-  gopls = {},
+  gopls = {
+    cmd_env = { GOFUMPT_SPLIT_LONG_LINES = "on" },
+    settings = {
+      gopls = {
+        gofumpt = true,
+      },
+    },
+  },
   html = {},
   eslint = {
     root_dir = util.root_pattern(".eslintrc"),

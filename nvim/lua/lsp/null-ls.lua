@@ -12,16 +12,16 @@ function M.setup(options)
       }),
       nls.builtins.formatting.google_java_format,
       nls.builtins.formatting.phpcsfixer,
-      nls.builtins.formatting.goimports,
-      nls.builtins.formatting.golines.with({
-        extra_args = {
-          "-m",
-          "80",
-          "--no-reformat-tags",
-          "--base-formatter",
-          "gofumpt",
-        },
-      }),
+      -- nls.builtins.formatting.goimports,
+      -- nls.builtins.formatting.golines.with({
+      --   extra_args = {
+      --     "-m",
+      --     "80",
+      --     "--no-reformat-tags",
+      --     "--base-formatter",
+      --     "gofumpt",
+      --   },
+      -- }),
       nls.builtins.diagnostics.vale.with({
         extra_filetypes = { "text", "gitcommit" },
       }),

@@ -71,7 +71,7 @@ pnpm completion
 
 # == Java
 brew install java
-brew install corretto11
+brew install corretto@11
 brew install groovy
 brew install gradle
 brew install google-java-format
@@ -95,7 +95,7 @@ brew tap oven-sh/bun
 brew install bun
 
 # == Cask
-brew install --cask postico1
+brew install --cask postico@1
 brew install --cask docker
 brew install --cask the-unarchiver
 brew install --cask gitup
