@@ -27,7 +27,7 @@ function M.setup(options)
       }),
       nls.builtins.diagnostics.ktlint,
       nls.builtins.diagnostics.phpstan,
-      require("typescript.extensions.null-ls.code-actions"),
+      -- require("typescript.extensions.null-ls.code-actions"),
     },
   })
   nls.setup(opts)

@@ -78,5 +78,5 @@ require("lazy").setup({
 
   -- lang
   { "ray-x/go.nvim", config = use("go") },
-  { "jose-elias-alvarez/typescript.nvim", config = use("ts") },
+  -- { "jose-elias-alvarez/typescript.nvim", config = use("ts") },
 })

@@ -14,7 +14,7 @@ require("mason-lspconfig").setup({
     "phpactor",
     "rust_analyzer",
     "lua_ls",
-    "tsserver",
+    "ts_ls",
   },
   automatic_installation = true,
 })
