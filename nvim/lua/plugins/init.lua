@@ -22,11 +22,34 @@ require("lazy").setup({
 
   "tpope/vim-sleuth", -- set tabwidth based on file type
   { "rebelot/kanagawa.nvim", config = use("theme") }, -- theme
-  { "nvim-lualine/lualine.nvim", config = use("lualine") }, -- status line
+
+  -- status line
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    config = use("lualine"),
+  },
   "nvim-tree/nvim-web-devicons", -- support nerdfont icons
 
-  { "phaazon/hop.nvim", config = use("hop") }, -- motion
-  { "echasnovski/mini.nvim", config = use("mini") },
+  {
+    "echasnovski/mini.surround",
+    event = "User FilePost",
+    config = true
+  },
+
+  -- motion
+  {
+    "smoka7/hop.nvim",
+    event = "VeryLazy",
+    config = use("hop"),
+  },
+
+  -- cursor word
+  {
+    "sontungexpt/stcursorword",
+    event = "VeryLazy",
+    config = true,
+  },
 
   -- git gutter
   {
