@@ -31,6 +31,7 @@ fi;
 brew install tree
 brew install ripgrep
 brew install fd
+brew install bat
 brew install fzf
 brew install wget
 brew install autojump

@@ -64,10 +64,10 @@ local servers = {
       },
     },
   },
-  ts_ls = {
-    root_dir = util.root_pattern("package.json"),
-    single_file_support = false,
-  },
+  -- ts_ls = {
+  --   root_dir = util.root_pattern("package.json"),
+  --   single_file_support = false,
+  -- },
 }
 
 local function on_attach(client, buf)

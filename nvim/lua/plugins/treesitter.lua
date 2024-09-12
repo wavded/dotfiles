@@ -40,8 +40,9 @@ ts_configs.setup({
     enable = true,
     keymaps = { ["."] = "textsubjects-smart" },
   },
-  -- rainbow = { enable = true },
 })
+
+require("rainbow-delimiters.setup").setup()
 
 require("ts_context_commentstring").setup({
   enable_autocmd = false,

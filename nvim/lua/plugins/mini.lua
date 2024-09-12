@@ -15,7 +15,7 @@ require("mini.comment").setup({
 })
 
 -- autopairs
-require("mini.pairs").setup()
+-- require("mini.pairs").setup()
 
 -- indent indicator
 require("mini.indentscope").setup({ draw = { delay = 200 } })
