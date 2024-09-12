@@ -43,7 +43,3 @@ ts_configs.setup({
 })
 
 require("rainbow-delimiters.setup").setup()
-
-require("ts_context_commentstring").setup({
-  enable_autocmd = false,
-})

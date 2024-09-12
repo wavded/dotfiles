@@ -59,7 +59,6 @@ require("lazy").setup({
     event = "InsertEnter",
     config = use("cmp"),
     dependencies = {
-
       -- close pairs and tags
       {
         {
@@ -129,10 +128,11 @@ require("lazy").setup({
     build = ":TSUpdate",
     config = use("treesitter"),
     dependencies = {
+      -- comments
+      { "folke/ts-comments.nvim", config = true },
+
       -- rainbow delimiters
       "HiPhish/rainbow-delimiters.nvim",
-      -- makes jsx comments work
-      "JoosepAlviste/nvim-ts-context-commentstring",
     },
   },
 
