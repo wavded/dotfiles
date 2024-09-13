@@ -34,7 +34,7 @@ require("lazy").setup({
   {
     "echasnovski/mini.surround",
     event = "User FilePost",
-    config = true
+    config = true,
   },
 
   -- motion
@@ -54,8 +54,8 @@ require("lazy").setup({
   -- git gutter
   {
     "lewis6991/gitsigns.nvim",
-    event = "User FilePost",
-    config = use("gitsigns"),
+    event = "VeryLazy",
+    config = true,
   },
 
   -- lsp
