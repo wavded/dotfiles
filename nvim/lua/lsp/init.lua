@@ -64,6 +64,54 @@ local servers = {
       },
     },
   },
+  vtsls = {
+    root_dir = util.root_pattern("package.json"),
+    single_file_support = false,
+    settings = {
+      vtsls = {
+        autoUseWorkspaceTsdk = true,
+        experimental = {
+          completion = {
+            enableServerSideFuzzyMatch = true,
+          },
+        },
+      },
+      typescript = {
+        updateImportsOnFileMove = { enabled = "always" },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+        preferences = {
+          useAliasesForRenames = false,
+        },
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = { enabled = "literals" },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = { enabled = false },
+        },
+      },
+      javascript = {
+        updateImportsOnFileMove = { enabled = "always" },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+        preferences = {
+          useAliasesForRenames = false,
+        },
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = { enabled = "literals" },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = { enabled = false },
+        },
+      },
+    },
+  },
   -- ts_ls = {
   --   root_dir = util.root_pattern("package.json"),
   --   single_file_support = false,

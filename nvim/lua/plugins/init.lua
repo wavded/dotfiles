@@ -171,8 +171,8 @@ require("lazy").setup({
     ft = "go",
     config = true,
   },
-  {
-    "pmizio/typescript-tools.nvim",
-    config = true,
-  },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   config = true,
+  -- },
 })
