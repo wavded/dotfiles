@@ -2,32 +2,25 @@ local M = {}
 
 function M.setup(options)
   local nls = require("null-ls")
+  local utils = require("null-ls.utils")
 
   local opts = vim.tbl_deep_extend("force", options, {
     sources = {
       nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.stylua,
       nls.builtins.formatting.prettier.with({
+        condition = function(u)
+          return u.root_has_file({ "deno.json" }) == false
+        end,
         extra_filetypes = { "pug" },
       }),
       nls.builtins.formatting.google_java_format,
       nls.builtins.formatting.phpcsfixer,
-      -- nls.builtins.formatting.goimports,
-      -- nls.builtins.formatting.golines.with({
-      --   extra_args = {
-      --     "-m",
-      --     "80",
-      --     "--no-reformat-tags",
-      --     "--base-formatter",
-      --     "gofumpt",
-      --   },
-      -- }),
       nls.builtins.diagnostics.vale.with({
         extra_filetypes = { "text", "gitcommit" },
       }),
       nls.builtins.diagnostics.ktlint,
       nls.builtins.diagnostics.phpstan,
-      -- require("typescript.extensions.null-ls.code-actions"),
     },
   })
   nls.setup(opts)

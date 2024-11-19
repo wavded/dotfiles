@@ -5,45 +5,8 @@ local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
 
 local servers = {
-  cssls = {},
-  denols = {
-    root_dir = util.root_pattern("deno.json"),
-    single_file_support = false,
-  },
-  golangci_lint_ls = {
-    init_options = {
-      command = {
-        "golangci-lint",
-        "run",
-        "--enable",
-        "gosec",
-        "--disable",
-        "lll",
-        "--out-format",
-        "json",
-      },
-    },
-  },
-  gopls = {
-    cmd_env = { GOFUMPT_SPLIT_LONG_LINES = "on" },
-    settings = {
-      gopls = {
-        gofumpt = true,
-      },
-    },
-  },
   html = {},
-  eslint = {
-    root_dir = util.root_pattern(".eslintrc"),
-  },
-  jdtls = {
-    cmd_env = {
-      ["JAVA_HOME"] = "/opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home",
-    },
-    settings = {
-      ["java.format.enabled"] = false,
-    },
-  },
+  cssls = {},
   jsonls = {
     settings = {
       json = {
@@ -51,18 +14,14 @@ local servers = {
       },
     },
   },
-  kotlin_language_server = {},
-  intelephense = {},
-  rust_analyzer = {},
-  lua_ls = {
-    settings = {
-      Lua = {
-        diagnostics = {
-          globals = { "vim", "hs" },
-          disable = { "lowercase-global" },
-        },
-      },
-    },
+
+  denols = {
+    root_dir = util.root_pattern("deno.json", "deno.jsonc"),
+    single_file_support = false,
+  },
+  eslint = {
+    root_dir = util.root_pattern("eslint.config.js", "eslint.config.mjs"),
+    single_file_support = false,
   },
   vtsls = {
     root_dir = util.root_pattern("package.json"),
@@ -112,10 +71,50 @@ local servers = {
       },
     },
   },
-  -- ts_ls = {
-  --   root_dir = util.root_pattern("package.json"),
-  --   single_file_support = false,
-  -- },
+
+  golangci_lint_ls = {
+    init_options = {
+      command = {
+        "golangci-lint",
+        "run",
+        "--enable",
+        "gosec",
+        "--disable",
+        "lll",
+        "--out-format",
+        "json",
+      },
+    },
+  },
+  gopls = {
+    cmd_env = { GOFUMPT_SPLIT_LONG_LINES = "on" },
+    settings = {
+      gopls = {
+        gofumpt = true,
+      },
+    },
+  },
+  jdtls = {
+    cmd_env = {
+      ["JAVA_HOME"] = "/opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home",
+    },
+    settings = {
+      ["java.format.enabled"] = false,
+    },
+  },
+  kotlin_language_server = {},
+  intelephense = {},
+  rust_analyzer = {},
+  lua_ls = {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim", "hs" },
+          disable = { "lowercase-global" },
+        },
+      },
+    },
+  },
 }
 
 local function on_attach(client, buf)
