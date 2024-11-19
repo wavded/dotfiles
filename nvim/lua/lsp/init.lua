@@ -7,6 +7,7 @@ local util = require("lspconfig.util")
 local servers = {
   html = {},
   cssls = {},
+  somesass_ls = {},
   jsonls = {
     settings = {
       json = {
@@ -94,6 +95,7 @@ local servers = {
       },
     },
   },
+
   jdtls = {
     cmd_env = {
       ["JAVA_HOME"] = "/opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home",

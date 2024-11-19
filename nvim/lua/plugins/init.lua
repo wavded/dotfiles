@@ -140,7 +140,7 @@ require("lazy").setup({
   -- highlight color codes
   {
     "NvChad/nvim-colorizer.lua",
-    event = "User FilePost",
+    event = "VeryLazy",
     config = true,
   },
 
