@@ -21,7 +21,11 @@ local servers = {
     single_file_support = false,
   },
   eslint = {
-    root_dir = util.root_pattern("eslint.config.js", "eslint.config.mjs"),
+    root_dir = util.root_pattern(
+      "eslint.config.js",
+      "eslint.config.mjs",
+      ".eslintrc"
+    ),
     single_file_support = false,
   },
   vtsls = {
