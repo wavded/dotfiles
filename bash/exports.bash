@@ -35,7 +35,7 @@ export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 # ==== Java ====
 export JAVA_VERSION=11
-hash java_home >/dev/null 2>&1 && export JAVA_HOME="$(java_home -v "$JAVA_VERSION")"
+export JAVA_HOME="/opt/homebrew/opt/java11/libexec/openjdk.jdk/Contents/Home"
 
 # ==== Go ====
 export GOPATH=$HOME/Projects/go
@@ -44,9 +44,6 @@ export PATH=${GOPATH}/bin:$GOBIN:$PATH
 
 # ==== Haskell ====
 export PATH=$HOME/Library/Haskell/bin:$PATH
-
-# ==== Yarn ====
-hash yarn >/dev/null 2>&1 && export PATH=$PATH:$HOME/.config/yarn/global/node_modules/.bin
 
 # ==== PNPM ====
 export PNPM_HOME="/Users/wavded/Library/pnpm"

@@ -170,6 +170,9 @@ require("lazy").setup({
     "ray-x/go.nvim",
     ft = "go",
     config = true,
+    dependencies = {
+      "ray-x/guihua.lua",
+    },
   },
   -- {
   --   "pmizio/typescript-tools.nvim",

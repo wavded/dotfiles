@@ -72,7 +72,7 @@ pnpm completion
 
 # == Java
 brew install java
-brew install corretto@11
+brew install java11
 brew install groovy
 brew install gradle
 brew install google-java-format
