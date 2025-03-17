@@ -157,22 +157,35 @@ local function on_attach(bufnr)
   vim.keymap.set("n", "<esc>", api.tree.close, opts("Close"))
 end
 
-require("nvim-tree").setup({
-  disable_netrw = true,
-  filters = {
-    dotfiles = false,
-    custom = { "node_modules", ".git", ".nyc_output" },
-    exclude = { ".gitignore", ".github" },
+-- file tree
+return {
+  {
+    "nvim-tree/nvim-tree.lua",
+    keys = { "<space>t" },
+    event = "VeryLazy",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    opts = {
+      disable_netrw = true,
+      filters = {
+        dotfiles = false,
+        custom = { "node_modules", ".git", ".nyc_output" },
+        exclude = { ".gitignore", ".github" },
+      },
+      diagnostics = { enable = true },
+      sync_root_with_cwd = true,
+      respect_buf_cwd = true,
+      on_attach = on_attach,
+      git = { ignore = false },
+      actions = { open_file = { quit_on_open = true } },
+    },
+    config = function(_, opts)
+      require("nvim-tree").setup(opts)
+      u.map("n", "<space>t", ":NvimTreeFindFileToggle<cr>", { silent = true })
+    end,
   },
-  diagnostics = { enable = true },
-  sync_root_with_cwd = true,
-  respect_buf_cwd = true,
-  on_attach = on_attach,
-  git = { ignore = false },
-  actions = { open_file = { quit_on_open = true } },
-})
-
-u.map("n", "<space>t", ":NvimTreeFindFileToggle<cr>", { silent = true })
-
--- must load after nvim-tree
-require("lsp-file-operations").setup()
+  {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+}

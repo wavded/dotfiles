@@ -19,7 +19,6 @@ vim.opt.expandtab = true -- use spaces, not tabs
 vim.opt.shiftwidth = 2 -- set tab width
 vim.opt.softtabstop = 2
 vim.opt.tabstop = 2
-vim.opt.lazyredraw = true -- wait to redraw
 vim.opt.pumheight = 10 -- completion window max size
 vim.opt.wrap = false
 vim.opt.linebreak = true -- do not break wrap in the middle of words

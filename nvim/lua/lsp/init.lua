@@ -138,15 +138,19 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { "documentation", "detail", "additionalTextEdits" },
 }
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+-- local capabilities = require("blink.cmp").get_lsp_capabilities(c)
 
 local shared_opts = {
+  inlay_hints = {
+    enabled = true,
+  },
   on_attach = on_attach,
   capabilities = capabilities,
 }
 
 for name, opts in pairs(servers) do
   local config = vim.tbl_deep_extend("force", shared_opts, opts or {})
+  config.capabilities = require("blink.cmp").get_lsp_capabilities()
   lspconfig[name].setup(config)
 end
 

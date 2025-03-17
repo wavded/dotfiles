@@ -1,42 +1,67 @@
--- require("catppuccin").setup({
---   flavour = "macchiato",
---   integrations = {
---     cmp = true,
---     dashboard = false,
---     gitsigns = true,
---     hop = true,
---     markdown = true,
---     mason = true,
---     mini = true,
---     nvimtree = true,
---     telescope = true,
---     ts_rainbow = true,
---   },
--- })
---
--- vim.cmd([[colorscheme catppuccin]])
-
--- require("rose-pine").setup({
---   dark_variant = "moon",
--- })
--- vim.cmd("colorscheme rose-pine")
-
-require("kanagawa").setup({
-  compile = true, -- run :KanagawaCompile to see changes
-  undercurl = true,
-  commentStyle = { italic = true },
-  functionStyle = {},
-  keywordStyle = { italic = true },
-  statementStyle = { bold = true },
-  typeStyle = {},
-  transparent = false,
-  colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
-  theme = "wave",
-  background = {
-    dark = "wave", -- try "dragon" !
-    light = "lotus",
+return {
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "moon",
+    },
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
+      vim.cmd([[colorscheme tokyonight]])
+    end,
   },
-})
-
--- setup must be called before loading
-vim.cmd("colorscheme kanagawa")
+  {
+    "echasnovski/mini.icons",
+    lazy = true,
+    opts = {},
+    init = function()
+      -- Map icons to nvim-web-devicons for nvim-tree.
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      routes = {
+        {
+          filter = {
+            event = "msg_show",
+            kind = "",
+            find = "written",
+          },
+          opts = { skip = true },
+        },
+      },
+      views = {
+        cmdline_popup = {
+          border = {
+            style = "none",
+            padding = { 2, 3 },
+          },
+          filter_options = {},
+          win_options = {
+            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+          },
+        },
+      },
+    },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = {
+      options = {
+        theme = "tokyonight",
+      },
+    },
+  },
+}
