@@ -44,14 +44,8 @@ u.map("n", "<leader>.", ":b#<cr>", { silent = true })
 u.map("v", ">", ">gv")
 u.map("v", "<", "<gv")
 
--- fast editing of the .vimrc
-u.map("n", "<leader>v", ":e $MYVIMRC<cr>")
-
 -- gitup integration
 u.map("n", "<leader>`", ":!gitup commit<cr><cr>", { silent = true })
 
 -- alternate file
 u.map("n", "<leader>a", ':lua require("alternate")()<cr>')
-
--- git messenger
-u.map("n", "gm", ":GitMessenger<cr>")

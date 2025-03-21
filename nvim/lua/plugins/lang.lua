@@ -1,4 +1,3 @@
--- lang specific
 return {
   {
     "ray-x/go.nvim",

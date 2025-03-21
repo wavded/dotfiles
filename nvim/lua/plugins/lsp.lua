@@ -17,6 +17,7 @@ return {
         "phpactor",
         "rust_analyzer",
         "somesass_ls",
+        "vale-ls",
         "vtsls",
       },
       automatic_installation = true,
@@ -29,6 +30,7 @@ return {
     "neovim/nvim-lspconfig",
     event = "User FilePost",
     dependencies = {
+      "nvim-lua/plenary.nvim",
       "b0o/schemastore.nvim", -- simple access to json-language-server schemae
       "nvimtools/none-ls.nvim", -- non lsp support
     },

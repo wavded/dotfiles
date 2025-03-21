@@ -15,7 +15,6 @@ return {
   {
     "saghen/blink.cmp",
     opts_extend = { "sources.default" },
-    tag = "v0.12.2",
     version = "*",
     event = "InsertEnter",
     dependencies = {
@@ -29,15 +28,19 @@ return {
       },
       completion = {
         accept = {
-          dot_repeat = false,
+          dot_repeat = true,
           auto_brackets = {
             enabled = true,
           },
         },
+        list = {
+          selection = {
+            preselect = false,
+            auto_insert = true,
+          },
+        },
         menu = {
           draw = {
-            -- treesitter = { "lsp" },
-            columns = { { "kind_icon" }, { "label", gap = 1 } },
             components = {
               label = {
                 text = function(ctx)
@@ -55,18 +58,27 @@ return {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
-        },
-        ghost_text = {
-          enabled = true,
+          window = { border = "single" },
         },
       },
 
-      -- experimental signature help support
-      signature = { enabled = true },
+      signature = {
+        enabled = true,
+        window = { border = "single" },
+      },
 
       sources = {
-        default = { "copilot", "lsp", "path", "snippets", "buffer" },
+        default = {
+          "snippets",
+          "copilot",
+          "lsp",
+          "path",
+          "buffer",
+        },
         providers = {
+          snippets = {
+            score_offset = 200,
+          },
           copilot = {
             name = "copilot",
             module = "blink-copilot",
@@ -75,6 +87,11 @@ return {
           },
         },
       },
+      enabled = function()
+        return not vim.tbl_contains({ "copilot-chat" }, vim.bo.filetype)
+          and vim.bo.buftype ~= "prompt"
+          and vim.b.completion ~= false
+      end,
     },
   },
 }

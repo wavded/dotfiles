@@ -25,6 +25,7 @@ vim.opt.linebreak = true -- do not break wrap in the middle of words
 vim.opt.updatetime = 250 -- millis before CursorHold event
 vim.opt.showmode = false -- hide show mode status
 vim.opt.signcolumn = "yes:1"
+vim.opt.completeopt = "menu,menuone,noselect"
 
 -- vary cursor depending on mode
 vim.opt.guicursor =

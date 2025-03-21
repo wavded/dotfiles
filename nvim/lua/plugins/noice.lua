@@ -1,0 +1,43 @@
+return {
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      {
+        "rcarriga/nvim-notify",
+        opts = { render = "minimal", stages = "slide" },
+      },
+    },
+    opts = {
+      routes = {
+        { filter = { event = "msg_show", find = "written" } },
+        { filter = { event = "msg_show", find = "yanked" } },
+        { filter = { event = "msg_show", find = "%d+L, %d+B" } },
+        { filter = { event = "msg_show", find = "; after #%d+" } },
+        { filter = { event = "msg_show", find = "; before #%d+" } },
+        { filter = { event = "msg_show", find = "%d fewer lines" } },
+        { filter = { event = "msg_show", find = "%d more lines" } },
+        { filter = { event = "msg_show", find = "<ed" } },
+        { filter = { event = "msg_show", find = ">ed" } },
+      },
+      lsp = {
+        signature = {
+          enabled = false,
+        },
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = true,
+      },
+    },
+  },
+}

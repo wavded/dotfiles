@@ -54,6 +54,21 @@ function tm() {
   tmux send-keys     -t 0 'vim' C-m
 }
 
+function tv() {
+  tmux has-session -t base &> /dev/null
+
+  if [ $? != 0 ]; then
+    tmux new-session -s base -d -n base
+    tmux attach -t base
+  fi
+
+  tmux split-window  -h
+  tmux resize-pane   -R 30
+  tmux select-pane   -t 0
+  sleep 0.2
+  tmux send-keys     -t 0 'vim' C-m
+}
+
 cleancontainers() { docker rm $(docker ps -q -a); }
 cleanimages() { docker rmi $(docker images -q); }
 

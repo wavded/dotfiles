@@ -82,4 +82,13 @@ return {
     "aklt/plantuml-syntax",
     ft = "plantuml",
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "echasnovski/mini.icons",
+    },
+    ft = { "markdown", "codecompanion", "copilot-chat" },
+    opts = {},
+  },
 }

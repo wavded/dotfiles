@@ -2,11 +2,9 @@ local M = {}
 
 function M.setup(options)
   local nls = require("null-ls")
-  local utils = require("null-ls.utils")
 
   local opts = vim.tbl_deep_extend("force", options, {
     sources = {
-      nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.stylua,
       nls.builtins.formatting.prettier.with({
         condition = function(u)
@@ -16,9 +14,6 @@ function M.setup(options)
       }),
       nls.builtins.formatting.google_java_format,
       nls.builtins.formatting.phpcsfixer,
-      nls.builtins.diagnostics.vale.with({
-        extra_filetypes = { "text", "gitcommit" },
-      }),
       nls.builtins.diagnostics.ktlint,
       nls.builtins.diagnostics.phpstan,
     },

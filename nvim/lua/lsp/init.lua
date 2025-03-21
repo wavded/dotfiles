@@ -15,7 +15,7 @@ local servers = {
       },
     },
   },
-
+  vale_ls = {},
   denols = {
     root_dir = util.root_pattern("deno.json", "deno.jsonc"),
     single_file_support = false,
@@ -124,10 +124,6 @@ local servers = {
 }
 
 local function on_attach(client, buf)
-  -- require("lsp_signature").on_attach({
-  --   bind = true,
-  --   hint_prefix = " ",
-  -- })
   require("lsp.commands").setup(client, buf)
   require("lsp.formatting").setup(client, buf)
   require("lsp.keys").setup(client, buf)
@@ -138,7 +134,9 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { "documentation", "detail", "additionalTextEdits" },
 }
--- local capabilities = require("blink.cmp").get_lsp_capabilities(c)
+
+vim.lsp.util.convert_input_to_markdown_lines = true
+vim.lsp.util.stylize_markdown = true
 
 local shared_opts = {
   inlay_hints = {
