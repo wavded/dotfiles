@@ -59,12 +59,13 @@ echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 # == Node
 brew install node
 brew install pnpm
-pnpm install -g prettier typescript
+brew install prettierd
+pnpm install -g prettier typescript eslint_d
 pnpm completion
 
 # == Java
 brew install java
-brew install java11
+brew install openjdk@17
 brew install groovy
 brew install gradle
 brew install google-java-format

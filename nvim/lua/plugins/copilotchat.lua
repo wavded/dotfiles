@@ -12,6 +12,32 @@ return {
         model = "claude-3.7-sonnet",
         question_header = " " .. user .. " ",
         answer_header = " Copilot ",
+        prompts = {
+          -- Explain = {
+          --   prompt = "Write an explanation for the selected code as paragraphs of text.",
+          --   system_prompt = "COPILOT_EXPLAIN",
+          -- },
+          -- Review = {
+          --   prompt = "Review the selected code.",
+          --   system_prompt = "COPILOT_REVIEW",
+          -- },
+          -- Fix = {
+          --   prompt = "There is a problem in this code. Identify the issues and rewrite the code with fixes. Explain what was wrong and how your changes address the problems.",
+          -- },
+          -- Optimize = {
+          --   prompt = "Optimize the selected code to improve performance and readability. Explain your optimization strategy and the benefits of your changes.",
+          -- },
+          -- Docs = {
+          --   prompt = "Please add documentation comments to the selected code.",
+          -- },
+          -- Tests = {
+          --   prompt = "Please generate tests for my code.",
+          -- },
+          Commit = {
+            prompt = "Write a commit message in this format: Capitalized, short (50 chars or less) summary line. Followed by a blank line with more details, if necessary. Use a bulleted list prefixed with 'Includes:' and a blank line.  Wrap it to about 72 characters or so. Write your commit message in the imperative. Use a gitcommit code block.",
+            context = "git:staged",
+          },
+        },
       }
     end,
     config = function(_, opts)

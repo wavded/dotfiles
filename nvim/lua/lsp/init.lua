@@ -1,5 +1,4 @@
 require("lsp.diagnostics")
-require("lsp.kind").setup()
 
 local lspconfig = require("lspconfig")
 local util = require("lspconfig.util")
@@ -35,19 +34,13 @@ local servers = {
       vtsls = {
         autoUseWorkspaceTsdk = true,
         experimental = {
-          completion = {
-            enableServerSideFuzzyMatch = true,
-          },
+          completion = { enableServerSideFuzzyMatch = true },
         },
       },
       typescript = {
         updateImportsOnFileMove = { enabled = "always" },
-        suggest = {
-          completeFunctionCalls = true,
-        },
-        preferences = {
-          useAliasesForRenames = false,
-        },
+        suggest = { completeFunctionCalls = true },
+        preferences = { useAliasesForRenames = false },
         inlayHints = {
           enumMemberValues = { enabled = true },
           functionLikeReturnTypes = { enabled = true },
@@ -59,12 +52,8 @@ local servers = {
       },
       javascript = {
         updateImportsOnFileMove = { enabled = "always" },
-        suggest = {
-          completeFunctionCalls = true,
-        },
-        preferences = {
-          useAliasesForRenames = false,
-        },
+        suggest = { completeFunctionCalls = true },
+        preferences = { useAliasesForRenames = false },
         inlayHints = {
           enumMemberValues = { enabled = true },
           functionLikeReturnTypes = { enabled = true },
@@ -77,35 +66,10 @@ local servers = {
     },
   },
 
-  golangci_lint_ls = {
-    init_options = {
-      command = {
-        "golangci-lint",
-        "run",
-        "--enable",
-        "gosec",
-        "--disable",
-        "lll",
-        "--out-format",
-        "json",
-      },
-    },
-  },
-  gopls = {
-    cmd_env = { GOFUMPT_SPLIT_LONG_LINES = "on" },
-    settings = {
-      gopls = {
-        gofumpt = true,
-      },
-    },
-  },
-
+  gopls = {},
   jdtls = {
     cmd_env = {
       ["JAVA_HOME"] = "/opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home",
-    },
-    settings = {
-      ["java.format.enabled"] = false,
     },
   },
   kotlin_language_server = {},
@@ -125,7 +89,6 @@ local servers = {
 
 local function on_attach(client, buf)
   require("lsp.commands").setup(client, buf)
-  require("lsp.formatting").setup(client, buf)
   require("lsp.keys").setup(client, buf)
 end
 
@@ -151,5 +114,3 @@ for name, opts in pairs(servers) do
   config.capabilities = require("blink.cmp").get_lsp_capabilities()
   lspconfig[name].setup(config)
 end
-
-require("lsp.null-ls").setup(shared_opts)
