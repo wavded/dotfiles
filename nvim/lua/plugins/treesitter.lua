@@ -23,6 +23,7 @@ return {
         "javascript",
         "json",
         "jinja",
+        "jinja_inline",
         "kotlin",
         "lua",
         "make",

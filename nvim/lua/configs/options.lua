@@ -56,14 +56,20 @@ vim.cmd(
 vim.cmd([[au VimLeave * set guicursor=a:hor100-blinkon0]])
 
 -- configure some file types exceptions
-vim.cmd([[au BufRead,BufNewFile .eslintrc setf json]])
-vim.cmd([[au BufRead,BufNewFile .prettierrc setf json]])
-vim.cmd([[au BufRead,BufNewFile .babelrc setf json]])
-vim.cmd([[au BufRead,BufNewFile Jenkinsfile setf groovy]])
-vim.cmd([[au BufRead,BufNewFile *.sls setf yaml]])
-vim.cmd([[au BufRead,BufNewFile *.neon setf yaml]])
+vim.filetype.add({
+  filename = {
+    Jenkinsfile = "groovy",
+  },
+  extension = {
+    sls = "yaml",
+    neon = "yaml",
+    prettierrc = "json",
+    eslintrc = "json",
+    jinja = "jinja",
+  },
+})
+
 vim.cmd([[au FileType python set noet]])
 vim.cmd([[au BufRead,BufNewFile doc.go setlocal spell]])
 vim.cmd([[au FileType gitcommit setlocal spell]])
-vim.cmd([[au FileType tagbar setlocal signcolumn=no]])
 vim.cmd([[au FileType markdown setlocal wrap spell]])

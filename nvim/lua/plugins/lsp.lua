@@ -66,7 +66,7 @@ return {
                   checkThirdParty = false,
                 },
                 codeLens = {
-                  enable = true,
+                  enable = false,
                 },
                 diagnostics = {
                   globals = { "vim" },

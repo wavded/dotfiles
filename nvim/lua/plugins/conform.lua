@@ -26,6 +26,7 @@ return {
         yaml = { "prettierd" },
       },
       format_on_save = { timeout_ms = 3000 },
+      notify_no_formatters = false,
       formatters = {
         deno_fmt = {
           cwd = function(self, ctx)
@@ -47,6 +48,11 @@ return {
             return root(self, ctx)
           end,
           require_cwd = true,
+        },
+        prettierd = {
+          condition = function(_, ctx)
+            return string.match(vim.fs.basename(ctx.filename), ".sls") == nil
+          end,
         },
         gofumpt = {
           env = {
