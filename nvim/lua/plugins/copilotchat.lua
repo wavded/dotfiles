@@ -34,7 +34,7 @@ return {
           --   prompt = "Please generate tests for my code.",
           -- },
           Commit = {
-            prompt = "Write a commit message in this format: Capitalized, short (50 chars or less) summary line. Followed by a blank line with more details, if necessary. Use a bulleted list prefixed with 'Includes:' and a blank line.  Wrap it to about 72 characters or so. Write your commit message in the imperative. Use a gitcommit code block.",
+            prompt = "Write a commit message. The title should be 50 chars or less, capitalized, followed by a blank line with more details. If multiple unique changes, use a bulleted list prefixed with 'Includes:' followed by a blank line. Each line item should be brief and not repeat itself. Wrap it to about 72 characters or so. Write your commit message in the imperative. Use a gitcommit code block.",
             context = "git:staged",
           },
         },
@@ -52,7 +52,7 @@ return {
       chat.setup(opts)
     end,
     keys = {
-      { "<space>c", "<cmd>CopilotChatToggle<cr>" },
+      { "<space>cp", "<cmd>CopilotChatToggle<cr>" },
     },
   },
   {

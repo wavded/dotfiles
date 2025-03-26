@@ -37,7 +37,7 @@ return {
     priority = 1000,
     opts = {
       dashboard = {
-        width = 80,
+        width = 120,
         sections = function()
           local header = [[
       ████ ██████           █████      ██                    
@@ -131,6 +131,7 @@ return {
           },
         },
       },
+      toggle = {},
       bigfile = {},
       explorer = {},
     },

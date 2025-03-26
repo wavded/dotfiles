@@ -63,7 +63,7 @@ function tv() {
   fi
 
   tmux split-window  -h
-  tmux resize-pane   -R 30
+  tmux resize-pane   -R 40
   tmux select-pane   -t 0
   sleep 0.2
   tmux send-keys     -t 0 'vim' C-m
