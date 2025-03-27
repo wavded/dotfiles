@@ -89,7 +89,8 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.icons",
     },
-    ft = { "markdown", "codecompanion", "copilot-chat" },
+    ft = { "markdown", "copilot-chat" },
+    completions = { blink = { enabled = true } },
     opts = {},
   },
 }
