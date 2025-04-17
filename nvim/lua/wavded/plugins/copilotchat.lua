@@ -34,7 +34,7 @@ return {
           --   prompt = "Please generate tests for my code.",
           -- },
           Commit = {
-            prompt = "Write a git commit message. The title should be 50 chars or less and capitalized. The description should be brief and not redundant. Write your commit message in the imperative. Use a gitcommit code block.",
+            prompt = "Write a git commit message. The title should be 50 chars or less and capitalized. The description should start with 'Includes:', then a blank line, followed by a brief and not redundant bulletted list (using dashes) of changes. Write your commit message in the imperative. Use tick marks around variable and file names. Use a gitcommit code block.",
             context = "git:staged",
           },
         },

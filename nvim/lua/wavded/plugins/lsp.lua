@@ -28,11 +28,14 @@ return {
         diagnostics = {
           underline = true,
           update_in_insert = false,
-          virtual_text = {
-            spacing = 4,
-            source = "if_many",
-            prefix = "●",
-          },
+          -- virtual_text = {
+          --   spacing = 4,
+          --   source = "if_many",
+          --   prefix = "●",
+          -- },
+          virtual_lines = true,
+          --   current_line = true,
+          -- },
           severity_sort = true,
           signs = {
             text = {

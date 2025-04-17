@@ -1,1 +1,1 @@
-require("configs")
+require("wavded")

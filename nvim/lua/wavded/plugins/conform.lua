@@ -55,6 +55,7 @@ return {
           end,
         },
         gofumpt = {
+          prepend_args = { "-extra" },
           env = {
             GOFUMPT_SPLIT_LONG_LINES = "on",
           },

@@ -37,7 +37,7 @@ local handlers = {
 }
 
 return function()
-  local ft = vim.api.nvim_buf_get_option(0, "ft")
+  local ft = vim.api.nvim_get_option_value("ft", {})
   local h = handlers[ft]
 
   if h ~= nil then

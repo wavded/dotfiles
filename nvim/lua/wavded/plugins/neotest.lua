@@ -11,20 +11,20 @@ return {
     },
     keys = {
       {
-        "<leader>tt",
+        ",tt",
         function()
-          require("neotest").output_panel.clear()
+          -- require("neotest").output_panel.clear()
           require("neotest").run.run(vim.fn.expand("%"))
         end,
       },
       {
-        "<leader>tl",
+        ",tl",
         function()
           require("neotest").run.run()
         end,
       },
       {
-        "<leader>to",
+        ",to",
         function()
           require("neotest").output_panel.toggle()
         end,

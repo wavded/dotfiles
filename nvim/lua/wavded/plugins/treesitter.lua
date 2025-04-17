@@ -82,6 +82,10 @@ return {
   {
     "aklt/plantuml-syntax",
     ft = "plantuml",
+    init = function()
+      vim.g.plantuml_executable_script =
+        "PLANTUML_LIMIT_SIZE=8192 plantuml -tsvg -quiet $@"
+    end,
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
@@ -89,8 +93,15 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.icons",
     },
-    ft = { "markdown", "copilot-chat" },
+    ft = { "markdown", "copilot-chat", "codecompanion" },
     completions = { blink = { enabled = true } },
-    opts = {},
+    opts = {
+      code = {
+        width = "block",
+        left_pad = 2,
+        right_pad = 2,
+        sign = false,
+      },
+    },
   },
 }

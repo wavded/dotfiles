@@ -62,10 +62,34 @@ return {
           return {
             { padding = 0, align = "center", text = { header, hl = "header" } },
             {
-              padding = 2,
+              padding = 1,
               align = "center",
               text = { greeting(), hl = "header" },
             },
+            function()
+              local version = require("wavded.core.utils").info.nvim_version()
+              local plugin_stats =
+                require("wavded.core.utils").info.plugin_stats()
+              local date = os.date("%m.%d.%Y")
+              local updates = plugin_stats.updates > 0
+                  and "  " .. plugin_stats.updates .. ""
+                or ""
+              return {
+                align = "center",
+                text = {
+                  { " ", hl = "footer" },
+                  { version, hl = "Text" },
+                  { "    ", hl = "footer" },
+                  { tostring(plugin_stats.count), hl = "Text" },
+                  { updates, hl = "special" },
+                  { "   󰛕 ", hl = "footer" },
+                  { plugin_stats.startuptime .. " ms", hl = "Text" },
+                  { "    ", hl = "footer" },
+                  { date, hl = "Text" },
+                },
+                padding = 1,
+              }
+            end,
             {
               icon = " ",
               key = "gn",
@@ -74,13 +98,19 @@ return {
               action = ":lua vim.ui.open('https://github.com/notifications')",
               height = 5,
               section = "terminal",
-              ttl = 10,
+              ttl = 120,
             },
             {
               icon = " ",
               key = "f",
               desc = "Find File",
-              action = ":lua Snacks.dashboard.pick('files')",
+              action = ":lua Snacks.dashboard.pick('smart')",
+            },
+            {
+              icon = " ",
+              key = "t",
+              desc = "Explorer",
+              action = ":lua Snacks.dashboard.pick('explorer')",
             },
             {
               icon = " ",
@@ -113,7 +143,6 @@ return {
               action = ":qa",
               padding = 1,
             },
-            { section = "startup" },
           }
         end,
       },
@@ -127,6 +156,9 @@ return {
         },
         sources = {
           explorer = {
+            layout = {
+              preset = "default",
+            },
             auto_close = true,
           },
         },

@@ -14,7 +14,7 @@ vim.opt.sidescrolloff = 5 -- show next 5 columns while side-scrolling
 vim.opt.splitbelow = true -- more natural horizontal split
 vim.opt.splitright = true -- more natural vertical split
 vim.opt.clipboard = "unnamedplus" -- yanks puts it on clipboard
-vim.opt.colorcolumn = "80" -- show a right margin column
+-- vim.opt.colorcolumn = "80" -- show a right margin column
 vim.opt.expandtab = true -- use spaces, not tabs
 vim.opt.shiftwidth = 2 -- set tab width
 vim.opt.softtabstop = 2
@@ -26,6 +26,7 @@ vim.opt.updatetime = 250 -- millis before CursorHold event
 vim.opt.showmode = false -- hide show mode status
 vim.opt.signcolumn = "yes:1"
 vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.encoding = "utf-8" -- set encoding
 
 -- vary cursor depending on mode
 vim.opt.guicursor =
@@ -44,17 +45,6 @@ vim.opt.wildignore:append({
   "target",
 })
 
--- auto save when focus lost (after tabbing away or switching buffers)
-vim.cmd([[au FocusLost,BufLeave,WinLeave,TabLeave * silent! update"]])
-
--- open files where last edits took place
-vim.cmd(
-  [[ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif ]]
-)
-
--- restore terminal cursor on exit
-vim.cmd([[au VimLeave * set guicursor=a:hor100-blinkon0]])
-
 -- configure some file types exceptions
 vim.filetype.add({
   filename = {
@@ -68,8 +58,3 @@ vim.filetype.add({
     jinja = "jinja",
   },
 })
-
-vim.cmd([[au FileType python set noet]])
-vim.cmd([[au BufRead,BufNewFile doc.go setlocal spell]])
-vim.cmd([[au FileType gitcommit setlocal spell]])
-vim.cmd([[au FileType markdown setlocal wrap spell]])

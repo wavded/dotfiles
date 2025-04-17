@@ -39,7 +39,7 @@ alias reload="exec $SHELL -l"
 
 # == Functions
 
-function tm() {
+function th() {
   tmux has-session -t base &> /dev/null
 
   if [ $? != 0 ]; then
@@ -54,7 +54,7 @@ function tm() {
   tmux send-keys     -t 0 'vim' C-m
 }
 
-function tv() {
+function tm() {
   tmux has-session -t base &> /dev/null
 
   if [ $? != 0 ]; then
