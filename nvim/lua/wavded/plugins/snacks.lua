@@ -37,7 +37,7 @@ return {
     priority = 1000,
     opts = {
       dashboard = {
-        width = 120,
+        width = 100,
         sections = function()
           local header = [[
       ████ ██████           █████      ██                    
@@ -163,17 +163,24 @@ return {
           },
         },
       },
+      notifier = {},
+      indent = {
+        indent = { char = "┊" },
+        animate = { enabled = false },
+        scope = { char = "┊" },
+      },
+      input = {},
       toggle = {},
       bigfile = {},
       explorer = {},
     },
     keys = {
-      { "<space>f", "<cmd>lua Snacks.picker.smart()<cr>" },
-      { "<space>b", "<cmd>lua Snacks.picker.buffers()<cr>" },
-      { "<space>/", "<cmd>lua Snacks.picker.grep()<cr>" },
-      { "<space>u", "<cmd>lua Snacks.picker.undo()<cr>" },
-      { "<space>r", "<cmd>lua Snacks.picker.resume()<cr>" },
-      { "<space>t", "<cmd>lua Snacks.explorer()<cr>" },
+      { "<leader>f", "<cmd>lua Snacks.picker.smart()<cr>" },
+      { "<leader>b", "<cmd>lua Snacks.picker.buffers()<cr>" },
+      { "<leader>/", "<cmd>lua Snacks.picker.grep()<cr>" },
+      { "<leader>u", "<cmd>lua Snacks.picker.undo()<cr>" },
+      { "<leader>r", "<cmd>lua Snacks.picker.resume()<cr>" },
+      { "<leader>t", "<cmd>lua Snacks.explorer()<cr>" },
     },
   },
 }

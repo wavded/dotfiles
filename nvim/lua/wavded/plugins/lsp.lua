@@ -14,11 +14,12 @@ return {
       { "gy", "<cmd>lua vim.lsp.buf.type_definitions()<cr>" },
       { "gr", "<cmd>lua Snacks.picker.lsp_references()<cr>" },
       { "gi", "<cmd>lua Snacks.picker.lsp_implementations()<cr>" },
-      { "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<cr>" },
-      { "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>" },
-      { "<space>cl", "<cmd>lua vim.lsp.codelens.run()<cr>" },
-      { "<space>s", "<cmd>lua Snacks.picker.lsp_symbols()<cr>" },
-      { "<space>d", "<cmd>lua Snacks.picker.diagnostics()<cr>" },
+      { ",rn", "<cmd>lua vim.lsp.buf.rename()<cr>" },
+      { "K", "<cmd>lua vim.lsp.buf.hover({border = 'rounded'})<cr>" },
+      { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>" },
+      { "<leader>cl", "<cmd>lua vim.lsp.codelens.run()<cr>" },
+      { "<leader>s", "<cmd>lua Snacks.picker.lsp_symbols()<cr>" },
+      { "<leader>d", "<cmd>lua Snacks.picker.diagnostics()<cr>" },
       { "[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>" },
       { "[d", "<cmd>lua vim.diagnostic.goto_next()<cr>" },
     },
@@ -208,8 +209,6 @@ return {
       })
 
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
-      vim.lsp.util.convert_input_to_markdown_lines = true
-      vim.lsp.util.stylize_markdown = true
 
       local capabilities = vim.tbl_deep_extend(
         "force",

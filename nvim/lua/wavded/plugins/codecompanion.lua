@@ -1,7 +1,7 @@
 return {
   {
     "olimorris/codecompanion.nvim",
-    config = {
+    opts = {
       adapters = {
         copilot = function()
           return require("codecompanion.adapters").extend("copilot", {

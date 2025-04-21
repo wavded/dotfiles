@@ -8,11 +8,12 @@ vim.keymap.set(
   { silent = true, desc = "Open current file in default application" }
 )
 
+-- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set(
   "n",
-  "<leader><space>",
-  ":noh<cr>",
-  { silent = true, desc = "Clear highlights" }
+  "<Esc>",
+  "<cmd>nohlsearch<cr>",
+  { desc = "Clear highlight" }
 )
 
 -- Make Y behave like C and D.
@@ -35,7 +36,7 @@ vim.keymap.set("n", "<c-u>", "<c-u>zz", { desc = "Move up page" })
 vim.keymap.set("n", "''", "''zz", { desc = "Jump" })
 
 -- Cycle between buffers
-vim.keymap.set("n", ",.", ":b#<cr>", { silent = true })
+vim.keymap.set("n", ",.", "<cmd>b#<cr>")
 
 -- Indent visual selected code without unselecting and going back to normal mode.
 vim.keymap.set("v", ">", ">gv", { desc = "Indent selection" })

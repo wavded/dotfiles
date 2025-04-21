@@ -52,7 +52,7 @@ return {
       chat.setup(opts)
     end,
     keys = {
-      { "<space>cp", "<cmd>CopilotChatToggle<cr>" },
+      { "<leader>cp", "<cmd>CopilotChatToggle<cr>" },
     },
   },
   {
