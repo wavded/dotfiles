@@ -2,6 +2,11 @@ return {
   {
     "williamboman/mason.nvim",
     build = ":MasonUpdate",
+    config = true,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
     opts = {
       ensure_installed = {
         "cssls",
@@ -17,13 +22,10 @@ return {
         "phpactor",
         "rust_analyzer",
         "somesass_ls",
-        "vale-ls",
+        "vale_ls",
         "vtsls",
       },
       automatic_installation = true,
-    },
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
     },
   },
 }
