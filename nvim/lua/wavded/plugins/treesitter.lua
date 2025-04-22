@@ -96,6 +96,10 @@ return {
     ft = { "markdown", "copilot-chat", "codecompanion" },
     completions = { blink = { enabled = true } },
     opts = {
+      heading = {
+        sign = false,
+        position = "inline",
+      },
       code = {
         width = "block",
         left_pad = 2,

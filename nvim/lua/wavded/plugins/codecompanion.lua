@@ -1,6 +1,7 @@
 return {
   {
     "olimorris/codecompanion.nvim",
+    lazy = false,
     opts = {
       adapters = {
         copilot = function()
@@ -52,6 +53,9 @@ Output only the commit message without any explanations and follow-up suggestion
           },
         },
       },
+    },
+    keys = {
+      { "<leader>cc", "<cmd>CodeCompanionChat<cr>" },
     },
     dependencies = {
       "nvim-lua/plenary.nvim",
