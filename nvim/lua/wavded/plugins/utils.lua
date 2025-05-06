@@ -9,7 +9,11 @@ return {
   {
     "catgoose/nvim-colorizer.lua",
     event = "VeryLazy",
-    opts = {},
+    config = function()
+      require("neotest").setup({
+        names = false, -- red
+      })
+    end,
   },
 
   -- surround motions
