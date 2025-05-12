@@ -10,7 +10,7 @@ return {
     opts = {
       ensure_installed = {
         "cssls",
-        -- "denols",
+        "denols",
         "eslint",
         "golangci_lint_ls",
         "gopls",
@@ -26,6 +26,7 @@ return {
         "vtsls",
       },
       automatic_installation = true,
+      automatic_enable = false,
     },
   },
 }

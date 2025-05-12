@@ -100,20 +100,8 @@ return {
               },
             },
           },
-          -- denols = {
-          -- root_dir = util.root_pattern("deno.json", "deno.jsonc"),
-          -- single_file_support = false,
-          -- },
-          eslint = {
-            root_dir = util.root_pattern(
-              "eslint.config.js",
-              "eslint.config.mjs",
-              ".eslintrc"
-            ),
-            single_file_support = false,
-          },
           vtsls = {
-            root_dir = util.root_pattern("package.json"),
+            root_dir = util.root_pattern({ "package.json", "tsconfig.json" }),
             single_file_support = false,
             settings = {
               vtsls = {
@@ -149,6 +137,18 @@ return {
                 },
               },
             },
+          },
+          denols = {
+            root_dir = util.root_pattern({ "deno.json", "deno.jsonc" }),
+            single_file_support = false,
+          },
+          eslint = {
+            root_dir = util.root_pattern(
+              "eslint.config.js",
+              "eslint.config.mjs",
+              ".eslintrc"
+            ),
+            single_file_support = false,
           },
         },
       }
