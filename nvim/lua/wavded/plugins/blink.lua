@@ -77,6 +77,7 @@ return {
         default = {
           "snippets",
           "copilot",
+          "lazydev",
           "lsp",
           "path",
           "buffer",
@@ -90,6 +91,12 @@ return {
             module = "blink-copilot",
             score_offset = 100,
             async = true,
+          },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            -- make lazydev completions top priority (see `:h blink.cmp`)
+            score_offset = 100,
           },
         },
       },

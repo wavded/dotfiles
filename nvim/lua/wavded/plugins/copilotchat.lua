@@ -9,7 +9,7 @@ return {
     opts = function()
       local user = vim.env.USER or "User"
       return {
-        model = "claude-3.7-sonnet",
+        -- model = "claude-3.7-sonnet",
         question_header = " " .. user .. " ",
         answer_header = " Copilot ",
         prompts = {
@@ -34,7 +34,17 @@ return {
           --   prompt = "Please generate tests for my code.",
           -- },
           Commit = {
-            prompt = "Write a git commit message. The title should be 50 chars or less and capitalized. The description should start with 'Includes:', then a blank line, followed by a brief and not redundant bulletted list (using dashes) of changes. Write your commit message in the imperative. Use tick marks around variable and file names. Use a gitcommit code block.",
+            prompt = [[
+Write a git commit message. Follow these rules:
+
+- The title should be 50 chars or less and capitalized.
+- The description should start with 'Includes:' followed by a blank line and then a dashed list of changed.
+- Write your commit message in the imperative.
+- Use tick marks around variable and file names.
+- Be concise and avoid redundancy.
+
+Output only the commit message without any explanations and follow-up suggestions.
+                    ]],
             context = "git:staged",
           },
         },

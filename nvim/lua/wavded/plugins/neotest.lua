@@ -54,12 +54,13 @@ return {
           end,
         },
         adapters = {
-          require("neotest-golang")(),
-          require("neotest-vitest")({
-            is_test_file = function(path)
-              return string.match(path, "_test")
-            end,
-          }),
+          require("neotest-golang"),
+          require("neotest-vitest"),
+          -- ({
+          --   is_test_file = function(path)
+          --     return string.match(path, "_test")
+          --   end,
+          -- }),
         },
       })
     end,

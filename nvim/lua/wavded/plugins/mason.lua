@@ -10,7 +10,7 @@ return {
     opts = {
       ensure_installed = {
         "cssls",
-        "denols",
+        -- "denols",
         "eslint",
         "golangci_lint_ls",
         "gopls",

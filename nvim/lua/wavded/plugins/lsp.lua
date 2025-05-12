@@ -1,5 +1,10 @@
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {},
+  },
+  {
     "neovim/nvim-lspconfig",
     lazy = false,
     dependencies = {
@@ -62,37 +67,6 @@ return {
           timeout_ms = nil,
         },
         servers = {
-          lua_ls = {
-            settings = {
-              Lua = {
-                workspace = {
-                  library = { vim.env.VIMRUNTIME },
-                  checkThirdParty = false,
-                },
-                codeLens = {
-                  enable = false,
-                },
-                diagnostics = {
-                  globals = { "vim" },
-                },
-                completion = {
-                  callSnippet = "Replace",
-                },
-                doc = {
-                  privateName = { "^_" },
-                },
-                hint = {
-                  enable = true,
-                  setType = false,
-                  paramType = true,
-                  paramName = "Disable",
-                  semicolon = "Disable",
-                  arrayIndex = "Disable",
-                },
-              },
-            },
-          },
-
           html = {},
           cssls = {},
           somesass_ls = {},
@@ -126,10 +100,10 @@ return {
               },
             },
           },
-          denols = {
-            root_dir = util.root_pattern("deno.json", "deno.jsonc"),
-            single_file_support = false,
-          },
+          -- denols = {
+          -- root_dir = util.root_pattern("deno.json", "deno.jsonc"),
+          -- single_file_support = false,
+          -- },
           eslint = {
             root_dir = util.root_pattern(
               "eslint.config.js",
