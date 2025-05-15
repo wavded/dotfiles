@@ -46,4 +46,4 @@ vim.keymap.set("v", "<", "<gv", { desc = "Unindent selection" })
 vim.keymap.set("n", "<leader>`", ":!gitup commit<cr><cr>", { silent = true })
 
 -- Alternate file.
-vim.keymap.set("n", "<leader>a", ':lua require("wavded.core.alternate")()<cr>')
+vim.keymap.set("n", "<leader>af", ':lua require("wavded.core.alternate")()<cr>')

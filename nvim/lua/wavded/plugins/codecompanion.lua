@@ -1,25 +1,25 @@
 return {
   {
     "olimorris/codecompanion.nvim",
-    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "ravitemer/mcphub.nvim",
+    },
     opts = {
-      adapters = {
-        copilot = function()
-          return require("codecompanion.adapters").extend("copilot", {
-            schema = {
-              model = {
-                default = "claude-3.7-sonnet",
-              },
-            },
-          })
-        end,
+      display = {
+        action_palette = {
+          opts = {
+            show_default_actions = true,
+            show_default_prompt_library = false,
+          },
+        },
       },
       prompt_library = {
-        ["Auto-generate git commit message"] = {
+        ["Commit"] = {
           strategy = "inline",
           description = "Generate git commit message for current staged changes",
           opts = {
-            mapping = "<LocalLeader>aacm",
             placement = "before|false",
           },
           prompts = {
@@ -28,38 +28,35 @@ return {
               contains_code = true,
               content = function()
                 return vim.fn.system("git diff --cached")
-                  .. [[
-Given the prior diff, write a git commit message. Follow these rules:
+                  .. [[<user_prompt>
+Write a git commit message. Follow these rules:
 
-- The title should be 50 chars or less and capitalized.
-- The description should start with 'Includes:' followed by a blank line and then a dashed list of changed.
-- Write your commit message in the imperative.
-- Use tick marks around variable and file names.
-- Be concise and avoid redundancy.
+  - The title should be 50 chars or less and capitalized.
+  - The description should start with 'Includes:' followed by a blank line and then a dashed list of changed.
+  - Write only using impertive language.
+  - Use tick marks around variable and file names.
+  - Be concise and avoid redundancy.
 
-Output only the commit message without any explanations and follow-up suggestions.
-                    ]]
+ Output only the commit message without any explanations and follow-up suggestions.
+                </user_prompt>]]
               end,
             },
           },
         },
       },
-      strategies = {
-        chat = {
-          adapter = "copilot",
-          roles = {
-            llm = " Copilot ",
-            user = " " .. vim.env.USER .. " ",
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
           },
         },
       },
     },
     keys = {
-      { "<leader>cc", "<cmd>CodeCompanionChat<cr>" },
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
+      { "<leader>cc", "<cmd>CodeCompanionActions<cr>" },
     },
   },
 }

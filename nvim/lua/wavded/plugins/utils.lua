@@ -1,4 +1,11 @@
 return {
+  -- use mini diff
+  {
+    "echasnovski/mini.diff",
+    version = false,
+    opts = {},
+  },
+
   -- set tabwidth based on file type
   {
     "tpope/vim-sleuth",
@@ -26,13 +33,6 @@ return {
   -- cursor word
   {
     "sontungexpt/stcursorword",
-    event = "VeryLazy",
-    opts = {},
-  },
-
-  -- git gutter
-  {
-    "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     opts = {},
   },

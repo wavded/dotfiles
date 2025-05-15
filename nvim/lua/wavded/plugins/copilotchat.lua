@@ -1,15 +1,11 @@
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" },
-      { "nvim-lua/plenary.nvim" },
-    },
+    branch = "main",
     cmd = "CopilotChat",
     opts = function()
       local user = vim.env.USER or "User"
       return {
-        -- model = "claude-3.7-sonnet",
         question_header = " " .. user .. " ",
         answer_header = " Copilot ",
         prompts = {
@@ -33,6 +29,26 @@ return {
           -- Tests = {
           --   prompt = "Please generate tests for my code.",
           -- },
+          TestJS = {
+            prompt = [[
+Write a test file for this file using vitest:
+
+- Use let instead of const
+- Use test instead of describe
+- Use assert instead of expect
+- Test file should be named with `_test` instead of `.test`
+- Write one test function
+- Only mock functions that start with use
+- Use language file for tests where applicable
+- Do not use beforeEach
+- Test should be labeled the component or function name
+- Use concise variable names
+- Don't use comments
+
+Ask if you need to see more files.
+                    ]],
+            context = "buffer",
+          },
           Commit = {
             prompt = [[
 Write a git commit message. Follow these rules:
@@ -50,33 +66,36 @@ Output only the commit message without any explanations and follow-up suggestion
         },
       }
     end,
-    config = function(_, opts)
-      local chat = require("CopilotChat")
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "copilot-chat",
-        callback = function()
-          vim.opt_local.relativenumber = false
-          vim.opt_local.number = false
-        end,
-      })
-      chat.setup(opts)
-    end,
     keys = {
-      { "<leader>cp", "<cmd>CopilotChatToggle<cr>" },
-    },
-  },
-  {
-    "saghen/blink.cmp",
-    optional = true,
-    opts = {
-      sources = {
-        providers = {
-          path = {
-            enabled = function()
-              return vim.bo.filetype ~= "copilot-chat"
-            end,
-          },
-        },
+      {
+        "<leader>aa",
+        function()
+          return require("CopilotChat").toggle()
+        end,
+        desc = "Toggle (CopilotChat)",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>aq",
+        function()
+          vim.ui.input({
+            prompt = "Quick Chat: ",
+          }, function(input)
+            if input ~= "" then
+              require("CopilotChat").ask(input)
+            end
+          end)
+        end,
+        desc = "Quick Chat (CopilotChat)",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>ap",
+        function()
+          require("CopilotChat").select_prompt()
+        end,
+        desc = "Prompt Actions (CopilotChat)",
+        mode = { "n", "v" },
       },
     },
   },
