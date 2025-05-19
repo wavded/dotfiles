@@ -1,10 +1,10 @@
 return {
   {
     "olimorris/codecompanion.nvim",
+    lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "ravitemer/mcphub.nvim",
     },
     opts = {
       display = {
@@ -34,23 +34,13 @@ Write a git commit message. Follow these rules:
   - The title should be 50 chars or less and capitalized.
   - The description should start with 'Includes:' followed by a blank line and then a dashed list of changed.
   - Write only using impertive language.
-  - Use tick marks around variable and file names.
-  - Be concise and avoid redundancy.
+  - Use tick marks around functions, classes, variables and file names.
+  - Be concise. Avoid redundancy.
 
- Output only the commit message without any explanations and follow-up suggestions.
+Output only the commit message without any explanations and follow-up suggestions.
                 </user_prompt>]]
               end,
             },
-          },
-        },
-      },
-      extensions = {
-        mcphub = {
-          callback = "mcphub.extensions.codecompanion",
-          opts = {
-            make_vars = true,
-            make_slash_commands = true,
-            show_result_in_chat = true,
           },
         },
       },
