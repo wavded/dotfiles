@@ -15,6 +15,39 @@ return {
           },
         },
       },
+      strategies = {
+        chat = {
+          adapter = "copilot_gpt41",
+        },
+        inline = {
+          adapter = "copilot_inline",
+        },
+        cmd = {
+          adapter = "copilot_gpt41",
+        },
+      },
+      adapters = {
+        copilot_gpt41 = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            name = "copilot_gpt4",
+            schema = {
+              model = {
+                default = "gpt-4.1",
+              },
+            },
+          })
+        end,
+        copilot_inline = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            name = "copilot_inline",
+            schema = {
+              model = {
+                default = "claude-3.7-sonnet",
+              },
+            },
+          })
+        end,
+      },
       prompt_library = {
         ["Commit"] = {
           strategy = "inline",
