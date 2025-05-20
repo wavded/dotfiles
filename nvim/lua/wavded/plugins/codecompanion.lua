@@ -33,9 +33,9 @@ Write a git commit message. Follow these rules:
 
   - The title should be 50 chars or less and capitalized.
   - The description should start with 'Includes:' followed by a blank line and then a dashed list of changed.
-  - Write only using impertive language.
-  - Use tick marks around functions, classes, variables and file names.
-  - Be concise. Avoid redundancy.
+  - Write using impertive language.
+  - Be concise and avoid redundancy.
+  - Add tick marks around any references to code.
 
 Output only the commit message without any explanations and follow-up suggestions.
                 </user_prompt>]]
