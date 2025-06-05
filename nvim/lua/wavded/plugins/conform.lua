@@ -69,6 +69,7 @@ return {
           condition = function(_, ctx)
             return string.match(vim.fs.basename(ctx.filename), ".sls") == nil
           end,
+          require_cwd = true,
         },
         gofumpt = {
           prepend_args = { "-extra" },
