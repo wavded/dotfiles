@@ -94,11 +94,11 @@ return {
               icon = " ",
               key = "gn",
               title = "Notifications",
-              cmd = "gh notify -s -a -n4",
+              cmd = "gh notify -sn4",
               action = ":lua vim.ui.open('https://github.com/notifications')",
               height = 5,
               section = "terminal",
-              ttl = 120,
+              ttl = 0,
             },
             {
               icon = " ",
