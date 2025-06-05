@@ -75,6 +75,7 @@ return {
           kotlin_language_server = {},
           intelephense = {},
           rust_analyzer = {},
+          biome = {},
 
           golangci_lint_ls = {
             init_options = {

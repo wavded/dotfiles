@@ -8,26 +8,42 @@ return {
         lsp_format = "fallback",
       },
       formatters_by_ft = {
-        css = { "prettierd" },
+        css = { "biome-check", "prettierd", stop_after_first = true },
         go = { "goimports", "gofumpt" },
         html = { "prettierd" },
         java = { "google-java-format" },
-        javascript = { "eslint_d", "prettierd" },
-        javascriptreact = { "eslint_d", "prettierd" },
-        json = { "prettierd" },
-        jsonc = { "prettierd" },
+        javascript = { "biome-check", "prettierd", stop_after_first = true },
+        javascriptreact = {
+          "biome-check",
+          "prettierd",
+          stop_after_first = true,
+        },
+        json = { "biome-check", "prettierd", stop_after_first = true },
+        jsonc = { "biome-check", "prettierd", stop_after_first = true },
         lua = { "stylua" },
         markdown = { "prettierd" },
         pug = { "prettierd" },
         rust = { "rustfmt" },
         scss = { "prettierd" },
-        typescript = { "eslint_d", "prettierd", "deno_fmt" },
-        typescriptreact = { "eslint_d", "prettierd" },
+        typescript = {
+          "deno_fmt",
+          "biome-check",
+          "prettierd",
+          stop_after_first = true,
+        },
+        typescriptreact = {
+          "biome-check",
+          "prettierd",
+          stop_after_first = true,
+        },
         yaml = { "prettierd" },
       },
       format_on_save = { timeout_ms = 3000 },
       notify_no_formatters = false,
       formatters = {
+        ["biome-check"] = {
+          require_cwd = true,
+        },
         deno_fmt = {
           cwd = function(self, ctx)
             local root = require("conform.util").root_file({
