@@ -1,4 +1,3 @@
--- treesitter
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -93,17 +92,23 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "echasnovski/mini.icons",
     },
-    ft = { "markdown", "copilot-chat", "codecompanion" },
+    ft = { "markdown", "codecompanion" },
     completions = { blink = { enabled = true } },
     opts = {
+      render_modes = true,
       heading = {
         sign = false,
         position = "inline",
+        right_pad = 10,
       },
       code = {
+        position = "right",
         width = "block",
+        border = "thick",
+        language_pad = 1,
         left_pad = 2,
         right_pad = 2,
+        min_width = 70,
         sign = false,
       },
     },

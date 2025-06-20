@@ -36,9 +36,6 @@ return {
             enabled = true,
           },
         },
-        ghost_text = {
-          -- enabled = true,
-        },
         list = {
           selection = {
             preselect = false,
@@ -64,15 +61,11 @@ return {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
-          -- window = { border = "single" },
         },
       },
-
       signature = {
         enabled = true,
-        -- window = { border = "single" },
       },
-
       sources = {
         default = {
           "snippets",
@@ -95,16 +88,10 @@ return {
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
-            -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
           },
         },
       },
-      enabled = function()
-        return not vim.tbl_contains({ "copilot-chat" }, vim.bo.filetype)
-          and vim.bo.buftype ~= "prompt"
-          and vim.b.completion ~= false
-      end,
     },
   },
 }

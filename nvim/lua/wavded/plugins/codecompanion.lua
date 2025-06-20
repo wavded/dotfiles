@@ -51,6 +51,11 @@ Output only the commit message without any explanations and follow-up suggestion
         "<cmd>CodeCompanionActions<cr>",
         mode = { "n", "v" },
       },
+      {
+        "<leader>q",
+        "<cmd>CodeCompanionChat Toggle<cr>",
+        mode = { "n", "v" },
+      },
       { "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v" },
       { "gi", ":'<,'>CodeCompanion<cr>", mode = "v" },
     },

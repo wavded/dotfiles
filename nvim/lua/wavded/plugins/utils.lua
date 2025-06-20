@@ -16,11 +16,6 @@ return {
   {
     "catgoose/nvim-colorizer.lua",
     event = "VeryLazy",
-    config = function()
-      require("neotest").setup({
-        names = false, -- red
-      })
-    end,
   },
 
   -- surround motions
@@ -43,4 +38,15 @@ return {
     opts = {},
   },
   "windwp/nvim-ts-autotag",
+
+  {
+    "vim-test/vim-test",
+    config = function()
+      vim.g["test#strategy"] = "neovim"
+      vim.g["test#neovim#start_normal"] = 1
+    end,
+    keys = {
+      { "<leader>e", "<cmd>TestFile<cr>" },
+    },
+  },
 }
