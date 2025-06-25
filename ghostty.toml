@@ -4,7 +4,6 @@ window-padding-x = 5
 theme = tokyonight_moon
 macos-titlebar-proxy-icon = hidden
 macos-window-shadow = false
-# font-thicken = true
 window-height = 55
 window-width = 205
 cursor-style = bar
