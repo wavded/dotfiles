@@ -34,8 +34,8 @@ export DEFAULT_USER=wavded
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
 # ==== Java ====
-export JAVA_VERSION=11
-export JAVA_HOME="/opt/homebrew/opt/java11/libexec/openjdk.jdk/Contents/Home"
+export JAVA_VERSION=17
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
 
 # ==== Go ====
 export GOPATH=$HOME/Projects/go

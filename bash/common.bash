@@ -47,8 +47,8 @@ function tm() {
     tmux attach -t base
   fi
 
-  tmux split-window  -v
-  tmux resize-pane   -D 14
+  tmux split-window  -h
+  tmux resize-pane   -R 40
   tmux select-pane   -t 0
   sleep 0.2
   tmux send-keys     -t 0 'vim' C-m

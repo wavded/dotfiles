@@ -1,0 +1,6 @@
+{
+  "ff": {
+    "prefix": "ff",
+    "body": ["console.log(\"${1:body}: %o\", ${1:body})"]
+  }
+}

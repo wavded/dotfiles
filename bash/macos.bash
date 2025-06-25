@@ -50,6 +50,9 @@ alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resourc
 # Chrome.
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
+# Copilot
+eval "$(gh copilot alias -- bash)"
+
 # == Functions ==
 
 function serve() {

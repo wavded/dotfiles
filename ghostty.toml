@@ -1,0 +1,24 @@
+font-family = Maple Mono NF
+font-size = 12
+window-padding-x = 5
+theme = tokyonight_moon
+macos-titlebar-proxy-icon = hidden
+macos-window-shadow = false
+window-height = 55
+window-width = 205
+cursor-style = bar
+cursor-style-blink = true
+unfocused-split-opacity = 1
+macos-titlebar-style = transparent
+macos-auto-secure-input = true
+
+# tmux-like bindings
+#keybind = ctrl+a>n=new_tab
+#keybind = ctrl+a>ctrl+n=new_tab
+#keybind = ctrl+a>h=previous_tab
+#keybind = ctrl+a>ctrl+h=previous_tab
+#keybind = ctrl+a>l=next_tab
+#keybind = ctrl+a>ctrl+l=next_tab
+#keybind = ctrl+a>\=new_split:right
+#keybind = ctrl+a>]=goto_split:next
+#keybind = ctrl+a>[=goto_split:previous
