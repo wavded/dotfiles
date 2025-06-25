@@ -39,21 +39,6 @@ alias reload="exec $SHELL -l"
 
 # == Functions
 
-function th() {
-  tmux has-session -t base &> /dev/null
-
-  if [ $? != 0 ]; then
-    tmux new-session -s base -d -n base
-    tmux attach -t base
-  fi
-
-  tmux split-window  -v
-  tmux resize-pane   -D 14
-  tmux select-pane   -t 0
-  sleep 0.2
-  tmux send-keys     -t 0 'vim' C-m
-}
-
 function tm() {
   tmux has-session -t base &> /dev/null
 
