@@ -10,7 +10,7 @@ return {
       formatters_by_ft = {
         css = { "biome-check", "prettierd", stop_after_first = true },
         go = { "goimports", "gofumpt" },
-        html = { "prettierd" },
+        html = { "biome-check", "prettierd", stop_after_first = true },
         java = { "google-java-format" },
         javascript = { "biome-check", "prettierd", stop_after_first = true },
         javascriptreact = {
