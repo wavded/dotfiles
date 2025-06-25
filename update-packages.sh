@@ -20,6 +20,9 @@ go install mvdan.cc/gofumpt@latest
 go install golang.org/x/vuln/cmd/govulncheck@latest
 go install github.com/golang/mock/mockgen@latest
 
+# -- GitHub
+gh extension upgrade --all
+
 # == Rust
 rustup update
 cargo install-update -a
