@@ -33,8 +33,6 @@ vim.schedule(function()
 end)
 
 -- vary cursor depending on mode
--- vim.opt.guicursor =
---   "n-c:hor100-nCursor,v-sm:block,i-ci-ve:ver25-Cursor,r-cr-o:hor20,i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150"
 vim.opt.guicursor =
   "n-v-c:block-nCursor,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 

@@ -12,6 +12,7 @@ unfocused-split-opacity = 1
 macos-titlebar-style = transparent
 macos-auto-secure-input = true
 
+# tmux-like bindings
 #keybind = ctrl+a>n=new_tab
 #keybind = ctrl+a>ctrl+n=new_tab
 #keybind = ctrl+a>h=previous_tab
