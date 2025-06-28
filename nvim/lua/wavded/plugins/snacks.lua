@@ -119,6 +119,12 @@ return {
               action = ":ene | startinsert",
             },
             {
+              icon = " ",
+              key = "p",
+              desc = "Prompt",
+              action = ":CodeCompanion",
+            },
+            {
               icon = " ",
               key = "c",
               desc = "Config",
