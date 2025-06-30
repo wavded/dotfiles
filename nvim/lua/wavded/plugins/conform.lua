@@ -9,7 +9,7 @@ return {
       },
       formatters_by_ft = {
         css = { "biome-check", "prettierd", stop_after_first = true },
-        go = { "goimports", "gofumpt" },
+        go = { "golangci-lint" },
         html = { "biome-check", "prettierd", stop_after_first = true },
         java = { "google-java-format" },
         javascript = { "biome-check", "prettierd", stop_after_first = true },
@@ -70,12 +70,6 @@ return {
             return string.match(vim.fs.basename(ctx.filename), ".sls") == nil
           end,
           require_cwd = true,
-        },
-        gofumpt = {
-          prepend_args = { "-extra" },
-          env = {
-            GOFUMPT_SPLIT_LONG_LINES = "on",
-          },
         },
       },
     },

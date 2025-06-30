@@ -68,7 +68,7 @@ When given a task:
           prompts = {
             {
               role = "user",
-              content = "#buffer \n\n ",
+              content = "#{buffer} \n\n ",
             },
           },
         },

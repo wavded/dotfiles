@@ -64,7 +64,22 @@ return {
           cssls = {},
           somesass_ls = {},
           vale_ls = {},
-          gopls = {},
+          gopls = {
+            settings = {
+              gopls = {
+                hints = {
+                  assignVariableTypes = false,
+                  compositeLiteralFields = true,
+                  compositeLiteralTypes = false,
+                  constantValues = true,
+                  functionTypeParameters = true,
+                  ignoredError = true,
+                  parameterTypes = true,
+                  rangeVariableTypes = true,
+                },
+              },
+            },
+          },
           kotlin_language_server = {},
           intelephense = {},
           rust_analyzer = {},
