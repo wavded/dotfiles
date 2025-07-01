@@ -35,7 +35,7 @@ When given a task:
         chat = {
           roles = {
             llm = function(adapter)
-              return "Barky (" .. adapter.formatted_name .. ")"
+              return "Barky"
             end,
 
             user = "Me",
@@ -48,6 +48,10 @@ When given a task:
             show_default_actions = true,
             show_default_prompt_library = false,
           },
+        },
+
+        chat = {
+          intro_message = "Press ? for options",
         },
       },
       prompt_library = {
