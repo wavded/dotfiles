@@ -121,6 +121,7 @@ Output only the commit message without any explanations and follow-up suggestion
         "<cmd>CodeCompanionChat Toggle<cr>",
         mode = { "n", "v" },
       },
+      { "<leader>cb", ":%CodeCompanion<cr>", mode = "n" },
       { "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v" },
       { "gi", ":'<,'>CodeCompanion<cr>", mode = "v" },
     },
