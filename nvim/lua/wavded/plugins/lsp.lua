@@ -84,6 +84,7 @@ return {
           intelephense = {},
           rust_analyzer = {},
           biome = {},
+          postgres_lsp = {},
 
           golangci_lint_ls = {
             init_options = {
