@@ -113,6 +113,12 @@ return {
               action = ":lua Snacks.dashboard.pick('explorer')",
             },
             {
+              icon = " ",
+              key = "/",
+              desc = "Grep",
+              action = ":lua Snacks.dashboard.pick('grep')",
+            },
+            {
               icon = " ",
               key = "n",
               desc = "New File",

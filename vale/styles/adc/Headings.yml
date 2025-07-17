@@ -38,4 +38,8 @@ exceptions:
   - UA
   - CSS
   - HTML
+<<<<<<< Updated upstream
   - SQL
+=======
+  - DNS
+>>>>>>> Stashed changes
