@@ -40,6 +40,10 @@ When given a task:
 
             user = "Me",
           },
+          adapter = {
+            name = "copilot",
+            model = "claude-sonnet-4",
+          },
         },
       },
       display = {
