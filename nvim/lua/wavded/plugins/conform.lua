@@ -24,6 +24,7 @@ return {
         pug = { "prettierd" },
         rust = { "rustfmt" },
         scss = { "prettierd" },
+        sql = { "sqruff" },
         typescript = {
           "deno_fmt",
           "biome-check",

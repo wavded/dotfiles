@@ -82,7 +82,15 @@ return {
           },
           kotlin_language_server = {},
           intelephense = {},
-          rust_analyzer = {},
+          rust_analyzer = {
+            settings = {
+              ["rust-analyzer"] = {
+                check = {
+                  command = "clippy",
+                },
+              },
+            },
+          },
           biome = {},
           postgres_lsp = {},
 
