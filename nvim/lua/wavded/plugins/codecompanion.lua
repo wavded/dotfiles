@@ -40,10 +40,6 @@ When given a task:
 
             user = "Me",
           },
-          adapter = {
-            name = "copilot",
-            model = "gemini-2.5-pro",
-          },
         },
       },
       display = {
