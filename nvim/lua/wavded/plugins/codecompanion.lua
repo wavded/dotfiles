@@ -57,6 +57,10 @@ return {
           description = "Generate git commit message for current staged changes",
           opts = {
             placement = "before|false",
+            adapter = {
+              name = "copilot",
+              model = "gemini-2.5-pro",
+            },
           },
           prompts = {
             {
@@ -68,6 +72,7 @@ return {
 Write a git commit message. Follow these rules:
 
   - The title should be 50 chars or less and capitalized.
+  - The title should not be prefixed with 'feat', 'fix', etc.
   - The description should start with 'Includes:' followed by a blank line and then a dashed list of changed.
   - Write using impertive language.
   - Be concise and avoid redundancy.
