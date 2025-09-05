@@ -35,7 +35,7 @@ alias tree="tree -aC -I '.git|node_modules|vendor' --dirsfirst"
 hash bat >/dev/null 2>&1 && alias cat="bat"
 
 # ls -> eza
-hash eza >/dev/null 2>&1 && alias ls="eza --group-directories-first --icons"
+hash eza >/dev/null 2>&1 && alias ls="eza --group-directories-first --icons --hyperlink"
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
