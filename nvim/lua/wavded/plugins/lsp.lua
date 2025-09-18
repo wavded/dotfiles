@@ -119,8 +119,9 @@ return {
             },
           },
           vtsls = {
-            root_dir = util.root_pattern({ "package.json", "tsconfig.json" }),
+            workspace_required = true,
             single_file_support = false,
+            root_dir = util.root_pattern({ "package.json", "tsconfig.json" }),
             settings = {
               vtsls = {
                 autoUseWorkspaceTsdk = true,
@@ -157,8 +158,8 @@ return {
             },
           },
           denols = {
-            root_dir = util.root_pattern({ "deno.json", "deno.jsonc" }),
-            single_file_support = false,
+            workspace_required = true,
+            root_markers = { "deno.json", "deno.jsonc" },
           },
           eslint = {
             root_dir = util.root_pattern(
@@ -173,7 +174,6 @@ return {
       return ret
     end,
     config = function(_, opts)
-      local lspconfig = require("lspconfig")
       local blink = require("blink.cmp")
 
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -221,7 +221,8 @@ return {
           return
         end
 
-        lspconfig[server].setup(server_opts)
+        vim.lsp.config[server] = server_opts
+        vim.lsp.enable(server)
       end
     end,
   },
