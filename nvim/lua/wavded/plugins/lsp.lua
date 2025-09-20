@@ -121,7 +121,7 @@ return {
           vtsls = {
             workspace_required = true,
             single_file_support = false,
-            root_dir = util.root_pattern({ "package.json", "tsconfig.json" }),
+            root_markers = { "package.json", "tsconfig.json" },
             settings = {
               vtsls = {
                 autoUseWorkspaceTsdk = true,
