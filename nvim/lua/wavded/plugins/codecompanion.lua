@@ -21,10 +21,18 @@ return {
         chat = {
           roles = {
             llm = function(adapter)
-              return "Barky"
+              return adapter.formatted_name .. " (" .. adapter.model.name .. ")"
             end,
-
-            user = "Me",
+            user = function(adapter)
+              return "Me: (" .. adapter.model.name .. ")"
+            end,
+          },
+        },
+      },
+      memory = {
+        opts = {
+          chat = {
+            enabled = true,
           },
         },
       },
@@ -51,27 +59,6 @@ return {
         },
       },
       prompt_library = {
-        ["With Copilot Instructions"] = {
-          strategy = "chat",
-          description = "Include Copilot instructions in the prompt",
-          opts = {
-            mapping = "<leader>cp",
-            short_name = "copilot",
-            mode = { "n", "v" },
-          },
-          context = {
-            {
-              type = "file",
-              path = ".github/copilot-instructions.md",
-            },
-          },
-          prompts = {
-            {
-              role = "user",
-              content = "#{buffer} \n\n ",
-            },
-          },
-        },
         ["Commit"] = {
           strategy = "inline",
           description = "Generate git commit message for current staged changes",
