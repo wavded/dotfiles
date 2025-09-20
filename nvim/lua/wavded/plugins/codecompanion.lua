@@ -91,7 +91,7 @@ return {
                   .. [[<prompt>
 Write a git commit message. Follow these rules:
 
-  - The title should be 50 chars or less and capitalized.
+  - The title should be 50 chars or less and sentence case.
   - The title should not be prefixed with 'feat', 'fix', etc.
   - The description should start with 'Includes:' followed by a blank line and then a dashed list of changed.
   - Write using impertive language.

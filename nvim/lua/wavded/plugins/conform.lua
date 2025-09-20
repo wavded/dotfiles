@@ -19,6 +19,7 @@ return {
           stop_after_first = true,
         },
         json = { "biome-check", "prettierd", stop_after_first = true },
+        kotlin = { "ktlint" },
         lua = { "stylua" },
         markdown = { "prettierd" },
         pug = { "prettierd" },
