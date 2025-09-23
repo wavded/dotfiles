@@ -23,9 +23,13 @@ return {
             llm = function(adapter)
               return adapter.formatted_name .. " (" .. adapter.model.name .. ")"
             end,
-            user = function(adapter)
-              return "Me: (" .. adapter.model.name .. ")"
-            end,
+          },
+          tools = {
+            opts = {
+              default_tools = { "full_stack_dev" },
+              auto_submit_errors = true,
+              auto_submit_success = true,
+            },
           },
         },
       },
