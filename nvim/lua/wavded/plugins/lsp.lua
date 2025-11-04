@@ -121,7 +121,18 @@ return {
           vtsls = {
             workspace_required = true,
             single_file_support = false,
-            root_markers = { "package.json", "tsconfig.json" },
+            root_markers = { "package.json" },
+            root_dir = function(bufnr, on_dir)
+              local root_path = vim.fs.find("package.json", {
+                upward = true,
+                type = "file",
+                path = vim.fn.getcwd(),
+              })[1]
+
+              if root_path then
+                on_dir(vim.fn.fnamemodify(root_path, ":h"))
+              end
+            end,
             settings = {
               vtsls = {
                 autoUseWorkspaceTsdk = true,
