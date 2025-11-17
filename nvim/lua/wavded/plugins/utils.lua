@@ -18,6 +18,12 @@ return {
     event = "VeryLazy",
   },
 
+  -- recall last cusor position
+  {
+    "farmergreg/vim-lastplace",
+    event = "VeryLazy",
+  },
+
   -- surround motions
   {
     "echasnovski/mini.surround",
