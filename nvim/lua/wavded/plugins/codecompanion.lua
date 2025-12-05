@@ -51,7 +51,7 @@ return {
             placement = "before|false",
             adapter = {
               name = "copilot",
-              model = "gemini-2.5-pro",
+              model = "gemini-3-pro-preview",
             },
           },
           prompts = {
