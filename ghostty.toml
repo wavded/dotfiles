@@ -15,7 +15,6 @@ unfocused-split-opacity = 1
 bell-features = no-audio, no-system, no-title
 macos-titlebar-style = transparent
 macos-auto-secure-input = true
-auto-update-channel = tip
 
 #keybind = ctrl+a>n=new_tab
 #keybind = ctrl+a>ctrl+n=new_tab
