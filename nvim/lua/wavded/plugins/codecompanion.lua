@@ -47,8 +47,8 @@ return {
         action_palette = {
           opts = {
             show_preset_actions = true,
-            show_preset_prompts = false,
-            show_prompt_library_builtins = false,
+            show_preset_prompts = true,
+            show_prompt_library_builtins = true,
           },
         },
         chat = {

@@ -50,6 +50,11 @@ brew install php-cs-fixer
 brew install git
 brew install git-extras
 
+# == AI
+brew install copilot-cli
+brew install gemini-cli
+brew install anomalyco/tap/opencode
+
 # == GPG
 # https://gist.github.com/bmhatfield/cc21ec0a3a2df963bffa3c1f884b676b#gistcomment-2165971
 brew install gnupg

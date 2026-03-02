@@ -6,7 +6,6 @@ opts:
   alias: commit
   auto_submit: false
   is_slash_cmd: true
-  placement: before|false
   adapter:
     name: copilot
     model: gemini-3-flash-preview

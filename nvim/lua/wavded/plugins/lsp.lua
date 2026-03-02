@@ -111,6 +111,10 @@ return {
               ["JAVA_HOME"] = "/opt/homebrew/opt/java/libexec/openjdk.jdk/Contents/Home",
             },
           },
+          groovyls = {
+            cmd = { "groovy-language-server" },
+            filetypes = { "groovy", "jenkinsfile" },
+          },
           jsonls = {
             settings = {
               json = {
