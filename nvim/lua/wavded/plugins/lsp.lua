@@ -5,6 +5,14 @@ return {
     opts = {},
   },
   {
+    "Fildo7525/pretty_hover",
+    event = "LspAttach",
+    opts = {},
+    keys = {
+      { "K", "<cmd> lua require('pretty_hover').hover()<cr>" },
+    },
+  },
+  {
     "neovim/nvim-lspconfig",
     lazy = false,
     dependencies = {
@@ -20,7 +28,7 @@ return {
       { "gr", "<cmd>lua Snacks.picker.lsp_references()<cr>" },
       { "gi", "<cmd>lua Snacks.picker.lsp_implementations()<cr>" },
       { ",rn", "<cmd>lua vim.lsp.buf.rename()<cr>" },
-      { "K", "<cmd>lua vim.lsp.buf.hover({border = 'rounded'})<cr>" },
+      -- { "K", "<cmd>lua vim.lsp.buf.hover({border = 'rounded'})<cr>" },
       { "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>" },
       { "<leader>cl", "<cmd>lua vim.lsp.codelens.run()<cr>" },
       { "<leader>s", "<cmd>lua Snacks.picker.lsp_symbols()<cr>" },
@@ -32,18 +40,20 @@ return {
       local util = require("lspconfig.util")
       local ret = {
         diagnostics = {
-          underline = true,
-          update_in_insert = false,
-          virtual_lines = true,
-          severity_sort = true,
-          signs = {
-            text = {
-              [vim.diagnostic.severity.ERROR] = "",
-              [vim.diagnostic.severity.WARN] = "",
-              [vim.diagnostic.severity.HINT] = "",
-              [vim.diagnostic.severity.INFO] = "",
-            },
-          },
+          virtual_text = false,
+          signs = false,
+          --   underline = true,
+          --   update_in_insert = false,
+          --   virtual_lines = true,
+          --   severity_sort = true,
+          -- signs = {
+          -- text = {
+          --   [vim.diagnostic.severity.ERROR] = "",
+          --   [vim.diagnostic.severity.WARN] = "",
+          --   [vim.diagnostic.severity.HINT] = "",
+          --   [vim.diagnostic.severity.INFO] = "",
+          -- },
+          -- },
         },
         inlay_hints = { enabled = true },
         codelens = { enabled = true },
