@@ -32,18 +32,20 @@ return {
       local util = require("lspconfig.util")
       local ret = {
         diagnostics = {
-          underline = true,
-          update_in_insert = false,
-          virtual_lines = true,
-          severity_sort = true,
-          signs = {
-            text = {
-              [vim.diagnostic.severity.ERROR] = "",
-              [vim.diagnostic.severity.WARN] = "",
-              [vim.diagnostic.severity.HINT] = "",
-              [vim.diagnostic.severity.INFO] = "",
-            },
-          },
+          virtual_text = false,
+          signs = false,
+          --   underline = true,
+          --   update_in_insert = false,
+          --   virtual_lines = true,
+          --   severity_sort = true,
+          -- signs = {
+          -- text = {
+          --   [vim.diagnostic.severity.ERROR] = "",
+          --   [vim.diagnostic.severity.WARN] = "",
+          --   [vim.diagnostic.severity.HINT] = "",
+          --   [vim.diagnostic.severity.INFO] = "",
+          -- },
+          -- },
         },
         inlay_hints = { enabled = true },
         codelens = { enabled = true },
@@ -122,56 +124,57 @@ return {
               },
             },
           },
-          vtsls = {
-            workspace_required = true,
-            single_file_support = false,
-            root_markers = { "package.json" },
-            root_dir = function(bufnr, on_dir)
-              local root_path = vim.fs.find("package.json", {
-                upward = true,
-                type = "file",
-                path = vim.fn.getcwd(),
-              })[1]
-
-              if root_path then
-                on_dir(vim.fn.fnamemodify(root_path, ":h"))
-              end
-            end,
-            settings = {
-              vtsls = {
-                autoUseWorkspaceTsdk = true,
-                experimental = {
-                  completion = { enableServerSideFuzzyMatch = true },
-                },
-              },
-              typescript = {
-                updateImportsOnFileMove = { enabled = "always" },
-                suggest = { completeFunctionCalls = true },
-                preferences = { useAliasesForRenames = false },
-                inlayHints = {
-                  enumMemberValues = { enabled = true },
-                  functionLikeReturnTypes = { enabled = true },
-                  parameterNames = { enabled = "literals" },
-                  parameterTypes = { enabled = true },
-                  propertyDeclarationTypes = { enabled = true },
-                  variableTypes = { enabled = false },
-                },
-              },
-              javascript = {
-                updateImportsOnFileMove = { enabled = "always" },
-                suggest = { completeFunctionCalls = true },
-                preferences = { useAliasesForRenames = false },
-                inlayHints = {
-                  enumMemberValues = { enabled = true },
-                  functionLikeReturnTypes = { enabled = true },
-                  parameterNames = { enabled = "literals" },
-                  parameterTypes = { enabled = true },
-                  propertyDeclarationTypes = { enabled = true },
-                  variableTypes = { enabled = false },
-                },
-              },
-            },
-          },
+          tsgo = {},
+          -- vtsls = {
+          --   workspace_required = true,
+          --   single_file_support = false,
+          --   root_markers = { "package.json" },
+          --   root_dir = function(bufnr, on_dir)
+          --     local root_path = vim.fs.find("package.json", {
+          --       upward = true,
+          --       type = "file",
+          --       path = vim.fn.getcwd(),
+          --     })[1]
+          --
+          --     if root_path then
+          --       on_dir(vim.fn.fnamemodify(root_path, ":h"))
+          --     end
+          --   end,
+          --   settings = {
+          --     vtsls = {
+          --       autoUseWorkspaceTsdk = true,
+          --       experimental = {
+          --         completion = { enableServerSideFuzzyMatch = true },
+          --       },
+          --     },
+          --     typescript = {
+          --       updateImportsOnFileMove = { enabled = "always" },
+          --       suggest = { completeFunctionCalls = true },
+          --       preferences = { useAliasesForRenames = false },
+          --       inlayHints = {
+          --         enumMemberValues = { enabled = true },
+          --         functionLikeReturnTypes = { enabled = true },
+          --         parameterNames = { enabled = "literals" },
+          --         parameterTypes = { enabled = true },
+          --         propertyDeclarationTypes = { enabled = true },
+          --         variableTypes = { enabled = false },
+          --       },
+          --     },
+          --     javascript = {
+          --       updateImportsOnFileMove = { enabled = "always" },
+          --       suggest = { completeFunctionCalls = true },
+          --       preferences = { useAliasesForRenames = false },
+          --       inlayHints = {
+          --         enumMemberValues = { enabled = true },
+          --         functionLikeReturnTypes = { enabled = true },
+          --         parameterNames = { enabled = "literals" },
+          --         parameterTypes = { enabled = true },
+          --         propertyDeclarationTypes = { enabled = true },
+          --         variableTypes = { enabled = false },
+          --       },
+          --     },
+          --   },
+          -- },
           denols = {
             workspace_required = true,
             root_markers = { "deno.json", "deno.jsonc" },

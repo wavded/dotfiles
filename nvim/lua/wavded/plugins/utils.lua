@@ -56,4 +56,24 @@ return {
       { "<leader>e", "<cmd>TestFile<cr>" },
     },
   },
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy",
+    priority = 1000,
+    opts = {
+      preset = "classic",
+      options = {
+        -- add_messages = {
+        --   display_count = true,
+        -- },
+        show_source = {
+          enabled = true,
+        },
+        -- multilines = {
+        --   enabled = true,
+        --   always_show = true,
+        -- },
+      },
+    },
+  },
 }

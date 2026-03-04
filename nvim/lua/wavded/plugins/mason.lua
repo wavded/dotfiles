@@ -25,6 +25,7 @@ return {
         "rust_analyzer",
         "somesass_ls",
         "vale_ls",
+        "tsgo",
         "vtsls",
       },
       automatic_installation = true,

@@ -111,6 +111,19 @@ return {
         min_width = 70,
         sign = false,
       },
+      overrides = {
+        buftype = {
+          -- Clean up popup windows.
+          nofile = {
+            code = {
+              border = "hide",
+              style = "normal",
+              left_pad = 0,
+              right_pad = 0,
+            },
+          },
+        },
+      },
     },
   },
 }
