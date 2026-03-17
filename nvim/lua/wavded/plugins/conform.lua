@@ -8,59 +8,57 @@ return {
         lsp_format = "fallback",
       },
       formatters_by_ft = {
-        css = { "biome-check", "prettierd", stop_after_first = true },
+        css = { "oxfmt", "biome-check", "prettierd", stop_after_first = true },
         go = { "golangci-lint" },
-        html = { "biome-check", "prettierd", stop_after_first = true },
+        html = { "oxfmt", "biome-check", "prettierd", stop_after_first = true },
         java = { "google-java-format" },
-        javascript = { "biome-check", "prettierd", stop_after_first = true },
-        javascriptreact = {
+        javascript = {
+          "oxfmt",
           "biome-check",
           "prettierd",
           stop_after_first = true,
         },
-        json = { "biome-check", "prettierd", stop_after_first = true },
+        javascriptreact = {
+          "oxfmt",
+          "biome-check",
+          "prettierd",
+          stop_after_first = true,
+        },
+        json = { "oxfmt", "biome-check", "prettierd", stop_after_first = true },
+        jsonc = { "oxfmt", "biome-check", "prettierd", stop_after_first = true },
         kotlin = { "ktlint" },
         lua = { "stylua" },
-        markdown = { "prettierd" },
+        markdown = { "oxfmt", "prettierd" },
         pug = { "prettierd" },
         rust = { "rustfmt" },
-        scss = { "prettierd" },
+        scss = { "oxfmt", "prettierd" },
         sql = { "sqruff" },
+        toml = { "oxfmt", "prettierd" },
         typescript = {
           "deno_fmt",
+          "oxfmt",
           "biome-check",
           "prettierd",
           stop_after_first = true,
         },
         typescriptreact = {
+          "oxfmt",
           "biome-check",
           "prettierd",
           stop_after_first = true,
         },
-        yaml = { "prettierd" },
+        yaml = { "oxfmt", "prettierd" },
       },
       format_on_save = { timeout_ms = 3000 },
       notify_no_formatters = false,
       formatters = {
-        ["biome-check"] = {
-          require_cwd = true,
-        },
+        oxfmt = { require_cwd = true },
+        ["biome-check"] = { require_cwd = true },
         deno_fmt = {
           cwd = function(self, ctx)
             local root = require("conform.util").root_file({
               "deno.json",
               "deno.jsonc",
-            })
-            return root(self, ctx)
-          end,
-          require_cwd = true,
-        },
-        eslint_d = {
-          cwd = function(self, ctx)
-            local root = require("conform.util").root_file({
-              "eslint.config.js",
-              "eslint.config.mjs",
-              ".eslintrc",
             })
             return root(self, ctx)
           end,

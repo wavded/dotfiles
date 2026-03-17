@@ -93,7 +93,11 @@ return {
               },
             },
           },
-          biome = {},
+          biome = {
+            root_dir = util.root_pattern("biome.json"),
+            single_file_support = false,
+          },
+          oxlint = {},
           postgres_lsp = {},
 
           golangci_lint_ls = {
@@ -178,14 +182,6 @@ return {
           denols = {
             workspace_required = true,
             root_markers = { "deno.json", "deno.jsonc" },
-          },
-          eslint = {
-            root_dir = util.root_pattern(
-              "eslint.config.js",
-              "eslint.config.mjs",
-              ".eslintrc"
-            ),
-            single_file_support = false,
           },
         },
       }

@@ -66,7 +66,7 @@ echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 brew install node
 brew install pnpm
 brew install prettierd
-pnpm install -g prettier typescript eslint_d
+pnpm install -g prettier typescript
 pnpm completion
 
 # == Java
