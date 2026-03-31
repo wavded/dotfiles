@@ -8,52 +8,30 @@ return {
         lsp_format = "fallback",
       },
       formatters_by_ft = {
-        css = { "oxfmt", "biome-check", "prettierd", stop_after_first = true },
+        css = { "oxfmt" },
         go = { "golangci-lint" },
-        html = { "oxfmt", "biome-check", "prettierd", stop_after_first = true },
+        html = { "oxfmt" },
         java = { "google-java-format" },
-        javascript = {
-          "oxfmt",
-          "biome-check",
-          "prettierd",
-          stop_after_first = true,
-        },
-        javascriptreact = {
-          "oxfmt",
-          "biome-check",
-          "prettierd",
-          stop_after_first = true,
-        },
-        json = { "oxfmt", "biome-check", "prettierd", stop_after_first = true },
-        jsonc = { "oxfmt", "biome-check", "prettierd", stop_after_first = true },
+        javascript = { "oxlint", "oxfmt" },
+        javascriptreact = { "oxlint", "oxfmt" },
+        json = { "oxfmt" },
+        jsonc = { "oxfmt" },
         kotlin = { "ktlint" },
         lua = { "stylua" },
-        markdown = { "oxfmt", "prettierd" },
+        markdown = { "oxfmt" },
         pug = { "prettierd" },
         rust = { "rustfmt" },
-        scss = { "oxfmt", "prettierd" },
+        scss = { "oxfmt" },
         sql = { "sqruff" },
-        toml = { "oxfmt", "prettierd" },
-        typescript = {
-          "deno_fmt",
-          "oxfmt",
-          "biome-check",
-          "prettierd",
-          stop_after_first = true,
-        },
-        typescriptreact = {
-          "oxfmt",
-          "biome-check",
-          "prettierd",
-          stop_after_first = true,
-        },
-        yaml = { "oxfmt", "prettierd" },
+        toml = { "oxfmt" },
+        typescript = { "deno_fmt", "oxlint", "oxfmt" },
+        typescriptreact = { "oxlint", "oxfmt" },
+        yaml = { "oxfmt" },
       },
       format_on_save = { timeout_ms = 3000 },
       notify_no_formatters = false,
       formatters = {
-        oxfmt = { require_cwd = true },
-        ["biome-check"] = { require_cwd = true },
+        oxlint = { require_cwd = true, exit_codes = { 0, 1 } },
         deno_fmt = {
           cwd = function(self, ctx)
             local root = require("conform.util").root_file({
@@ -61,12 +39,6 @@ return {
               "deno.jsonc",
             })
             return root(self, ctx)
-          end,
-          require_cwd = true,
-        },
-        prettierd = {
-          condition = function(_, ctx)
-            return string.match(vim.fs.basename(ctx.filename), ".sls") == nil
           end,
           require_cwd = true,
         },

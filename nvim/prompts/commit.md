@@ -8,7 +8,7 @@ opts:
   is_slash_cmd: true
   adapter:
     name: copilot
-    model: gpt-5-mini
+    model: gemini-3-flash-preview
 ---
 
 ## user

@@ -1,16 +1,17 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     version = false,
-    event = "VeryLazy",
     build = ":TSUpdate",
-    lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+    cmd = { "TSUpdate", "TSInstall", "TSLog", "TSUninstall" },
+    opts_extend = { "ensure_installed" },
     opts = {
       ensure_installed = {
         "bash",
         "comment",
         "css",
+        "diff",
         "dockerfile",
         "gitcommit",
         "gitignore",
@@ -43,33 +44,21 @@ return {
         "xml",
         "yaml",
       },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        disable = function(_, bufnr)
-          return vim.api.nvim_buf_line_count(bufnr) > 5000
-        end,
-        additional_vim_regex_highlighting = false,
-      },
-      indent = { enable = true },
-      autotag = { enable = true },
-      textsubjects = {
-        enable = true,
-        keymaps = { ["."] = "textsubjects-smart" },
-      },
     },
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      local TS = require("nvim-treesitter")
+      TS.install(opts.ensure_installed)
+      TS.setup(opts)
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          local ok = pcall(vim.treesitter.start)
+          if ok then
+            vim.bo[args.buf].indentexpr =
+              "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
+      })
     end,
-  },
-  {
-    -- rainbow delimiters
-    {
-      "HiPhish/rainbow-delimiters.nvim",
-      event = "VeryLazy",
-      main = "rainbow-delimiters.setup",
-      opts = {},
-    },
   },
   {
     -- comments
