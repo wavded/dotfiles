@@ -21,7 +21,7 @@ Write a git commit message. Follow these rules:
 
   - Title is 50 chars or less and sentence case.
   - Title isn't prefixed with 'feat', 'fix', etc.
-  - Description starts with 'Includes:' followed by a blank line and then a dashed list of changed.
+  - If there is more than one change, add description that starts with 'Includes:' followed by a blank line and then a dashed list of changes.
   - Write using imperative language.
   - Be concise and avoid redundancy.
   - Use tick marks around references to code or files.

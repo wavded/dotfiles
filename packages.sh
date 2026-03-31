@@ -45,6 +45,7 @@ brew install neovim
 brew install dnscontrol
 brew install vale
 brew install php-cs-fixer
+brew install tree-sitter-cli
 
 # == Git
 brew install git
