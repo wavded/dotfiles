@@ -94,7 +94,7 @@ return {
               icon = " ",
               key = "gn",
               title = "Notifications",
-              cmd = "gh notify -sn4",
+              cmd = "gh notify -sn4 && printf '\\n%.0s' {1..5}",
               action = ":lua vim.ui.open('https://github.com/notifications')",
               height = 5,
               section = "terminal",
