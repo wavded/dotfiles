@@ -128,7 +128,23 @@ return {
               },
             },
           },
-          tsgo = {},
+          tsgo = {
+            settings = {
+              typescript = {
+                inlayHints = {
+                  parameterNames = {
+                    enabled = "literals",
+                    suppressWhenArgumentMatchesName = true,
+                  },
+                  parameterTypes = { enabled = true },
+                  variableTypes = { enabled = false },
+                  propertyDeclarationTypes = { enabled = false },
+                  functionLikeReturnTypes = { enabled = true },
+                  enumMemberValues = { enabled = true },
+                },
+              },
+            },
+          },
           -- vtsls = {
           --   workspace_required = true,
           --   single_file_support = false,
