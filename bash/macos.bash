@@ -68,4 +68,6 @@ function vpnoff() {
 }
 
 # Run prompt
-eval "$(starship init bash)"
+if [ "$TERM" != "dumb" ]; then
+  eval "$(starship init bash)"
+fi
