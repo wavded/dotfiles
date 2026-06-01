@@ -93,10 +93,6 @@ return {
               },
             },
           },
-          biome = {
-            root_dir = util.root_pattern("biome.json"),
-            single_file_support = false,
-          },
           oxlint = {},
           postgres_lsp = {},
 

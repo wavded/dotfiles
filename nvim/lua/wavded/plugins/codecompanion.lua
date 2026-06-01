@@ -9,6 +9,10 @@ return {
     opts = {
       interactions = {
         chat = {
+          adapter = {
+            name = "copilot",
+            model = "gemini-3.5-flash",
+          },
           roles = {
             llm = function(adapter)
               return adapter.formatted_name .. " (" .. adapter.model.name .. ")"
@@ -20,6 +24,12 @@ return {
               auto_submit_errors = true,
               auto_submit_success = true,
             },
+          },
+        },
+        inline = {
+          adapter = {
+            name = "copilot",
+            model = "gemini-3.5-flash",
           },
         },
       },

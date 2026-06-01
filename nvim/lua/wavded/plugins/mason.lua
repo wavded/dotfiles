@@ -9,7 +9,6 @@ return {
     dependencies = { "williamboman/mason.nvim" },
     opts = {
       ensure_installed = {
-        "biome",
         "cssls",
         "denols",
         "golangci_lint_ls",
