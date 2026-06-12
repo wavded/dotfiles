@@ -15,4 +15,3 @@ fi
 if [ `uname` == "Darwin" ]; then
   source $HOME/.bash/macos.bash
 fi
-. "$HOME/.cargo/env"
