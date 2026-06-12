@@ -7,7 +7,6 @@ xcode-select --install
 eval "$(/opt/homebrew/bin/brew shellenv)"
 brew update
 brew upgrade
-brew tap homebrew/cask-versions
 
 # == GNU tools
 brew install coreutils
@@ -50,6 +49,8 @@ brew install tree-sitter-cli
 # == Git
 brew install git
 brew install git-extras
+brew install gh
+gh ext install meiji163/gh-notify
 
 # == AI
 brew install copilot-cli
@@ -96,23 +97,18 @@ brew tap oven-sh/bun
 brew install bun
 
 # == Cask
-brew install --cask postico@1
-brew install --cask docker
-brew install --cask the-unarchiver
+brew install --cask postico
 brew install --cask gitup
 brew install --cask imageoptim
-brew install --cask hammerspoon
 brew install --cask appcleaner
-brew install --cask postman
-brew install --cask owasp-zap
 brew install --cask slack
-brew install --cask iterm2
+brew install --cask ghostty
 brew install --cask tailscale
 brew install --cask 1password
 
 # == Fonts
-brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-maple-mono-nf
 
 brew cleanup
 

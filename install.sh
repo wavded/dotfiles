@@ -20,7 +20,6 @@ if [[ `uname` == "Darwin" ]]; then
   mkdir -p $HOME/.config
   rm-if-present "$HOME/.config/nvim" "$dir/nvim"
   rm-if-present "$HOME/.config/sharship.toml" "$dir/starship.toml"
-  rm-if-present "$HOME/.hammerspoon" "$dir/hammerspoon"
 
   bash -c ./packages.sh
   bash -c ./fix-terminfo.sh
