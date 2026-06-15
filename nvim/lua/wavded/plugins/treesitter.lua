@@ -84,6 +84,7 @@ return {
     ft = { "markdown", "codecompanion" },
     completions = { blink = { enabled = true } },
     opts = {
+      latex = { enabled = false },
       render_modes = true,
       heading = {
         sign = false,

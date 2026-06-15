@@ -7,6 +7,24 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     opts = {
+      adapters = {
+        http = {
+          copilot = function()
+            return require("codecompanion.adapters").extend("copilot", {
+              headers = {
+                ["Authorization"] = function()
+                  local token =
+                    vim.fn.system("gh auth token 2>/dev/null"):gsub("%s+", "")
+                  if token and token ~= "" then
+                    return "Bearer " .. token
+                  end
+                  return nil
+                end,
+              },
+            })
+          end,
+        },
+      },
       interactions = {
         chat = {
           adapter = {
