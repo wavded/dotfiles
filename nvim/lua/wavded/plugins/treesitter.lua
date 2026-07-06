@@ -18,6 +18,7 @@ return {
         "go",
         "gomod",
         "gowork",
+        "groovy",
         "html",
         "java",
         "javascript",

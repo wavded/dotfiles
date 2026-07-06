@@ -42,8 +42,5 @@ vim.keymap.set("n", ",.", "<cmd>b#<cr>")
 vim.keymap.set("v", ">", ">gv", { desc = "Indent selection" })
 vim.keymap.set("v", "<", "<gv", { desc = "Unindent selection" })
 
--- Gitup integration.
-vim.keymap.set("n", "<leader>`", ":!gitup commit<cr><cr>", { silent = true })
-
 -- Alternate file.
 vim.keymap.set("n", "<leader>a", ':lua require("wavded.core.alternate")()<cr>')

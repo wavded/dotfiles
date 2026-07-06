@@ -194,6 +194,7 @@ return {
       { "<leader>u", "<cmd>lua Snacks.picker.undo()<cr>" },
       { "<leader>r", "<cmd>lua Snacks.picker.resume()<cr>" },
       { "<leader>t", "<cmd>lua Snacks.explorer()<cr>" },
+      { "<leader>`", "<cmd>lua Snacks.lazygit()<cr>" },
     },
   },
 }
