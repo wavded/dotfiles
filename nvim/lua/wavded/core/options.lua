@@ -55,7 +55,7 @@ vim.filetype.add({
     Jenkinsfile = "groovy",
   },
   extension = {
-    sls = "yaml",
+    sls = "yaml.jinja",
     neon = "yaml",
     prettierrc = "json",
     eslintrc = "json",
