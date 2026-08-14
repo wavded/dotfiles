@@ -45,10 +45,6 @@ export PATH=${GOPATH}/bin:$GOBIN:$PATH
 # ==== Haskell ====
 export PATH=$HOME/Library/Haskell/bin:$PATH
 
-# ==== PNPM ====
-export PNPM_HOME="/Users/wavded/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
 # ==== Rust ====
 export PATH="$HOME/.cargo/bin:$PATH"
 hash rustc >/dev/null 2>&1 && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
