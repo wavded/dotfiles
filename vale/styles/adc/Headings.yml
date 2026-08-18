@@ -7,6 +7,9 @@ match: $sentence
 indicators:
   - ":"
 exceptions:
+  - MCP
+  - YouTrack
+  - Slack
   - Azure
   - CLI
   - Code
