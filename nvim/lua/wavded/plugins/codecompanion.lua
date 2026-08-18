@@ -29,7 +29,7 @@ return {
         chat = {
           adapter = {
             name = "copilot",
-            model = "gemini-3.6-flash",
+            model = "gemini-3.7-flash",
           },
           roles = {
             llm = function(adapter)
@@ -47,7 +47,7 @@ return {
         inline = {
           adapter = {
             name = "copilot",
-            model = "gemini-3.6-flash",
+            model = "gemini-3.7-flash",
           },
         },
       },
