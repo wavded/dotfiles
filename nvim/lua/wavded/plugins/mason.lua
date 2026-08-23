@@ -24,7 +24,7 @@ return {
         "somesass_ls",
         "vale_ls",
         "oxlint",
-        "tsgo",
+        "tsc",
         "vtsls",
       },
       automatic_installation = true,
