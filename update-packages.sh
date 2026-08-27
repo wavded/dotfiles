@@ -11,6 +11,7 @@ brew cleanup
 
 # == Node
 pnpm up -gL
+bun up -gL
 
 # == Go
 go install golang.org/x/tools/cmd/goimports@latest
