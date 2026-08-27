@@ -1,0 +1,10 @@
+gui:
+  showRandomTip: false
+  showBottomLine: false
+  showCommandLog: false
+  shrinkSidePanelsToContent: true
+
+  sidePanels:
+    - [files, worktrees, submodules]
+    - [branches, remotes, tags]
+    - [commits, reflog]
