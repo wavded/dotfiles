@@ -31,6 +31,7 @@ width = "80%"
 height = "80%"
 
 [ui]
+hide_tab_bar_when_single_tab = true
 status_indicators = "symbols"
 window_title = "{terminal_title}"
 pane_gaps = false
