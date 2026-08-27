@@ -3,10 +3,10 @@ files=(bash bashrc bash_profile inputrc vale vale.ini gitconfig vimrc oxfmtrc.js
 dir="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 function rm-if-present { # $1: to-path $2: from-path
-  if [ -e $1 ]; then
-    rm -rf $1;
+  if [ -e "$1" ] || [ -L "$1" ]; then
+    rm -rf "$1";
   fi
-  ln -s $2 $1;
+  ln -s "$2" "$1";
 }
 
 for f in "${files[@]}"
@@ -18,6 +18,8 @@ done
 if [[ `uname` == "Darwin" ]]; then
   rm-if-present "$HOME/.hushlogin" "$dir/hushlogin"
   mkdir -p $HOME/.config
+  mkdir -p "$HOME/.config/herdr"
+  rm-if-present "$HOME/.config/herdr/config.toml" "$dir/herdr/config.toml"
   rm-if-present "$HOME/.config/nvim" "$dir/nvim"
   rm-if-present "$HOME/.config/sharship.toml" "$dir/starship.toml"
 

@@ -1,0 +1,44 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+a"
+reload_config = "prefix+r"
+workspace_picker = "prefix+a"
+goto = "ctrl+h"
+new_workspace = "prefix+ctrl+n"
+toggle_sidebar = "prefix+p"
+close_pane = ""
+close_workspace = "prefix+x"
+previous_workspace = "prefix+ctrl+k"
+next_workspace = "prefix+ctrl+j"
+split_vertical = "prefix+backslash"
+zoom = ["prefix+m", "prefix+enter"]
+previous_tab = "prefix+ctrl+h"
+next_tab = "prefix+ctrl+l"
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+new_tab = "prefix+t"
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+
+[[keys.command]]
+key = "ctrl+backtick"
+type = "popup"
+command = "PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\" exec lazygit"
+width = "80%"
+height = "80%"
+
+[ui]
+status_indicators = "symbols"
+window_title = "{terminal_title}"
+pane_gaps = false
+pane_outer_borders = false
+agent_panel_sort = "priority"
+
+[ui.toast]
+delivery = "herdr"
+
+[theme]
+name = "tokyo-night"
