@@ -12,6 +12,7 @@ close_workspace = "prefix+x"
 previous_workspace = "prefix+ctrl+k"
 next_workspace = "prefix+ctrl+j"
 split_vertical = "prefix+backslash"
+split_horizontal = ""
 zoom = ["prefix+m", "prefix+enter"]
 previous_tab = "prefix+ctrl+h"
 next_tab = "prefix+ctrl+l"
@@ -24,11 +25,26 @@ navigate_workspace_down = "j"
 navigate_workspace_up = "k"
 
 [[keys.command]]
-key = "ctrl+backtick"
+key = "prefix+l"
 type = "popup"
 command = "PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\" exec lazygit"
+description = "lazygit"
 width = "80%"
 height = "80%"
+
+[[keys.command]]
+key = "prefix+n"
+type = "popup"
+command = "PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\" exec nvim"
+description = "neovim"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+minus"
+type = "shell"
+command = 'herdr pane split --pane "$HERDR_ACTIVE_PANE_ID" --direction down --ratio 0.75 --focus'
+description = "horizontal split"
 
 [ui]
 hide_tab_bar_when_single_tab = true

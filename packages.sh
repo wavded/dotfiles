@@ -34,7 +34,8 @@ brew install bat
 brew install eza
 brew install fzf
 brew install wget
-brew install autojump
+brew install zoxide
+brew install btop
 brew install tmux
 brew install reattach-to-user-namespace
 brew install watch
@@ -67,7 +68,7 @@ echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 # == Node
 brew install node
 brew install pnpm
-brew install prettierd
+brew install oxfmt
 pnpm install -g prettier typescript
 pnpm completion
 

@@ -4,9 +4,6 @@ source "$(brew --prefix)/share/bash-completion/bash_completion"
 source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
 [ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
 
-# Enable autojump.
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
-
 # == Exports ==
 export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
@@ -33,6 +30,7 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias lg="lazygit"
+alias hd="herdr"
 alias cm='codex --model gpt-5.6-luna -c model_reasoning_effort=high'
 alias ct='codex --model gpt-5.6-sol -c model_reasoning_effort=high'
 alias cr='codex resume --last'
@@ -75,3 +73,6 @@ function vpnoff() {
 if [ "$TERM" != "dumb" ]; then
   eval "$(starship init bash)"
 fi
+
+# Enable zoxide.
+eval "$(zoxide init bash --cmd j)"
