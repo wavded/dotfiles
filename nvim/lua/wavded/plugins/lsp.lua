@@ -90,6 +90,25 @@ return {
                 check = {
                   command = "clippy",
                 },
+                lens = {
+                  implementations = {
+                    enable = false,
+                  },
+                  references = {
+                    adt = {
+                      enable = false,
+                    },
+                    enumVariant = {
+                      enable = false,
+                    },
+                    method = {
+                      enable = false,
+                    },
+                    trait = {
+                      enable = false,
+                    },
+                  },
+                },
               },
             },
           },
