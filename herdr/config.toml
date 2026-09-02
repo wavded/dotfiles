@@ -25,20 +25,20 @@ navigate_workspace_down = "j"
 navigate_workspace_up = "k"
 
 [[keys.command]]
-key = "prefix+l"
+key = "prefix+d"
 type = "popup"
 command = "PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\" exec lazygit"
 description = "lazygit"
-width = "80%"
-height = "80%"
+width = "100%"
+height = "100%"
 
 [[keys.command]]
 key = "prefix+n"
 type = "popup"
 command = "PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\" exec nvim"
-description = "neovim"
-width = "80%"
-height = "80%"
+description = "nvim"
+width = "100%"
+height = "100%"
 
 [[keys.command]]
 key = "prefix+minus"
