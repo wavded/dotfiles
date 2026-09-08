@@ -18,7 +18,6 @@ return {
         "jsonls",
         "kotlin_language_server",
         "lua_ls",
-        "phpactor",
         "postgres_lsp",
         "rust_analyzer",
         "somesass_ls",

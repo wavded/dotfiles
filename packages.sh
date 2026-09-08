@@ -44,7 +44,6 @@ brew install redis
 brew install neovim
 brew install dnscontrol
 brew install vale
-brew install php-cs-fixer
 brew install tree-sitter-cli
 
 # == Git
@@ -65,12 +64,13 @@ brew install pinentry-mac
 mkdir ~/.gnupg
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
-# == Node
+# == Node / Bun / Deno
 brew install node
 brew install pnpm
 brew install oxfmt
-pnpm install -g prettier typescript
-pnpm completion
+brew tap oven-sh/bun
+brew install bun
+brew install deno
 
 # == Java
 brew install java
@@ -89,13 +89,8 @@ go install github.com/segmentio/golines@latest
 go install mvdan.cc/gofumpt@latest
 go install github.com/golang/mock/mockgen@latest
 
-# == Misc languages
-brew install deno
+# == Misc
 brew install stylua
-brew install php
-brew install composer
-brew tap oven-sh/bun
-brew install bun
 
 # == Cask
 brew install --cask postico
