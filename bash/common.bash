@@ -39,23 +39,9 @@ hash eza >/dev/null 2>&1 && alias ls="eza --group-directories-first --icons --hy
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+alias tm="herdr"
 
 # == Functions
-
-function tm() {
-  tmux has-session -t base &> /dev/null
-
-  if [ $? != 0 ]; then
-    tmux new-session -s base -d -n base
-    tmux attach -t base
-  fi
-
-  tmux split-window  -h
-  tmux resize-pane   -R 40
-  tmux select-pane   -t 0
-  sleep 0.2
-  tmux send-keys     -t 0 'vim' C-m
-}
 
 cleancontainers() { docker rm $(docker ps -q -a); }
 cleanimages() { docker rmi $(docker images -q); }
@@ -71,4 +57,3 @@ EOF
   rm .Dockerfile.scratch
   docker run --rm -it -p 3000:3000 app
 }
-

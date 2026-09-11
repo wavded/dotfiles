@@ -57,7 +57,6 @@ vim.filetype.add({
   extension = {
     sls = "yaml.jinja",
     neon = "yaml",
-    prettierrc = "json",
     eslintrc = "json",
     jinja = "jinja",
   },

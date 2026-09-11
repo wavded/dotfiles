@@ -11,6 +11,8 @@
 
   # Quick commit all.
   call =! git add -A && git commit
+  cm =! git add -A && omp -p '/commit-message Return only the message in plain text' | git commit --file=- --edit
+  wip =! git add -A && git commit -m WIP && git push -u
 
   # Clean 'gone' branches (i.e. ones that have been removed from the remote).
   gone =! git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D

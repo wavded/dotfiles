@@ -30,7 +30,6 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias lg="lazygit"
-alias hd="herdr"
 alias cm='codex --model gpt-5.6-luna -c model_reasoning_effort=high'
 alias ct='codex --model gpt-5.6-sol -c model_reasoning_effort=high'
 alias cr='codex resume --last'
@@ -50,23 +49,12 @@ alias update='$HOME/dotfiles/update-packages.sh'
 # Lock screen.
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
-# Chrome.
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-
 # == Functions ==
 
 function serve() {
   local port="${1:-8000}";
   sleep 1 && open "http://localhost:${port}/" &
   python3 -m http.server $port
-}
-
-function vpn() {
-  tailscale up
-}
-
-function vpnoff() {
-  tailscale down
 }
 
 # Run prompt

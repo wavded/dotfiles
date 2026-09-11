@@ -19,7 +19,6 @@ return {
         kotlin = { "ktlint" },
         lua = { "stylua" },
         markdown = { "oxfmt" },
-        pug = { "prettierd" },
         rust = { "rustfmt" },
         scss = { "oxfmt" },
         sql = { "sqruff" },
