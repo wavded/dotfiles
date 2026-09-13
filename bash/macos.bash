@@ -2,16 +2,11 @@
 export BASH_COMPLETION_COMPAT_DIR="$(brew --prefix)/etc/bash_completion.d"
 source "$(brew --prefix)/share/bash-completion/bash_completion"
 source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
-[ -f ~/.config/tabtab/bash/__tabtab.bash ] && . ~/.config/tabtab/bash/__tabtab.bash || true
 
 # == Exports ==
-export PATH=/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH
 export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$HOME/.deno/bin:$PATH"
-export PATH="$HOME/Library/pnpm/bin:$PATH"
-export BUN_INSTALL="/Users/wavded/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$HOME/dotfiles/bin:$PATH"
 . "$HOME/.cargo/env"
 
 # Disable per-terminal-session history: http://stackoverflow.com/a/34803825
@@ -30,6 +25,8 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias lg="lazygit"
+
+# Agents
 alias cm='codex --model gpt-5.6-luna -c model_reasoning_effort=high'
 alias ct='codex --model gpt-5.6-sol -c model_reasoning_effort=high'
 alias cr='codex resume --last'
@@ -42,9 +39,6 @@ alias cleanup="fd -x rm \; -t f -HI .DS_Store"
 
 # Flush DNS.
 alias flush="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
-
-# System update.
-alias update='$HOME/dotfiles/update-packages.sh'
 
 # Lock screen.
 alias lock="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"

@@ -1,0 +1,83 @@
+# Codex configuration
+
+model = "gpt-5.luna"
+model_reasoning_effort = "high"
+model_verbosity = "low"
+default_subagent_model = "gpt-5.6-luna"
+default_subagent_reasoning_effort = "high"
+web_search = "live"
+personality = "pragmatic"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+
+[features]
+apps = false
+fast_mode = false
+memories = true
+prevent_idle_sleep = true
+
+[tui]
+show_tooltips = false
+auto_recap = false
+status_line = [
+  "model-with-reasoning",
+  "total-input-tokens",
+  "total-output-tokens",
+  "context-remaining",
+  "thread-credits",
+  "estimated-thread-cost",
+  "task-progress",
+  "git-branch",
+  "pull-request-number",
+  "branch-changes",
+]
+
+[sandbox_workspace_write]
+network_access = true
+
+[mcp_servers.grafana]
+command = "mcp-op-env"
+args = ["uvx", "mcp-grafana"]
+startup_timeout_sec = 10
+enabled_tools = [
+  "generate_deeplink",
+  "get_alert_group",
+  "get_annotation_tags",
+  "get_annotations",
+  "get_assertions",
+  "get_dashboard_by_uid",
+  "get_dashboard_panel_queries",
+  "get_dashboard_property",
+  "get_dashboard_summary",
+  "get_datasource",
+  "get_doc",
+  "get_panel_image",
+  "list_alert_groups",
+  "list_datasources",
+  "list_prometheus_label_names",
+  "list_prometheus_label_values",
+  "list_prometheus_metric_metadata",
+  "list_prometheus_metric_names",
+  "query_prometheus",
+  "query_prometheus_histogram",
+  "search_dashboards",
+  "search_docs",
+  "search_folders",
+]
+
+[mcp_servers.youtrack]
+command = "mcp-op-env"
+args = [
+  "sh",
+  "-c",
+  'exec bunx -y mcp-remote $YOUTRACK_MCP_URL --header "Authorization: Bearer $YOUTRACK_TOKEN"',
+]
+startup_timeout_sec = 10
+
+[mcp_servers.elasticsearch]
+command = "mcp-op-env"
+args = ["elasticsearch-mcp"]
+startup_timeout_sec = 10
+
+[plugins."sharepoint@openai-curated-remote"]
+enabled = false

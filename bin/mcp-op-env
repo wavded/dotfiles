@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -e
+
+ENV_CACHE="/tmp/mcp-secrets-${UID}.env"
+
+# If cache doesn't exist or is older than 60 minutes, refresh it via 1P
+if [ ! -f "$ENV_CACHE" ] || [ $(find "$ENV_CACHE" -mmin +60 2>/dev/null) ]; then
+  # Use a lockfile so if 2 servers start at the exact same millisecond, only one runs 'op'
+  LOCKDIR="/tmp/mcp-env-refresh.lock"
+  if mkdir "$LOCKDIR" 2>/dev/null; then
+    trap 'rm -rf "$LOCKDIR"' EXIT
+    op inject -i "$HOME/.mcp.secrets.env" -o "$ENV_CACHE.tmp"
+    chmod 600 "$ENV_CACHE.tmp"
+    mv "$ENV_CACHE.tmp" "$ENV_CACHE"
+    rm -rf "$LOCKDIR"
+  else
+    # Wait for the other process to finish generating the file
+    while [ -d "$LOCKDIR" ]; do sleep 0.1; done
+  fi
+fi
+
+# Load variables into this process
+set -a
+source "$ENV_CACHE"
+set +a
+
+exec "$@"
