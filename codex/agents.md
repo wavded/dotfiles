@@ -1,0 +1,2 @@
+- When reporting information to me, be concise.
+- Always use YouTrack MCP for YouTrack URLs.
