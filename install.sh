@@ -18,7 +18,6 @@ done
 if [[ `uname` == "Darwin" ]]; then
   rm-if-present "$HOME/.hushlogin" "$dir/hushlogin"
 
-  mkdir -p $HOME/.config
   mkdir -p "$HOME/.codex"
   mkdir -p "$HOME/.config/herdr"
   mkdir -p "$HOME/Library/Application Support/lazygit"

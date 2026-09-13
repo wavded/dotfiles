@@ -13,7 +13,7 @@ sandbox_mode = "danger-full-access"
 [features]
 apps = false
 fast_mode = false
-memories = true
+memories = false
 prevent_idle_sleep = true
 
 [tui]
