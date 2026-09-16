@@ -45,3 +45,5 @@ exceptions:
   - DNS
   - user
   - MCP
+  - Kotlin
+  - Java

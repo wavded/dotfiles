@@ -7,7 +7,11 @@ source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
 export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/dotfiles/bin:$PATH"
+export PNPM_HOME='/Users/wavded/Library/pnpm'
+export PATH="$PNPM_HOME/bin:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
 . "$HOME/.cargo/env"
+
 
 # Disable per-terminal-session history: http://stackoverflow.com/a/34803825
 export SHELL_SESSION_HISTORY=0
