@@ -31,9 +31,9 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias lg="lazygit"
 
 # Agents
-alias cm='codex --model gpt-5.6-luna -c model_reasoning_effort=high'
-alias ct='codex --model gpt-5.6-sol -c model_reasoning_effort=high'
-alias cr='codex resume --last'
+alias cm='codex --profile trusted --model gpt-5.6-luna -c model_reasoning_effort=high'
+alias ct='codex --profile trusted --model gpt-5.6-sol -c model_reasoning_effort=high'
+alias cr='codex --profile trusted resume --last'
 
 # Empty trash and caches.
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
