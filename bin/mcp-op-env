@@ -1,23 +1,65 @@
 #!/usr/bin/env bash
 set -e
 
-ENV_CACHE="/tmp/mcp-secrets-${UID}.env"
+ENV_CACHE="${MCP_ENV_CACHE:-/tmp/mcp-secrets-${UID}.env}"
+LOCKDIR="${MCP_ENV_LOCKDIR:-/tmp/mcp-env-refresh-${UID}.lock}"
+LOCK_WAIT_SECONDS=60
 
-# If cache doesn't exist or is older than 60 minutes, refresh it via 1P
-if [ ! -f "$ENV_CACHE" ] || [ $(find "$ENV_CACHE" -mmin +60 2>/dev/null) ]; then
-  # Use a lockfile so if 2 servers start at the exact same millisecond, only one runs 'op'
-  LOCKDIR="/tmp/mcp-env-refresh.lock"
-  if mkdir "$LOCKDIR" 2>/dev/null; then
-    trap 'rm -rf "$LOCKDIR"' EXIT
-    op inject -i "$HOME/.mcp.secrets.env" -o "$ENV_CACHE.tmp"
-    chmod 600 "$ENV_CACHE.tmp"
-    mv "$ENV_CACHE.tmp" "$ENV_CACHE"
-    rm -rf "$LOCKDIR"
-  else
-    # Wait for the other process to finish generating the file
-    while [ -d "$LOCKDIR" ]; do sleep 0.1; done
+cache_needs_refresh() {
+  [ ! -s "$ENV_CACHE" ] || [ -n "$(find "$ENV_CACHE" -mmin +60 -print -quit 2>/dev/null)" ]
+}
+
+remove_stale_lock() {
+  local owner
+
+  if [ -r "$LOCKDIR/pid" ]; then
+    read -r owner < "$LOCKDIR/pid" || owner=
+    if [ -n "$owner" ] && ! kill -0 "$owner" 2>/dev/null; then
+      rm -f "$LOCKDIR/pid"
+      rmdir "$LOCKDIR" 2>/dev/null || true
+    fi
+  elif [ -n "$(find "$LOCKDIR" -maxdepth 0 -mmin +1 -print -quit 2>/dev/null)" ]; then
+    # The owner may have been killed before it wrote its PID.
+    rmdir "$LOCKDIR" 2>/dev/null || true
   fi
-fi
+}
+
+refresh_cache() {
+  local tmp_cache="${ENV_CACHE}.$$"
+
+  cleanup() {
+    rm -f "$tmp_cache"
+    rm -f "$LOCKDIR/pid"
+    rmdir "$LOCKDIR" 2>/dev/null || true
+  }
+  trap cleanup EXIT HUP INT TERM
+
+  printf '%s\n' "$$" > "$LOCKDIR/pid"
+  op inject -i "$HOME/.mcp.secrets.env" -o "$tmp_cache"
+  [ -s "$tmp_cache" ]
+  chmod 600 "$tmp_cache"
+  mv -f "$tmp_cache" "$ENV_CACHE"
+  cleanup
+  trap - EXIT HUP INT TERM
+}
+
+ensure_cache() {
+  local deadline=$((SECONDS + LOCK_WAIT_SECONDS))
+
+  while cache_needs_refresh; do
+    if mkdir "$LOCKDIR" 2>/dev/null; then
+      refresh_cache
+      return
+    fi
+
+    remove_stale_lock
+    cache_needs_refresh || return
+    [ "$SECONDS" -lt "$deadline" ] || return 1
+    sleep 0.1
+  done
+}
+
+ensure_cache
 
 # Load variables into this process
 set -a
