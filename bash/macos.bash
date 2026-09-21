@@ -31,7 +31,7 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias lg="lazygit"
 
 # Agents
-alias cm='codex --profile trusted --model gpt-5.6-luna -c model_reasoning_effort=high'
+alias cm='codex --profile trusted --model gpt-5.6-luna -c model_reasoning_effort=high -c service_tier=fast'
 alias ct='codex --profile trusted --model gpt-5.6-sol -c model_reasoning_effort=high'
 alias cr='codex --profile trusted resume --last'
 
