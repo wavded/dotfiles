@@ -5,6 +5,7 @@ source "$(rustc --print sysroot)/etc/bash_completion.d/cargo"
 
 # == Exports ==
 export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
+export PATH="$(brew --prefix libpq)/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/dotfiles/bin:$PATH"
 export PNPM_HOME='/Users/wavded/Library/pnpm'
@@ -31,8 +32,10 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias lg="lazygit"
 
 # Agents
-alias cm='codex --profile trusted --model gpt-5.6-luna -c model_reasoning_effort=high -c service_tier=fast'
-alias ct='codex --profile trusted --model gpt-5.6-sol -c model_reasoning_effort=high'
+alias cm='codex --profile trusted --model gpt-6-luna -c model_reasoning_effort=max -c service_tier=fast'
+alias ct='codex --profile trusted --model gpt-6-sol -c model_reasoning_effort=high'
+alias cmt='codex --profile trusted --model gpt-6-luna -c model_reasoning_effort=max -c service_tier=fast --worktree'
+alias ctt='codex --profile trusted --model gpt-6-sol -c model_reasoning_effort=high --worktree'
 alias cr='codex --profile trusted resume --last'
 
 # Empty trash and caches.

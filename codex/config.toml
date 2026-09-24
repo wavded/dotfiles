@@ -1,14 +1,16 @@
 # Codex configuration
 
-model = "gpt-5.6-luna"
-model_reasoning_effort = "high"
+model = "gpt-6-luna"
+model_reasoning_effort = "max"
 model_verbosity = "low"
-default_subagent_model = "gpt-5.6-luna"
-default_subagent_reasoning_effort = "high"
 web_search = "live"
 personality = "none"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
+
+[agents]
+default_subagent_model = "gpt-6-luna"
+default_subagent_reasoning_effort = "max"
 
 [features]
 apps = false
@@ -24,11 +26,7 @@ status_line = [
   "total-input-tokens",
   "total-output-tokens",
   "context-remaining",
-  "thread-credits",
   "estimated-thread-cost",
-  "task-progress",
-  "git-branch",
-  "pull-request-number",
 ]
 
 [sandbox_workspace_write]
