@@ -6,7 +6,7 @@ LOCKDIR="${MCP_ENV_LOCKDIR:-/tmp/mcp-env-refresh-${UID}.lock}"
 LOCK_WAIT_SECONDS=60
 
 cache_needs_refresh() {
-  [ ! -s "$ENV_CACHE" ] || [ -n "$(find "$ENV_CACHE" -mmin +60 -print -quit 2>/dev/null)" ]
+  [ ! -s "$ENV_CACHE" ] || [ -n "$(find "$ENV_CACHE" -mmin +1440 -print -quit 2>/dev/null)" ]
 }
 
 remove_stale_lock() {
@@ -35,7 +35,7 @@ refresh_cache() {
   trap cleanup EXIT HUP INT TERM
 
   printf '%s\n' "$$" > "$LOCKDIR/pid"
-  op inject -i "$HOME/.mcp.secrets.env" -o "$tmp_cache"
+  op inject -i "$HOME/.mcp.secrets.env" -o "$tmp_cache" --cache=false
   [ -s "$tmp_cache" ]
   chmod 600 "$tmp_cache"
   mv -f "$tmp_cache" "$ENV_CACHE"

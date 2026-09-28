@@ -13,6 +13,9 @@ brew cleanup
 pnpm up -gL
 bun up -gL
 
+# == Python
+uv tool upgrade --all
+
 # == Go
 go install golang.org/x/tools/cmd/goimports@latest
 go install mvdan.cc/gofumpt@latest

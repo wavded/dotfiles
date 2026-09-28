@@ -8,11 +8,11 @@ export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
 export PATH="$(brew --prefix libpq)/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$HOME/dotfiles/bin:$PATH"
-export PNPM_HOME='/Users/wavded/Library/pnpm'
+export PATH="$HOME/.local/bin:$PATH"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 . "$HOME/.cargo/env"
-
 
 # Disable per-terminal-session history: http://stackoverflow.com/a/34803825
 export SHELL_SESSION_HISTORY=0
@@ -31,12 +31,11 @@ alias localip="ipconfig getifaddr en0"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias lg="lazygit"
 
-# Agents
-alias cm='codex --profile trusted --model gpt-6-luna -c model_reasoning_effort=max -c service_tier=fast'
-alias ct='codex --profile trusted --model gpt-6-sol -c model_reasoning_effort=high'
-alias cmt='codex --profile trusted --model gpt-6-luna -c model_reasoning_effort=max -c service_tier=fast --worktree'
-alias ctt='codex --profile trusted --model gpt-6-sol -c model_reasoning_effort=high --worktree'
-alias cr='codex --profile trusted resume --last'
+# Codex
+alias cm='codex --profile trusted --no-daemon --model gpt-6-luna -c model_reasoning_effort=max -c service_tier=fast'
+alias ct='codex --profile trusted --no-daemon --model gpt-6-sol -c model_reasoning_effort=high'
+alias c='codex --profile trusted --no-daemon --model gpt-6-sol -c model_reasoning_effort=medium'
+alias cr='codex --profile trusted --no-daemon resume --last'
 
 # Empty trash and caches.
 alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
