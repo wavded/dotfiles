@@ -32,7 +32,7 @@ alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 alias lg="lazygit"
 
 # Codex
-alias cm='codex --profile trusted --no-daemon --model gpt-6-luna -c model_reasoning_effort=max -c service_tier=fast'
+alias cm='codex --profile trusted --no-daemon --model gpt-6-luna -c model_reasoning_effort=high -c service_tier=fast'
 alias ct='codex --profile trusted --no-daemon --model gpt-6-sol -c model_reasoning_effort=high'
 alias c='codex --profile trusted --no-daemon --model gpt-6-sol -c model_reasoning_effort=medium'
 alias cr='codex --profile trusted --no-daemon resume --last'
