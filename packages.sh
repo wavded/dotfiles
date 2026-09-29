@@ -36,8 +36,6 @@ brew install fzf
 brew install wget
 brew install zoxide
 brew install btop
-brew install tmux
-brew install reattach-to-user-namespace
 brew install watch
 brew install plantuml
 brew install redis
