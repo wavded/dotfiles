@@ -33,6 +33,7 @@ brew install fd
 brew install bat
 brew install eza
 brew install fzf
+brew install herdr
 brew install wget
 brew install zoxide
 brew install btop
