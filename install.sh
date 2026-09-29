@@ -30,5 +30,4 @@ if [[ `uname` == "Darwin" ]]; then
   rm-if-present "$HOME/.config/sharship.toml" "$dir/starship.toml"
 
   bash -c ./packages.sh
-  bash -c ./fix-terminfo.sh
 fi
