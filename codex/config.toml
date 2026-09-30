@@ -61,17 +61,10 @@ enabled_tools = [
   "search_folders",
 ]
 
-[mcp_servers.elasticsearch]
-command = "elasticsearch-mcp"
-startup_timeout_sec = 10
-
 [plugins."sharepoint@openai-curated-remote"]
 enabled = false
 
 [plugins."ponytail@ponytail"]
-enabled = true
-
-[plugins."i-have-adhd@i-have-adhd"]
 enabled = true
 
 [marketplaces.ponytail]
