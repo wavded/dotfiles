@@ -31,8 +31,9 @@ screen_reader_detection_done = true
 network_access = true
 
 [mcp_servers.grafana]
-command = "mcp-op-env"
-args = ["uvx", "mcp-grafana"]
+command = "uvx"
+args = ["mcp-grafana"]
+env_vars = ["GRAFANA_URL", "GRAFANA_SERVICE_ACCOUNT_TOKEN"]
 startup_timeout_sec = 10
 enabled_tools = [
   "generate_deeplink",
@@ -61,8 +62,7 @@ enabled_tools = [
 ]
 
 [mcp_servers.elasticsearch]
-command = "mcp-op-env"
-args = ["elasticsearch-mcp"]
+command = "elasticsearch-mcp"
 startup_timeout_sec = 10
 
 [plugins."sharepoint@openai-curated-remote"]
@@ -77,8 +77,3 @@ enabled = true
 [marketplaces.ponytail]
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
-
-[marketplaces.i-have-adhd]
-source_type = "git"
-source = "https://github.com/ayghri/i-have-adhd.git"
-ref = "main"
