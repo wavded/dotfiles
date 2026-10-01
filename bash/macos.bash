@@ -33,8 +33,8 @@ alias lg="lazygit"
 
 # Codex
 alias cm='codex --profile trusted --no-daemon --model gpt-6-luna -c model_reasoning_effort=high -c service_tier=fast'
-alias ct='codex --profile trusted --no-daemon --model gpt-6-sol -c model_reasoning_effort=high'
-alias c='codex --profile trusted --no-daemon --model gpt-6-sol -c model_reasoning_effort=medium'
+alias ct='codex --profile trusted --no-daemon --model gpt-6.1-sol -c model_reasoning_effort=high'
+alias c='codex --profile trusted --no-daemon --model gpt-6.1-sol -c model_reasoning_effort=low'
 alias cr='codex --profile trusted --no-daemon resume --last'
 
 # Empty trash and caches.
