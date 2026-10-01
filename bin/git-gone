@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+git fetch -p
+current=$(cd "$(git rev-parse --show-toplevel)" && pwd -P)
+refs=$(git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads)
+paths=()
+branches=()
+locks=()
+i=-1
+while IFS= read -r -d '' field; do
+  case "$field" in
+    'worktree '*)
+      i=$((i + 1))
+      paths[i]=${field#worktree }
+      branches[i]=''
+      locks[i]=''
+      ;;
+    'branch '*) branches[i]=${field#branch refs/heads/} ;;
+    locked|locked\ *) locks[i]=locked ;;
+  esac
+done < <(git worktree list --porcelain -z)
+
+while read -r branch track; do
+  [[ "$track" == '[gone]' ]] || continue
+  skip=false
+  for ((i = 0; i < ${#paths[@]}; i++)); do
+    [[ "${branches[i]}" == "$branch" ]] || continue
+    path=${paths[i]}
+    if [[ "$i" == 0 || -n "${locks[i]}" ]]; then
+      skip=true
+    elif [[ "$(cd "$path" && pwd -P)" == "$current" ]]; then
+      skip=true
+    else
+      status=$(git -C "$path" status --porcelain)
+      if [[ -n "$status" ]] || ! git worktree remove -- "$path"; then
+        skip=true
+      fi
+    fi
+    break
+  done
+  if "$skip"; then
+    printf 'Skipped %s: protected or dirty worktree\n' "$branch"
+  else
+    git branch -D -- "$branch"
+  fi
+done <<< "$refs"

@@ -15,7 +15,6 @@
   wip =! git add -A && git commit -m WIP
 
   # Clean 'gone' branches (i.e. ones that have been removed from the remote).
-  gone =! git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
 
 [diff]
   # Use vimdiff as the diff tool.
