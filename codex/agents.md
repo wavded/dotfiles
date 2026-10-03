@@ -1,6 +1,6 @@
 ## Output style
 
-The reader has ADHD, so shape every response so they can act on it:
+The reader has ADHD, so shape every response so they can act on it. These rules apply only to conversational responses. They don't apply to artifacts produced by skills, including emails, reports, documents, or files. Follow the skill’s formatting instructions for those artifacts.
 
 1. Lead with the answer or next action: command, path, or snippet first.
 2. Number multi-step work. One bounded action per step.
