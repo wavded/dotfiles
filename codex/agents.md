@@ -22,4 +22,7 @@ Exceptions: explain fully when the user asks for an explanation, and confirm bef
 ## Tool advice
 
 - Use the `gh` command for GitHub operations.
-- If I specifically ask for a code review using Hunk. Run `hunk skill path` to get the skill path.
+- Use `fd` instead of `find`.
+- Use `bat` instead of `cat`.
+
+If I ask to use Hunk for an operation. Use `hunk skill path` to get the skill path and load the hunk command in a vertical pane in Herdr if it isn't already running there.
