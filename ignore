@@ -1,10 +1,8 @@
 node_modules
 coverage
-elm-stuff
-jsdocs
+target/
+build/
 .git
-.svn
 *.min.js
 *.min.css
 *.js.map
-bower_components
