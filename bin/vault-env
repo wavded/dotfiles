@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export VAULT_ADDR="${VAULT_ADDR:-https://172.25.20.28:8200}"
+export VAULT_CACERT="${VAULT_CACERT:-$HOME/.vault-certs/server.crt}"
+
+data=$(vault kv get -format=json -mount=kv "${1:?Usage: vault-env secret [output]}" | jq -r '
+  .data.data | to_entries[] | (.key | ascii_upcase) as $key |
+  if ($key | test("^[A-Z_][A-Z0-9_]*$")) and
+     (.value | type == "string") and
+     (.value | test("[$#\\\\\\r\\n]|^\\s|\\s$") | not)
+  then "\($key)=\(.value)" else error("Unsupported .env entry") end
+')
+
+umask 077
+set -o noclobber
+printf '%s\n' "$data" > "${2:-.env}"

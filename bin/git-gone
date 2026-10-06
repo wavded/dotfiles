@@ -21,22 +21,22 @@ while IFS= read -r -d '' field; do
   esac
 done < <(git worktree list --porcelain -z)
 
+for ((i = 1; i < ${#paths[@]}; i++)); do
+  path=${paths[i]}
+  [[ -z "${locks[i]}" ]] || continue
+  [[ "$(cd "$path" && pwd -P)" != "$current" ]] || continue
+  status=$(git -C "$path" status --porcelain)
+  if [[ -z "$status" ]] && git worktree remove -- "$path"; then
+    branches[i]=''
+  fi
+done
+
 while read -r branch track; do
   [[ "$track" == '[gone]' ]] || continue
   skip=false
   for ((i = 0; i < ${#paths[@]}; i++)); do
     [[ "${branches[i]}" == "$branch" ]] || continue
-    path=${paths[i]}
-    if [[ "$i" == 0 || -n "${locks[i]}" ]]; then
-      skip=true
-    elif [[ "$(cd "$path" && pwd -P)" == "$current" ]]; then
-      skip=true
-    else
-      status=$(git -C "$path" status --porcelain)
-      if [[ -n "$status" ]] || ! git worktree remove -- "$path"; then
-        skip=true
-      fi
-    fi
+    skip=true
     break
   done
   if "$skip"; then
