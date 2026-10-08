@@ -68,6 +68,12 @@ enabled_tools = [
 [plugins."sharepoint@openai-curated-remote"]
 enabled = false
 
+[plugins."pages@openai-curated-remote"]
+enabled = false
+
+[plugins."work-pets@openai-curated-remote"]
+enabled = false
+
 [plugins."ponytail@ponytail"]
 enabled = true
 

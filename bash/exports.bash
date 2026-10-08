@@ -33,6 +33,10 @@ export MANPAGER='less -X';
 export DEFAULT_USER=wavded
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
 
+# ==== Vault ====
+export VAULT_ADDR=https://vault.adc.int:8200
+export VAULT_CACERT="$HOME/.vault-certs/server.crt"
+
 # ==== Java ====
 export JAVA_VERSION=17
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
