@@ -12,6 +12,7 @@ sandbox_mode = "danger-full-access"
 apps = false
 fast_mode = true
 memories = false
+remote_plugin = false
 prevent_idle_sleep = true
 
 [realtime]
@@ -28,7 +29,7 @@ status_line = [
   "context-remaining",
   "estimated-thread-cost",
 ]
-status_line_use_colors = true
+status_line_use_colors = false
 screen_reader_detection_done = true
 
 [sandbox_workspace_write]
@@ -65,13 +66,7 @@ enabled_tools = [
   "search_folders",
 ]
 
-[plugins."sharepoint@openai-curated-remote"]
-enabled = false
-
-[plugins."pages@openai-curated-remote"]
-enabled = false
-
-[plugins."work-pets@openai-curated-remote"]
+[plugins._default]
 enabled = false
 
 [plugins."ponytail@ponytail"]
