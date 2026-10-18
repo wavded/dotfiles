@@ -35,37 +35,6 @@ screen_reader_detection_done = true
 [sandbox_workspace_write]
 network_access = true
 
-[mcp_servers.grafana]
-command = "uvx"
-args = ["mcp-grafana"]
-env_vars = ["GRAFANA_URL", "GRAFANA_SERVICE_ACCOUNT_TOKEN"]
-startup_timeout_sec = 10
-enabled_tools = [
-  "generate_deeplink",
-  "get_alert_group",
-  "get_annotation_tags",
-  "get_annotations",
-  "get_assertions",
-  "get_dashboard_by_uid",
-  "get_dashboard_panel_queries",
-  "get_dashboard_property",
-  "get_dashboard_summary",
-  "get_datasource",
-  "get_doc",
-  "get_panel_image",
-  "list_alert_groups",
-  "list_datasources",
-  "list_prometheus_label_names",
-  "list_prometheus_label_values",
-  "list_prometheus_metric_metadata",
-  "list_prometheus_metric_names",
-  "query_prometheus",
-  "query_prometheus_histogram",
-  "search_dashboards",
-  "search_docs",
-  "search_folders",
-]
-
 [plugins._default]
 enabled = false
 
