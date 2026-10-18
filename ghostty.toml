@@ -1,3 +1,5 @@
+command = "/opt/homebrew/bin/herdr"
+confirm-close-surface = false
 font-family = Maple Mono NF
 font-size = 13
 title = " "
