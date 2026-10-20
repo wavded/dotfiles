@@ -26,6 +26,7 @@ return {
         typescript = { "deno_fmt", "oxlint", "oxfmt" },
         typescriptreact = { "oxlint", "oxfmt" },
         yaml = { "oxfmt" },
+        ["yaml.jinja"] = { lsp_format = "never" },
       },
       format_on_save = { timeout_ms = 3000 },
       notify_no_formatters = false,

@@ -50,6 +50,10 @@ return {
       local TS = require("nvim-treesitter")
       TS.install(opts.ensure_installed)
       TS.setup(opts)
+      vim.treesitter.language.register("jinja", "yaml.jinja")
+      vim.treesitter.query.add_predicate("yaml-jinja?", function(_, _, buf)
+        return type(buf) == "number" and vim.bo[buf].filetype == "yaml.jinja"
+      end)
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
           local ok = pcall(vim.treesitter.start)
