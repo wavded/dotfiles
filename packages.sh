@@ -63,13 +63,12 @@ brew install pinentry-mac
 mkdir ~/.gnupg
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
-# == Node / Bun / Deno
+# == Node / Bun
 brew install node
 brew install pnpm
 brew install oxfmt
 brew tap oven-sh/bun
 brew install bun
-brew install deno
 
 # == Java
 brew install java

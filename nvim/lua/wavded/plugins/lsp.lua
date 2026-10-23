@@ -178,10 +178,6 @@ return {
               },
             },
           },
-          denols = {
-            workspace_required = true,
-            root_markers = { "deno.json", "deno.jsonc" },
-          },
         },
       }
       return ret
