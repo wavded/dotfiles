@@ -8,6 +8,9 @@ return {
       end
       opts.lualine_bold = true
       opts.on_highlights = function(hl, c)
+        hl.LspInlayHint = { fg = c.comment, bg = "NONE", italic = true }
+        hl.NonText = { fg = c.comment }
+        hl["SnacksDashboardNormal"] = { fg = c.fg, bg = c.bg }
         hl["SnacksDashboardHeader"] = {
           fg = choose({
             c.blue,

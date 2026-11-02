@@ -1,5 +1,5 @@
-# Set vim mode
-set -o vi
+# Use standard Bash editing
+set -o emacs
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;

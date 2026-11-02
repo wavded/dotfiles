@@ -38,6 +38,7 @@ vim.opt.guicursor =
 
 vim.opt.list = true -- show hidden characters
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.fillchars:append({ eob = " " })
 
 -- add more ignore patterns
 vim.opt.wildignore:append({

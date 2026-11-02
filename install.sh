@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-files=(bash bashrc bash_profile inputrc vale vale.ini gitconfig vimrc oxfmtrc.json ignore stylua.toml)
+files=(bash bashrc bash_profile inputrc vale vale.ini gitconfig vimrc ignore stylua.toml)
 dir="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 function rm-if-present { # $1: to-path $2: from-path
@@ -20,9 +20,11 @@ if [[ `uname` == "Darwin" ]]; then
 
   mkdir -p "$HOME/.codex"
   mkdir -p "$HOME/.config/herdr"
+  mkdir -p "$HOME/.config/rex"
   mkdir -p "$HOME/Library/Application Support/lazygit"
 
   rm-if-present "$HOME/.config/herdr/config.toml" "$dir/herdr/config.toml"
+  rm-if-present "$HOME/.config/rex/init.lua" "$dir/rex/init.lua"
   rm-if-present "$HOME/Library/Application Support/lazygit/config.yml" "$dir/lazygit/config.yml"
   rm-if-present "$HOME/.codex/config.toml" "$dir/codex/config.toml"
   rm-if-present "$HOME/.codex/AGENTS.md" "$dir/codex/agents.md"
