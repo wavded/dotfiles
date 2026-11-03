@@ -39,6 +39,10 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
+      image = {
+        enabled = true,
+        force = vim.env.REX_SESSION ~= nil,
+      },
       dashboard = {
         width = 100,
         sections = function()
