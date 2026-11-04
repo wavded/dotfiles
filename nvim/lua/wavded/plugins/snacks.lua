@@ -1,40 +1,5 @@
 return {
   {
-    "folke/tokyonight.nvim",
-    opts = function(_, opts)
-      math.randomseed(os.time())
-      local choose = function(choices)
-        return choices[math.random(1, #choices)]
-      end
-      opts.lualine_bold = true
-      opts.on_highlights = function(hl, c)
-        hl.LspInlayHint = { fg = c.comment, bg = "NONE", italic = true }
-        hl.NonText = { fg = c.comment }
-        hl["SnacksDashboardNormal"] = { fg = c.fg, bg = c.bg }
-        hl["SnacksDashboardHeader"] = {
-          fg = choose({
-            c.blue,
-            c.blue1,
-            c.blue2,
-            c.blue5,
-            c.cyan,
-            c.green,
-            c.green2,
-            c.magenta,
-            c.orange,
-            c.purple,
-            c.red,
-            c.teal,
-            c.yellow,
-          }),
-        }
-        hl["SnacksDashboardTitle"] = { fg = c.magenta, bold = true }
-        hl["SnacksDashboardKey"] = { fg = c.orange, bold = true }
-      end
-      return opts
-    end,
-  },
-  {
     "folke/snacks.nvim",
     lazy = false,
     priority = 1000,
