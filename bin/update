@@ -9,8 +9,7 @@ brew update
 brew upgrade
 brew cleanup
 
-# == Node
-pnpm up -gL
+# == Bun
 bun up -gL
 
 # == Python

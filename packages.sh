@@ -33,7 +33,7 @@ brew install fd
 brew install bat
 brew install eza
 brew install fzf
-brew install herdr
+brew install mole
 brew install wget
 brew install zoxide
 brew install btop
@@ -52,9 +52,8 @@ brew install gh
 gh ext install meiji163/gh-notify
 
 # == AI
-brew install copilot-cli
-brew install gemini-cli
-brew install anomalyco/tap/opencode
+brew install codex
+brew install antigravity-cli
 
 # == GPG
 # https://gist.github.com/bmhatfield/cc21ec0a3a2df963bffa3c1f884b676b#gistcomment-2165971
@@ -65,8 +64,6 @@ echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
 
 # == Node / Bun
 brew install node
-brew install pnpm
-brew install oxfmt
 brew tap oven-sh/bun
 brew install bun
 

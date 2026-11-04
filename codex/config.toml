@@ -45,3 +45,6 @@ enabled = true
 [marketplaces.ponytail]
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
+
+[projects."/Users/wavded/dotfiles"]
+trust_level = "trusted"
