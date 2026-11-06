@@ -9,9 +9,10 @@ data=$(vault kv get -format=json -mount=kv "${1:?Usage: vault-env secret [output
   if ($key | test("^[A-Z_][A-Z0-9_]*$")) and
      (.value | type == "string") and
      (.value | test("[$#\\\\\\r\\n]|^\\s|\\s$") | not)
-  then "\($key)=\(.value)" else error("Unsupported .env entry") end
+  then "\($key)=\(.value | tojson)" else error("Unsupported .env entry") end
 ')
 
 umask 077
 set -o noclobber
+rm -f -- "${2:-.env}"
 printf '%s\n' "$data" > "${2:-.env}"
