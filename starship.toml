@@ -1,94 +1,70 @@
+add_newline = false
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$line_break\
+$python\
+$character"""
+palette = "rex"
+
+[directory]
+style = "blue"
+
 [character]
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
-[aws]
-symbol = "  "
-
-[buf]
-symbol = " "
-
-[c]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
-
-[directory]
-read_only = " "
-
-[docker_context]
-symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
-
 [git_branch]
-symbol = " "
+format = "[$branch]($style)"
+style = "bright-black"
 
 [git_status]
-conflicted = ""
-untracked = "?"
-modified = "*"
-staged = ""
-renamed = ""
-deleted = "✘"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
 stashed = "≡"
 
-[golang]
-symbol = " "
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
 
-[haskell]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[lua]
-symbol = " "
-
-[memory_usage]
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
-
-[nodejs]
-symbol = " "
-
-[package]
-symbol = " "
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
 
 [python]
-symbol = " "
+format = "[$virtualenv]($style) "
+style = "bright-black"
 
-[rlang]
-symbol = "ﳒ "
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = " "
-
-[scala]
-symbol = " "
-
-[spack]
-symbol = "🅢 "
+[palettes.rex]
+orange = "#babb5f"
+muted = "#527253"
+accent = "#58f158"
+bright-white = "#d2f5d2"
+bright-cyan = "#82edc6"
+bright-purple = "#aade92"
+bright-blue = "#77d1a2"
+bright-yellow = "#bfeb82"
+bright-green = "#74e874"
+bright-red = "#e5b578"
+bright-black = "#3f6b3f"
+white = "#8fc48f"
+cyan = "#5fdcb0"
+purple = "#8fce74"
+blue = "#55b884"
+yellow = "#a5dc5f"
+green = "#4fd24f"
+red = "#cf9a5f"
+black = "#142314"

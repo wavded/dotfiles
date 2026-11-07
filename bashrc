@@ -1,3 +1,13 @@
-# Only source configuration when in an interactive session.
-# https://shreevatsa.wordpress.com/2008/03/30/zshbash-startup-files-loading-order-bashrc-zshrc-etc/
-[ -n "$PS1" ] && source ~/.bash_profile
+[[ $- == *i* ]] || return
+
+export EDITOR=vim
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+
+HISTSIZE=10000
+HISTCONTROL=ignoreboth
+shopt -s histappend checkwinsize
+set -o emacs
+
+alias ls='ls --color=auto --group-directories-first -AFh'
+
+PS1='\u@\h:\w\$ '

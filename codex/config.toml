@@ -7,7 +7,6 @@ web_search = "live"
 personality = "none"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
-daemon_auto_start = false
 
 [features]
 apps = false
@@ -15,6 +14,7 @@ fast_mode = true
 memories = false
 remote_plugin = false
 prevent_idle_sleep = true
+daemon_auto_start = false
 
 [realtime]
 voice = "arbor"

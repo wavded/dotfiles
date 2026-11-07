@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set -x
 xcode-select --install
 
@@ -15,16 +15,8 @@ brew install gnu-sed
 brew install grep
 brew install ssh-copy-id
 
-# == Bash
-brew install bash
+# == Shell
 brew install starship
-brew install bash-completion@2
-
-# Switch to using brew-installed bash as default shell.
-if ! fgrep -q '/opt/homebrew/bin/bash' /etc/shells; then
-  echo '/opt/homebrew/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /opt/homebrew/bin/bash;
-fi;
 
 # == Utilities
 brew install tree

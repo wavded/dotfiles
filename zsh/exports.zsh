@@ -1,16 +1,9 @@
+typeset -U PATH path
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Make vim the default editor.
 export EDITOR='vim';
 hash nvim >/dev/null 2>&1 && export EDITOR="nvim"
-
-# Increase Bash history size slightly; the default is 500.
-export HISTSIZE=10000;
-# Omit duplicates from history.
-export HISTCONTROL="erasedups"
-# Ignore certain commands.
-export HISTIGNORE=$'&:[ \t]*:[fb]g:l[slad]*:cd*:mv*:clear:exit:\:*'
-
-# Save and reload the history after each command finishes to make it available for other sessions (may cause dups).
-# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 export PATH=/usr/local/bin:/usr/libexec:$PATH
 
@@ -30,25 +23,24 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X';
 
-export DEFAULT_USER=wavded
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/opt/X11/lib/pkgconfig
-
 # ==== Vault ====
 export VAULT_ADDR=https://vault.adc.int:8200
 export VAULT_CACERT="$HOME/.vault-certs/server.crt"
 
 # ==== Java ====
-export JAVA_VERSION=17
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
 
 # ==== Go ====
 export GOPATH=$HOME/Projects/go
-export GOBIN=$HOME/Projects/go/bin
-export PATH=${GOPATH}/bin:$GOBIN:$PATH
-
-# ==== Haskell ====
-export PATH=$HOME/Library/Haskell/bin:$PATH
+export PATH="$GOPATH/bin:$PATH"
 
 # ==== Rust ====
 export PATH="$HOME/.cargo/bin:$PATH"
-hash rustc >/dev/null 2>&1 && export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$HOME/dotfiles/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
+
+# Disable per-terminal-session history: http://stackoverflow.com/a/34803825
+export SHELL_SESSION_HISTORY=0

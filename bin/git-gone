@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set -euo pipefail
 
 git fetch -p
@@ -7,7 +7,7 @@ refs=$(git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads
 paths=()
 branches=()
 locks=()
-i=-1
+i=0
 while IFS= read -r -d '' field; do
   case "$field" in
     'worktree '*)
@@ -21,12 +21,12 @@ while IFS= read -r -d '' field; do
   esac
 done < <(git worktree list --porcelain -z)
 
-for ((i = 1; i < ${#paths[@]}; i++)); do
-  path=${paths[i]}
+for ((i = 2; i <= ${#paths[@]}; i++)); do
+  worktree=${paths[i]}
   [[ -z "${locks[i]}" ]] || continue
-  [[ "$(cd "$path" && pwd -P)" != "$current" ]] || continue
-  status=$(git -C "$path" status --porcelain)
-  if [[ -z "$status" ]] && git worktree remove -- "$path"; then
+  [[ "$(cd "$worktree" && pwd -P)" != "$current" ]] || continue
+  dirty=$(git -C "$worktree" status --porcelain)
+  if [[ -z "$dirty" ]] && git worktree remove -- "$worktree"; then
     branches[i]=''
   fi
 done
@@ -34,7 +34,7 @@ done
 while read -r branch track; do
   [[ "$track" == '[gone]' ]] || continue
   skip=false
-  for ((i = 0; i < ${#paths[@]}; i++)); do
+  for ((i = 1; i <= ${#paths[@]}; i++)); do
     [[ "${branches[i]}" == "$branch" ]] || continue
     skip=true
     break
