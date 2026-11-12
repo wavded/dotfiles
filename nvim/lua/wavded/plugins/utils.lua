@@ -50,6 +50,13 @@ return {
     config = function()
       vim.g["test#strategy"] = "neovim"
       vim.g["test#neovim#start_normal"] = 1
+      vim.cmd([[
+        function! TestLoadEnv(cmd) abort
+          return 'if [ -f .env ]; then set -a; . ./.env || exit; set +a; fi; ' . a:cmd
+        endfunction
+        let g:test#custom_transformations = {'dotenv': function('TestLoadEnv')}
+        let g:test#transformation = 'dotenv'
+      ]])
     end,
     keys = {
       { "<leader>e", "<cmd>TestFile<cr>" },

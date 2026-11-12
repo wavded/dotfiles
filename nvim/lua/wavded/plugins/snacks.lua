@@ -7,6 +7,7 @@ return {
       image = {
         enabled = true,
         force = vim.env.REX_SESSION ~= nil,
+        doc = { float = false },
       },
       dashboard = {
         width = 100,

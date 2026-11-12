@@ -1,5 +1,6 @@
 bindkey -e
-setopt nocaseglob autocd correct sharehistory histignorealldups histignorespace
+setopt nocaseglob autocd sharehistory histignorealldups histignorespace
+unsetopt correct correctall
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000

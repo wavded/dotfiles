@@ -31,7 +31,7 @@ alias localip="ipconfig getifaddr en0"
 alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 
 # Codex
-alias c='codex --profile trusted --model gpt-6.1-sol -c model_reasoning_effort=low'
+alias c='codex --profile trusted --model gpt-6.1-sol'
 alias cm='codex --profile trusted --model gpt-6.1-terra -c model_reasoning_effort=medium -c service_tier=fast'
 alias ct='codex --profile trusted --model gpt-6.1-sol -c model_reasoning_effort=high'
 alias cr='codex --profile trusted resume --last'
