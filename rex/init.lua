@@ -2,6 +2,7 @@ require("rexdiff")
 
 rex.bind("ctrl+a>r", "client.config.reload")
 rex.bind("ctrl+a>d", "rexdiff_toggle")
+rex.bind("ctrl+a>[", "pane.copy_mode.enter")
 
 rex.bind("ctrl+a>ctrl+n", "client.tab.new")
 rex.bind("ctrl+a>k", "client.tab.previous")
