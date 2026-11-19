@@ -1,0 +1,29 @@
+{
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-6.1-terra",
+  "markdown": {
+    "mermaid": "final"
+  },
+  "packages": [
+    "npm:pi-web-access",
+    "npm:pi-gpt-voice"
+  ],
+  "tuiMode": "regular",
+  "enabledModels": [
+    "openai-codex/gpt-6.1-sol",
+    "openai-codex/gpt-6.1-terra"
+  ],
+  "quietStartup": "header",
+  "shellCommandPrefix": "set -a; [ ! -f \"$HOME/.pi/agent/.env\" ] || . \"$HOME/.pi/agent/.env\"; set +a",
+  "npmCommand": [
+    "bun"
+  ],
+  "enableInstallTelemetry": false,
+  "defaultProjectTrust": "always",
+  "outputPad": 0,
+  "lastChangelogVersion": "1.5.2",
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0",
+    "{\"source\":\"npm:pi-gpt-voice\",\"scope\":\"user\"}": "0.4.1"
+  }
+}

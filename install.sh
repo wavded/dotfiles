@@ -25,11 +25,14 @@ if [[ `uname` == "Darwin" ]]; then
   rm-if-present "$HOME/.hushlogin" "$dir/hushlogin"
 
   mkdir -p "$HOME/.codex"
+  mkdir -p "$HOME/.pi/agent"
   mkdir -p "$HOME/.config/rex"
 
   rm-if-present "$HOME/.config/rex/init.lua" "$dir/rex/init.lua"
   rm-if-present "$HOME/.codex/config.toml" "$dir/codex/config.toml"
   rm-if-present "$HOME/.codex/agents.md" "$dir/codex/agents.md"
+  rm-if-present "$HOME/.pi/agent/AGENTS.md" "$dir/codex/agents.md"
+  rm-if-present "$HOME/.pi/agent/settings.json" "$dir/pi/settings.json"
   rm-if-present "$HOME/.config/nvim" "$dir/nvim"
   rm-if-present "$HOME/.config/starship.toml" "$dir/starship.toml"
 
